@@ -4,6 +4,14 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	i18n: {
+		defaultLocale: "fr",
+		locales: ["fr", "en", "es"],
+		fallback: {
+			en: "fr",
+			es: "fr",
+		},
+  	},
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
