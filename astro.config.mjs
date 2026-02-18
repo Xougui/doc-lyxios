@@ -7,18 +7,18 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' }],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Démarrage',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ label: 'Introduction', slug: 'index' },
+						// { label: 'Inviter le bot', slug: 'guides/invite' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Commandes',
+					autogenerate: { directory: 'commandes' },
 				},
 			],
 		}),
