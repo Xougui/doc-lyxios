@@ -1,19 +1,15 @@
 ---
-title: Bienvenue sur la doc
-description: Commencez à configurer votre serveur avec notre bot.
+title: Documentation du Bot
+description: Le guide complet pour configurer et utiliser notre bot Discord.
 template: splash # Remove or comment out this line to display the site sidebar on this page.
 hero:
-  tagline: Félicitations pour l'installation de votre nouveau projet de documentation !
+  tagline: Tout ce dont vous avez besoin pour installer, configurer et utiliser le bot sur votre serveur.
   image:
     file: ../../assets/logo.webp
   actions:
     - text: Commencer
       link: /guides/demarrage/introduction/
       icon: right-arrow
-    - text: Lire la doc Starlight
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
@@ -21,19 +17,16 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Prochaines étapes
 
 <CardGrid stagger>
-	<Card title="Mettre à jour le contenu" icon="pencil">
-		Éditez `src/content/docs/index.mdx` pour voir cette page changer.
+	<Card title="Premiers pas" icon="rocket">
+		Consultez le guide de démarrage pour ajouter le bot à votre serveur.
 	</Card>
-	<Card title="Changer la mise en page" icon="document">
-		Supprimez `template: splash` dans `src/content/docs/index.mdx` pour afficher une barre latérale.
+	<Card title="Fonctionnalités" icon="star">
+		Découvrez la liste complète des commandes et des modules disponibles.
 	</Card>
-	<Card title="Ajouter du contenu" icon="add-document">
-		Ajoutez des fichiers Markdown ou MDX dans `src/content/docs` pour créer de nouvelles pages.
+	<Card title="Configuration" icon="setting">
+		Apprenez à configurer le bot pour qu'il corresponde parfaitement à vos besoins.
 	</Card>
-	<Card title="Configurer votre site" icon="setting">
-		Éditez votre `sidebar` et autres configurations dans `astro.config.mjs`.
-	</Card>
-	<Card title="Lire la documentation" icon="open-book">
-		Apprenez-en plus dans la Documentation Starlight.
+	<Card title="Support" icon="discord">
+		Besoin d'aide ? Rejoignez notre communauté pour poser vos questions.
 	</Card>
 </CardGrid>
