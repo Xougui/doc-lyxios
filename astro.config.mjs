@@ -4,17 +4,29 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	i18n: {
-		defaultLocale: "fr",
-		locales: ["fr", "en", "es"],
-		fallback: {
-			en: "fr",
-			es: "fr",
-		},
-  	},
+	// ❌ Le bloc i18n global a été supprimé ici pour éviter le conflit
+
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
+			
+			// ✅ C'est Starlight qui prend le contrôle exclusif des langues
+			defaultLocale: 'root',
+			locales: {
+				root: {
+					label: 'Français',
+					lang: 'fr',
+				},
+				en: {
+					label: 'English',
+					lang: 'en',
+				},
+				es: {
+					label: 'Español',
+					lang: 'es',
+				}
+			},
+
 			social: [{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' }],
 			sidebar: [
 				{
