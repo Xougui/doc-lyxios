@@ -1,0 +1,29 @@
+---
+title: Inviter le Bot
+description: Ajoutez notre bot à votre serveur Discord.
+---
+
+import { LinkButton } from '@astrojs/starlight/components';
+
+Vous souhaitez utiliser notre bot sur votre propre serveur ? Suivez le lien ci-dessous pour l'ajouter.
+
+## Lien d'invitation
+
+Cliquez sur le bouton pour ouvrir la page d'autorisation Discord :
+
+<LinkButton
+  href="https://discord.com/api/oauth2/authorize?client_id=VOTRE_ID_CLIENT&permissions=8&scope=bot"
+  variant="primary"
+  icon="discord"
+  target="_blank"
+>
+  Ajouter au Serveur
+</LinkButton>
+
+:::tip[Configuration]
+N'oubliez pas de remplacer `VOTRE_ID_CLIENT` dans l'URL ci-dessus par l'ID d'application de votre bot (disponible sur le portail développeur Discord).
+:::
+
+## Permissions
+
+Le lien ci-dessus demande les permissions administrateur (`permissions=8`). Vous pouvez ajuster ce paramètre selon les besoins spécifiques de votre bot.

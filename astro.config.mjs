@@ -4,8 +4,6 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	// ❌ Le bloc i18n global a été supprimé ici pour éviter le conflit
-
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
@@ -33,7 +31,7 @@ export default defineConfig({
 					label: 'Démarrage',
 					items: [
 						{ label: 'Introduction', slug: 'index' },
-						// { label: 'Inviter le bot', slug: 'guides/invite' },
+						{ label: 'Inviter le bot', slug: 'guides/invite' },
 					],
 				},
 				{
