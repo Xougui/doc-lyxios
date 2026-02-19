@@ -1,0 +1,133 @@
+---
+title: Politique de Confidentialité
+description: Politique de confidentialité détaillée du bot Discord Lyxios. Transparence totale sur la collecte des données et conformité RGPD.
+lastUpdated: 2026-01-15
+---
+
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+
+:::note
+**Dernière mise à jour :** 19 Février 2026  
+**ID du bot :** `1335228717403996160`
+:::
+
+Chez Lyxios, la transparence est notre priorité. Cette politique détaille les données techniques et personnelles que nous collectons pour assurer le bon fonctionnement de nos services (Dashboard, Logs, Modération), en stricte conformité avec les conditions d'utilisation de Discord.
+
+---
+
+## 1. Informations collectées
+
+Pour fournir ses services, Lyxios traite les types de données suivants :
+
+### A. Données d'identification (Discord)
+* **Identifiants (IDs) :** ID de l'utilisateur, ID du serveur (Guild ID), ID des salons et ID des rôles.
+* **Informations publiques :** Nom d'utilisateur, avatar et discriminateur (via l'API Discord).
+
+### B. Données de Configuration
+*Données fournies volontairement par les administrateurs pour paramétrer les modules :*
+* **Messages personnalisés :** Contenu des messages de Bienvenue, d'Au revoir, de Rappel de Bump et d'Anti-liens.
+* **Médias :** URLs des images utilisées pour les modules de Bienvenue et d'Au revoir.
+* **Paramètres de modération :** Listes de domaines autorisés (whitelist), rôles ignorés, et configuration des logs (salons de destination).
+
+### C. Données Techniques et Sécurité
+* **Cloudflare Turnstile :** Lors de la connexion au Dashboard, nous utilisons Cloudflare Turnstile pour vérifier que vous êtes un humain. Cela peut impliquer la collecte de votre adresse IP et de données de navigation par Cloudflare.
+
+### D. Données de Profil et Économie (Global)
+*Données liées à votre compte utilisateur Discord (indépendamment du serveur) :*
+* **Économie :** Solde de pièces (coins), inventaire de Luckyblocks et fragments.
+* **Profil :** Images débloquées (Galerie), image de fond personnalisée, niveau de flou et préférences d'affichage du profil.
+
+### E. Données Temporaires
+* **Rappels :** Contenu du message de rappel et date programmée (supprimés une fois le rappel envoyé).
+* **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké pour éviter le spam de re-calcul).
+
+### F. Historique de Modération
+*Pour permettre la gestion des communautés :*
+* **Avertissements (Warns) :** Raison de la sanction, ID du modérateur et date. Ces données sont liées à votre ID utilisateur et au serveur concerné.
+
+### G. Suivi de Fonctionnalités
+* **Partenariats :** Stockage des IDs (Message, Utilisateur, Salon) pour le suivi des publicités, sans conservation du contenu.
+* **Confessions :** Seul le compteur total de confessions est stocké. Le contenu des confessions n'est pas conservé en base de données.
+
+---
+
+## 2. Utilisation des informations
+
+Les données collectées sont strictement nécessaires au fonctionnement de nos modules. 
+
+<CardGrid>
+  <Card title="Système de Logs" icon="document">
+    Enregistrement des actions (suppression de messages, bans, vocal) pour les administrateurs du serveur.
+  </Card>
+  <Card title="Système de Tickets" icon="list-format">
+    Gestion de l'ouverture des tickets et association avec les rôles de support.
+  </Card>
+  <Card title="Accueil & Départs" icon="rocket">
+    Envoi des images et messages personnalisés lorsqu'un membre rejoint ou quitte le serveur.
+  </Card>
+  <Card title="Sécurité" icon="shield">
+    Analyse des messages pour bloquer les liens non autorisés et protection contre les raids.
+  </Card>
+  <Card title="Économie & Profil" icon="star">
+    Sauvegarde de votre progression, de votre inventaire et de la personnalisation de votre profil à travers tous les serveurs.
+  </Card>
+  <Card title="Utilitaires" icon="setting">
+    Gestion des rappels personnels et autres commandes utilitaires.
+  </Card>
+</CardGrid>
+
+---
+
+## 3. Services Tiers
+
+Lyxios s'appuie sur des services de confiance :
+* **Discord :** Infrastructure principale. Politique : [discord.com/privacy](https://discord.com/privacy)
+* **Cloudflare :** Sécurité et protection DDoS. Politique : [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/)
+
+---
+
+## 4. Cookies et Stockage Local
+
+Le site et le Dashboard Lyxios n'utilisent pas de cookies publicitaires ou de traçage.
+
+Nous utilisons le **Stockage Local (LocalStorage)** de votre navigateur uniquement pour :
+* Maintenir votre session active sur le Dashboard (token d'accès).
+* Sauvegarder vos préférences d'affichage (thème clair/sombre, langue).
+
+---
+
+## 5. Conservation des données
+
+### A. Données Serveur
+Les données de configuration (Logs, Tickets, Anti-raid, etc.) sont conservées tant que le bot est présent sur votre serveur. Si le bot est expulsé (kick/ban), ces données sont automatiquement supprimées de notre base de données.
+
+> *Vous pouvez forcer la suppression immédiate via la commande `/reset-data`.*
+
+### B. Données Utilisateur (Global)
+Les données liées à votre compte utilisateur (Économie, Inventaire, Profil) sont conservées indéfiniment pour vous permettre de conserver votre progression d'un serveur à l'autre. Ces données ne sont pas supprimées lorsque le bot quitte un serveur.
+
+---
+
+## 6. Politique sur les Tickets
+
+<Aside type="caution" title="Note importante sur la confidentialité des tickets">
+  Lors de la fermeture d'un ticket, Lyxios génère une retranscription (fichier HTML) envoyée dans le salon de logs défini par vos soins ainsi qu'à l'utilisateur ayant ouvert le ticket. **Lyxios ne stocke aucune copie de ces conversations sur ses propres serveurs.** Une fois le fichier envoyé sur Discord, nous n'y avons plus accès.
+</Aside>
+
+---
+
+## 7. Vos Droits
+
+Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, ou pour toute question technique, contactez l'équipe de développement.
+
+---
+
+## 8. Contact & Support
+
+Pour toute question concernant cette politique de confidentialité, ou pour signaler un problème de sécurité, veuillez nous contacter via les moyens suivants :
+
+<Steps>
+1. **Support prioritaire :** Rejoignez notre [Serveur Discord de Support](https://discord.gg/RZHrtzwUC2) et ouvrez un ticket. C'est le moyen le plus rapide d'obtenir une réponse.
+2. **Contact direct :** Vous pouvez joindre le développeur principal sur Discord via le pseudo `xougui`.
+3. **Contact légal/officiel :** Pour les requêtes formelles, envoyez un e-mail à l'adresse suivante : [xougui.7@gmail.com](mailto:xougui.7@gmail.com).
+</Steps>

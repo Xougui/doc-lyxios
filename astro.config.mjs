@@ -38,10 +38,8 @@ export default defineConfig({
 					label: 'Modules',
 					autogenerate: { directory: 'guides/modules' },
 				},
-				{
-					label: 'Commandes',
-					autogenerate: { directory: 'commandes' },
-				},
+				{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
+				{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
 			],
 		}),
 	],
