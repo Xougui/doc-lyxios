@@ -4,7 +4,7 @@
 
 :root {
   /* Lyxios Green Scale (Primary Brand) */
-  --color-lyxios-green-50: #eff7f1;
+  --color-lyxios-green-50: #E2E8F0;
   --color-lyxios-green-100: #ddeee2;
   --color-lyxios-green-200: #bcdcc5;
   --color-lyxios-green-300: #9eccaa;
@@ -13,8 +13,8 @@
   --color-lyxios-green-600: #478a5a;
   --color-lyxios-green-700: #376a45; /* Official Primary */
   --color-lyxios-green-800: #25472e;
-  --color-lyxios-green-900: #132518;
-  --color-lyxios-green-950: #09110b;
+  --color-lyxios-green-900: #1A201E;
+  --color-lyxios-green-950: #0D1110;
 
   /* 2. Configuration Globale */
   --font-sans: 'Roboto', sans-serif;
