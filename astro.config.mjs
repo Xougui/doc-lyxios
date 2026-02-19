@@ -7,7 +7,9 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
-			
+			customCss: [
+        		'./src/styles/custom.css',
+      		],
 			// ✅ C'est Starlight qui prend le contrôle exclusif des langues
 			defaultLocale: 'root',
 			locales: {

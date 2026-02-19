@@ -1,0 +1,91 @@
+/* src/styles/custom.css */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  /* Lyxios Green Scale (Primary Brand) */
+  --color-lyxios-green-50: #eff7f1;
+  --color-lyxios-green-100: #ddeee2;
+  --color-lyxios-green-200: #bcdcc5;
+  --color-lyxios-green-300: #9eccaa;
+  --color-lyxios-green-400: #7cbb8d;
+  --color-lyxios-green-500: #5aaa70;
+  --color-lyxios-green-600: #478a5a;
+  --color-lyxios-green-700: #376a45; /* Official Primary */
+  --color-lyxios-green-800: #25472e;
+  --color-lyxios-green-900: #132518;
+  --color-lyxios-green-950: #09110b;
+
+  /* 2. Configuration Globale */
+  --font-sans: 'Roboto', sans-serif;
+
+  /* Default to dark theme variables (fallback) */
+  --bg-primary: var(--color-lyxios-green-950);
+  --bg-secondary: var(--color-lyxios-green-900);
+  --bg-tertiary: var(--color-lyxios-green-800);
+  --accent-primary: var(--color-lyxios-green-500);
+  --accent-secondary: var(--color-lyxios-green-400);
+  --text-primary: var(--color-lyxios-green-50);
+  --text-secondary: var(--color-lyxios-green-300);
+  --text-on-accent: var(--color-lyxios-green-950);
+  
+  --glass-bg: rgba(12, 24, 16, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.2);
+
+  /* 3. Mapping Starlight Global */
+  --sl-font: var(--font-sans);
+}
+
+/* Thème Sombre (Dark Mode) */
+[data-theme="dark"] {
+  --bg-primary: var(--color-lyxios-green-950);
+  --bg-secondary: var(--color-lyxios-green-900);
+  --bg-tertiary: var(--color-lyxios-green-800);
+  --accent-primary: var(--color-lyxios-green-500);
+  --accent-secondary: var(--color-lyxios-green-400);
+  --text-primary: var(--color-lyxios-green-50);
+  --text-secondary: var(--color-lyxios-green-300);
+  --text-on-accent: var(--color-lyxios-green-950);
+  --hero-gradient: radial-gradient(circle at 50% 0%, var(--color-lyxios-green-800) 0%, var(--color-lyxios-green-950) 70%);
+  --glass-bg: rgba(12, 24, 16, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Mapping Starlight Dark */
+  --sl-color-bg: var(--bg-primary);
+  --sl-color-bg-nav: var(--bg-secondary);
+  --sl-color-bg-sidebar: var(--bg-secondary);
+  --sl-color-text: var(--text-primary);
+  --sl-color-text-accent: var(--accent-primary);
+  --sl-color-accent: var(--accent-primary);
+}
+
+/* Thème Clair (Light Mode) */
+[data-theme="light"] {
+  --bg-primary: var(--color-lyxios-green-50);
+  --bg-secondary: #ffffff;
+  --bg-tertiary: var(--color-lyxios-green-100);
+  --accent-primary: var(--color-lyxios-green-700);
+  --accent-secondary: var(--color-lyxios-green-500);
+  --text-primary: var(--color-lyxios-green-950);
+  --text-secondary: var(--color-lyxios-green-700);
+  --text-on-accent: #FFFFFF;
+  --hero-gradient: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.05);
+
+  /* Mapping Starlight Light */
+  --sl-color-bg: var(--bg-primary);
+  --sl-color-bg-nav: var(--bg-secondary);
+  --sl-color-bg-sidebar: var(--bg-secondary);
+  --sl-color-text: var(--text-primary);
+  --sl-color-text-accent: var(--accent-primary);
+  --sl-color-accent: var(--accent-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 1.5px;
+}
