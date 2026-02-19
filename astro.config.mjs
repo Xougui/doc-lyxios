@@ -30,7 +30,7 @@ export default defineConfig({
 				{
 					label: 'Démarrage',
 					items: [
-						{ label: 'Introduction', slug: 'index' },
+						{ label: 'Introduction', slug: 'guides/introduction' },
 						{ label: 'Inviter le bot', slug: 'guides/invite' },
 					],
 				},

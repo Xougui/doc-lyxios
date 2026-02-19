@@ -1,16 +1,16 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Bienvenue sur la doc
+description: Commencez à configurer votre serveur avec notre bot.
 template: splash # Remove or comment out this line to display the site sidebar on this page.
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Félicitations pour l'installation de votre nouveau projet de documentation !
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Commencer
+      link: /guides/introduction/
       icon: right-arrow
-    - text: Read the Starlight docs
+    - text: Lire la doc Starlight
       link: https://starlight.astro.build
       icon: external
       variant: minimal
@@ -18,23 +18,22 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Prochaines étapes
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Mettre à jour le contenu" icon="pencil">
+		Éditez `src/content/docs/index.mdx` pour voir cette page changer.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="Changer la mise en page" icon="document">
+		Supprimez `template: splash` dans `src/content/docs/index.mdx` pour afficher une barre latérale.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Ajouter du contenu" icon="add-document">
+		Ajoutez des fichiers Markdown ou MDX dans `src/content/docs` pour créer de nouvelles pages.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Configurer votre site" icon="setting">
+		Éditez votre `sidebar` et autres configurations dans `astro.config.mjs`.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Lire la documentation" icon="open-book">
+		Apprenez-en plus dans la Documentation Starlight.
 	</Card>
 </CardGrid>
