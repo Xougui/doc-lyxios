@@ -7,6 +7,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
+			logo: {
+				src: '/src/assets/logo.webp',
+				alt: 'Lyxios Logo',
+			},
 			customCss: [
         		'./src/styles/custom.css',
       		],
@@ -27,7 +31,10 @@ export default defineConfig({
 				}
 			},
 
-			social: [{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' }],
+			social: [
+				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' },
+				{ icon: 'laptop', label: 'Statut', href: 'https://status.xouxou-hosting.fr' },
+			],
 			sidebar: [
 				{ label: 'Accueil', link: '/' },
 				{
