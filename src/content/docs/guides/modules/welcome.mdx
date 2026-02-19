@@ -18,15 +18,33 @@ Vous pouvez y accéder de deux façons différentes :
 Le module de bienvenue permet d'envoyer un message personnalisé lorsqu'un utilisateur rejoint le serveur.
 Vous pouvez configurer ce message pour qu'il soit envoyé dans un canal spécifique, vous pouvez également personnaliser le contenu du message en utilisant des variables dynamiques et configurer une image de fond.
 
-### Exemple de message de bienvenue
-<img src="../../../../src/assets/exemples/welcome.png" alt="Module de bienvenue" />
-
 ## Comment configurer le module de bienvenue ?
 
 Une fois que vous avez accédé au module de bienvenue, vous pouvez configurer les différentes options disponibles :
+
 1. **Activer ou désactiver le module** : Vous pouvez activer ou désactiver le module de bienvenue en utilisant l'option `Activer` ou `Désactiver`.
 2. **Le message de bienvenue** : Vous pouvez personnaliser le message de bienvenue en utilisant des variables dynamiques comme `{user.mention}` pour le nom de l'utilisateur qui a rejoint le serveur.
-3. **L'image de fond** : Vous pouvez configurer une image de fond personnalisée pour le message de bienvenue en utilisant l'option `Image`. Elle sera utilisée comme image de fond du message de bienvenue. [Voir l'exemple plus haut](#exemple-de-message-de-bienvenue)
+3. **L'image de fond** : Vous pouvez configurer une image de fond personnalisée pour le message de bienvenue en utilisant l'option `Image`. Elle sera utilisée comme image de fond du message de bienvenue. [Voir l'exemple plus bas](#exemple-dimage-de-bienvenue)
 4. **Supprimer l'image de fond** : Si vous souhaitez supprimer l'image de fond, vous pouvez utiliser l'option `Supprimer l'image` pour que le bot n'intègre pas d'image de fond dans le message de bienvenue.
 5. **Le canal de bienvenue** : Vous pouvez sélectionner le canal dans lequel le message de bienvenue sera envoyé en utilisant le premier menu déroulant.
 6. **Ghost Ping** : Vous pouvez sélectionner des salons (maximum 5) dans lesquels le nouveau membre sera ping lorsqu'il rejoindra le serveur. Cette option est utile pour attirer l'attention du membre vers des salons spécifiques.
+
+<Aside type="tip">
+Vous pouvez tester le rendu du message de bienvenue en utilisant le bouton `Tester` dans l'onget de configuration. Ce bouton vous permettra de voir à quoi ressemblera le message de bienvenue en utilisant votre compte comme exemple.
+</Aside>
+
+## À propos de l'image de bienvenue
+
+L'image de bienvenue est une image personnalisée que vous pouvez configurer pour être utilisée comme fond du message de bienvenue. Vous pouvez choisir n'importe quelle image, mais il est recommandé d'utiliser une image de bonne qualité et de taille appropriée pour un rendu optimal.
+L'image sera traitée de cette façon :
+<ul>
+- L'image sera redimensionnée pour s'adapter à une taille de 800x250 pixels.
+- Le bot ajoutera un effet de flou à l'image pour améliorer la lisibilité du message de bienvenue.
+- La photo de profil de l'utilisateur qui a rejoint le serveur sera intégrée dans l'image de bienvenue, avec un cercle de la couleur dominante autour de la photo.
+- Le nom d'utilisateur du membre qui a rejoint le serveur sera affiché à droite de sa photo de profil, avec une couleur adaptée au contraste de l'image pour assurer une bonne lisibilité.
+- Le message de bienvenue sera superposé à l'image de fond, avec une couleur adaptée au contraste de l'image pour assurer une bonne lisibilité.
+- Un texte indiquant le nombre total de membres après l'arrivée du nouveau membre sera ajouté.
+</ul>
+
+### Exemple d'image de bienvenue
+<img src="../../../../src/assets/exemples/welcome.png" alt="Module de bienvenue" />
