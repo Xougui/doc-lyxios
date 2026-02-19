@@ -27,6 +27,7 @@ export default defineConfig({
 
 			social: [{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' }],
 			sidebar: [
+				{ label: 'Accueil', link: '/' },
 				{
 					label: 'Démarrage',
 					items: [
