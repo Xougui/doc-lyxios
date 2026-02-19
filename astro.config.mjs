@@ -30,16 +30,11 @@ export default defineConfig({
 				{ label: 'Accueil', link: '/' },
 				{
 					label: 'Démarrage',
-					items: [
-						{ label: 'Introduction', slug: 'guides/introduction' },
-						{ label: 'Inviter le bot', slug: 'guides/invite' },
-					],
+					autogenerate: { directory: 'guides/demarrage' },
 				},
 				{
 					label: 'Modules',
-					items: [
-						{ label: 'Bienvenue', slug: 'guides/modules/welcome' },
-					],
+					autogenerate: { directory: 'guides/modules' },
 				},
 				{
 					label: 'Commandes',
