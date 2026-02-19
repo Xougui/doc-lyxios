@@ -6,6 +6,24 @@ lastUpdated: 2026-02-19
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
 
-<Aside type="tip" title="Page en construction">
-  Page en construction. Le contenu sera bientôt disponible.
-</Aside>
+## Où trouver le module de bienvenue ?
+
+Vous trouverez le module de bienvenue dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons différentes :
+1. En utilisant la commande `/config` et en sélectionnant le module `Bienvenue` dans l'option `module`.
+2. En effectuant la commande `/config` et en sélectionnant l'option `Bienvenue` dans le menu déroulant.
+
+## À quoi sert le module de bienvenue ?
+
+Le module de bienvenue permet d'envoyer un message personnalisé lorsqu'un utilisateur rejoint le serveur.
+Vous pouvez configurer ce message pour qu'il soit envoyé dans un canal spécifique, vous pouvez également personnaliser le contenu du message en utilisant des variables dynamiques et configurer une image de fond.
+
+### Exemple de message de bienvenue
+<img src="../../../../src/assets/exemples/welcome.png" alt="Module de bienvenue" />
+
+## Comment configurer le module de bienvenue ?
+
+Une fois que vous avez accédé au module de bienvenue, vous pouvez configurer les différentes options disponibles :
+1. **Activer ou désactiver le module** : Vous pouvez activer ou désactiver le module de bienvenue en utilisant l'option `Activer` ou `Désactiver`.
+2. **Le message de bienvenue** : Vous pouvez personnaliser le message de bienvenue en utilisant des variables dynamiques comme `{user.mention}` pour le nom de l'utilisateur qui a rejoint le serveur.
+3. **L'image de fond** : Vous pouvez configurer une image de fond personnalisée pour le message de bienvenue en utilisant l'option `Image`. Elle sera utilisée comme image de fond du message de bienvenue. (Voir #exemple-de-message-de-bienvenue)
