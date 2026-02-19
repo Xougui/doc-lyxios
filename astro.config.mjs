@@ -35,6 +35,12 @@ export default defineConfig({
 					],
 				},
 				{
+					label: 'Modules',
+					items: [
+						{ label: 'Bienvenue', slug: 'guides/modules/welcome' },
+					],
+				},
+				{
 					label: 'Commandes',
 					autogenerate: { directory: 'commandes' },
 				},
