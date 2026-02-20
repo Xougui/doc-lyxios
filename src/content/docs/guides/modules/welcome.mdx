@@ -1,7 +1,7 @@
 ---
 title: Bienvenue
 description: Ici vous trouverez toute la documentation liée au module de bienvenue.
-lastUpdated: 2026-02-19
+lastUpdated: 2026-02-20
 ---
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
@@ -15,36 +15,61 @@ Vous pouvez y accéder de deux façons différentes :
 
 ## À quoi sert le module de bienvenue ?
 
-Le module de bienvenue permet d'envoyer un message personnalisé lorsqu'un utilisateur rejoint le serveur.
-Vous pouvez configurer ce message pour qu'il soit envoyé dans un canal spécifique, vous pouvez également personnaliser le contenu du message en utilisant des variables dynamiques et configurer une image de fond.
+Le module de bienvenue permet d'accueillir chaleureusement vos nouveaux membres en envoyant un message personnalisé lorsqu'un utilisateur rejoint le serveur.
+Vous pouvez configurer ce message pour qu'il soit envoyé dans un canal spécifique, personnaliser son contenu grâce à des variables dynamiques, et y attacher une magnifique carte de bienvenue générée avec une image de fond personnalisée.
 
-## Comment configurer le module de bienvenue ?
+---
 
-Une fois que vous avez accédé au module de bienvenue, vous pouvez configurer les différentes options disponibles :
+## Configuration du module
 
-1. **Activer ou désactiver le module** : Vous pouvez activer ou désactiver le module de bienvenue en utilisant l'option `Activer` ou `Désactiver`.
-2. **Le message de bienvenue** : Vous pouvez personnaliser le message de bienvenue en utilisant des variables dynamiques comme `{user.mention}` pour le nom de l'utilisateur qui a rejoint le serveur.
-3. **L'image de fond** : Vous pouvez configurer une image de fond personnalisée pour le message de bienvenue en utilisant l'option `Image`. Elle sera utilisée comme image de fond du message de bienvenue. [Voir l'exemple plus bas](#exemple-dimage-de-bienvenue)
-4. **Supprimer l'image de fond** : Si vous souhaitez supprimer l'image de fond, vous pouvez utiliser l'option `Supprimer l'image` pour que le bot n'intègre pas d'image de fond dans le message de bienvenue.
-5. **Le canal de bienvenue** : Vous pouvez sélectionner le canal dans lequel le message de bienvenue sera envoyé en utilisant le premier menu déroulant.
-6. **Ghost Ping** : Vous pouvez sélectionner des salons (maximum 5) dans lesquels le nouveau membre sera ping lorsqu'il rejoindra le serveur. Cette option est utile pour attirer l'attention du membre vers des salons spécifiques.
+Une fois que vous avez accédé au panneau de bienvenue, voici les différentes options disponibles pour paramétrer votre accueil :
+
+<Steps>
+1. **Activer ou désactiver le module** : Utilisez le bouton principal pour basculer l'état du module (activé `✔️` ou désactivé `✖️`).
+2. **Le canal de bienvenue** : Dans le menu déroulant, sélectionnez le salon textuel dans lequel le message d'accueil sera envoyé. *(Note : Vous devez configurer le salon avant de pouvoir modifier le message).*
+3. **Le message de bienvenue** : Cliquez sur le bouton `Message` pour rédiger votre texte d'accueil. Vous pouvez y inclure plusieurs variables (voir la section ci-dessous).
+4. **L'image de fond** : Cliquez sur `Image` pour fournir l'URL d'une image qui servira de fond à la carte de bienvenue générée par le bot.
+5. **Ghost Ping (Optionnel)** : Vous pouvez sélectionner jusqu'à 5 salons dans lesquels le nouveau membre sera "ping" (mentionné puis le message est supprimé instantanément). C'est très utile pour attirer l'attention du membre vers le règlement ou les annonces sans polluer le salon.
+</Steps>
 
 <Aside type="tip">
-Vous pouvez tester le rendu du message de bienvenue en utilisant le bouton `Tester` dans l'onget de configuration. Ce bouton vous permettra de voir à quoi ressemblera le message de bienvenue en utilisant votre compte comme exemple.
+**Testez votre configuration !**
+Vous pouvez vérifier le rendu final en utilisant le bouton `Tester` (🧪) dans l'onglet de configuration. Le bot simulera votre arrivée et vous enverra un aperçu du message et du Ghost Ping (visible uniquement par vous).
 </Aside>
+
+---
+
+## Variables disponibles pour le message
+
+Pour rendre votre message de bienvenue unique et ciblé, Lyxios met à votre disposition plusieurs variables qui seront automatiquement remplacées par les informations du membre ou du serveur :
+
+* <Badge text="{user.mention}" variant="note" /> ou <Badge text="{user}" variant="note" /> : Mentionne directement le nouveau membre (ex: @Lyxios).
+* <Badge text="{user.name}" variant="note" /> : Affiche le nom d'utilisateur du membre (sans le mentionner).
+* <Badge text="{user.id}" variant="note" /> : Affiche l'identifiant (ID) unique du membre.
+* <Badge text="{server.name}" variant="note" /> : Affiche le nom de votre serveur.
+* <Badge text="{server.member_count}" variant="note" /> : Affiche le nombre total de membres *humains* (les bots ne sont pas comptés) sur le serveur après l'arrivée.
+
+---
 
 ## À propos de l'image de bienvenue
 
-L'image de bienvenue est une image personnalisée que vous pouvez configurer pour être utilisée comme fond du message de bienvenue. Vous pouvez choisir n'importe quelle image, mais il est recommandé d'utiliser une image de bonne qualité et de taille appropriée pour un rendu optimal.
-L'image sera traitée de cette façon :
-<ul>
-- L'image sera redimensionnée pour s'adapter à une taille de 800x250 pixels.
-- Le bot ajoutera un effet de flou à l'image pour améliorer la lisibilité du message de bienvenue.
-- La photo de profil de l'utilisateur qui a rejoint le serveur sera intégrée dans l'image de bienvenue, avec un cercle de la couleur dominante autour de la photo.
-- Le nom d'utilisateur du membre qui a rejoint le serveur sera affiché à droite de sa photo de profil, avec une couleur adaptée au contraste de l'image pour assurer une bonne lisibilité.
-- Le message de bienvenue sera superposé à l'image de fond, avec une couleur adaptée au contraste de l'image pour assurer une bonne lisibilité.
-- Un texte indiquant le nombre total de membres après l'arrivée du nouveau membre sera ajouté.
-</ul>
+La carte de bienvenue est générée dynamiquement par le bot si vous configurez une URL d'image valide. 
 
-### Exemple d'image de bienvenue
-<img src="../../../../src/assets/exemples/welcome.png" alt="Module de bienvenue" />
+<Aside type="caution">
+**Attention aux liens Discord (CDN)**
+N'utilisez **jamais** de liens d'images hébergées directement sur Discord (liens commençant par `cdn.discordapp.com` ou `media.discordapp.net`). Ces liens sont temporaires et expirent avec le temps. Votre image de bienvenue finira par disparaître. Privilégiez des hébergeurs permanents comme **[Imgur](https://imgur.com/)**.
+</Aside>
+
+### Traitement de l'image par Lyxios
+Pour garantir un rendu optimal et esthétique peu importe l'image que vous fournissez, le bot applique un traitement visuel précis :
+
+* **Redimensionnement strict** : L'image est redimensionnée et recadrée proprement (sans déformation) pour s'adapter à une résolution fixe de **1500x600 pixels**. Prévoyez une image au format paysage pour un meilleur résultat.
+* **Filtres de lisibilité** : Un léger flou gaussien ainsi qu'un voile assombri (overlay) sont appliqués sur l'image pour que le texte d'accueil ressorte parfaitement.
+* **Intégration de l'Avatar** : La photo de profil du membre est ajoutée dans un format circulaire à gauche de l'image. Elle est entourée d'une bordure colorée reprenant automatiquement la **couleur dominante** de votre image de fond.
+* **Contraste intelligent du texte** : Le bot calcule la luminosité de la zone de texte. Si votre fond est clair, le texte sera noir ; si le fond est sombre, le texte sera blanc, garantissant toujours une excellente lisibilité.
+* **Informations affichées** : L'image contient le titre "BIENVENUE" (ou "WELCOME" selon la langue), le nom du membre, une barre de séparation assortie, et un sous-titre indiquant sa position (ex: "Tu es le 150ème membre.").
+
+Si l'URL de l'image est invalide ou inaccessible, le bot est conçu pour ne pas planter : il basculera automatiquement sur un message intégré (Embed) classique en utilisant la couleur dominante du bot !
+
+### Exemple de carte de bienvenue
+<img src="../../../../src/assets/exemples/welcome.png" alt="Aperçu de la carte du module de bienvenue" />
