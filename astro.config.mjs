@@ -1,9 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://doc.lyxios.xouxou-hosting.fr/',
+	output: 'static',
+	adapter: vercel({
+		webAnalytics: {
+			enabled: true,
+		},
+	}),
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
