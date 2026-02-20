@@ -105,23 +105,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .discord-btn-success {
-    background-color: #248046;
+    background-color: #038245;
 }
 
 .discord-btn-danger {
-    background-color: #DA373C;
+    background-color: #ce313d;
 }
 
 .discord-btn-primary {
-    background-color: #5865F2;
+    background-color: #5c68ee;
 }
 
 .discord-btn-secondary {
-    background-color: #4f545c;
-}
-
-.discord-btn-tertiary {
-    background-color: #3f4147;
+    background-color: #3a3b41;
 }
 
 .discord-select {
