@@ -12,8 +12,8 @@ import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/componen
 
 Vous trouverez le module de bienvenue dans la commande `/config` du bot.
 Vous pouvez y accéder de deux façons différentes :
-1. En utilisant la commande `/config` et en sélectionnant le module `Bienvenue` dans l'option `module`.
-2. En effectuant la commande `/config` et en sélectionnant l'option `Bienvenue` dans le menu déroulant.
+1. En utilisant la commande `/config` et en sélectionnant le module `Bienvenue` dans l'option `module`. (`/config module:Bienvenue`)
+2. En effectuant la commande `/config` et en sélectionnant l'option `Bienvenue` dans le menu déroulant :
 
 ## À quoi sert le module de bienvenue ?
 
@@ -34,8 +34,7 @@ Une fois que vous avez accédé au panneau de bienvenue, voici les différentes 
 5. **Ghost Ping (Optionnel)** : Vous pouvez sélectionner jusqu'à 5 salons dans lesquels le nouveau membre sera "ping" (mentionné puis le message est supprimé instantanément). C'est très utile pour attirer l'attention du membre vers le règlement ou les annonces sans polluer le salon.
 </Steps>
 
-<Aside type="tip">
-**Testez votre configuration !**
+<Aside type="tip" title='Testez votre configuration !'>
 Vous pouvez vérifier le rendu final en utilisant le bouton <span style={{ backgroundColor: '#5865F2', color: '#fff', padding: '0.15em 0.4em', borderRadius: '0.25rem', fontSize: '0.85em', fontWeight: '600', whiteSpace: 'nowrap' }}>🧪 Tester</span> dans l'onglet de configuration. Le bot simulera votre arrivée et vous enverra un aperçu du message et du Ghost Ping (visible uniquement par vous).
 </Aside>
 
@@ -57,8 +56,7 @@ Pour rendre votre message de bienvenue unique et ciblé, Lyxios met à votre dis
 
 La carte de bienvenue est générée dynamiquement par le bot si vous configurez une URL d'image valide. 
 
-<Aside type="caution">
-**Attention aux liens Discord (CDN)**
+<Aside type="caution" title="Attention aux liens Discord (CDN)">
 N'utilisez **jamais** de liens d'images hébergées directement sur Discord (liens commençant par `cdn.discordapp.com` ou `media.discordapp.net`). Ces liens sont temporaires et expirent avec le temps. Votre image de bienvenue finira par disparaître. Privilégiez des hébergeurs permanents comme **[Imgur](https://imgur.com/)**.
 </Aside>
 

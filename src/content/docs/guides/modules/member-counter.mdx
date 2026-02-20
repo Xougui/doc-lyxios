@@ -13,7 +13,7 @@ import { ChevronDown } from 'lucide-react';
 
 Vous trouverez le module de compteur de membres dans la commande `/config` du bot.
 Vous pouvez y accéder de deux façons différentes :
-1. En utilisant la commande `/config` et en sélectionnant le module `Compteur` dans l'option `module`.
+1. En utilisant la commande `/config` et en sélectionnant le module `Compteur` dans l'option `module`. (`/config module:Compteur de membres`)
 2. En effectuant la commande `/config` et en sélectionnant l'option `Compteur` dans le menu déroulant.
 
 ## À quoi sert le module de compteur de membres ?
@@ -45,8 +45,7 @@ Après avoir sélectionné un type (ex: "Total"), vous accédez au menu d'éditi
 4. **Choisir le rôle** *(Mode Rôle uniquement)* : Si vous configurez un compteur de rôle, un menu déroulant supplémentaire apparaîtra pour sélectionner le rôle à suivre.
 </Steps>
 
-<Aside type="caution">
-**Limitations de Discord (Rate Limits)**
+<Aside type="caution" title="Limitations de Discord (Rate Limits)">
 Discord impose une limite stricte sur le renommage des salons : **2 modifications toutes les 10 minutes**.
 Si vous voyez que le compteur ne se met pas à jour immédiatement après une arrivée ou un départ, c'est normal. Le bot attend que la limite de Discord soit levée pour appliquer le changement.
 </Aside>
