@@ -1,5 +1,14 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+
+// Log the error for debugging purposes (this will appear in server logs)
+console.error("500 Error encountered:", error);
 ---
 
 <StarlightPage frontmatter={{
