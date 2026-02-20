@@ -19,6 +19,9 @@ export default defineConfig({
 				src: '/src/assets/logo.webp',
 				alt: 'Lyxios Logo',
 			},
+			components: {
+				Head: './src/components/Head.astro',
+			},
 			customCss: [
         		'./src/styles/custom.css',
       		],
