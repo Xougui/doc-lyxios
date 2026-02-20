@@ -1,0 +1,28 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+---
+
+<StarlightPage frontmatter={{
+  title: '500 - Erreur interne',
+  template: 'splash',
+  editUrl: false,
+  hero: {
+    title: '500 - Erreur interne du serveur',
+    tagline: "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.",
+    actions: [
+      {
+        text: "Retour à l'accueil",
+        link: '/',
+        icon: 'right-arrow',
+        variant: 'primary'
+      },
+      {
+        text: "Signaler sur Discord",
+        link: 'https://discord.gg/R5Zs9m2u7X',
+        icon: 'discord',
+        variant: 'secondary'
+      }
+    ]
+  }
+}}>
+</StarlightPage>
