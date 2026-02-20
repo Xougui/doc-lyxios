@@ -89,3 +89,42 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
     letter-spacing: 1.5px;
 }
+/* Discord UI Mimics */
+.discord-element {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+.discord-btn-success {
+    background-color: #248046;
+}
+
+.discord-btn-danger {
+    background-color: #DA373C;
+}
+
+.discord-btn-primary {
+    background-color: #5865F2;
+}
+
+.discord-btn-secondary {
+    background-color: #4f545c;
+}
+
+.discord-btn-tertiary {
+    background-color: #3f4147;
+}
+
+.discord-select {
+    background-color: #2e2f35;
+    border: 1.5px solid #43444a;
+}
