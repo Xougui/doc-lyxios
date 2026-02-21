@@ -1,0 +1,37 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+
+// Log the error for debugging purposes (this will appear in server logs)
+console.error("500 Error encountered:", error);
+---
+
+<StarlightPage frontmatter={{
+  title: '500 - Erreur interne',
+  template: 'splash',
+  editUrl: false,
+  hero: {
+    title: '',
+    image: { html: '<img src="/500.svg" alt="500" />' },
+    actions: [
+      {
+        text: "Retour à l'accueil",
+        link: '/',
+        icon: 'right-arrow',
+        variant: 'primary'
+      },
+      {
+        text: "Signaler sur Discord",
+        link: 'https://discord.gg/R5Zs9m2u7X',
+        icon: 'discord',
+        variant: 'secondary'
+      }
+    ]
+  }
+}}>
+</StarlightPage>

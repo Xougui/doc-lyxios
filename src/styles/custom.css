@@ -124,3 +124,44 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #2e2f35;
     border: 1.5px solid #43444a;
 }
+
+/* Styles spécifiques pour les pages d'erreur (404 et 500) */
+/* Force l'affichage en colonne : Image en haut, Boutons en bas */
+.hero:has(img[src*="404"]),
+.hero:has(img[src*="500"]) {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 0 !important;
+    margin-top: -2rem !important; /* Remonte le bloc vers le haut */
+}
+
+/* L'image passe en premier */
+.hero:has(img[src*="404"]) .hero-html,
+.hero:has(img[src*="500"]) .hero-html {
+    order: 1;
+    margin-bottom: -2rem;
+    width: 100%;
+}
+
+/* Agrandir l'image */
+.hero:has(img[src*="404"]) .hero-html img,
+.hero:has(img[src*="500"]) .hero-html img {
+    width: 100% !important;
+    max-width: 500px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: block;
+}
+
+/* Les boutons (dans .stack) passent en second */
+.hero:has(img[src*="404"]) .stack,
+.hero:has(img[src*="500"]) .stack {
+    order: 2;
+}
+
+.hero:has(img[src*="404"]) .actions,
+.hero:has(img[src*="500"]) .actions {
+    justify-content: center;
+}
