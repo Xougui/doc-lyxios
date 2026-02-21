@@ -17,6 +17,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
+			disable404Route: true,
 			logo: {
 				src: '/src/assets/logo.webp',
 				alt: 'Lyxios Logo',
