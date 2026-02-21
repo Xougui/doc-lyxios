@@ -165,3 +165,33 @@ h1, h2, h3, h4, h5, h6 {
 .hero:has(img[src*="500_svg"]) .actions {
     justify-content: center;
 }
+
+/* --- Améliorations Navbar --- */
+
+/* 1. Réduire la taille du logo Lyxios */
+.site-title img {
+    height: 24px !important;
+    width: auto;
+}
+
+/* 2. Ajouter le texte "Statut" à côté de l'icône Laptop */
+.social-icons a[href*="status"] {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none !important;
+}
+
+.social-icons a[href*="status"]::after {
+    content: "Statut";
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+}
+
+/* Masquer le texte sur mobile pour gagner de la place */
+@media (max-width: 600px) {
+    .social-icons a[href*="status"]::after {
+        display: none;
+    }
+}
