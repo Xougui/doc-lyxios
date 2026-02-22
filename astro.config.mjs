@@ -59,6 +59,7 @@ export default defineConfig({
 					label: 'Modules',
 					autogenerate: { directory: 'guides/modules' },
 				},
+				{ label: 'Commandes', link: 'commandes' },
 				{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
 				{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
 			],
