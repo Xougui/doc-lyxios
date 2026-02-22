@@ -13,8 +13,8 @@ import { ChevronDown } from 'lucide-react';
 
 Encontrarás el módulo de contador de miembros en el comando `/config` del bot.
 Puedes acceder a él de dos formas diferentes:
-1. Usando el comando `/config` y seleccionando el módulo `Contador` en la opción `módulo`. (`/config module:Contador de miembros`)
-2. Ejecutando el comando `/config` y seleccionando la opción `Contador` en el menú desplegable.
+1. Usando el comando `/config` y seleccionando el módulo `Compteur` en la opción `módulo`. (`/config module:Compteur de membres`)
+2. Ejecutando el comando `/config` y seleccionando la opción `Compteur` en el menú desplegable.
 
 ## ¿Para qué sirve el módulo de contador de miembros?
 
@@ -28,9 +28,9 @@ Generalmente configurado en un **canal de voz bloqueado**, permite tener una vis
 Una vez en el panel de configuración, puedes elegir entre 4 tipos de contadores:
 
 * **Total**: Muestra el número total de miembros (incluidos los bots).
-* **Humanos**: Muestra solo los miembros humanos.
+* **Humains**: Muestra solo los miembros humanos.
 * **Bots**: Muestra solo el número de robots.
-* **Rol**: Muestra el número de miembros que poseen un rol específico.
+* **Rôle**: Muestra el número de miembros que poseen un rol específico.
 
 ### Editar un contador
 
@@ -42,7 +42,7 @@ Después de seleccionar un tipo (ej: "Total"), accedes al menú de edición deta
     * Haz clic en <span class="discord-element discord-btn-primary">➕ Créer un salon</span>: El bot creará automáticamente un canal de voz bloqueado con los permisos adecuados.
     * O usa el menú desplegable <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> para seleccionar un canal de voz que ya hayas creado.
 3. **Personalizar el nombre**: Haz clic en <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> para cambiar la apariencia del texto (ej: `Miembros: 150`).
-4. **Elegir el rol** *(Solo modo Rol)*: Si configuras un contador de rol, aparecerá un menú desplegable adicional para seleccionar el rol a seguir.
+4. **Elegir el rol** *(Mode Rôle uniquement)*: Si configuras un contador de rol, aparecerá un menú desplegable adicional para seleccionar el rol a seguir.
 </Steps>
 
 <Aside type="caution" title="Limitaciones de Discord (Rate Limits)">
@@ -57,7 +57,7 @@ Si ves que el contador no se actualiza inmediatamente después de una llegada o 
 Para personalizar el nombre del canal, puedes usar variables dinámicas que serán reemplazadas automáticamente:
 
 * <Badge text="{count}" variant="note" />: Muestra el número (ej: `150`). Disponible para **todos** los contadores.
-* <Badge text="{role}" variant="note" />: Muestra el nombre del rol seguido (ej: `VIP`). Disponible **únicamente** para el contador de tipo **Rol**.
+* <Badge text="{role}" variant="note" />: Muestra el nombre del rol seguido (ej: `VIP`). Disponible **únicamente** para el contador de tipo **Rôle**.
 
 **Ejemplos de formatos:**
 * `Miembros: {count}` → *Miembros: 150*

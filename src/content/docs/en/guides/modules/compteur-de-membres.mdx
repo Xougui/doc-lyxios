@@ -13,8 +13,8 @@ import { ChevronDown } from 'lucide-react';
 
 You can find the member counter module in the bot's `/config` command.
 You can access it in two different ways:
-1. By using the `/config` command and selecting the `Counter` module in the `module` option. (`/config module:Member Counter`)
-2. By executing the `/config` command and selecting the `Counter` option from the dropdown menu.
+1. By using the `/config` command and selecting the `Compteur` module in the `module` option. (`/config module:Compteur de membres`)
+2. By executing the `/config` command and selecting the `Compteur` option from the dropdown menu.
 
 ## What is the member counter module for?
 
@@ -28,9 +28,9 @@ Generally configured on a **locked voice channel**, it allows for constant visib
 Once in the configuration panel, you can choose from 4 types of counters:
 
 * **Total**: Displays the total number of members (including bots).
-* **Humans**: Displays only human members.
+* **Humains**: Displays only human members.
 * **Bots**: Displays only the number of bots.
-* **Role**: Displays the number of members holding a specific role.
+* **Rôle**: Displays the number of members holding a specific role.
 
 ### Edit a counter
 
@@ -42,7 +42,7 @@ After selecting a type (e.g., "Total"), you access the detailed editing menu:
     * Click on <span class="discord-element discord-btn-primary">➕ Créer un salon</span>: The bot will automatically create a locked voice channel with the appropriate permissions.
     * Or use the dropdown menu <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to select a voice channel you have already created.
 3. **Customize the name**: Click on <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> to change the text appearance (e.g., `Members: 150`).
-4. **Choose the role** *(Role Mode only)*: If you are configuring a role counter, an additional dropdown menu will appear to select the role to track.
+4. **Choose the role** *(Mode Rôle only)*: If you are configuring a role counter, an additional dropdown menu will appear to select the role to track.
 </Steps>
 
 <Aside type="caution" title="Discord Limitations (Rate Limits)">
@@ -57,7 +57,7 @@ If you see that the counter does not update immediately after an arrival or depa
 To customize the channel name, you can use dynamic variables that will be replaced automatically:
 
 * <Badge text="{count}" variant="note" />: Displays the count (e.g., `150`). Available for **all** counters.
-* <Badge text="{role}" variant="note" />: Displays the tracked role name (e.g., `VIP`). Available **only** for the **Role** type counter.
+* <Badge text="{role}" variant="note" />: Displays the tracked role name (e.g., `VIP`). Available **only** for the **Rôle** type counter.
 
 **Format Examples:**
 * `Members: {count}` → *Members: 150*
