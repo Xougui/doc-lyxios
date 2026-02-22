@@ -1,0 +1,65 @@
+---
+title: Member Counter
+description: Complete documentation to configure and customize member counters (Total, Humans, Bots, Roles).
+lastUpdated: 2026-02-20
+sidebar:
+  order: 2
+---
+
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Where to find the member counter module?
+
+You can find the member counter module in the bot's `/config` command.
+You can access it in two different ways:
+1. By using the `/config` command and selecting the `Counter` module in the `module` option. (`/config module:Member Counter`)
+2. By executing the `/config` command and selecting the `Counter` option from the dropdown menu.
+
+## What is the member counter module for?
+
+The member counter module allows you to display the number of members on your server in real time.
+Generally configured on a **locked voice channel**, it allows for constant visibility of your community's growth at the top of the channel list, without having to check server settings.
+
+---
+
+## Module Configuration
+
+Once in the configuration panel, you can choose from 4 types of counters:
+
+* **Total**: Displays the total number of members (including bots).
+* **Humans**: Displays only human members.
+* **Bots**: Displays only the number of bots.
+* **Role**: Displays the number of members holding a specific role.
+
+### Edit a counter
+
+After selecting a type (e.g., "Total"), you access the detailed editing menu:
+
+<Steps>
+1. **Enable the counter**: Use the <span class="discord-element discord-btn-success">✔️ Enable</span> or <span class="discord-element discord-btn-danger">✖️ Disable</span> button to control automatic updates.
+2. **Define the channel**: You have two choices:
+    * Click on <span class="discord-element discord-btn-primary">➕ Create a channel</span>: The bot will automatically create a locked voice channel with the appropriate permissions.
+    * Or use the dropdown menu <span class="discord-element discord-select">Choose an existing channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to select a voice channel you have already created.
+3. **Customize the name**: Click on <span class="discord-element discord-btn-secondary">✏️ Modify format</span> to change the text appearance (e.g., `Members: 150`).
+4. **Choose the role** *(Role Mode only)*: If you are configuring a role counter, an additional dropdown menu will appear to select the role to track.
+</Steps>
+
+<Aside type="caution" title="Discord Limitations (Rate Limits)">
+Discord imposes a strict limit on channel renaming: **2 modifications every 10 minutes**.
+If you see that the counter does not update immediately after an arrival or departure, this is normal. The bot waits for the Discord limit to be lifted to apply the change.
+</Aside>
+
+---
+
+## Formatting Variables
+
+To customize the channel name, you can use dynamic variables that will be replaced automatically:
+
+* <Badge text="{count}" variant="note" />: Displays the count (e.g., `150`). Available for **all** counters.
+* <Badge text="{role}" variant="note" />: Displays the tracked role name (e.g., `VIP`). Available **only** for the **Role** type counter.
+
+**Format Examples:**
+* `Members: {count}` → *Members: 150*
+* `👥・{count} Humans` → *👥・142 Humans*
+* `[{role}] : {count}` → *[VIP] : 12*
