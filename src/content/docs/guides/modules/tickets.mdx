@@ -33,7 +33,7 @@ C'est la première étape essentielle pour que le système fonctionne. Cliquez s
 
 <Steps>
 1. **Catégorie Tickets** : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
-2. **Rôle Manager** : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut.
+2. **Rôle Manager** : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut. *Si ce rôle est supprimé, seuls les administrateurs pourront gérer les tickets.*
 3. **Salon Logs** : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, renommage, etc.).
 4. **Salon Panel** : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
 </Steps>
@@ -48,6 +48,10 @@ Dans le menu **Textes & Options**, vous pouvez affiner le comportement du bot :
     * *Si vous définissez plusieurs motifs, un menu déroulant sera affiché sur le panel.*
     * *Si vous ne mettez aucun motif ou un seul, un simple bouton sera affiché.*
 * **Embed Panel** : Personnalisez l'apparence du message du panel (Titre, Description, Couleur) pour qu'il corresponde à l'identité de votre serveur.
+
+<Aside type="tip" title="Plusieurs panels ?">
+Actuellement, le module gère un panel principal par serveur. Vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
+</Aside>
 
 ### 3. Déployer le Panel
 
@@ -64,14 +68,14 @@ Une fois un ticket ouvert, plusieurs fonctionnalités s'offrent à votre équipe
 Les membres du staff (Rôle Manager) voient un bouton <span class="discord-element discord-btn-primary">🙋‍♂️ Prendre en charge</span> dans le ticket.
 
 * **Action** : Lorsqu'un membre du staff clique dessus, il s'assigne le ticket.
-* **Effet** : Le bot modifie les permissions pour que **seul** ce membre du staff (et l'utilisateur) puisse répondre. Les autres membres du rôle Manager ne recevront plus de notifications pour ce ticket, évitant la confusion.
+* **Effet** : Le bot modifie les permissions pour que **seul** ce membre du staff (et l'utilisateur) puisse répondre. Les autres membres du rôle Manager ne pourront plus parler dans le salon du ticket, évitant la confusion. Les administrateurs du serveur peuvent cependant toujours parler.
 * **Libération** : Le bouton change alors en <span class="discord-element discord-btn-secondary">🔓 Libérer le ticket</span> pour permettre à nouveau à toute l'équipe d'intervenir.
 
 ### Fermeture et Transcript
 
 Lorsqu'un ticket est terminé, cliquez sur <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>.
 
-1. **Génération du Transcript** : Le bot génère un fichier `.html` contenant tout l'historique de la conversation (messages, images, etc.).
+1. **Génération du Transcript** : Le bot génère un fichier `.html` contenant tout l'historique de la conversation. *Si le fichier dépasse 8 Mo, une version allégée (images sous forme de liens) est générée.*
 2. **Envoi DM** : L'utilisateur à l'origine du ticket reçoit ce fichier en message privé, accompagné d'un récapitulatif.
 3. **Logs** : Le transcript est également envoyé dans le salon de logs configuré.
 4. **Suppression** : Le salon du ticket est supprimé après quelques secondes.
@@ -108,16 +112,3 @@ En plus des boutons, plusieurs commandes slash sont disponibles pour gérer les 
     *Usage : `/ticket-reset`*
   </Card>
 </CardGrid>
-
----
-
-## Foire aux questions
-
-**Pourquoi le transcript ne contient pas certaines images ?**
-Si le fichier de transcript dépasse 8 Mo (limite de Discord pour les fichiers sans Nitro), le bot génère une version "allégée" où les images sont des liens au lieu d'être intégrées directement.
-
-**Puis-je avoir plusieurs panels de tickets ?**
-Actuellement, le module gère un panel principal par serveur. Cependant, vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
-
-**Que se passe-t-il si je supprime le rôle Manager ?**
-Si le rôle configuré est supprimé du serveur, seuls les administrateurs pourront voir et gérer les tickets jusqu'à ce qu'un nouveau rôle soit configuré.
