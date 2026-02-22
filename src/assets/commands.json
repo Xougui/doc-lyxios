@@ -1,0 +1,778 @@
+{
+    "commands": [
+        {
+            "name": "<:command_slash:1347249705381269658>・**</liste-serveurs:1353339820503470090>**",
+            "description": "[🤖 Dev ] Affiche tout les serveurs ou le bot est présent.",
+            "params": [],
+            "categorie": "Développement",
+            "id": 1353339820503470090
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</leave-server:1355852266455957505>**",
+            "description": "[🤖 Dev ] Fait quitter un serveur au bot.",
+            "params": [
+                "guild_id"
+            ],
+            "categorie": "Développement",
+            "id": 1355852266455957505
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</embed-create:1376166061254119465>**",
+            "description": "Crée un embed.",
+            "params": [
+                "channel",
+                "thumbnail",
+                "image",
+                "color",
+                "timestamp"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1376166061254119465
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</embed-edit:1376166061254119467>**",
+            "description": "Modifie un embed existant.",
+            "params": [
+                "message_id",
+                "channel",
+                "thumbnail",
+                "image",
+                "color",
+                "timestamp"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1376166061254119467
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</role-react:1376166063603056761>**",
+            "description": "Crée un rôle-réaction sur un message",
+            "params": [
+                "emoji",
+                "role",
+                "message_id",
+                "channel"
+            ],
+            "categorie": "Modération",
+            "id": 1376166063603056761
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</blacklist:1378748884104384594>**",
+            "description": "[🔨 Bl Mgr] Ajouter ou retirer un utilisateur de la liste blacklist.",
+            "params": [
+                "raison",
+                "membre",
+                "id",
+                "preuve1",
+                "preuve2",
+                "preuve3",
+                "preuve4",
+                "preuve5"
+            ],
+            "categorie": "Blacklist",
+            "id": 1378748884104384594
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</unblacklist:1378748884720816138>**",
+            "description": "[🔨 Bl Mgr] Retirer un utilisateur de la liste blacklist.",
+            "params": [
+                "membre",
+                "id"
+            ],
+            "categorie": "Blacklist",
+            "id": 1378748884720816138
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</liste-blacklist:1378748884720816139>**",
+            "description": "Liste des utilisateurs présents sur le serveur et dans la blacklist.",
+            "params": [
+                "mode"
+            ],
+            "categorie": "Blacklist",
+            "id": 1378748884720816139
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</verif-id:1378748884720816140>**",
+            "description": "Vérifie si un utilisateur est présent dans la blacklist.",
+            "params": [
+                "id"
+            ],
+            "categorie": "Blacklist",
+            "id": 1378748884720816140
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ban-blacklist:1378748884720816141>**",
+            "description": "Bannir tous les utilisateurs de la liste blacklist.",
+            "params": [],
+            "categorie": "Modération",
+            "id": 1378748884720816141
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</sync:1381186289969401906>**",
+            "description": "[🤖 Dev ] Recharge les extensions et synchronise les commandes slash.",
+            "params": [],
+            "categorie": "Développement",
+            "id": 1381186289969401906
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</warn:1382377783241478145>**",
+            "description": "Warn un utilisateur sur le serveur",
+            "params": [
+                "user",
+                "raison"
+            ],
+            "categorie": "Modération",
+            "id": 1382377783241478145
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</unwarn:1382377783241478146>**",
+            "description": "Retire un avertissement spécifique à un utilisateur.",
+            "params": [
+                "user",
+                "numero_warn"
+            ],
+            "categorie": "Modération",
+            "id": 1382377783241478146
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</warn-clear:1382377783241478147>**",
+            "description": "Supprime tous les avertissements d'un utilisateur.",
+            "params": [
+                "user"
+            ],
+            "categorie": "Modération",
+            "id": 1382377783241478147
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</warn-top:1382377783241478148>**",
+            "description": "Affiche les utilisateurs avec le plus d'avertissements.",
+            "params": [],
+            "categorie": "Modération",
+            "id": 1382377783241478148
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</warn-list:1382377783241478149>**",
+            "description": "Affiche la liste des avertissements d'un utilisateur.",
+            "params": [
+                "user"
+            ],
+            "categorie": "Modération",
+            "id": 1382377783241478149
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ping:1399694766001885286>**",
+            "description": "Affiche le ping du bot.",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1399694766001885286
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</infos-tech:1399697762739818576>**",
+            "description": "[🤖 Dev ] Affiche les informations techniques du bot.",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1399697762739818576
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</mute:1400061215702650891>**",
+            "description": "Permet de mute un membre !",
+            "params": [
+                "membre",
+                "temps"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650891
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ban:1400061215702650892>**",
+            "description": "Ban un utilisateur!",
+            "params": [
+                "membre",
+                "raison"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650892
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</unban:1400061215702650893>**",
+            "description": "Débannir un utilisateur",
+            "params": [
+                "membre_id"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650893
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</kick:1400061215702650894>**",
+            "description": "Kick un utilisateur! (il pourra revenir sur invitation)",
+            "params": [
+                "membre",
+                "raison"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650894
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</clear:1400061215702650895>**",
+            "description": "Supprimer un nombre de messages dans le canal",
+            "params": [
+                "montant"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650895
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</clear-raid:1400061215702650897>**",
+            "description": "Efface certains éléments du serveur! (seul le owner du serveur peut utiliser cette commande)",
+            "params": [],
+            "categorie": "Modération",
+            "id": 1400061215702650897
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</lock-channel:1400061215702650898>**",
+            "description": "Bloque les messages du rôle everyone dans un salon textuel",
+            "params": [
+                "salon"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650898
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</unlock-channel:1400061215702650899>**",
+            "description": "Permet à tout le monde d'envoyer des messages dans un salon textuel",
+            "params": [
+                "salon"
+            ],
+            "categorie": "Modération",
+            "id": 1400061215702650899
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</snipe:1400061216117882911>**",
+            "description": "Affiche les derniers messages supprimés.",
+            "params": [
+                "nombre",
+                "prive"
+            ],
+            "categorie": "Modération",
+            "id": 1400061216117882911
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</recreer-salon:1400061216117882912>**",
+            "description": "Récréé le salon avec les mêmes paramètres.",
+            "params": [
+                "salon"
+            ],
+            "categorie": "Modération",
+            "id": 1400061216117882912
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</serveur-infos:1417204957395816538>**",
+            "description": "Affiche les informations du serveur.",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816538
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</salon-infos:1417204957395816539>**",
+            "description": "Affiche les informations d'un salon.",
+            "params": [
+                "salon"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816539
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</role-infos:1417204957395816540>**",
+            "description": "Affiche les informations d'un rôle.",
+            "params": [
+                "role"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816540
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</user-infos:1417204957395816543>**",
+            "description": "Affiche les informations détaillées d'un membre.",
+            "params": [
+                "membre"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816543
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</invite-bot:1417204957395816544>**",
+            "description": "Invite le bot sur un serveur!",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816544
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ban-liste:1417204957395816545>**",
+            "description": "Affiche la liste des bans!",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816545
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</remerciements:1417204957395816546>**",
+            "description": "Affiche les remerciements!",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816546
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</rappels:1417204957395816547>**",
+            "description": "Créé un rappel qui te pingera quand ce sera l'heure !",
+            "params": [
+                "message",
+                "temps",
+                "channel"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1417204957395816547
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</rappels-liste:1417204957504999604>**",
+            "description": "Affiche la liste des rappels!",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957504999604
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</rappels-supprimer-tout:1417204957504999605>**",
+            "description": "Supprime tous les rappels!",
+            "params": [],
+            "categorie": "Utilitaires",
+            "id": 1417204957504999605
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</langue:1417204957504999607>**",
+            "description": "Change la langue du bot pour ce serveur. Permet de voir la langue actuelle.",
+            "params": [],
+            "categorie": "Administration",
+            "id": 1417204957504999607
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</partenariat:1417204957504999608>**",
+            "description": "Envoie un message de partenariat avec une pub.",
+            "params": [
+                "channel",
+                "user",
+                "mention"
+            ],
+            "categorie": "Administration",
+            "id": 1417204957504999608
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</feedback:1417204957504999609>**",
+            "description": "Envoie un feedback au développeur du bot.",
+            "params": [
+                "message",
+                "attachment"
+            ],
+            "categorie": "Informations",
+            "id": 1417204957504999609
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</top-server:1417204957504999610>**",
+            "description": "Affiche les 10 meilleurs serveurs par nombre de membres (sans les bots).",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1417204957504999610
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ghost-ping:1418978752364281936>**",
+            "description": "Envoie une mention qui se supprimera automatiquement après l'envoi.",
+            "params": [
+                "target",
+                "channel"
+            ],
+            "categorie": "Administration",
+            "id": 1418978752364281936
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</emoji-add:1428442602281369692>**",
+            "description": "Ajouter un emoji depuis un existant ou une image.",
+            "params": [
+                "name",
+                "emoji",
+                "image"
+            ],
+            "categorie": "Emojis",
+            "id": 1428442602281369692
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</emoji-delete:1428442602281369693>**",
+            "description": "Supprimer un emoji du serveur.",
+            "params": [
+                "emoji_str"
+            ],
+            "categorie": "Emojis",
+            "id": 1428442602281369693
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</emoji-info:1428442602281369694>**",
+            "description": "Afficher des informations sur un emoji.",
+            "params": [
+                "emoji_str"
+            ],
+            "categorie": "Emojis",
+            "id": 1428442602281369694
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</emoji-liste:1428442602281369695>**",
+            "description": "Affiche la liste des emojis du serveur.",
+            "params": [],
+            "categorie": "Emojis",
+            "id": 1428442602281369695
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</8ball:1428442808292872253>**",
+            "description": "Demande une question au bot (pour répondre par oui ou non).",
+            "params": [
+                "question"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872253
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</taper-interaction:1428442808292872254>**",
+            "description": "Tape une personne",
+            "params": [
+                "membre",
+                "raison"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872254
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</calin-interaction:1428442808292872255>**",
+            "description": "Fait un calin à une personne.",
+            "params": [
+                "membre",
+                "raison"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872255
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</calculatrice:1428442808292872256>**",
+            "description": "Calcule grâce au bot.",
+            "params": [
+                "nombre_1",
+                "nombre_2",
+                "operation"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872256
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</citation:1428442808292872257>**",
+            "description": "Le bot envoie une citation",
+            "params": [
+                "citation"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872257
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</chifumi:1428442808292872258>**",
+            "description": "Joue avec le bot au Chifumi.",
+            "params": [],
+            "categorie": "Fun",
+            "id": 1428442808292872258
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</meteo:1428442808292872259>**",
+            "description": "Affiche le temps actuel d'une ville.",
+            "params": [
+                "ville",
+                "afficher"
+            ],
+            "categorie": "Meteo",
+            "id": 1428442808292872259
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</bingo:1428442808292872260>**",
+            "description": "Joue au Bingo.",
+            "params": [
+                "max_number"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808292872260
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</pendu:1428442808292872261>**",
+            "description": "Joue au pendu !",
+            "params": [],
+            "categorie": "Fun",
+            "id": 1428442808292872261
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</confession:1428442808414638213>**",
+            "description": "Envoie une confession.",
+            "params": [
+                "confession",
+                "image"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808414638213
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</love-calculator:1428442808414638214>**",
+            "description": "Calcule le niveau d'amour entre deux personnes (teste sur ton crush)",
+            "params": [
+                "membre_1",
+                "membre_2"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808414638214
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</latence-membre:1428442808414638215>**",
+            "description": "Affiche la latence que tu veux à un membre.",
+            "params": [
+                "membre",
+                "latence"
+            ],
+            "categorie": "Fun",
+            "id": 1428442808414638215
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</help:1429052991826169927>**",
+            "description": "Commande d'aide",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1429052991826169927
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</serveur-help:1429052991826169928>**",
+            "description": "Commande pour rejoindre le serveur d'aide",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1429052991826169928
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</modif-blacklist:1444443447187738856>**",
+            "description": "[🔨 Bl Mgr] Modifier une blacklist.",
+            "params": [
+                "id_blacklist",
+                "nouvelle_raison"
+            ],
+            "categorie": "Blacklist",
+            "id": 1444443447187738856
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</config-profil:1445134393046728734>**",
+            "description": "Modifiez votre fond de profil.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728734
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</luckyblock:1445134393046728735>**",
+            "description": "Consultez et ouvrez vos luckyblocks.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728735
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</help-luckyblock:1445134393046728737>**",
+            "description": "Affiche les informations et taux de drop des luckyblocks.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728737
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</top-luckyblocks:1445134393046728738>**",
+            "description": "Affiche le classement des joueurs par luckyblocks ouverts.",
+            "params": [
+                "mode"
+            ],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728738
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</balance:1445134393046728739>**",
+            "description": "Affiche votre solde de pièces.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728739
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</shop:1445134393046728740>**",
+            "description": "Accédez à la boutique pour acheter des luckyblocks.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728740
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</donate-luckyblock:1445134393046728741>**",
+            "description": "Faites un don de luckyblocks à un autre membre.",
+            "params": [
+                "member",
+                "type_luckyblock",
+                "amount"
+            ],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728741
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</craft-luckyblock:1445134393046728742>**",
+            "description": "Fabriquez un luckyblock à partir de fragments.",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728742
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</inventaire:1445134393046728743>**",
+            "description": "Affiche votre inventaire.",
+            "params": [
+                "member"
+            ],
+            "categorie": "Luckyblocks",
+            "id": 1445134393046728743
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</profil:1445134393269031144>**",
+            "description": "Affiche le profil d'un membre.",
+            "params": [
+                "member"
+            ],
+            "categorie": "Luckyblocks",
+            "id": 1445134393269031144
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</infos-code:1446180193617318068>**",
+            "description": "📊 Affiche un audit esthétique du code source du bot.",
+            "params": [],
+            "categorie": "Informations",
+            "id": 1446180193617318068
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</config:1458880976561115349>**",
+            "description": "Configure les différents modules du bot.",
+            "params": [
+                "module"
+            ],
+            "categorie": "Configuration",
+            "id": 1458880976561115349
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</reset_data:1458880976561115350>**",
+            "description": "Reset les données du serveur.",
+            "params": [],
+            "categorie": "Configuration",
+            "id": 1458880976561115350
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ticket-add:1459509773778030805>**",
+            "description": "Ajoute un membre ou un rôle au ticket actuel",
+            "params": [
+                "target"
+            ],
+            "categorie": "Tickets",
+            "id": 1459509773778030805
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ticket-remove:1459509773778030807>**",
+            "description": "Retire un membre ou un rôle du ticket actuel",
+            "params": [
+                "target"
+            ],
+            "categorie": "Tickets",
+            "id": 1459509773778030807
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ticket-reset:1459509773778030808>**",
+            "description": "Réinitialise les permissions du ticket à leur état d'origine",
+            "params": [],
+            "categorie": "Tickets",
+            "id": 1459509773778030808
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</maree:1459869834769596416>**",
+            "description": "Affiche les conditions maritimes (vagues) pour une ville côtière.",
+            "params": [
+                "ville",
+                "afficher"
+            ],
+            "categorie": "Meteo",
+            "id": 1459869834769596416
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</avatar:1459941189041262682>**",
+            "description": "Affiche la photo de profil d'un membre",
+            "params": [
+                "membre"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1459941189041262682
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</banniere:1459951316888584438>**",
+            "description": "Affiche la bannière d'un membre",
+            "params": [
+                "membre"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1459951316888584438
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</daily:1465023387918139412>**",
+            "description": "Récupérez votre récompense journalière (2 luckyblocks rares).",
+            "params": [],
+            "categorie": "Luckyblocks",
+            "id": 1465023387918139412
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</quiz:1467862022426464398>**",
+            "description": "Jouer au quiz des pays en ligne.",
+            "params": [],
+            "categorie": "Fun",
+            "id": 1467862022426464398
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</deco:1469729144781799526>**",
+            "description": "Affiche la décoration d'avatar d'un membre.",
+            "params": [
+                "membre"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1469729144781799526
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</tag:1469730908423717020>**",
+            "description": "Affiche le guild tag d'un membre.",
+            "params": [
+                "membre"
+            ],
+            "categorie": "Utilitaires",
+            "id": 1469730908423717020
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</ticket-rename:1472621302862057618>**",
+            "description": "Renomme le ticket actuel",
+            "params": [
+                "name"
+            ],
+            "categorie": "Tickets",
+            "id": 1472621302862057618
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</bump:1473342144176459857>**",
+            "description": "Bump votre serveur sur les autres serveurs partenaires.",
+            "params": [],
+            "categorie": "Aucune",
+            "id": 1473342144176459857
+        },
+        {
+            "name": "<:command_slash:1347249705381269658>・**</invite-bump:1473373599938383872>**",
+            "description": "Configure automatiquement le lien d'invitation pour le bump.",
+            "params": [
+                "channel"
+            ],
+            "categorie": "Aucune",
+            "id": 1473373599938383872
+        }
+    ]
+}

@@ -1,37 +1,15 @@
 ---
+import commandData from '../assets/commands.json';
+
 interface Command {
   name: string;
   description: string;
   params: string[];
   categorie: string;
-  id: string;
+  id: string | number;
 }
 
-interface CommandData {
-  commands: Command[];
-}
-
-interface ApiResponse {
-  status: string;
-  data: CommandData;
-}
-
-let commands: Command[] = [];
-let errorMessage = '';
-
-try {
-  const response = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/commands');
-  if (response.ok) {
-    const json = (await response.json()) as ApiResponse;
-    commands = json.data?.commands || [];
-  } else {
-    console.error(`Erreur API: ${response.status} ${response.statusText}`);
-    errorMessage = `Erreur API: ${response.status} (${response.statusText})`;
-  }
-} catch (error) {
-  console.error("Erreur de connexion lors de la récupération des commandes:", error);
-  errorMessage = "Impossible de contacter l'API des commandes.";
-}
+const commands: Command[] = commandData.commands as Command[];
 
 // Group commands by category
 const groupedCommands: Record<string, Command[]> = {};
@@ -58,11 +36,6 @@ const sortedCategories = Object.keys(groupedCommands).sort();
 ---
 
 <div class="command-list">
-  {errorMessage && (
-    <div class="error-banner">
-      ⚠️ {errorMessage}
-    </div>
-  )}
 
   {sortedCategories.map((category) => (
     <div class="category-section">
@@ -86,20 +59,12 @@ const sortedCategories = Object.keys(groupedCommands).sort();
     </div>
   ))}
 
-  {!errorMessage && sortedCategories.length === 0 && (
+  {sortedCategories.length === 0 && (
     <p class="empty-message">Aucune commande trouvée pour le moment.</p>
   )}
 </div>
 
 <style>
-  .error-banner {
-    background-color: #fee2e2;
-    color: #991b1b;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #f87171;
-  }
   .category-section {
     margin-bottom: 2rem;
   }
