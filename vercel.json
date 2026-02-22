@@ -1,4 +1,5 @@
 {
+  "regions": ["cdg1"],
   "cleanUrls": true,
   "framework": "astro",
   "headers": [
