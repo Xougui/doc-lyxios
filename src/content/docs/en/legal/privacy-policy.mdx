@@ -1,0 +1,133 @@
+---
+title: Privacy Policy
+description: Detailed privacy policy of the Lyxios Discord bot. Full transparency on data collection and GDPR compliance.
+lastUpdated: 2026-01-15
+---
+
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+
+:::note
+**Last updated:** February 19, 2026
+**Bot ID:** `1335228717403996160`
+:::
+
+At Lyxios, transparency is our priority. This policy details the technical and personal data we collect to ensure the proper functioning of our services (Dashboard, Logs, Moderation), in strict compliance with Discord's terms of service.
+
+---
+
+## 1. Collected Information
+
+To provide its services, Lyxios processes the following types of data:
+
+### A. Identification Data (Discord)
+* **Identifiers (IDs):** User ID, Server ID (Guild ID), Channel IDs, and Role IDs.
+* **Public Information:** Username, avatar, and discriminator (via the Discord API).
+
+### B. Configuration Data
+*Data voluntarily provided by administrators to configure modules:*
+* **Custom Messages:** Content of Welcome, Goodbye, Bump Reminder, and Anti-link messages.
+* **Media:** URLs of images used for Welcome and Goodbye modules.
+* **Moderation Settings:** Allowed domains lists (whitelist), ignored roles, and logs configuration (destination channels).
+
+### C. Technical and Security Data
+* **Cloudflare Turnstile:** When logging into the Dashboard, we use Cloudflare Turnstile to verify that you are human. This may involve the collection of your IP address and browsing data by Cloudflare.
+
+### D. Profile and Economy Data (Global)
+*Data related to your Discord user account (independent of the server):*
+* **Economy:** Coin balance, Luckyblocks inventory, and fragments.
+* **Profile:** Unlocked images (Gallery), custom background image, blur level, and profile display preferences.
+
+### E. Temporary Data
+* **Reminders:** Content of the reminder message and scheduled date (deleted once the reminder is sent).
+* **Love Calculator:** Compatibility percentage calculated between two users (stored to avoid re-calculation spam).
+
+### F. Moderation History
+*To allow community management:*
+* **Warnings (Warns):** Reason for the sanction, moderator ID, and date. This data is linked to your user ID and the concerned server.
+
+### G. Feature Tracking
+* **Partnerships:** Storage of IDs (Message, User, Channel) for tracking advertisements, without content retention.
+* **Confessions:** Only the total count of confessions is stored. The content of confessions is not kept in the database.
+
+---
+
+## 2. Use of Information
+
+The collected data is strictly necessary for the operation of our modules.
+
+<CardGrid>
+  <Card title="Logs System" icon="document">
+    Recording of actions (message deletion, bans, voice) for server administrators.
+  </Card>
+  <Card title="Ticket System" icon="list-format">
+    Management of ticket opening and association with support roles.
+  </Card>
+  <Card title="Welcome & Departures" icon="rocket">
+    Sending of custom images and messages when a member joins or leaves the server.
+  </Card>
+  <Card title="Security" icon="shield">
+    Analysis of messages to block unauthorized links and protection against raids.
+  </Card>
+  <Card title="Economy & Profile" icon="star">
+    Saving of your progress, inventory, and profile customization across all servers.
+  </Card>
+  <Card title="Utilities" icon="setting">
+    Management of personal reminders and other utility commands.
+  </Card>
+</CardGrid>
+
+---
+
+## 3. Third-Party Services
+
+Lyxios relies on trusted services:
+* **Discord:** Main infrastructure. Policy: [discord.com/privacy](https://discord.com/privacy)
+* **Cloudflare:** Security and DDoS protection. Policy: [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/)
+
+---
+
+## 4. Cookies and Local Storage
+
+The Lyxios site and Dashboard do not use advertising or tracking cookies.
+
+We use your browser's **Local Storage** only to:
+* Keep your session active on the Dashboard (access token).
+* Save your display preferences (light/dark theme, language).
+
+---
+
+## 5. Data Retention
+
+### A. Server Data
+Configuration data (Logs, Tickets, Anti-raid, etc.) is retained as long as the bot is present on your server. If the bot is kicked/banned, this data is automatically deleted from our database.
+
+> *You can force immediate deletion via the `/reset-data` command.*
+
+### B. User Data (Global)
+Data related to your user account (Economy, Inventory, Profile) is retained indefinitely to allow you to keep your progress from one server to another. This data is not deleted when the bot leaves a server.
+
+---
+
+## 6. Ticket Policy
+
+<Aside type="caution" title="Important note on ticket privacy">
+  Upon closing a ticket, Lyxios generates a transcript (HTML file) sent to the logs channel defined by you as well as to the user who opened the ticket. **Lyxios stores no copy of these conversations on its own servers.** Once the file is sent on Discord, we no longer have access to it.
+</Aside>
+
+---
+
+## 7. Your Rights
+
+You have a right of access, rectification, and deletion of your data. To exercise these rights, or for any technical question, contact the development team.
+
+---
+
+## 8. Contact & Support
+
+For any question regarding this privacy policy, or to report a security issue, please contact us via the following means:
+
+<Steps>
+1. **Priority Support:** Join our [Support Discord Server](https://discord.gg/RZHrtzwUC2) and open a ticket. This is the fastest way to get an answer.
+2. **Direct Contact:** You can reach the lead developer on Discord via the username `xougui`.
+3. **Legal/Official Contact:** For formal requests, send an e-mail to the following address: [xougui.7@gmail.com](mailto:xougui.7@gmail.com).
+</Steps>
