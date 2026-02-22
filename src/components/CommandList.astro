@@ -35,22 +35,34 @@ commands.forEach((cmd) => {
 const sortedCategories = Object.keys(groupedCommands).sort();
 ---
 
-<div class="command-list">
+<div class="command-list-container">
+  <div class="search-wrapper">
+    <input type="text" id="command-search" placeholder="Rechercher une commande..." aria-label="Rechercher une commande" />
+  </div>
 
   {sortedCategories.map((category) => (
     <div class="category-section">
-      <h2>{category}</h2>
+      <h2 class="category-title">{category}</h2>
       <table>
         <thead>
           <tr>
-            <th>Commande</th>
+            <th style="width: 40%">Commande</th>
             <th>Description</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="command-group">
           {groupedCommands[category].map((cmd) => (
-            <tr>
-              <td><code>{cmd.name}</code></td>
+            <tr class="command-row">
+              <td>
+                <div class="cmd-name-wrapper">
+                  <code>{cmd.name}</code>
+                  {cmd.params && cmd.params.length > 0 && (
+                    <span class="cmd-params">
+                      {cmd.params.map(p => <span class="param-tag">{p}</span>)}
+                    </span>
+                  )}
+                </div>
+              </td>
               <td>{cmd.description}</td>
             </tr>
           ))}
@@ -62,12 +74,58 @@ const sortedCategories = Object.keys(groupedCommands).sort();
   {sortedCategories.length === 0 && (
     <p class="empty-message">Aucune commande trouvée pour le moment.</p>
   )}
+  <p id="no-results" class="empty-message hidden">Aucun résultat pour cette recherche.</p>
 </div>
 
 <style>
+  .search-wrapper {
+    margin-bottom: 2rem;
+  }
+  
+  #command-search {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background-color: var(--sl-color-black);
+    color: var(--sl-color-white);
+    font-size: 1rem;
+  }
+
+  #command-search:focus {
+    border-color: var(--sl-color-accent);
+    outline: none;
+  }
+
   .category-section {
     margin-bottom: 2rem;
   }
+
+  .cmd-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .cmd-params {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    font-size: 0.8em;
+  }
+
+  .param-tag {
+    background-color: var(--sl-color-gray-6);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: var(--sl-color-gray-2);
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
   /* Basic table styling to match Starlight if not inherited automatically */
   table {
     width: 100%;
@@ -75,3 +133,35 @@ const sortedCategories = Object.keys(groupedCommands).sort();
     display: table; /* Ensure table display */
   }
 </style>
+
+<script>
+  const searchInput = document.getElementById('command-search') as HTMLInputElement;
+  const noResultsMsg = document.getElementById('no-results');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const term = (e.target as HTMLInputElement).value.toLowerCase();
+      const sections = document.querySelectorAll('.category-section');
+      let hasVisibleCommands = false;
+
+      sections.forEach((section) => {
+        const rows = section.querySelectorAll('.command-row');
+        let hasVisibleRowsInSection = false;
+
+        rows.forEach((row) => {
+          const text = (row.textContent || '').toLowerCase();
+          const isVisible = text.includes(term);
+          (row as HTMLElement).style.display = isVisible ? '' : 'none';
+          if (isVisible) hasVisibleRowsInSection = true;
+        });
+
+        (section as HTMLElement).style.display = hasVisibleRowsInSection ? '' : 'none';
+        if (hasVisibleRowsInSection) hasVisibleCommands = true;
+      });
+
+      if (noResultsMsg) {
+        noResultsMsg.classList.toggle('hidden', hasVisibleCommands);
+      }
+    });
+  }
+</script>
