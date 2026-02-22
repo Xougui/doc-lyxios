@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import error500 from '../assets/error/500_svg.svg';
 
 interface Props {
   error: unknown;
@@ -8,7 +9,9 @@ interface Props {
 const { error } = Astro.props;
 
 // Log the error for debugging purposes (this will appear in server logs)
-console.error("500 Error encountered:", error);
+if (error) {
+  console.error("500 Error encountered:", error);
+}
 ---
 
 <StarlightPage frontmatter={{
@@ -17,7 +20,7 @@ console.error("500 Error encountered:", error);
   editUrl: false,
   hero: {
     title: '',
-    image: { html: '<img src="/500_svg.svg" alt="500" />' },
+    image: { file: error500, alt: '500' },
     actions: [
       {
         text: "Retour à l'accueil",

@@ -1,5 +1,6 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import error404 from '../assets/error/404_svg.svg';
 ---
 
 <StarlightPage frontmatter={{
@@ -8,7 +9,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
   editUrl: false,
   hero: {
     title: '',
-    image: { html: '<img src="/404_svg.svg" alt="404" />' },
+    image: { file: error404, alt: '404' },
     actions: [
       {
         text: "Retour à l'accueil",
