@@ -25,37 +25,41 @@ Il offre une interface simple pour créer des tickets, les assigner à des membr
 
 ## Configuration du module
 
-Le système de tickets de Lyxios est entièrement configurable via un tableau de bord interactif. Une fois le module activé, vous aurez accès à plusieurs menus pour personnaliser l'expérience.
+Le système de tickets de Lyxios est entièrement configurable via un tableau de bord interactif. Une fois le module activé via `/config`, vous aurez accès au bouton suivant <span class="discord-element discord-btn-primary">Configurer les Tickets</span> qui vous permettra de personnaliser tous les aspects du système de tickets.:
 
 ### 1. Salons et Rôles
 
-C'est la première étape essentielle pour que le système fonctionne. Cliquez sur le bouton **Salons & Rôles** pour définir :
+Cliquez sur le bouton <span class="discord-element discord-btn-primary">🛠️ Salons & Rôles</span> pour définir l'infrastructure essentielle :
 
 <Steps>
-1. **Catégorie Tickets** : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
-2. **Rôle Manager** : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut. *Si ce rôle est supprimé, seuls les administrateurs pourront gérer les tickets.*
-3. **Salon Logs** : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, renommage, etc.).
-4. **Salon Panel** : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
+1. <span class="discord-element discord-select">Catégorie Tickets <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
+2. <span class="discord-element discord-select">Rôle Manager <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut. *Si ce rôle est supprimé, seuls les administrateurs pourront gérer les tickets.*
+3. <span class="discord-element discord-select">Logs <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, renommage, etc.).
+4. <span class="discord-element discord-select">Panel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
 </Steps>
 
 ### 2. Textes et Options
 
-Dans le menu **Textes & Options**, vous pouvez affiner le comportement du bot :
+Cliquez sur le bouton <span class="discord-element discord-btn-primary">✍️ Textes & Options</span> pour personnaliser l'expérience utilisateur via les sous-menus suivants :
 
-* **Max Tickets** : Limitez le nombre de tickets ouverts simultanément par un même utilisateur (de 1 à 5).
-* **Message de Bienvenue** : Personnalisez le message envoyé automatiquement à l'ouverture du ticket. Vous pouvez utiliser la variable `{user}` pour mentionner le membre.
-* **Gérer les Motifs** : Ajoutez des raisons d'ouverture (ex: *Support Technique*, *Partenariat*, *Plainte*).
+*   **Max Tickets** : Un menu déroulant pour limiter le nombre de tickets ouverts simultanément par un même utilisateur (de 1 à 5). (*Par défaut 1*)
+*   <span class="discord-element discord-btn-secondary">👋 Message Bienvenue</span> : Ouvre un formulaire pour personnaliser le message envoyé à l'ouverture du ticket. Utilisez `{user}` pour mentionner le membre.
+*   <span class="discord-element discord-btn-secondary">🎨 Embed Panel</span> : Ouvre un formulaire pour modifier le Titre, la Description et la Couleur du panel de création.
+*   <span class="discord-element discord-btn-secondary">📝 Gérer Motifs</span> : Permet d'ajouter ou supprimer des raisons d'ouverture (ex: *Support Technique*, *Partenariat*).
     * *Si vous définissez plusieurs motifs, un menu déroulant sera affiché sur le panel.*
     * *Si vous ne mettez aucun motif ou un seul, un simple bouton sera affiché.*
-* **Embed Panel** : Personnalisez l'apparence du message du panel (Titre, Description, Couleur) pour qu'il corresponde à l'identité de votre serveur.
 
 <Aside type="tip" title="Plusieurs panels ?">
 Actuellement, le module gère un panel principal par serveur. Vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
 </Aside>
 
-### 3. Déployer le Panel
+### 3. Actions Rapides
 
-Une fois la configuration terminée, cliquez sur le bouton <span class="discord-element discord-btn-success">🚀 Modifier Panel</span> (ou "Envoyer Panel") pour publier ou mettre à jour le message de création de ticket dans le salon configuré.
+Sur le menu principal, vous disposez également de ces actions :
+
+*   <span class="discord-element discord-btn-success">🚀 Modifier Panel</span> : Envoie ou met à jour le message de création de ticket dans le salon configuré.
+*   <span class="discord-element discord-btn-secondary">🔄 Rafraîchir</span> : Met à jour l'affichage du tableau de bord avec les dernières configurations sauvegardées.
+*   <span class="discord-element discord-btn-danger">✖️ Désactiver</span> : Supprime toute la configuration des tickets de la base de données.
 
 ---
 

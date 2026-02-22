@@ -123,6 +123,9 @@ h1, h2, h3, h4, h5, h6 {
 .discord-select {
     background-color: #2e2f35;
     border: 1.5px solid #43444a;
+    vertical-align: middle;
+    position: relative;
+    top : -3px;
 }
 
 /* Styles spécifiques pour les pages d'erreur (404 et 500) */
