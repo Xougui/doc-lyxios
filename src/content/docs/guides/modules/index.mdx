@@ -1,0 +1,27 @@
+---
+title: Sommaire
+description: Sommaire des modules disponibles sur Lyxios.
+sidebar:
+  order: 0
+---
+
+import { getCollection } from 'astro:content';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+export const modules = await getCollection('docs', ({ id }) => {
+  // Récupère tous les fichiers dans 'guides/modules/'
+  // Exclut ce fichier index pour éviter qu'il ne s'affiche lui-même
+  return id.startsWith('guides/modules/') && id !== 'guides/modules/index.mdx';
+});
+
+Retrouvez ci-dessous la documentation détaillée pour chaque module :
+
+<CardGrid>
+  {modules.map((module) => (
+    <LinkCard
+      title={module.data.title}
+      description={module.data.description}
+      href={`/${module.slug}/`}
+    />
+  ))}
+</CardGrid>

@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import vercel from '@astrojs/vercel';
-import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 
 // https://astro.build/config
@@ -65,6 +64,5 @@ export default defineConfig({
 			],
 		}),
 		react(),
-		mdx(),
 	],
 });
