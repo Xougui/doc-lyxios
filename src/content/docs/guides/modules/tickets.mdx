@@ -1,0 +1,118 @@
+---
+title: Tickets
+description: "Découvrez comment les tickets fonctionnent dans Lyxios, comment les créer, les gérer et les utiliser pour suivre les problèmes, les demandes de fonctionnalités et les tâches au sein de votre projet."
+lastUpdated: 2026-02-22
+sidebar:
+  order: 3
+---
+
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown, MessageSquare, Settings, Shield, Users } from 'lucide-react';
+
+## Où trouver le module de tickets ?
+
+Vous trouverez le module de tickets dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons différentes :
+1. En utilisant la commande `/config` et en sélectionnant le module `Tickets` dans l'option `module`. (`/config module:Tickets`)
+2. En effectuant la commande `/config` et en sélectionnant l'option `Tickets` dans le menu déroulant.
+
+## À quoi sert le module de tickets ?
+
+Le module de tickets permet de créer et gérer des tickets pour suivre les problèmes, les demandes de fonctionnalités et les tâches au sein de votre projet.
+Il offre une interface simple pour créer des tickets, les assigner à des membres de l'équipe.
+
+---
+
+## Configuration du module
+
+Le système de tickets de Lyxios est entièrement configurable via un tableau de bord interactif. Une fois le module activé via `/config`, vous aurez accès au bouton suivant <span class="discord-element discord-btn-primary">Configurer les Tickets</span> qui vous permettra de personnaliser tous les aspects du système de tickets.:
+
+### 1. Salons et Rôles
+
+Cliquez sur le bouton <span class="discord-element discord-btn-primary">🛠️ Salons & Rôles</span> pour définir l'infrastructure essentielle :
+
+<Steps>
+1. <span class="discord-element discord-select">Catégorie Tickets <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
+2. <span class="discord-element discord-select">Rôle Manager <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut. *Si ce rôle est supprimé, seuls les administrateurs pourront gérer les tickets.*
+3. <span class="discord-element discord-select">Logs <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, renommage, etc.).
+4. <span class="discord-element discord-select">Panel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
+</Steps>
+
+### 2. Textes et Options
+
+Cliquez sur le bouton <span class="discord-element discord-btn-primary">✍️ Textes & Options</span> pour personnaliser l'expérience utilisateur via les sous-menus suivants :
+
+*   **Max Tickets** : Un menu déroulant pour limiter le nombre de tickets ouverts simultanément par un même utilisateur (de 1 à 5). (*Par défaut 1*)
+*   <span class="discord-element discord-btn-secondary">👋 Message Bienvenue</span> : Ouvre un formulaire pour personnaliser le message envoyé à l'ouverture du ticket. Utilisez `{user}` pour mentionner le membre.
+*   <span class="discord-element discord-btn-secondary">🎨 Embed Panel</span> : Ouvre un formulaire pour modifier le Titre, la Description et la Couleur du panel de création.
+*   <span class="discord-element discord-btn-secondary">📝 Gérer Motifs</span> : Permet d'ajouter ou supprimer des raisons d'ouverture (ex: *Support Technique*, *Partenariat*).
+    * *Si vous définissez plusieurs motifs, un menu déroulant sera affiché sur le panel.*
+    * *Si vous ne mettez aucun motif ou un seul, un simple bouton sera affiché.*
+
+<Aside type="tip" title="Plusieurs panels ?">
+Actuellement, le module gère un panel principal par serveur. Vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
+</Aside>
+
+### 3. Actions Rapides
+
+Sur le menu principal, vous disposez également de ces actions :
+
+*   <span class="discord-element discord-btn-success">🚀 Modifier Panel</span> : Envoie ou met à jour le message de création de ticket dans le salon configuré.
+*   <span class="discord-element discord-btn-secondary">🔄 Rafraîchir</span> : Met à jour l'affichage du tableau de bord avec les dernières configurations sauvegardées.
+*   <span class="discord-element discord-btn-danger">✖️ Désactiver</span> : Supprime toute la configuration des tickets de la base de données.
+
+---
+
+## Gestion des Tickets
+
+Une fois un ticket ouvert, plusieurs fonctionnalités s'offrent à votre équipe et à l'utilisateur.
+
+### Prise en charge (Claim)
+
+Les membres du staff (Rôle Manager) voient un bouton <span class="discord-element discord-btn-primary">🙋‍♂️ Prendre en charge</span> dans le ticket.
+
+* **Action** : Lorsqu'un membre du staff clique dessus, il s'assigne le ticket.
+* **Effet** : Le bot modifie les permissions pour que **seul** ce membre du staff (et l'utilisateur) puisse répondre. Les autres membres du rôle Manager ne pourront plus parler dans le salon du ticket, évitant la confusion. Les administrateurs du serveur peuvent cependant toujours parler.
+* **Libération** : Le bouton change alors en <span class="discord-element discord-btn-secondary">🔓 Libérer le ticket</span> pour permettre à nouveau à toute l'équipe d'intervenir.
+
+### Fermeture et Transcript
+
+Lorsqu'un ticket est terminé, cliquez sur <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>.
+
+1. **Génération du Transcript** : Le bot génère un fichier `.html` contenant tout l'historique de la conversation. *Si le fichier dépasse 8 Mo, une version allégée (images sous forme de liens) est générée.*
+2. **Envoi DM** : L'utilisateur à l'origine du ticket reçoit ce fichier en message privé, accompagné d'un récapitulatif.
+3. **Logs** : Le transcript est également envoyé dans le salon de logs configuré.
+4. **Suppression** : Le salon du ticket est supprimé après quelques secondes.
+
+<Aside type="note" title="Notation du support">
+Après la fermeture, l'utilisateur reçoit en message privé une demande de notation (de 1 à 5 étoiles ⭐). Cette note est ensuite envoyée dans votre salon de logs pour vous aider à suivre la qualité de votre support.
+</Aside>
+
+---
+
+## Commandes Utiles
+
+En plus des boutons, plusieurs commandes slash sont disponibles pour gérer les tickets actifs :
+
+<CardGrid>
+  <Card title="/ticket-add" icon="add-document">
+    **Ajouter un membre ou un rôle**
+    Permet d'ajouter exceptionnellement une personne au ticket actuel.
+    *Usage : `/ticket-add target:@User`*
+  </Card>
+  <Card title="/ticket-remove" icon="close">
+    **Retirer un membre**
+    Retire l'accès au ticket à un utilisateur spécifique.
+    *Usage : `/ticket-remove target:@User`*
+  </Card>
+  <Card title="/ticket-rename" icon="pencil">
+    **Renommer le ticket**
+    Change le nom du salon du ticket en cours. Utile pour organiser les demandes.
+    *Usage : `/ticket-rename name:nouveau-nom`*
+  </Card>
+  <Card title="/ticket-reset" icon="setting">
+    **Réinitialiser les permissions**
+    Remet les permissions du salon à leur état d'origine (utile si les permissions ont été modifiées manuellement par erreur).
+    *Usage : `/ticket-reset`*
+  </Card>
+</CardGrid>
