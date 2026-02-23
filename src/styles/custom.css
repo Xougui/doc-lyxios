@@ -414,7 +414,7 @@ h3 {
 
 /* Styles pour le bouton "Voir plus" des rôles */
 .roles-details {
-    width: auto;
+    display: contents;
 }
 
 .roles-details summary {
@@ -424,6 +424,9 @@ h3 {
     color: var(--sl-color-accent);
     margin-top: 0;
     list-style: none; /* Cache la flèche par défaut */
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
 }
 
 .roles-details summary::-webkit-details-marker {
@@ -438,7 +441,7 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: -0.3rem;
 }
 
 .staff-desc {
