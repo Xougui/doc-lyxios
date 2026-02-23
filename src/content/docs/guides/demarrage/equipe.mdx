@@ -10,11 +10,11 @@ template: splash
 
 export const staff = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/staff', {
     headers: {
-      'User-Agent': 'LyxiosDocs/1.0',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       'Accept': 'application/json'
     }
   })
-  .then((res) => res.ok ? res.json() : Promise.reject(`Erreur HTTP ${res.status}`))
+  .then((res) => res.ok ? res.json() : Promise.reject(`Erreur HTTP ${res.status} ${res.statusText}`))
   .then((data) => {
     // Gestion plus souple de la réponse API et logs de débogage
     if (Array.isArray(data)) return data;
