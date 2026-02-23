@@ -15,7 +15,14 @@ export const staff = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/st
     }
   })
   .then((res) => res.ok ? res.json() : Promise.reject(`Erreur HTTP ${res.status}`))
-  .then((data) => (data.status === 'success' && Array.isArray(data.staff) ? data.staff : []))
+  .then((data) => {
+    // Gestion plus souple de la réponse API et logs de débogage
+    if (Array.isArray(data)) return data;
+    if (data.status === 'success' && Array.isArray(data.staff)) return data.staff;
+    
+    console.warn('⚠️ API Staff : Format de réponse inattendu.', JSON.stringify(data, null, 2));
+    return [];
+  })
   .catch((e) => {
     console.error('Erreur lors de la récupération du staff:', e);
     return [];
@@ -85,16 +92,16 @@ export const getRoleIndex = (memberId) => {
 
 export const sortedStaff = [...staff].sort((a, b) => {
   // Priorité 1: xougui
-  if (a.id === '946098490654740580') return -1;
-  if (b.id === '946098490654740580') return 1;
+  if (String(a.id) === '946098490654740580') return -1;
+  if (String(b.id) === '946098490654740580') return 1;
 
   // Priorité 2: kadawatcha
-  if (a.id === '1178647820052467823') return -1;
-  if (b.id === '1178647820052467823') return 1;
+  if (String(a.id) === '1178647820052467823') return -1;
+  if (String(b.id) === '1178647820052467823') return 1;
 
   // Tri par rôle pour les autres
-  const roleIndexA = getRoleIndex(a.id);
-  const roleIndexB = getRoleIndex(b.id);
+  const roleIndexA = getRoleIndex(String(a.id));
+  const roleIndexB = getRoleIndex(String(b.id));
   
   if (roleIndexA !== roleIndexB) {
     return roleIndexA - roleIndexB;
@@ -124,7 +131,7 @@ export const staffGroups = (() => {
   ];
 
   sortedStaff.forEach(member => {
-    const info = customInfo[member.id] || {};
+    const info = customInfo[String(member.id)] || {};
     const roles = info.roles || [];
     
     for (const group of groups) {
@@ -147,7 +154,7 @@ export const staffGroups = (() => {
       <h2 style={{ marginTop: '2rem' }}>{group.title}</h2>
       <div className="staff-grid">
         {group.members.map((member) => {
-          const info = customInfo[member.id] || {};
+          const info = customInfo[String(member.id)] || {};
           return (
             <div className="staff-card" key={member.id}>
               <div className="staff-header">
