@@ -442,6 +442,7 @@ h3 {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: -0.3rem;
+    margin-bottom: 0.75rem;
 }
 
 .staff-desc {
