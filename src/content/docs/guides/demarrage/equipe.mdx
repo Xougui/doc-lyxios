@@ -162,7 +162,7 @@ export const staffGroups = (() => {
                 </div>
                 
                 <div className="staff-identity">
-                  <div className="staff-name">
+                  <div className="staff-name" title={member.display_name || member.name}>
                     {member.display_name || member.name}
                   </div>
                   {info.social && info.social.length > 0 && (
@@ -180,9 +180,21 @@ export const staffGroups = (() => {
               <div className="staff-body">
                 {info.roles && (
                   <div className="staff-roles">
-                    {info.roles.map((role, index) => (
+                    {/* Affiche les 4 premiers rôles */}
+                    {info.roles.slice(0, 2).map((role, index) => (
                       <span key={index} className="staff-role-badge">{role}</span>
                     ))}
+                    {/* Si plus de 4 rôles, ajoute un bouton Voir plus */}
+                    {info.roles.length > 2 && (
+                      <details className="roles-details">
+                        <summary>Voir plus (+{info.roles.length - 2})</summary>
+                        <div className="roles-extra">
+                          {info.roles.slice(2).map((role, index) => (
+                            <span key={index + 2} className="staff-role-badge">{role}</span>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                   </div>
                 )}
                 {info.desc && (

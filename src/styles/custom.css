@@ -348,6 +348,7 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    overflow: hidden;
 }
 
 .staff-name {
@@ -356,6 +357,9 @@ h3 {
     font-weight: 700;
     color: var(--sl-color-text);
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .staff-social {
@@ -404,6 +408,35 @@ h3 {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;
+}
+
+/* Styles pour le bouton "Voir plus" des rôles */
+.roles-details {
+    width: 100%;
+}
+
+.roles-details summary {
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--sl-color-accent);
+    margin-top: 0.25rem;
+    list-style: none; /* Cache la flèche par défaut */
+}
+
+.roles-details summary::-webkit-details-marker {
+    display: none; /* Cache la flèche sur Webkit */
+}
+
+.roles-details summary:hover {
+    text-decoration: underline;
+}
+
+.roles-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .staff-desc {
