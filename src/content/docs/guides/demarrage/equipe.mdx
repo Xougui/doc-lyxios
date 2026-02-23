@@ -180,11 +180,11 @@ export const staffGroups = (() => {
               <div className="staff-body">
                 {info.roles && (
                   <div className="staff-roles">
-                    {/* Affiche les 4 premiers rôles */}
+                    {/* Affiche les 2 premiers rôles */}
                     {info.roles.slice(0, 2).map((role, index) => (
                       <span key={index} className="staff-role-badge">{role}</span>
                     ))}
-                    {/* Si plus de 4 rôles, ajoute un bouton Voir plus */}
+                    {/* Si plus de 2 rôles, ajoute un bouton Voir plus sur la meme ligne que les deux premiers */}
                     {info.roles.length > 2 && (
                       <details className="roles-details">
                         <summary>Voir plus (+{info.roles.length - 2})</summary>

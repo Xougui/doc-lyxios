@@ -396,6 +396,8 @@ h3 {
     gap: 0.5rem;
     min-height: 3.5rem;
     align-content: flex-start;
+    align-items: center;
+    margin-top: -1.5rem;
 }
 
 .staff-role-badge {
@@ -412,7 +414,7 @@ h3 {
 
 /* Styles pour le bouton "Voir plus" des rôles */
 .roles-details {
-    width: 100%;
+    width: auto;
 }
 
 .roles-details summary {
@@ -420,7 +422,7 @@ h3 {
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--sl-color-accent);
-    margin-top: 0.25rem;
+    margin-top: 0;
     list-style: none; /* Cache la flèche par défaut */
 }
 
@@ -443,5 +445,5 @@ h3 {
     font-size: 0.95rem;
     color: var(--sl-color-gray-2);
     line-height: 1.6;
-    margin-top: auto;
+    margin-top: -1rem;
 }
