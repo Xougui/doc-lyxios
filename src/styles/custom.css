@@ -451,3 +451,42 @@ h3 {
     line-height: 1.6;
     margin-top: -1rem;
 }
+
+/* --- Command List Styles --- */
+.search-wrapper {
+    margin-bottom: 2rem;
+}
+
+#command-search {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background-color: var(--sl-color-black);
+    color: var(--sl-color-white);
+    font-size: 1rem;
+}
+
+#command-search:focus {
+    border-color: var(--sl-color-accent);
+    outline: none;
+}
+
+.category-section {
+    margin-bottom: 2rem;
+}
+
+.cmd-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+}
+
+.param-tag {
+    background-color: var(--sl-color-gray-6);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: var(--sl-color-gray-2);
+    font-size: 0.8em;
+}
