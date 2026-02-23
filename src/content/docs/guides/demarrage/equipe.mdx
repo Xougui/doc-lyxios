@@ -1,0 +1,62 @@
+---
+title: L'équipe
+description: Découvrez les membres de l'équipe de Lyxios.
+sidebar:
+  order: 0
+template: splash
+---
+
+
+
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+export const staff = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/staff')
+  .then((res) => res.json())
+  .then((data) => (data.status === 'success' && Array.isArray(data.staff) ? data.staff : []))
+  .catch((e) => {
+    console.error('Erreur lors de la récupération du staff:', e);
+    return [];
+  });
+
+## L'équipe
+
+<CardGrid stagger>
+  {staff.map((member) => (
+    <Card title={member.display_name || member.name}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ position: 'relative', display: 'inline-block' }}>
+          <img 
+            src={member.avatar_url} 
+            alt={member.display_name} 
+            style={{ 
+              borderRadius: '50%', 
+              width: '80px', 
+              height: '80px', 
+              objectFit: 'cover',
+              border: '3px solid var(--color-lyxios-green-500)',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
+            }} 
+          />
+          {member.avatar_decoration_url && (
+            <img 
+              src={member.avatar_decoration_url} 
+              alt="Decoration"
+              style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: 'auto', maxWidth: 'none', zIndex: 20, pointerEvents: 'none' }} 
+            />
+          )}
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', justifyContent: 'center' }}>
+          {member.roles.map((role) => (
+            <span class="discord-element" style={{ 
+              backgroundColor: 'var(--color-lyxios-green-800)', 
+              color: 'var(--color-lyxios-green-100)',
+              border: '1px solid var(--color-lyxios-green-600)'
+            }}>
+              {role}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Card>
+  ))}
+</CardGrid>
