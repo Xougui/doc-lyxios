@@ -7,7 +7,6 @@ template: splash
 ---
 
 
-import { Card } from '@astrojs/starlight/components';
 
 export const staff = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/staff')
   .then((res) => res.json())
@@ -19,7 +18,7 @@ export const staff = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/st
 
 export const customInfo = {
   '946098490654740580': {
-    role: "Propriétaire, développeur, gérant (discord et bot), designeur, hébergeur",
+    roles: ["Propriétaire", "Gérant", "Développeur", "Designeur", "Hébergeur"],
     desc: "Passionné par le développement de bots Discord et l'optimisation des performances.",
     social: [
         { icon: "fab fa-discord", url: "https://discord.gg/RZHrtzwUC2", title: "Discord" },
@@ -27,7 +26,7 @@ export const customInfo = {
     ]
   },
   '1178647820052467823': {
-    role: "Propriétaire, développeur",
+    roles: ["Gérant", "Développeur"],
     desc: "Développeur passionné, il gère entièrement Alt F4, son bot.",
     social: [
         { icon: "fab fa-github", url: "https://github.com/Kadawatcha", title: "GitHub" },
@@ -35,14 +34,14 @@ export const customInfo = {
     ]
   },
   '1223319413760200804': {
-    role: "Gérant Blacklist",
+    roles: ["Gérant Blacklist"],
     desc: "Chargé de la gestion de la Blacklist, il œuvre pour un Discord plus sain.",
     social: [
         { icon: "fab fa-youtube", url: "https://www.youtube.com/@Dogday_nap", title: "YouTube" }
     ]
   },
   '1242861510099992690': {
-    role: "Gérant Blacklist",
+    roles: ["Gérant Blacklist"],
     desc: "Il gère la Blacklist.",
     social: [
         { icon: "fab fa-discord", url: "https://discord.gg/HM2gE5f52b", title: "Discord" },
@@ -50,7 +49,7 @@ export const customInfo = {
     ]
   },
   '1402631368806109255': {
-    role: "Community Manager",
+    roles: ["Community Manager"],
     desc: "Il se consacre à accroître la visibilité de Lyxios.",
     social: []
   }
@@ -59,48 +58,35 @@ export const customInfo = {
 {/* Chargement de FontAwesome pour les icônes */}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+<div className="staff-grid">
   {staff.map((member) => {
     const info = customInfo[member.id] || {};
     return (
-      <Card title={member.display_name || member.name}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>
-          <div style={{ position: 'relative', display: 'inline-block', flexShrink: 0 }}>
+      <div className="staff-card" key={member.id}>
+        <div className="staff-header">
+          <div className="staff-avatar-container">
             <img 
               src={member.avatar_url} 
               alt={member.display_name} 
-              style={{ 
-                borderRadius: '50%', 
-                width: '80px', 
-                height: '80px', 
-                objectFit: 'cover',
-                border: '3px solid var(--color-lyxios-green-500)',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
-              }} 
+              className="staff-avatar"
             />
             {member.avatar_decoration_url && (
               <img 
                 src={member.avatar_decoration_url} 
                 alt="Decoration"
-                style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: 'auto', maxWidth: 'none', zIndex: 20, pointerEvents: 'none' }} 
+                className="staff-decoration"
               />
             )}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {info.role && (
-              <div style={{ fontWeight: 'bold', color: 'var(--sl-color-text-accent)' }}>
-                {info.role}
-              </div>
-            )}
-            {info.desc && (
-              <div style={{ fontSize: '0.9em', opacity: 0.9 }}>
-                {info.desc}
-              </div>
-            )}
+          
+          <div className="staff-identity">
+            <div className="staff-name">
+              {member.display_name || member.name}
+            </div>
             {info.social && info.social.length > 0 && (
-              <div style={{ display: 'flex', gap: '0.8rem', marginTop: '0.2rem' }}>
+              <div className="staff-social">
                 {info.social.map((s, i) => (
-                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" title={s.title} style={{ color: 'var(--sl-color-text-accent)', fontSize: '1.2em', textDecoration: 'none' }}>
+                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" title={s.title}>
                     <i className={s.icon}></i>
                   </a>
                 ))}
@@ -108,7 +94,22 @@ export const customInfo = {
             )}
           </div>
         </div>
-      </Card>
+
+        <div className="staff-body">
+          {info.roles && (
+            <div className="staff-roles">
+              {info.roles.map((role, index) => (
+                <span key={index} className="staff-role-badge">{role}</span>
+              ))}
+            </div>
+          )}
+          {info.desc && (
+            <div className="staff-desc">
+              {info.desc}
+            </div>
+          )}
+        </div>
+      </div>
     );
   })}
 </div>
