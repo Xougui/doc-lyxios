@@ -55,61 +55,146 @@ export const customInfo = {
   }
 };
 
+export const getRoleIndex = (memberId) => {
+  const roleOrder = [
+    "Propriétaire", 
+    "Gérant", 
+    "Développeur",
+    "Gérant Blacklist",
+    "Community Manager",
+    "Hébergeur",
+    "Designeur",
+  ];
+  const info = customInfo[memberId];
+  if (!info || !info.roles || info.roles.length === 0) {
+    return roleOrder.length; // Sans rôle, trié en dernier
+  }
+  
+  // Trouve l'index du rôle le plus haut placé que le membre possède
+  const indices = info.roles.map(role => {
+    const index = roleOrder.indexOf(role);
+    return index === -1 ? roleOrder.length : index;
+  });
+  return Math.min(...indices);
+};
+
+export const sortedStaff = [...staff].sort((a, b) => {
+  // Priorité 1: xougui
+  if (a.id === '946098490654740580') return -1;
+  if (b.id === '946098490654740580') return 1;
+
+  // Priorité 2: kadawatcha
+  if (a.id === '1178647820052467823') return -1;
+  if (b.id === '1178647820052467823') return 1;
+
+  // Tri par rôle pour les autres
+  const roleIndexA = getRoleIndex(a.id);
+  const roleIndexB = getRoleIndex(b.id);
+  
+  if (roleIndexA !== roleIndexB) {
+    return roleIndexA - roleIndexB;
+  }
+
+  // Tri par nom en cas d'égalité de rôle pour stabiliser l'ordre
+  return (a.display_name || a.name).localeCompare(b.display_name || b.name);
+});
+
+export const staffGroups = (() => {
+  const groups = [
+    {
+      title: "Direction",
+      check: (roles) => roles.includes("Propriétaire") || roles.includes("Gérant"),
+      members: []
+    },
+    {
+      title: "Développement",
+      check: (roles) => roles.includes("Développeur"),
+      members: []
+    },
+    {
+      title: "Équipe",
+      check: () => true,
+      members: []
+    }
+  ];
+
+  sortedStaff.forEach(member => {
+    const info = customInfo[member.id] || {};
+    const roles = info.roles || [];
+    
+    for (const group of groups) {
+      if (group.check(roles)) {
+        group.members.push(member);
+        break;
+      }
+    }
+  });
+  
+  return groups;
+})();
+
 {/* Chargement de FontAwesome pour les icônes */}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<div className="staff-grid">
-  {staff.map((member) => {
-    const info = customInfo[member.id] || {};
-    return (
-      <div className="staff-card" key={member.id}>
-        <div className="staff-header">
-          <div className="staff-avatar-container">
-            <img 
-              src={member.avatar_url} 
-              alt={member.display_name} 
-              className="staff-avatar"
-            />
-            {member.avatar_decoration_url && (
-              <img 
-                src={member.avatar_decoration_url} 
-                alt="Decoration"
-                className="staff-decoration"
-              />
-            )}
-          </div>
-          
-          <div className="staff-identity">
-            <div className="staff-name">
-              {member.display_name || member.name}
-            </div>
-            {info.social && info.social.length > 0 && (
-              <div className="staff-social">
-                {info.social.map((s, i) => (
-                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" title={s.title}>
-                    <i className={s.icon}></i>
-                  </a>
-                ))}
+{staffGroups.map((group, groupIndex) => (
+  group.members.length > 0 && (
+    <div key={groupIndex}>
+      <h2 style={{ marginTop: '2rem' }}>{group.title}</h2>
+      <div className="staff-grid">
+        {group.members.map((member) => {
+          const info = customInfo[member.id] || {};
+          return (
+            <div className="staff-card" key={member.id}>
+              <div className="staff-header">
+                <div className="staff-avatar-container">
+                  <img 
+                    src={member.avatar_url} 
+                    alt={member.display_name} 
+                    className="staff-avatar"
+                  />
+                  {member.avatar_decoration_url && (
+                    <img 
+                      src={member.avatar_decoration_url} 
+                      alt="Decoration"
+                      className="staff-decoration"
+                    />
+                  )}
+                </div>
+                
+                <div className="staff-identity">
+                  <div className="staff-name">
+                    {member.display_name || member.name}
+                  </div>
+                  {info.social && info.social.length > 0 && (
+                    <div className="staff-social">
+                      {info.social.map((s, i) => (
+                        <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" title={s.title}>
+                          <i className={s.icon}></i>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        <div className="staff-body">
-          {info.roles && (
-            <div className="staff-roles">
-              {info.roles.map((role, index) => (
-                <span key={index} className="staff-role-badge">{role}</span>
-              ))}
+              <div className="staff-body">
+                {info.roles && (
+                  <div className="staff-roles">
+                    {info.roles.map((role, index) => (
+                      <span key={index} className="staff-role-badge">{role}</span>
+                    ))}
+                  </div>
+                )}
+                {info.desc && (
+                  <div className="staff-desc">
+                    {info.desc}
+                  </div>
+                )}
+              </div>
             </div>
-          )}
-          {info.desc && (
-            <div className="staff-desc">
-              {info.desc}
-            </div>
-          )}
-        </div>
+          );
+        })}
       </div>
-    );
-  })}
-</div>
+    </div>
+  )
+))}
