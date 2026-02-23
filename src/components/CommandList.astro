@@ -1,6 +1,4 @@
 ---
-import commandData from '../assets/commands.json';
-
 interface Command {
   name: string;
   description: string;
@@ -9,7 +7,17 @@ interface Command {
   id: string | number;
 }
 
-const commands: Command[] = commandData.commands as Command[];
+let commands: Command[] = [];
+
+try {
+  const response = await fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/commands');
+  if (response.ok) {
+    const data = await response.json();
+    commands = (data.commands || []) as Command[];
+  }
+} catch (error) {
+  console.error("Erreur lors du chargement des commandes depuis l'API:", error);
+}
 
 // Group commands by category
 const groupedCommands: Record<string, Command[]> = {};
