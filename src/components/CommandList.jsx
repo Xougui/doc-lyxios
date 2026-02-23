@@ -12,6 +12,8 @@ export default function CommandList() {
             .then((data) => {
                 if (Array.isArray(data)) {
                     setCommands(data);
+                } else if (data.status === 'success' && data.data && Array.isArray(data.data.commands)) {
+                    setCommands(data.data.commands);
                 } else if (data.status === 'success' && Array.isArray(data.commands)) {
                     setCommands(data.commands);
                 } else {
