@@ -289,6 +289,7 @@ h3 {
     background: var(--sl-color-bg-nav);
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 16px;
+    margin-top: 0 !important;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
