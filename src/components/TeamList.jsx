@@ -37,6 +37,11 @@ export default function TeamList() {
                 { icon: "fab fa-github", url: "https://github.com/PhantomX-Bs", title: "GitHub" }
             ]
         },
+        '1259142127875657759': {
+            roles: ["Gérant Blacklist"],
+            desc: "Il aime un peu trop le fromage... Mais vous inquiétez pas, il gère la Blacklist avec sérieux !",
+            social: []
+        },
         '1402631368806109255': {
             roles: ["Community Manager"],
             desc: "Il se consacre à accroître la visibilité de Lyxios.",
@@ -118,6 +123,22 @@ export default function TeamList() {
     return (
         <>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+            <div style={{ marginBottom: '2rem' }}>
+                <a href="https://doc.lyxios.xouxou-hosting.fr/guides/demarrage/introduction/" style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.5rem 1rem',
+                    backgroundColor: 'var(--color-lyxios-green-500)',
+                    color: 'var(--sl-color-black)',
+                    borderRadius: '0.5rem',
+                    textDecoration: 'none',
+                    fontWeight: 'bold'
+                }}>
+                    <i className="fas fa-arrow-left"></i>
+                    Retour à l'introduction
+                </a>
+            </div>
             {staffGroups.map((group, groupIndex) => (
                 group.members.length > 0 && (
                     <div key={groupIndex}>
