@@ -8,7 +8,7 @@ import keystatic from '@keystatic/astro';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://doc.lyxios.xouxou-hosting.fr/',
-	output: 'static',
+	output: 'server',
 	adapter: vercel({
 		webAnalytics: {
 			enabled: true,
@@ -26,8 +26,8 @@ export default defineConfig({
 				Head: './src/components/Head.astro',
 			},
 			customCss: [
-        		'./src/styles/custom.css',
-      		],
+				'./src/styles/custom.css',
+			],
 			// ✅ C'est Starlight qui prend le contrôle exclusif des langues
 			defaultLocale: 'root',
 			locales: {
