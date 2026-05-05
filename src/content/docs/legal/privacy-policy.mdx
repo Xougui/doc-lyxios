@@ -1,13 +1,13 @@
 ---
 title: Politique de Confidentialité
 description: Politique de confidentialité détaillée du bot Discord Lyxios. Transparence totale sur la collecte des données et conformité RGPD.
-lastUpdated: 2026-01-15
+lastUpdated: 2026-05-05
 ---
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
 
 :::note
-**Dernière mise à jour :** 19 Février 2026  
+**Dernière mise à jour :** 05 Mai 2026  
 **ID du bot :** `1335228717403996160`
 :::
 
@@ -27,10 +27,12 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 *Données fournies volontairement par les administrateurs pour paramétrer les modules :*
 * **Messages personnalisés :** Contenu des messages de Bienvenue, d'Au revoir, de Rappel de Bump et d'Anti-liens.
 * **Médias :** URLs des images utilisées pour les modules de Bienvenue et d'Au revoir.
-* **Paramètres de modération :** Listes de domaines autorisés (whitelist), rôles ignorés, et configuration des logs (salons de destination).
+* **Paramètres de modération et utilitaires :** Listes de domaines autorisés (whitelist), rôles ignorés, configuration des logs, Reaction Roles, Giveaways, Séparateurs et Vocaux Temporaires.
 
 ### C. Données Techniques et Sécurité
 * **Cloudflare Turnstile :** Lors de la connexion au Dashboard, nous utilisons Cloudflare Turnstile pour vérifier que vous êtes un humain. Cela peut impliquer la collecte de votre adresse IP et de données de navigation par Cloudflare.
+* **Système Anti-Scam, Anti-Raid et Anti-Spam :** Lyxios analyse les messages et les comportements en temps réel pour détecter le spam ou les arnaques. Un module Anti-Raid permet également aux administrateurs de bloquer les nouveaux membres suspects, en vérifiant notamment l'âge de leur compte Discord. Vos messages ne sont pas stockés de manière permanente pour ces fonctionnalités.
+* **Vérification (Captcha) :** Suivi temporaire de l'état de vérification d'un utilisateur pour empêcher l'accès aux bots malveillants.
 
 ### D. Données de Profil et Économie (Global)
 *Données liées à votre compte utilisateur Discord (indépendamment du serveur) :*
@@ -40,6 +42,8 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 ### E. Données Temporaires
 * **Rappels :** Contenu du message de rappel et date programmée (supprimés une fois le rappel envoyé).
 * **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké pour éviter le spam de re-calcul).
+* **Giveaways :** Liste des IDs des utilisateurs participants le temps du tirage au sort.
+* **Vocaux Temporaires :** ID de l'utilisateur propriétaire du salon pour gérer ses permissions.
 
 ### F. Historique de Modération
 *Pour permettre la gestion des communautés :*
@@ -48,6 +52,9 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 ### G. Suivi de Fonctionnalités
 * **Partenariats :** Stockage des IDs (Message, Utilisateur, Salon) pour le suivi des publicités, sans conservation du contenu.
 * **Confessions :** Seul le compteur total de confessions est stocké. Le contenu des confessions n'est pas conservé en base de données.
+
+### H. Statistiques et Performances (Site Web et Documentation)
+* **Vercel Web Analytics & Speed Insights :** Notre site principal utilise Vercel Web Analytics (pour les statistiques de trafic anonymes) et Speed Insights (pour analyser les performances de chargement). Notre documentation n'utilise que Vercel Web Analytics. Ces outils collectent des données de navigation non identifiantes (pages visitées, temps de chargement, pays d'origine) pour nous aider à améliorer l'expérience utilisateur, sans cookies de traçage intrusifs.
 
 ---
 
@@ -83,6 +90,7 @@ Les données collectées sont strictement nécessaires au fonctionnement de nos 
 Lyxios s'appuie sur des services de confiance :
 * **Discord :** Infrastructure principale. Politique : [discord.com/privacy](https://discord.com/privacy)
 * **Cloudflare :** Sécurité et protection DDoS. Politique : [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/)
+* **Vercel :** Hébergement de notre site et documentation, ainsi que l'analyse des statistiques de visites (Web Analytics) et des performances (Speed Insights). Politique : [vercel.com/legal/privacy-policy](https://vercel.com/legal/privacy-policy)
 
 ---
 
