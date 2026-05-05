@@ -7,6 +7,7 @@ export default config({
         kind: 'github',
         repo: 'Xougui/doc-lyxios',
       },
+  clientId: import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID,
   collections: {
     docs: collection({
       label: 'Documentation (Starlight)',
