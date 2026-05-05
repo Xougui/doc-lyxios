@@ -8,7 +8,7 @@ import keystatic from '@keystatic/astro';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://doc.lyxios.xouxou-hosting.fr/',
-	output: 'hybrid',
+	output: 'static',
 	adapter: vercel({
 		webAnalytics: {
 			enabled: true,
