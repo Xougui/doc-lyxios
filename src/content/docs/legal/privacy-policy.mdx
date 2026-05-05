@@ -4,12 +4,12 @@ description: Politique de confidentialité détaillée du bot Discord Lyxios. Tr
 lastUpdated: 2026-05-05
 ---
 
-import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+import { Aside, Card, CardGrid, Badge, Steps, Icon } from '@astrojs/starlight/components';
 
-:::note
-**Dernière mise à jour :** 05 Mai 2026  
-**ID du bot :** `1335228717403996160`
-:::
+<Aside type="note" title="Informations Générales">
+  **Dernière mise à jour :** 05 Mai 2026  
+  **Identifiant du Bot :** `1335228717403996160`
+</Aside>
 
 Chez Lyxios, la transparence est notre priorité. Cette politique détaille les données techniques et personnelles que nous collectons pour assurer le bon fonctionnement de nos services (Dashboard, Logs, Modération), en stricte conformité avec les conditions d'utilisation de Discord.
 
@@ -19,42 +19,42 @@ Chez Lyxios, la transparence est notre priorité. Cette politique détaille les 
 
 Pour fournir ses services, Lyxios traite les types de données suivants :
 
-### A. Données d'identification (Discord)
-* **Identifiants (IDs) :** ID de l'utilisateur, ID du serveur (Guild ID), ID des salons et ID des rôles.
-* **Informations publiques :** Nom d'utilisateur, avatar et discriminateur (via l'API Discord).
+### A. Données d'identification (Discord) <Badge text="Automatique" variant="note" />
+*   **Identifiants (IDs) :** ID de l'utilisateur, ID du serveur (Guild ID), ID des salons et ID des rôles.
+*   **Informations publiques :** Nom d'utilisateur, avatar et discriminateur (via l'API Discord).
 
-### B. Données de Configuration
+### B. Données de Configuration <Badge text="Serveur" variant="success" />
 *Données fournies volontairement par les administrateurs pour paramétrer les modules :*
-* **Messages personnalisés :** Contenu des messages de Bienvenue, d'Au revoir, de Rappel de Bump et d'Anti-liens.
-* **Médias :** URLs des images utilisées pour les modules de Bienvenue et d'Au revoir.
-* **Paramètres de modération et utilitaires :** Listes de domaines autorisés (whitelist), rôles ignorés, configuration des logs, Reaction Roles, Giveaways, Séparateurs et Vocaux Temporaires.
+*   **Messages personnalisés :** Contenu des messages de Bienvenue, d'Au revoir, de Rappel de Bump et d'Anti-liens.
+*   **Médias :** URLs des images utilisées pour les modules de Bienvenue et d'Au revoir.
+*   **Paramètres de modération et utilitaires :** Listes de domaines autorisés (whitelist), rôles ignorés, configuration des logs, Reaction Roles, Giveaways, Séparateurs et Vocaux Temporaires.
 
-### C. Données Techniques et Sécurité
-* **Cloudflare Turnstile :** Lors de la connexion au Dashboard, nous utilisons Cloudflare Turnstile pour vérifier que vous êtes un humain. Cela peut impliquer la collecte de votre adresse IP et de données de navigation par Cloudflare.
-* **Système Anti-Scam, Anti-Raid et Anti-Spam :** Lyxios analyse les messages et les comportements en temps réel pour détecter le spam ou les arnaques. Un module Anti-Raid permet également aux administrateurs de bloquer les nouveaux membres suspects, en vérifiant notamment l'âge de leur compte Discord. Vos messages ne sont pas stockés de manière permanente pour ces fonctionnalités.
-* **Vérification (Captcha) :** Suivi temporaire de l'état de vérification d'un utilisateur pour empêcher l'accès aux bots malveillants.
+### C. Données Techniques et Sécurité <Badge text="Sécurité" variant="danger" />
+*   **Cloudflare Turnstile :** Lors de la connexion au Dashboard, nous utilisons Cloudflare Turnstile pour vérifier que vous êtes un humain. Cela peut impliquer la collecte de votre adresse IP et de données de navigation par Cloudflare.
+*   **Système Anti-Scam, Anti-Raid et Anti-Spam :** Lyxios analyse les messages et les comportements en temps réel pour détecter le spam ou les arnaques. Un module Anti-Raid permet également aux administrateurs de bloquer les nouveaux membres suspects, en vérifiant notamment l'âge de leur compte Discord. Vos messages ne sont pas stockés de manière permanente pour ces fonctionnalités.
+*   **Vérification (Captcha) :** Suivi temporaire de l'état de vérification d'un utilisateur pour empêcher l'accès aux bots malveillants.
 
-### D. Données de Profil et Économie (Global)
+### D. Données de Profil et Économie <Badge text="Global" variant="tip" />
 *Données liées à votre compte utilisateur Discord (indépendamment du serveur) :*
-* **Économie :** Solde de pièces (coins), inventaire de Luckyblocks et fragments.
-* **Profil :** Images débloquées (Galerie), image de fond personnalisée, niveau de flou et préférences d'affichage du profil.
+*   **Économie :** Solde de pièces (coins), inventaire de Luckyblocks et fragments.
+*   **Profil :** Images débloquées (Galerie), image de fond personnalisée, niveau de flou et préférences d'affichage du profil.
 
-### E. Données Temporaires
-* **Rappels :** Contenu du message de rappel et date programmée (supprimés une fois le rappel envoyé).
-* **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké pour éviter le spam de re-calcul).
-* **Giveaways :** Liste des IDs des utilisateurs participants le temps du tirage au sort.
-* **Vocaux Temporaires :** ID de l'utilisateur propriétaire du salon pour gérer ses permissions.
+### E. Données Temporaires <Badge text="Éphémère" variant="caution" />
+*   **Rappels :** Contenu du message de rappel et date programmée (supprimés une fois le rappel envoyé).
+*   **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké pour éviter le spam de re-calcul).
+*   **Giveaways :** Liste des IDs des utilisateurs participants le temps du tirage au sort.
+*   **Vocaux Temporaires :** ID de l'utilisateur propriétaire du salon pour gérer ses permissions.
 
-### F. Historique de Modération
+### F. Historique de Modération <Badge text="Serveur" variant="success" />
 *Pour permettre la gestion des communautés :*
-* **Avertissements (Warns) :** Raison de la sanction, ID du modérateur et date. Ces données sont liées à votre ID utilisateur et au serveur concerné.
+*   **Avertissements (Warns) :** Raison de la sanction, ID du modérateur et date. Ces données sont liées à votre ID utilisateur et au serveur concerné.
 
-### G. Suivi de Fonctionnalités
-* **Partenariats :** Stockage des IDs (Message, Utilisateur, Salon) pour le suivi des publicités, sans conservation du contenu.
-* **Confessions :** Seul le compteur total de confessions est stocké. Le contenu des confessions n'est pas conservé en base de données.
+### G. Suivi de Fonctionnalités <Badge text="Statistique" variant="note" />
+*   **Partenariats :** Stockage des IDs (Message, Utilisateur, Salon) pour le suivi des publicités, sans conservation du contenu.
+*   **Confessions :** Seul le compteur total de confessions est stocké. Le contenu des confessions n'est pas conservé en base de données.
 
-### H. Statistiques et Performances (Site Web et Documentation)
-* **Vercel Web Analytics & Speed Insights :** Notre site principal utilise Vercel Web Analytics (pour les statistiques de trafic anonymes) et Speed Insights (pour analyser les performances de chargement). Notre documentation n'utilise que Vercel Web Analytics. Ces outils collectent des données de navigation non identifiantes (pages visitées, temps de chargement, pays d'origine) pour nous aider à améliorer l'expérience utilisateur, sans cookies de traçage intrusifs.
+### H. Statistiques et Performances <Badge text="Anonymisé" variant="note" />
+*   **Vercel Web Analytics & Speed Insights :** Notre site principal utilise Vercel Web Analytics (pour les statistiques de trafic anonymes) et Speed Insights (pour analyser les performances de chargement). Notre documentation n'utilise que Vercel Web Analytics. Ces outils collectent des données de navigation non identifiantes (pages visitées, temps de chargement, pays d'origine) pour nous aider à améliorer l'expérience utilisateur, sans cookies de traçage intrusifs.
 
 ---
 
@@ -106,13 +106,16 @@ Nous utilisons le **Stockage Local (LocalStorage)** de votre navigateur uniqueme
 
 ## 5. Conservation des données
 
-### A. Données Serveur
-Les données de configuration (Logs, Tickets, Anti-raid, etc.) sont conservées tant que le bot est présent sur votre serveur. Si le bot est expulsé (kick/ban), ces données sont automatiquement supprimées de notre base de données.
-
-> *Vous pouvez forcer la suppression immédiate via la commande `/reset-data`.*
-
-### B. Données Utilisateur (Global)
-Les données liées à votre compte utilisateur (Économie, Inventaire, Profil) sont conservées indéfiniment pour vous permettre de conserver votre progression d'un serveur à l'autre. Ces données ne sont pas supprimées lorsque le bot quitte un serveur.
+<CardGrid>
+  <Card title="Données Serveur" icon="server">
+    Les données de configuration (Logs, Tickets, Anti-raid, etc.) sont conservées tant que le bot est présent sur votre serveur. Si le bot est expulsé (kick/ban), ces données sont automatiquement supprimées de notre base de données.
+    
+    *Vous pouvez forcer la suppression immédiate via la commande `/reset-data`.*
+  </Card>
+  <Card title="Données Utilisateur (Global)" icon="user">
+    Les données liées à votre compte utilisateur (Économie des luckyblocks, Inventaire, Profil) sont conservées indéfiniment pour vous permettre de conserver votre progression d'un serveur à l'autre. Ces données ne sont pas supprimées lorsque le bot quitte un serveur.
+  </Card>
+</CardGrid>
 
 ---
 
