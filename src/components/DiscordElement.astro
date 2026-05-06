@@ -1,12 +1,9 @@
 ---
 // src/components/DiscordElement.astro
-const { type = 'btn-primary', content, icon = false } = Astro.props;
-
-// Mapping des types pour correspondre aux classes CSS de custom.css
-const typeClass = type.startsWith('btn-') ? `discord-${type}` : `discord-${type}`;
+const { type = 'btn-primary', content = '', icon = false } = Astro.props;
 ---
 
-<span class={`discord-element ${typeClass}`}>
+<span class={`discord-element discord-${type}`}>
   {content}
   {icon && (
     <svg 
@@ -19,7 +16,7 @@ const typeClass = type.startsWith('btn-') ? `discord-${type}` : `discord-${type}
       stroke-width="2" 
       stroke-linecap="round" 
       stroke-linejoin="round" 
-      style="margin-left: 4px;"
+      style="margin-left: 4px; display: inline-block; vertical-align: middle;"
     >
       <path d="m6 9 6 6 6-6"/>
     </svg>
