@@ -99,7 +99,7 @@ const mdxComponents = {
 };
 
 export default config({
-  storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'github', repo: 'Xougui/doc-lyxios' },
+  storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'github', repo: 'Xougui/doc-lyxios', branch: 'drafts' },
   collections: {
     docs: collection({
       label: 'Documentation',
