@@ -77,6 +77,7 @@ const mdxComponents = {
     schema: {
       title: fields.text({ label: 'Titre' }),
       icon: fields.text({ label: 'Icône Starlight' }),
+      class: fields.ignored(),
     },
   }),
   Badge: inline({
@@ -93,9 +94,33 @@ const mdxComponents = {
         ],
         defaultValue: 'note',
       }),
+      size: fields.ignored(),
     },
   }),
   Steps: wrapper({ label: 'Liste d\'Étapes', schema: {} }),
+
+  // --- COMPOSANTS STARLIGHT / INTERNES (Pour compatibilité) ---
+  CardGrid: wrapper({
+    label: 'Grille de Cartes (Starlight)',
+    schema: {
+      stagger: fields.checkbox({ label: 'Décalage (Stagger)' }),
+      class: fields.ignored(),
+    },
+  }),
+  ChevronDown: inline({
+    label: 'Icône Flèche (Lucide)',
+    schema: {
+      size: fields.ignored(),
+      style: fields.ignored(),
+    },
+  }),
+  span: wrapper({
+    label: 'Span (HTML)',
+    schema: {
+      class: fields.ignored(),
+      style: fields.ignored(),
+    },
+  }),
 };
 
 export default config({
