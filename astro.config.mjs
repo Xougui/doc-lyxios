@@ -17,10 +17,10 @@ function remarkStarlightComponents() {
 
 		visit(tree, (node) => {
 			if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
-				if (['Card', 'CardGrid', 'Aside', 'Steps', 'Tabs', 'TabItem', 'Badge', 'FileTree'].includes(node.name)) {
+				if (['Card', 'CardGrid', 'Aside', 'Steps', 'Tabs', 'TabItem', 'Badge', 'FileTree', 'Icon', 'LinkButton', 'LinkCard'].includes(node.name)) {
 					starlightComponents.add(node.name);
 				}
-				if (['CommandList', 'TeamList'].includes(node.name)) {
+				if (['CommandList', 'TeamList', 'DiscordElement'].includes(node.name)) {
 					customComponents.add(node.name);
 				}
 			}
@@ -44,6 +44,12 @@ function remarkStarlightComponents() {
 			tree.children.unshift({
 				type: 'mdxjsEsm',
 				value: `import TeamList from '/src/components/TeamList.jsx';`,
+			});
+		}
+		if (customComponents.has('DiscordElement')) {
+			tree.children.unshift({
+				type: 'mdxjsEsm',
+				value: `import DiscordElement from '/src/components/DiscordElement.astro';`,
 			});
 		}
 	};
