@@ -11,29 +11,64 @@ import { parse as parseJs } from 'acorn';
  * Injecte les imports ESM avec un AST complet (via acorn) pour que MDX les reconnaisse.
  */
 function remarkAutoImport() {
-	// Prépare le nœud d'import une seule fois (performance)
-	const importStatements = [
-		`import DiscordElement from '${process.cwd().replace(/\\/g, '/')}/src/components/DiscordElement.astro';`,
-		`import CommandList from '${process.cwd().replace(/\\/g, '/')}/src/components/CommandList.jsx';`,
-		`import TeamList from '${process.cwd().replace(/\\/g, '/')}/src/components/TeamList.jsx';`,
-		`import { Card, CardGrid, Aside, Steps, Tabs, TabItem, Badge, FileTree, Icon, LinkButton, LinkCard } from '@astrojs/starlight/components';`,
-	].join('\n');
-
-	const importNode = {
-		type: 'mdxjsEsm',
-		value: importStatements,
-		data: {
-			estree: {
-				...parseJs(importStatements, { ecmaVersion: 'latest', sourceType: 'module' }),
-				type: 'Program',
-				sourceType: 'module',
-			},
-		},
-	};
-
 	return (tree, vfile) => {
 		// Ne pas injecter dans les fichiers .md (uniquement .mdx)
 		if (vfile.basename?.endsWith('.md')) return;
+
+		// 1. Détecter les identifiants déjà importés/déclarés dans le fichier
+		const existingIdentifiers = new Set();
+		for (const node of tree.children) {
+			if (node.type === 'mdxjsEsm' && node.data?.estree?.body) {
+				for (const statement of node.data.estree.body) {
+					if (statement.type === 'ImportDeclaration') {
+						for (const specifier of statement.specifiers) {
+							existingIdentifiers.add(specifier.local.name);
+						}
+					}
+				}
+			}
+		}
+
+		// 2. Préparer la liste des imports à injecter (uniquement ceux qui manquent)
+		const importsToInject = [];
+		const cwd = process.cwd().replace(/\\/g, '/');
+
+		if (!existingIdentifiers.has('DiscordElement')) {
+			importsToInject.push(`import DiscordElement from '${cwd}/src/components/DiscordElement.astro';`);
+		}
+		if (!existingIdentifiers.has('CommandList')) {
+			importsToInject.push(`import CommandList from '${cwd}/src/components/CommandList.jsx';`);
+		}
+		if (!existingIdentifiers.has('TeamList')) {
+			importsToInject.push(`import TeamList from '${cwd}/src/components/TeamList.jsx';`);
+		}
+
+		// Pour les composants Starlight, on injecte seulement ceux qui ne sont pas déjà là
+		const starlightComponents = [
+			'Card', 'CardGrid', 'Aside', 'Steps', 'Tabs', 'TabItem', 'Badge', 'FileTree', 'Icon', 'LinkButton', 'LinkCard'
+		];
+		const missingStarlight = starlightComponents.filter(name => !existingIdentifiers.has(name));
+
+		if (missingStarlight.length > 0) {
+			importsToInject.push(`import { ${missingStarlight.join(', ')} } from '@astrojs/starlight/components';`);
+		}
+
+		// 3. Injection si nécessaire
+		if (importsToInject.length === 0) return;
+
+		const importStatements = importsToInject.join('\n');
+		const importNode = {
+			type: 'mdxjsEsm',
+			value: importStatements,
+			data: {
+				estree: {
+					...parseJs(importStatements, { ecmaVersion: 'latest', sourceType: 'module' }),
+					type: 'Program',
+					sourceType: 'module',
+				},
+			},
+		};
+
 		tree.children.unshift(importNode);
 	};
 }

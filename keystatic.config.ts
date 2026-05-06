@@ -107,13 +107,13 @@ export default config({
       path: 'src/content/docs/**',
       format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ 
-          name: { label: 'Titre de la page', description: 'Génère l\'URL et le nom du fichier.' } 
+        title: fields.slug({
+          name: { label: 'Titre de la page', description: 'Génère l\'URL et le nom du fichier.' }
         }),
-        description: fields.text({ 
-          label: 'Résumé SEO', 
+        description: fields.text({
+          label: 'Résumé SEO',
           description: 'Résumé pour Google (150 caractères).',
-          multiline: true 
+          multiline: true
         }),
         template: fields.select({
           label: 'Format de page',
@@ -123,6 +123,12 @@ export default config({
           ],
           defaultValue: 'doc',
         }),
+        // --- Paramètres Starlight (Ignorés pour ne pas modifier et éviter les erreurs) ---
+        lastUpdated: fields.ignored(),
+        sidebar: fields.ignored(),
+        hero: fields.ignored(),
+        tableOfContents: fields.ignored(),
+        editUrl: fields.ignored(),
         content: fields.mdx({
           label: 'Contenu',
           description: 'Rédigez ici. Utilisez le bouton + pour ajouter des composants.',
