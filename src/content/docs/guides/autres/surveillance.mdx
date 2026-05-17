@@ -1,0 +1,150 @@
+---
+title: Surveillance
+description: Tout savoir sur le puissant système de surveillance et de sécurité de Lyxios.
+lastUpdated: 2026-05-17
+sidebar:
+  order: 1
+---
+
+import { Code } from '@astrojs/starlight/components';
+import surveillanceRules from './surveillance_rules.json?raw';
+import surveillanceRulesObj from './surveillance_rules.json';
+
+Le module de **Surveillance** est un système de sécurité proactive de pointe intégré à Lyxios. Classé comme **module privé**, il est exclusivement réservé et accessible aux développeurs et administrateurs généraux (Owners) du bot.
+
+Pour des raisons évidentes de confidentialité, d'éthique et de sécurité globale, ce module opère de manière invisible sur l'ensemble des serveurs où Lyxios est présent. Il analyse en temps réel les flux de messages pour identifier, censurer et neutraliser les menaces avant qu'elles ne nuisent à vos communautés.
+
+---
+
+## Le Moteur d'Analyse (Scanner)
+
+Chaque message envoyé sur un serveur tiers fait l'objet d'une analyse asynchrone ultra-rapide exécutée dans un pool de threads dédié (`ThreadPoolExecutor`), garantissant une latence zéro pour l'utilisateur final.
+
+Le scanner effectue une série de vérifications successives à plusieurs niveaux :
+
+<Steps>
+1. **Mots Interdits (`dangerous_words`)**
+   Détection directe et immédiate des termes jugés nocifs ou proscrits définis dans notre base de données.
+
+2. **Regex de Phishing & Arnaques (`scam_regex_patterns`)**
+   Analyse sémantique via des expressions régulières pour cibler les structures de phrases récurrentes dans les escroqueries (ex: faux cadeaux Nitro, faux tirages au sort Steam).
+
+3. **Détection d'Obfuscation (Anti-Contournement)**
+   Les spammeurs tentent souvent de contourner les filtres en insérant des espaces ou des caractères spéciaux (ex: `F r e e  N i t r o`). Lyxios normalise automatiquement le texte en décomposant l'Unicode (Unicode NFKD), en retirant les accents et en ne conservant que les caractères alphanumériques afin de démasquer l'arnaque cachée.
+
+4. **Secret Leak (Protection des Secrets)**
+   - **Tokens Discord** : Détection des tokens de comptes ou de bots exposés par erreur. Le bot valide rigoureusement la structure en décodant la partie Base64 (identifiant snowflake de l'utilisateur) afin d'éviter tout faux positif.
+   - **Webhooks & IPs** : Identification des URLs de Webhooks Discord et des adresses IP exposées.
+
+5. **Analyse de Phishing Heuristique & Avancée**
+   Pour chaque lien extrait, Lyxios applique un algorithme de calcul de risque poussé :
+   - **Typosquatting** : Détection des tentatives d'usurpation de domaines de confiance (ex: `discord-gift`, `steam-comunity`).
+   - **Distance de Levenshtein & Similarité** : Calcul de la distance d'édition entre le domaine scanné et les domaines officiels. Si le domaine ressemble à plus de 85% à `discord.com` ou `steamcommunity.com` avec une distance de 1 ou 2 caractères, le score explose.
+   - **Pondération des TLDs & Mots-clés** : Présence de mots-clés à haut risque dans l'URL (`nitro`, `gift`) combinée à des extensions de domaine suspectes (`.ru`, `.xyz`, `.click`).
+   - **Pages de Connexion** : Détection des termes comme `login` ou `signin` dans l'URI pour repérer les faux portails d'authentification.
+</Steps>
+
+<Aside type="tip" title="Whitelist de Confiance">
+Tous les serveurs officiels et domaines de confiance (ex: `discord.com`, `discord.gg`, `steamcommunity.com`) sont inscrits dans une liste blanche globale (`whitelist`) pour éviter tout faux positif inutile lors des échanges légitimes.
+</Aside>
+
+---
+
+## Configuration du Scanner
+
+Le comportement et les filtres du scanner sont entièrement dynamiques et configurés dans un fichier JSON structuré. Cela permet de mettre à jour les bases de données instantanément sans redémarrer le bot ni modifier le code source.
+
+### Aperçu statistique des règles :
+
+<CardGrid>
+  <Card title="Censure & Sécurité" icon="warning">
+    * **{surveillanceRulesObj.dangerous_words.length}** mots et expressions extrêmement dangereux.
+    * **{surveillanceRulesObj.scam_regex_patterns.length}** motifs regex d'arnaques ciblés.
+  </Card>
+  <Card title="Analyse de Liens" icon="external">
+    * **{surveillanceRulesObj.whitelist.length}** domaines de confiance sur liste blanche.
+    * **{surveillanceRulesObj.suspicious_keywords.length}** mots-clés suspects sous surveillance.
+    * **{surveillanceRulesObj.suspicious_tlds.length}** TLDs à haut risque (ex: `.xyz`, `.ru`).
+  </Card>
+</CardGrid>
+
+<br />
+
+<details class="premium-details">
+  <summary>**🔍 Afficher la configuration JSON complète ({surveillanceRulesObj.dangerous_words.length} mots, {surveillanceRulesObj.whitelist.length} domaines...)**</summary>
+
+  <br />
+
+  <Code code={surveillanceRules} lang="json" title="surveillance_rules.json" />
+</details>
+
+---
+
+## L'Alerte Interactive (Log de Surveillance)
+
+Lorsqu'une menace est confirmée par le scanner, Lyxios génère instantanément une alerte détaillée dans le canal privé de surveillance de notre équipe.
+
+### Sécurisation des Données de Surveillance
+<Aside type="danger" title="Censure Automatique de Sécurité">
+Pour protéger l'équipe de modération de toute exposition accidentelle à des données sensibles ou des piratages en un clic, le contenu du message suspect affiché dans le log est **strictement censuré** :
+* Les **adresses IPs** sont neutralisées : `[IP SUPPRIMÉE]`.
+* Les **tokens Discord** fuités sont immédiatement masqués : `[TOKEN SUPPRIMÉ]`.
+</Aside>
+
+### Interface Discord & Actions Directes
+L'alerte se présente sous la forme d'un Embed riche accompagné d'une **vue interactive persistante** (boutons) permettant d'agir à la vitesse de l'éclair :
+
+| Bouton | Style du Bouton | Rôle & Fonctionnement |
+| :--- | :--- | :--- |
+| **Supprimer** | <span class="discord-element discord-btn-danger">🗑️ Supprimer</span> | Supprime instantanément le message suspect du salon d'origine pour protéger les membres. |
+| **Timeout (1h)** | <span class="discord-element discord-btn-primary">⏳ Timeout (1h)</span> | Exclut temporairement l'auteur du message pendant 1 heure pour stopper immédiatement l'attaque. |
+| **Bannir** | <span class="discord-element discord-btn-danger">🔨 Bannir</span> | Bannit définitivement l'utilisateur du serveur d'origine, supprime son message et désactive les boutons de l'alerte. |
+| **Faux Positif** | <span class="discord-element discord-btn-secondary">✅ Faux Positif</span> | Supprime simplement le log d'alerte de notre salon de surveillance s'il s'agit d'une erreur de détection. |
+
+
+---
+
+## Commandes d'Administration
+
+En complément des boutons de l'alerte, les administrateurs du bot disposent de puissantes commandes textuelles de modération et de diagnostic.
+
+### 1. Prévenir le Propriétaire (`!prevenir`)
+Cette commande permet d'envoyer un message d'alerte de sécurité rédigé de manière professionnelle en message privé à l'owner du serveur concerné.
+
+* **Syntaxe** : `!prevenir <message_id> [raison]` *(ou alias `!p`)*
+* **Fonctionnalités** :
+  - Identifie automatiquement le propriétaire du serveur d'origine.
+  - Envoie un récapitulatif clair contenant la nature de la menace et le contenu du message suspect censuré.
+  - Insère un lien d'accès direct vers le message d'origine si celui-ci existe encore.
+  - Fournit des conseils de modération et un lien direct vers notre serveur support.
+
+```ini
+; Exemple d'exécution de la commande
+!prevenir 123456789012345678 Spam intensif de faux liens Nitro.
+
+; Retour du bot
+✅ MP envoyé à l'owner (ID: 987654321012345678).
+```
+
+### 2. Récupérer le Contexte (`!contexte`)
+Pour prendre une décision de modération éclairée sans avoir à rejoindre le serveur externe, cette commande permet de lire les messages ayant précédé ou suivi le signalement.
+
+* **Syntaxe** : `!contexte <message_id> [direction] [limit]` *(ou alias `!c`)*
+* **Paramètres** :
+  - `<message_id>` : L'identifiant unique du message d'alerte dans le salon de surveillance.
+  - `[direction]` : 
+    - `avant` : messages précédant la menace.
+    - `apres` : messages suivant la menace.
+    - `deux` *(par défaut)* : historique entourant la menace.
+  - `[limit]` : Nombre de messages à récupérer (compris entre `1` et `50`, par défaut `5`).
+
+#### Visualisation stylisée du contexte :
+Le bot génère un historique clair du salon. Le message d'alerte suspect est marqué par un cercle rouge <Badge text="🔴" variant="danger" /> et les messages environnants par un cercle noir <Badge text="⚫" variant="default" />.
+
+```text
+⚫ 19:41:50 [MembreA] : Salut tout le monde, ça va ?
+⚫ 19:41:55 [MembreB] : Hello ! Oui et toi ?
+🔴 19:42:05 [AuteurSuspect] : Regardez ce lien c'est trop bien ! cdn-discord.xyz/nitro
+⚫ 19:42:10 [MembreA] : C'est quoi ce lien bizarre ?
+⚫ 19:42:15 [MembreB] : Clique pas c'est une arnaque !
+```

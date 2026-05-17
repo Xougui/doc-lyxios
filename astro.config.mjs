@@ -110,6 +110,10 @@ export default defineConfig({
 					label: 'Modules',
 					items: [{ autogenerate: { directory: 'guides/modules' } }]
 				},
+				{
+					label: 'Autres fonctionalités',
+					items: [{ autogenerate: { directory: 'guides/autres' } }]
+				},
 				{ label: 'Commandes', link: 'commandes' },
 				{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
 				{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
