@@ -24,6 +24,8 @@
     ],
     "scam_regex_patterns": [
         "(?i)\\b(free|gratuit)\\s*(nitro|steam|discord|promo|airdrop|gift|premium)\\b",
+        "(?i)\\b(nitro|steam|discord|promo|airdrop|gift|premium)\\s*(free|gratuit)\\b",
+        "(?i)\\b(qui\\s*veut|who\\s*wants)\\s*(un|a)?\\s*(nitro|steam|discord|gift)\\b",
         "(?i)\\b(gift|cadeau)\\s*(steam|discord|nitro|premium)\\b",
         "(?i)\\b(claim|réclamer)\\s*(nitro|airdrop|gift|bonus)\\b",
         "(?i)\\b(steam|discord)\\s*(wallet|community|gift|free|promo)\\b",
