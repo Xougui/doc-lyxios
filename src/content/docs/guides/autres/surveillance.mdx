@@ -11,6 +11,7 @@ import { Image } from 'astro:assets';
 import surveillanceRules from './surveillance_rules.json?raw';
 import surveillanceRulesObj from './surveillance_rules.json';
 import surveillanceEmbedImage from '../../../../assets/exemples/surveillance_embed.png';
+import surveillancePrevenirImage from '../../../../assets/exemples/surveillance_prevenir.png';
 
 Le module de **Surveillance** est un système de sécurité proactive de pointe intégré à Lyxios. Classé comme **module privé**, il est exclusivement réservé et accessible aux bots et aux administrateurs généraux du projet : le bot de production **Lyxios**, le bot de développement **LyxiosDev**, **xougui** (le propriétaire/développeur principal) et **kadawatcha** (gérant/développeur).
 
@@ -139,6 +140,14 @@ Cette commande permet d'envoyer un message d'alerte de sécurité rédigé de ma
 ; Retour du bot
 ✅ MP envoyé à l'owner (ID: 987654321012345678).
 ```
+
+<br />
+
+#### Exemple de l'embed envoyé en message privé :
+
+<Image src={surveillancePrevenirImage} alt="Exemple de l'embed envoyé en message privé à l'owner" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
 
 ### 2. Récupérer le Contexte (`!contexte`)
 Pour prendre une décision de modération éclairée sans avoir à rejoindre le serveur externe, cette commande permet de lire les messages ayant précédé ou suivi le signalement.
