@@ -102,8 +102,14 @@ export default defineConfig({
 			],
 			sidebar: [
 				{ label: 'Accueil', link: '/' },
-				{ label: 'Démarrage', autogenerate: { directory: 'guides/demarrage' } },
-				{ label: 'Modules', autogenerate: { directory: 'guides/modules' } },
+				{
+					label: 'Démarrage',
+					items: [{ autogenerate: { directory: 'guides/demarrage' } }]
+				},
+				{
+					label: 'Modules',
+					items: [{ autogenerate: { directory: 'guides/modules' } }]
+				},
 				{ label: 'Commandes', link: 'commandes' },
 				{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
 				{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
