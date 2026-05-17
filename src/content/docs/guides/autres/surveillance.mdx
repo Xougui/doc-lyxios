@@ -7,10 +7,12 @@ sidebar:
 ---
 
 import { Code } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
 import surveillanceRules from './surveillance_rules.json?raw';
 import surveillanceRulesObj from './surveillance_rules.json';
+import surveillanceEmbedImage from '../../../../assets/exemples/surveillance_embed.png';
 
-Le module de **Surveillance** est un système de sécurité proactive de pointe intégré à Lyxios. Classé comme **module privé**, il est exclusivement réservé et accessible aux développeurs et administrateurs généraux (Owners) du bot.
+Le module de **Surveillance** est un système de sécurité proactive de pointe intégré à Lyxios. Classé comme **module privé**, il est exclusivement réservé et accessible aux bots et aux administrateurs généraux du projet : le bot de production **Lyxios**, le bot de développement **LyxiosDev**, **xougui** (le propriétaire/développeur principal) et **kadawatcha** (gérant/développeur).
 
 Pour des raisons évidentes de confidentialité, d'éthique et de sécurité globale, ce module opère de manière invisible sur l'ensemble des serveurs où Lyxios est présent. Il analyse en temps réel les flux de messages pour identifier, censurer et neutraliser les menaces avant qu'elles ne nuisent à vos communautés.
 
@@ -84,6 +86,12 @@ Le comportement et les filtres du scanner sont entièrement dynamiques et config
 
 Lorsqu'une menace est confirmée par le scanner, Lyxios génère instantanément une alerte détaillée dans le canal privé de surveillance de notre équipe.
 
+<br />
+
+<Image src={surveillanceEmbedImage} alt="Exemple de l'embed envoyé dans le salon de surveillance" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
+
 ### Sécurisation des Données de Surveillance
 <Aside type="danger" title="Censure Automatique de Sécurité">
 Pour protéger l'équipe de modération de toute exposition accidentelle à des données sensibles ou des piratages en un clic, le contenu du message suspect affiché dans le log est **strictement censuré** :
@@ -96,10 +104,16 @@ L'alerte se présente sous la forme d'un Embed riche accompagné d'une **vue int
 
 | Bouton | Style du Bouton | Rôle & Fonctionnement |
 | :--- | :--- | :--- |
-| **Supprimer** | <span class="discord-element discord-btn-danger">🗑️ Supprimer</span> | Supprime instantanément le message suspect du salon d'origine pour protéger les membres. |
-| **Timeout (1h)** | <span class="discord-element discord-btn-primary">⏳ Timeout (1h)</span> | Exclut temporairement l'auteur du message pendant 1 heure pour stopper immédiatement l'attaque. |
-| **Bannir** | <span class="discord-element discord-btn-danger">🔨 Bannir</span> | Bannit définitivement l'utilisateur du serveur d'origine, supprime son message et désactive les boutons de l'alerte. |
+| **Supprimer** | <span class="discord-element discord-btn-danger">🗑️ Supprimer</span> | Supprime instantanément le message suspect du salon d'origine pour protéger les membres. Ce bouton ne sera utilisé qu'en cas avéré. |
+| **Timeout (1h)** | <span class="discord-element discord-btn-primary">⏳ Timeout (1h)</span> | Exclut temporairement l'auteur du message pendant 1 heure pour stopper immédiatement l'attaque. Ce bouton ne sera utilisé qu'en cas avéré. |
+| **Bannir** | <span class="discord-element discord-btn-danger">🔨 Bannir</span> | Bannit définitivement l'utilisateur du serveur d'origine, supprime son message et désactive les boutons de l'alerte. Ce bouton est utilisé en cas extrême de spam, de phishing, de raid ou autre. |
 | **Faux Positif** | <span class="discord-element discord-btn-secondary">✅ Faux Positif</span> | Supprime simplement le log d'alerte de notre salon de surveillance s'il s'agit d'une erreur de détection. |
+
+<Aside type="caution" title="Contrôle d'Accès & Sécurité des Boutons">
+Pour garantir la sécurité et l'intégrité absolue des actions de modération, **seuls le bot officiel Lyxios, le bot de développement LyxiosDev, xougui et kadawatcha** sont autorisés à accéder à ce salon de surveillance, à effectuer des actions et à interagir avec les boutons de l'alerte. 
+
+Toute interaction tentée par un autre membre est systématiquement ignorée et bloquée par le bot.
+</Aside>
 
 
 ---
