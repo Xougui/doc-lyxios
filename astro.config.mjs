@@ -111,7 +111,7 @@ export default defineConfig({
 					items: [{ autogenerate: { directory: 'guides/modules' } }]
 				},
 				{
-					label: 'Autres fonctionalités',
+					label: 'Autres fonctionnalités',
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
 				{ label: 'Commandes', link: 'commandes' },
