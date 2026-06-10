@@ -20,7 +20,14 @@
         "selfbot script",
         "cookie grabber",
         "passwords stealer",
-        "browser stealer"
+        "browser stealer",
+        "test my game",
+        "playtest game",
+        "try my game",
+        "qr code login",
+        "scan this qr",
+        "vote for my team",
+        "tournament vote"
     ],
     "scam_regex_patterns": [
         "(?i)\\b(free|gratuit)\\s*(nitro|steam|discord|promo|airdrop|gift|premium)\\b",
@@ -37,7 +44,10 @@
         "(?i)\\bwho\\s*is\\s*first\\s*to\\s*message\\s*me\\b",
         "(?i)\\b(click|cliquez)\\s*(here|ici)\\s*(for|pour)\\s*(free|nitro|steam)\\b",
         "(?i)\\b(exclusive|exclusif)\\s*(offer|offre)\\s*(discord|nitro)\\b",
-        "(?i)\\b(limited|limité)\\s*(time|temps)\\s*(nitro|gift)\\b"
+        "(?i)\\b(limited|limité)\\s*(time|temps)\\s*(nitro|gift)\\b",
+        "(?i)\\b(playtest|test|download)\\s*(my)?\\s*(game|launcher)\\b",
+        "(?i)\\b(scan)\\s*(this|the)?\\s*(qr)\\s*(code)?\\b",
+        "(?i)\\b(vote)\\s*(for|pour)\\s*(my|our)?\\s*(team|clan|tournament)\\b"
     ],
     "whitelist": [
         "discord.com",
@@ -108,10 +118,6 @@
         "behance.net",
         "dribbble.com",
         "pinterest.com",
-        "tenor.com",
-        "giphy.com",
-        "imgur.com",
-        "wikipedia.org",
         "discord-transcript.xouxou-hosting.fr"
     ],
     "suspicious_keywords": [
