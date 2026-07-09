@@ -235,5 +235,23 @@
         "google",
         "paypal",
         "disboard"
+    ],
+    "illegal_words": [
+        "pedopornographie",
+        "pedopornographique",
+        "pedoprono",
+        "childporn",
+        "childpornography",
+        "zoophilie",
+        "bestiality",
+        "beastiality",
+        "lolicon",
+        "shotacon"
+    ],
+    "illegal_regex_patterns": [
+        "(?i)\\b(teen|legit|folder|pack|link|mega|drive|lien|dossier|echange|achat|vente|partage|age|rape|zoo|incest|new)\\s+(cp)\\b",
+        "(?i)\\b(cp)\\s+(teen|legit|folder|pack|link|mega|drive|lien|dossier|echange|achat|vente|partage|age|rape|zoo|incest|new|stuff)\\b",
+        "(?i)\\b(pedopornographie|pedopornographique|pedoprono|childporn|childpornography|zoophilie|bestiality|beastiality)\\b",
+        "(?i)t\\.me\\/[a-zA-Z0-9_-]*cp[a-zA-Z0-9_-]*"
     ]
 }
