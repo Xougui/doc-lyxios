@@ -528,3 +528,52 @@ h3 {
     color: var(--sl-color-gray-2);
     font-size: 0.8em;
 }
+
+/* --- Amélioration du Badge Starlight (Sidebar) --- */
+.sl-badge {
+    border-radius: 6px !important;
+    padding: 0.2rem 0.5rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Success (Vert - pour "Mis à jour" etc.) */
+.sl-badge.success {
+    background-color: var(--color-lyxios-green-500) !important;
+    color: #ffffff !important;
+}
+
+/* Tip (Violet - pour "Nouveau", "Exclusif") */
+.sl-badge.tip {
+    background-color: #6366f1 !important;
+    color: #ffffff !important;
+}
+
+/* Caution (Orange/Jaune - pour "Bêta", "WIP") */
+.sl-badge.caution {
+    background-color: #f59e0b !important;
+    color: #ffffff !important;
+}
+
+/* Danger (Rouge - pour "Déprécié", "Important") */
+.sl-badge.danger {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+}
+
+/* Note (Bleu Cyan - pour "Info") */
+.sl-badge.note {
+    background-color: var(--color-lyxios-teal-500) !important;
+    color: #ffffff !important;
+}
+
+/* Default (Gris) */
+.sl-badge.default {
+    background-color: #475569 !important;
+    color: #ffffff !important;
+}

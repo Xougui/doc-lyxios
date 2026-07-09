@@ -107,30 +107,44 @@ export default defineConfig({
 				{ label: 'Accueil', link: '/' },
 				{
 					label: 'Démarrage',
+					collapsed: true,
 					items: [{ autogenerate: { directory: 'guides/demarrage' } }]
 				},
 				{
 					label: 'Modules',
+					collapsed: true,
 					items: [
 						{ label: 'Sommaire', link: 'guides/modules/' },
 						{
+							label: 'Commandes Perso',
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Commandes Perso' } }]
+						},
+						{
+							label: 'Sécurité & Modération',
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Modération' } }]
+						},
+						{
 							label: 'Communauté & Fun',
-							items: [
-								{ label: 'Bienvenue', link: 'guides/modules/bienvenue' },
-							]
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Communauté & Fun' } }]
 						},
 						{
 							label: 'Administration & Système',
-							items: [
-								{ label: 'Compteur de membres', link: 'guides/modules/compteur-de-membres' },
-								{ label: 'Logs', link: 'guides/modules/logs' },
-								{ label: 'Tickets', link: 'guides/modules/tickets' },
-							]
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Administration & Système' } }]
+						},
+						{
+							label: 'Utilitaires & Boost',
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Utilitaires & Boost' } }]
 						}
 					]
 				},
 				{
 					label: 'Autres fonctionnalités',
+					collapsed: true,
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
 				{ label: 'Commandes', link: 'commandes' },
