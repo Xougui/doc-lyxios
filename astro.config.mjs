@@ -101,7 +101,7 @@ export default defineConfig({
 			},
 			social: [
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' },
-				{ icon: 'laptop', label: 'Statut', href: 'https://status.xouxou-hosting.fr' },
+				{ icon: 'laptop', label: 'Statut', href: 'https://lyxios-status.xouxou-hosting.fr/' },
 			],
 			sidebar: [
 				{ label: 'Accueil', link: '/' },

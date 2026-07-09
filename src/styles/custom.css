@@ -44,6 +44,16 @@ a[aria-current="page"],
 .sidebar a[aria-current="page"] {
     text-shadow: none !important;
     color: #ffffff !important;
+    background-color: var(--color-lyxios-green-700) !important;
+}
+
+/* Amélioration du hover sur un lien déjà actif pour garder une bonne lisibilité */
+a[aria-current="page"]:hover,
+.sidebar a[aria-current="page"]:hover,
+.sidebar-pane a[aria-current="page"]:hover,
+.sidebar-content a[aria-current="page"]:hover {
+    color: #ffffff !important;
+    opacity: 0.85;
 }
 
 /* Thème Sombre (Dark Mode) */
