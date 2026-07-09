@@ -107,8 +107,11 @@ export default defineConfig({
 				{ label: 'Accueil', link: '/' },
 				{
 					label: 'Démarrage',
-					collapsed: true,
-					items: [{ autogenerate: { directory: 'guides/demarrage' } }]
+					collapsed: false,
+					items: [
+						{ autogenerate: { directory: 'guides/demarrage' } },
+						{ label: 'Commandes', link: 'commandes' }
+					]
 				},
 				{
 					label: 'Modules',
@@ -142,9 +145,14 @@ export default defineConfig({
 					collapsed: true,
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
-				{ label: 'Commandes', link: 'commandes' },
-				{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
-				{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
+				{
+					label: 'Légal & Informations',
+					collapsed: true,
+					items: [
+						{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
+						{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
+					]
+				}
 			],
 		}),
 		react(),

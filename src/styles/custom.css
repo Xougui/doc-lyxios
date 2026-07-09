@@ -577,3 +577,41 @@ h3 {
     background-color: #475569 !important;
     color: #ffffff !important;
 }
+
+/* --- Améliorations de la Sidebar (Typographie) --- */
+/* Titres des catégories principales */
+.sidebar-pane summary,
+.sidebar-content summary {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.3px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+/* Titres des sous-catégories (moins imposantes) */
+.sidebar-pane details details summary,
+.sidebar-content details details summary {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    opacity: 0.9;
+}
+
+/* Liens vers les pages (en Roboto) */
+.sidebar-pane a,
+.sidebar-content a {
+    font-size: 0.95rem !important;
+    font-weight: 400 !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.sidebar-pane a:hover,
+.sidebar-content a:hover,
+.sidebar-pane summary:hover,
+.sidebar-content summary:hover {
+    color: var(--sl-color-text-accent) !important;
+}
