@@ -112,14 +112,9 @@ export default defineConfig({
 				},
 				{
 					label: 'Modules',
-					collapsed: true,
+					collapsed: false,
 					items: [
 						{ label: 'Sommaire', link: 'guides/modules/' },
-						{
-							label: 'Commandes Perso',
-							collapsed: true,
-							items: [{ autogenerate: { directory: 'guides/modules/Commandes Perso' } }]
-						},
 						{
 							label: 'Sécurité & Modération',
 							collapsed: true,
