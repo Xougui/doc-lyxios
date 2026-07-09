@@ -4,17 +4,18 @@
 
 :root {
   /* Lyxios Green Scale (Primary Brand) */
-  --color-lyxios-green-50: #E2E8F0;
-  --color-lyxios-green-100: #ddeee2;
-  --color-lyxios-green-200: #bcdcc5;
-  --color-lyxios-green-300: #9eccaa;
-  --color-lyxios-green-400: #7cbb8d;
-  --color-lyxios-green-500: #5aaa70;
-  --color-lyxios-green-600: #478a5a;
-  --color-lyxios-green-700: #376a45; /* Official Primary */
-  --color-lyxios-green-800: #25472e;
-  --color-lyxios-green-900: #1A201E;
-  --color-lyxios-green-950: #0D1110;
+  --color-lyxios-green-50: #eff6f2;
+  --color-lyxios-green-100: #dceae0;
+  --color-lyxios-green-200: #bad8c3;
+  --color-lyxios-green-300: #98c3a5;
+  --color-lyxios-green-400: #79A682;
+  --color-lyxios-green-500: #50845F;
+  --color-lyxios-green-600: #437651;
+  --color-lyxios-green-700: #376A45; /* Official Primary */
+  --color-lyxios-green-800: #254a30;
+  --color-lyxios-green-900: #202024;
+  --color-lyxios-green-950: #121214;
+  --color-lyxios-teal-500: #105666;
 
   /* 2. Configuration Globale */
   --font-sans: 'Roboto', sans-serif;
@@ -35,10 +36,18 @@
 
   /* 3. Mapping Starlight Global */
   --sl-font: var(--font-sans);
+  --sl-hue: 138; /* Définit la teinte par défaut de Starlight sur le vert Lyxios */
+}
+
+/* Fix styles for active links in sidebar (remove neon blur & fix text color) */
+a[aria-current="page"],
+.sidebar a[aria-current="page"] {
+    text-shadow: none !important;
+    color: #ffffff !important;
 }
 
 /* Thème Sombre (Dark Mode) */
-[data-theme="dark"] {
+:root[data-theme="dark"] {
   --bg-primary: var(--color-lyxios-green-950);
   --bg-secondary: var(--color-lyxios-green-900);
   --bg-tertiary: var(--color-lyxios-green-800);
@@ -47,7 +56,7 @@
   --text-primary: var(--color-lyxios-green-50);
   --text-secondary: var(--color-lyxios-green-300);
   --text-on-accent: var(--color-lyxios-green-950);
-  --hero-gradient: radial-gradient(circle at 50% 0%, var(--color-lyxios-green-800) 0%, var(--color-lyxios-green-950) 70%);
+  --hero-gradient: radial-gradient(circle at 50% 0%, var(--color-lyxios-teal-500) 0%, var(--color-lyxios-green-950) 70%);
   --glass-bg: rgba(12, 24, 16, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
 
@@ -61,7 +70,7 @@
 }
 
 /* Thème Clair (Light Mode) */
-[data-theme="light"] {
+:root[data-theme="light"] {
   --bg-primary: var(--color-lyxios-green-50);
   --bg-secondary: #ffffff;
   --bg-tertiary: var(--color-lyxios-green-100);
@@ -81,6 +90,35 @@
   --sl-color-text: var(--text-primary);
   --sl-color-text-accent: var(--accent-primary);
   --sl-color-accent: var(--accent-primary);
+}
+
+body {
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(16, 86, 102, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(90, 170, 112, 0.08), transparent 25%);
+    background-attachment: fixed;
+    transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 5px;
+    border: 2px solid var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+::selection {
+    background: var(--accent-primary);
+    color: #ffffff;
 }
 
 h1, h2, h3{
