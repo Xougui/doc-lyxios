@@ -1,27 +1,61 @@
 ---
-title: Sommaire
-description: Sommaire des modules disponibles sur Lyxios.
+title: Sommaire des Modules
+description: Découvrez et configurez tous les modules disponibles sur Lyxios.
+lastUpdated: 2026-07-09
 sidebar:
   order: 0
 ---
 
-import { getCollection } from 'astro:content';
-import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid, Aside } from '@astrojs/starlight/components';
 
-export const modules = await getCollection('docs', ({ id }) => {
-  // Récupère tous les fichiers dans 'guides/modules/'
-  // Exclut ce fichier index pour éviter qu'il ne s'affiche lui-même
-  return id.startsWith('guides/modules/') && id !== 'guides/modules/index.mdx';
-});
+Bienvenue dans le centre de configuration des modules de Lyxios ! 
+Lyxios propose une multitude de fonctionnalités (Sécurité, Modération, Animation, Outils) pour gérer et dynamiser votre serveur Discord. 
 
-Retrouvez ci-dessous la documentation détaillée pour chaque module :
+<Aside type="tip" title="Le Panneau de Configuration Centralisé">
+Toute la magie s'opère via une seule commande sur votre serveur : `/config`.
+En tapant cette commande, Lyxios vous présentera un menu déroulant interactif classé par catégories. Vous pourrez y paramétrer l'intégralité de votre serveur facilement, sans jamais avoir à quitter Discord !
+</Aside>
+
+---
+
+## ⚙️ Administration & Système
+
+Gérez les fondations de votre serveur, suivez l'activité de vos membres et facilitez le support.
 
 <CardGrid>
-  {modules.map((module) => (
-    <LinkCard
-      title={module.data.title}
-      description={module.data.description}
-      href={`/${module.slug}/`}
-    />
-  ))}
+  <LinkCard
+    title="Système de Tickets"
+    description="Créez et gérez des tickets de support complets avec transcripts, système de claims, notation et fils de discussion privés."
+    href="/guides/modules/tickets/"
+  />
+  <LinkCard
+    title="Système de Logs"
+    description="Gardez une trace ultra-détaillée de toute l'activité (messages supprimés, modération, vocaux) avec une séparation intelligente par salons."
+    href="/guides/modules/logs/"
+  />
+  <LinkCard
+    title="Compteur de membres"
+    description="Affichez vos statistiques en temps réel (humains, bots, possesseurs d'un rôle précis) dans l'en-tête de votre serveur."
+    href="/guides/modules/compteur-de-membres/"
+  />
 </CardGrid>
+
+---
+
+## 👥 Communauté & Fun
+
+Animez votre serveur et accueillez vos membres de la meilleure des manières.
+
+<CardGrid>
+  <LinkCard
+    title="Message de Bienvenue"
+    description="Accueillez chaleureusement les nouveaux membres avec un message dynamique, des ghost-pings, et de belles bannières d'accueil générées sur mesure."
+    href="/guides/modules/bienvenue/"
+  />
+</CardGrid>
+
+---
+
+<Aside type="note" title="D'autres modules sont en cours de documentation !">
+Nous travaillons activement pour rédiger la documentation de tous les autres modules (Sécurité, Vocaux Temporaires, Économie, Confessions, etc.). Revenez bientôt !
+</Aside>

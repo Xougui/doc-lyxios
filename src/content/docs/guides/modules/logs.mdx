@@ -1,0 +1,63 @@
+---
+title: Logs
+description: Découvrez comment configurer le système de logs de Lyxios.
+lastUpdated: 2026-07-09
+sidebar:
+  order: 5
+---
+
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Où trouver le module des logs ?
+
+Vous trouverez le module des logs dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons différentes :
+1. En utilisant la commande directe : `/config module:Logs`
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Système** et enfin le module **Logs** dans le menu déroulant.
+
+## À quoi sert le module des logs ?
+
+Le module de **Logs** permet de garder une trace détaillée de toute l'activité de votre serveur. Vous pouvez définir quels événements surveiller et dans quels salons spécifiques envoyer les alertes (messages supprimés, modération, changements de vocaux, etc.). Le système vous permet de créer plusieurs configurations différentes, par exemple pour séparer les logs de modération des logs de messages.
+
+---
+
+## Configuration du module
+
+Une fois que vous avez accédé au panneau des logs, cliquez sur le bouton <span class="discord-element discord-btn-success">➕ Ajouter</span> pour créer une nouvelle configuration.
+
+Voici les différentes étapes pour paramétrer votre configuration :
+
+<Steps>
+1. **Sélectionner le salon textuel** : Utilisez le menu déroulant <span class="discord-element discord-select">Sélectionnez un salon... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> pour définir dans quel salon textuel les événements seront envoyés.
+2. **Choisir les catégories globales** : Dans le menu déroulant <span class="discord-element discord-select">Sélectionnez les catégories... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choisissez la ou les catégories d'événements que vous souhaitez activer (ex: *Messages*, *Modération*, *Membres*, etc.). Par défaut, tous les événements de ces catégories seront activés.
+3. **Affiner votre sélection (Optionnel)** : Si vous ne souhaitez pas activer tous les événements d'une catégorie, un nouveau menu déroulant <span class="discord-element discord-select">Affiner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> apparaîtra. Sélectionnez-y la catégorie à modifier.
+4. **Choisir les sous-catégories (Optionnel)** : Un dernier menu déroulant <span class="discord-element discord-select">Options <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> apparaîtra, vous permettant de choisir précisément les événements à logger pour la catégorie sélectionnée (au lieu de l'option "Tout").
+5. **Sauvegarder** : Cliquez sur le bouton <span class="discord-element discord-btn-success">💾 Sauvegarder</span> pour enregistrer votre configuration. Vous pouvez également utiliser les boutons rapides <span class="discord-element discord-btn-primary">✅ Tout activer</span> ou <span class="discord-element discord-btn-secondary">🚫 Tout désactiver</span>.
+</Steps>
+
+<Aside type="tip" title='Séparation des salons'>
+Lyxios permet de créer jusqu'à 6 configurations différentes. Nous vous recommandons de les utiliser pour créer des salons dédiés (par exemple : `#logs-messages`, `#logs-modération`) afin d'éviter de surcharger un seul salon avec trop d'informations.
+</Aside>
+
+---
+
+## Catégories d'événements
+
+Lyxios vous permet de segmenter vos logs selon différentes catégories principales. Voici les catégories disponibles lors de la configuration :
+
+* <Badge text="Membres" variant="note" /> : Arrivées, départs, changements de pseudos, mises à jour des rôles et avatars.
+* <Badge text="Messages" variant="note" /> : Messages modifiés et messages supprimés.
+* <Badge text="Modération" variant="note" /> : Avertissements (warns), expulsions (kicks), bannissements (bans) et expulsions temporaires (timeouts).
+* <Badge text="Salons Vocaux" variant="note" /> : Connexions, déconnexions et déplacements entre les salons vocaux.
+* <Badge text="Serveur" variant="note" /> : Modifications des paramètres du serveur, créations, modifications ou suppressions de salons, rôles et emojis.
+
+---
+
+## Sécurité et Permissions
+
+<Aside type="caution" title="Salons Privés">
+Assurez-vous de bien restreindre l'accès de vos salons de logs (via les permissions Discord) à votre équipe d'administration et de modération uniquement, car ils peuvent contenir des informations sensibles.
+</Aside>
+
+Assurez-vous que Lyxios possède bien les permissions de **Voir le salon**, d'**Envoyer des messages** et d'**Intégrer des liens** dans les salons de logs que vous avez définis. Sans ces permissions, le bot ne pourra pas transmettre les événements.

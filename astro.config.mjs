@@ -5,6 +5,7 @@ import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import { parse as parseJs } from 'acorn';
+import { unified } from '@astrojs/markdown-remark';
 
 /**
  * Plugin Remark pour auto-importer les composants dans les fichiers MDX.
@@ -81,13 +82,15 @@ export default defineConfig({
 	}),
 	// Plugin remark au niveau Astro → hérité par MDX (ajouté par Starlight)
 	markdown: {
-		remarkPlugins: [remarkAutoImport],
+		processor: unified({
+			remarkPlugins: [remarkAutoImport],
+		}),
 	},
 	integrations: [
 		starlight({
 			title: 'Lyxios Docs',
 			disable404Route: true,
-			logo: { src: '/src/assets/logo.webp', alt: 'Lyxios Logo' },
+			logo: { src: '/src/assets/logo.svg', alt: 'Lyxios Logo' },
 			components: { Head: './src/components/Head.astro' },
 			customCss: ['./src/styles/custom.css'],
 			defaultLocale: 'root',
@@ -108,7 +111,23 @@ export default defineConfig({
 				},
 				{
 					label: 'Modules',
-					items: [{ autogenerate: { directory: 'guides/modules' } }]
+					items: [
+						{ label: 'Sommaire', link: 'guides/modules/' },
+						{
+							label: 'Communauté & Fun',
+							items: [
+								{ label: 'Bienvenue', link: 'guides/modules/bienvenue' },
+							]
+						},
+						{
+							label: 'Administration & Système',
+							items: [
+								{ label: 'Compteur de membres', link: 'guides/modules/compteur-de-membres' },
+								{ label: 'Logs', link: 'guides/modules/logs' },
+								{ label: 'Tickets', link: 'guides/modules/tickets' },
+							]
+						}
+					]
 				},
 				{
 					label: 'Autres fonctionnalités',

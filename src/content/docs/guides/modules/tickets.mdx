@@ -1,7 +1,7 @@
 ---
 title: Tickets
 description: "Découvrez comment les tickets fonctionnent dans Lyxios, comment les créer, les gérer et les utiliser pour suivre les problèmes, les demandes de fonctionnalités et les tâches au sein de votre projet."
-lastUpdated: 2026-02-22
+lastUpdated: 2026-07-09
 sidebar:
   order: 3
 ---
@@ -13,8 +13,8 @@ import { ChevronDown } from 'lucide-react';
 
 Vous trouverez le module de tickets dans la commande `/config` du bot.
 Vous pouvez y accéder de deux façons différentes :
-1. En utilisant la commande `/config` et en sélectionnant le module `Tickets` dans l'option `module`. (`/config module:Tickets`)
-2. En effectuant la commande `/config` et en sélectionnant l'option `Tickets` dans le menu déroulant.
+1. En utilisant la commande directe : `/config module:Tickets`
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Système** et enfin le module **Tickets** dans le menu déroulant.
 
 ## À quoi sert le module de tickets ?
 
@@ -25,43 +25,44 @@ Il offre une interface simple pour créer des tickets, les assigner à des membr
 
 ## Configuration du module
 
-Le système de tickets de Lyxios est entièrement configurable via un tableau de bord interactif. Une fois le module activé via `/config`, vous aurez accès au bouton suivant <span class="discord-element discord-btn-primary">Configurer les Tickets</span> qui vous permettra de personnaliser tous les aspects du système de tickets.:
+Le système de tickets de Lyxios est entièrement configurable via un tableau de bord interactif centralisé. Une fois dans le module via `/config`, vous accéderez à une interface composée d'un menu déroulant principal et de quelques boutons d'action rapide.
 
-### 1. Salons et Rôles
+### 1. Paramétrage via le Menu Déroulant
 
-Cliquez sur le bouton <span class="discord-element discord-btn-primary">🛠️ Salons & Rôles</span> pour définir l'infrastructure essentielle :
+Toute la configuration se fait depuis le menu déroulant principal <span class="discord-element discord-select">⚙️ Configurer une option... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>. 
+En sélectionnant une option, vous ouvrirez un formulaire ou un sous-menu pour la paramétrer :
 
-<Steps>
-1. <span class="discord-element discord-select">Catégorie Tickets <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
-2. <span class="discord-element discord-select">Rôle Manager <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le rôle qui aura la permission de voir et gérer les tickets (ex: *Support*, *Modérateur*). Les administrateurs ont accès par défaut. *Si ce rôle est supprimé, seuls les administrateurs pourront gérer les tickets.*
-3. <span class="discord-element discord-select">Logs <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, renommage, etc.).
-4. <span class="discord-element discord-select">Panel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
-</Steps>
+**Salons et Rôles :**
+*   **📂 Catégorie Tickets** : La catégorie Discord dans laquelle les nouveaux salons de tickets seront créés.
+*   **👑 Rôle Manager** : Le rôle qui aura la permission de voir et gérer les tickets. Les administrateurs y ont accès par défaut.
+*   **📜 Salon Logs** : Un salon textuel où le bot enverra l'historique des actions (ouverture, fermeture, transcript).
+*   **🎟️ Salon Panel** : Le salon où le message de création de ticket (le Panel) sera envoyé aux membres.
 
-### 2. Textes et Options
+**Textes et Apparence :**
+*   **👋 Message Bienvenue** : Personnalisez le message envoyé à l'ouverture du ticket. Utilisez `{user}` pour mentionner le membre.
+*   **🎨 Embed Panel** : Modifiez le Titre, la Description et la Couleur globale du panel de création.
+*   **🎨 Couleur Bouton** : Changez la couleur du bouton de création du ticket sur le panel.
+*   **🎫 Emoji Bouton** : Changez l'emoji affiché sur le bouton de création du ticket.
 
-Cliquez sur le bouton <span class="discord-element discord-btn-primary">✍️ Textes & Options</span> pour personnaliser l'expérience utilisateur via les sous-menus suivants :
-
-*   **Max Tickets** : Un menu déroulant pour limiter le nombre de tickets ouverts simultanément par un même utilisateur (de 1 à 5). (*Par défaut 1*)
-*   <span class="discord-element discord-btn-secondary">👋 Message Bienvenue</span> : Ouvre un formulaire pour personnaliser le message envoyé à l'ouverture du ticket. Utilisez `{user}` pour mentionner le membre.
-*   <span class="discord-element discord-btn-secondary">🎨 Embed Panel</span> : Ouvre un formulaire pour modifier le Titre, la Description et la Couleur du panel de création.
-*   <span class="discord-element discord-btn-secondary">📝 Gérer Motifs</span> : Permet d'ajouter ou supprimer des raisons d'ouverture (ex: *Support Technique*, *Partenariat*).
-    * *Si vous définissez plusieurs motifs, un menu déroulant sera affiché sur le panel.*
-    * *Si vous ne mettez aucun motif ou un seul, un simple bouton sera affiché.*
-*   <span class="discord-element discord-btn-secondary">⭐ Avis</span> : Permet d'activer ou désactiver le système d'évaluation/notation des tickets. *(Activé par défaut)*
-*   <span class="discord-element discord-btn-secondary">🙋‍♂️ Prise en charge</span> : Permet d'activer ou désactiver la possibilité pour l'équipe de prendre en charge (claim) un ticket. *(Activé par défaut)*
+**Fonctionnalités avancées :**
+*   **🔢 Max Tickets/User** : Limitez le nombre de tickets ouverts simultanément par un même utilisateur.
+*   **📝 Gérer Motifs** : Ajoutez ou supprimez des raisons d'ouverture (ex: *Support*, *Partenariat*). Si vous définissez plusieurs motifs, le panel affichera un menu déroulant plutôt qu'un simple bouton.
+*   **⭐ Avis / Notation** : Activez ou désactivez le système de notation à la fermeture du ticket.
+*   **🙋‍♂️ Prise en charge** : Activez ou désactivez la possibilité pour votre équipe de "claim" (prendre en charge) un ticket.
+*   **💬 Discussion Staff** : Activez ou désactivez la création automatique d'un fil de discussion (Thread) privé réservé au staff à l'intérieur du ticket.
+*   **⚙️ Mode d'ouverture** : Basculez entre un mode "Auto" (le panel est géré par le bot) ou "Manuel".
 
 <Aside type="tip" title="Plusieurs panels ?">
 Actuellement, le module gère un panel principal par serveur. Vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
 </Aside>
 
-### 3. Actions Rapides
+### 2. Actions Rapides
 
-Sur le menu principal, vous disposez également de ces actions :
+Sous le menu déroulant principal, vous disposez également de boutons d'action directs :
 
-*   <span class="discord-element discord-btn-success">🚀 Modifier Panel</span> : Envoie ou met à jour le message de création de ticket dans le salon configuré.
-*   <span class="discord-element discord-btn-secondary">🔄 Rafraîchir</span> : Met à jour l'affichage du tableau de bord avec les dernières configurations sauvegardées.
-*   <span class="discord-element discord-btn-danger">✖️ Désactiver</span> : Supprime toute la configuration des tickets de la base de données.
+*   <span class="discord-element discord-btn-success">🚀 Modifier Panel</span> : Envoie ou met à jour immédiatement le message de création de ticket dans le salon configuré.
+*   <span class="discord-element discord-btn-secondary">🔄 Rafraîchir</span> : Met à jour l'affichage de l'interface avec les dernières configurations sauvegardées.
+*   <span class="discord-element discord-btn-danger">✖️ Désactiver</span> : Supprime totalement la configuration du module de la base de données.
 
 ---
 
