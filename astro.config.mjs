@@ -142,7 +142,7 @@ export default defineConfig({
 				},
 				{
 					label: 'Autres fonctionnalités',
-					collapsed: true,
+					collapsed: false,
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
 				{

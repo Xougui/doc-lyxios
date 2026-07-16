@@ -1,0 +1,103 @@
+---
+slug: guides/autres/recrutement
+title: Recrutement
+description: Tout savoir sur le système de recrutement de Lyxios.
+lastUpdated: 2026-07-16
+sidebar:
+  badge:
+    text: Nouveau
+    variant: success
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown, Plus, Send, Settings, Globe, PowerOff, Power, List, SquarePen, Trash2, Square, Save, RefreshCw } from 'lucide-react';
+
+## Où trouver le système de recrutement ?
+
+Vous trouverez le système de recrutement dans la commande `/recrutement` du bot.
+
+## À quoi sert le système de recrutement ?
+
+Le système de recrutement permet de créer des formulaires de recrutement sur Discord comme vous le feriez sur Google Forms ou d'autres sites similaires.
+Depuis une mise à jour assez récente Discord permet de mettre des Checkboxes, des RadioButtons, etc. ce qui permet de créer des formulaires de recrutement très complets et personnalisés.
+
+---
+
+## Se repérer dans le menu
+
+Lors de l'exécution de la commande `/recrutement`, vous trouverez 5 actions possibles :
+
+- <span class="discord-element discord-select">Sélectionnez un poste à configurer...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : il vous permet de sélectionner un poste déjà configuré à modifier.
+- <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span> : il vous permet de créer un nouveau poste.
+- <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span> : il vous permet de lancer une campagne de recrutement avec un poste déjà configuré.
+- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span> : il vous permet de gérer les campagnes lancées.
+- <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span> : il vous permet de modifier le rôle qui gère les campagne par défaut.
+
+---
+
+## Configurer le système
+
+### Créer un poste
+
+Quand vous appuirez sur le bouton <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>, vous arriverez sur un menu avec les sélecteurs :
+
+<Steps>
+1. <span class="discord-element discord-select">Sélectionnez le rôle...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Permet de choisir le rôle pour lequel les candidats postuleront. <Badge text="Obligatoire" variant="danger" />
+2. <span class="discord-element discord-select">Sélectionnez le salon de logs...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Le salon où vous recevrez les candidatures pour les accepter ou les refuser. <Badge text="Obligatoire" variant="danger" />
+3. <span class="discord-element discord-select">Rôles autorisés à gérer les candidatures (optionnel)...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Permet de choisir les rôles qui pourront interagir avec les boutons dans les logs.
+</Steps>
+
+<Aside type="tip" title="Astuce">
+Si vous ne configurez aucun rôle autorisé, seuls les administrateurs pourront interagir avec les candidatures.
+</Aside>
+
+Une fois les champs obligatoires remplis, vous pourrez cliquer sur <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer le poste</span> pour finaliser la création.
+
+### Gérer un poste et ses questions
+
+En sélectionnant un poste existant dans le menu déroulant principal, ou après sa création, vous accédez à sa configuration spécifique. Vous y trouverez les options suivantes :
+
+- <span class="discord-element discord-btn-danger"><PowerOff size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Désactiver</span> / <span class="discord-element discord-btn-success"><Power size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Activer</span> : Permet de désactiver ou d'activer la soumission de candidatures pour ce poste.
+- <span class="discord-element discord-btn-secondary"><List size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les questions</span> : Ouvre le menu de création et de modification des questions de la candidature.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier le salon/rôle</span> : Permet de reconfigurer l'ID du rôle, l'ID du salon de logs et les rôles autorisés.
+- <span class="discord-element discord-btn-danger"><Trash2 size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Supprimer le poste</span> : Supprime définitivement ce poste et toutes ses questions associées.
+
+#### Gérer les questions
+
+Dans le menu de gestion des questions :
+- Cliquez sur <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Ajouter une question</span> pour créer une nouvelle question. Vous définirez son texte via une boîte de dialogue.
+- Utilisez le menu déroulant pour sélectionner une question existante et la configurer en détail : type de composant (texte court, paragraphe long, menu déroulant, cases à cocher, boutons radio), choix disponibles, et rendre la question obligatoire ou non.
+
+### Lancer la campagne
+
+Le bouton <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span> depuis le menu principal vous permet de démarrer une session de recrutement.
+
+<Steps>
+1. **Paramétrez la campagne** en sélectionnant :
+   - Le salon cible (où l'embed d'annonce sera envoyé).
+   - Le poste de recrutement ouvert.
+   - La mention souhaitée (Aucune, `@everyone`, `@here`, ou un rôle spécifique).
+2. **Personnalisez l'annonce** avec le bouton <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier l'Embed / Durée</span> :
+   - Titre et Description.
+   - Durée de la campagne en jours.
+   - Nombre de postes/places disponibles.
+3. **Publiez l'annonce** en cliquant sur <span class="discord-element discord-btn-success"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la Campagne</span>.
+</Steps>
+
+### Gérer les campagnes
+
+Via l'option <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>, vous pouvez administrer les campagnes actives :
+- Le sélecteur vous permet de choisir la campagne à gérer.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier la durée</span> : Ajustez la date et l'heure de fin de la campagne.
+- <span class="discord-element discord-btn-danger"><Square size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Mettre fin à la campagne</span> : Clôture prématurément la campagne. L'annonce sera mise à jour et plus aucune candidature ne sera acceptée.
+
+### Configuration globale
+
+Le bouton <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span> vous permet de définir les rôles de gestion qui seront automatiquement pré-remplis lors de la création de **nouveaux** postes. 
+
+Dans ce menu, vous retrouverez :
+- <span class="discord-element discord-select">Sélectionnez les rôles par défaut...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> : Permet de choisir jusqu'à 10 rôles qui auront accès aux candidatures. *(Si vous n'en sélectionnez aucun, seuls les administrateurs y auront accès par défaut).*
+
+Une fois vos rôles sélectionnés, deux options s'offrent à vous :
+- <span class="discord-element discord-btn-success"><Save size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Enregistrer</span> : Sauvegarde cette sélection. Elle ne s'appliquera qu'aux postes créés *après* cet enregistrement.
+- <span class="discord-element discord-btn-danger"><RefreshCw size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Appliquer à tous</span> : Sauvegarde cette sélection **et écrase** la configuration de **tous les postes existants** pour leur imposer ces nouveaux rôles autorisés. Pratique si vous restructurez votre équipe de gestion !

@@ -23,6 +23,18 @@ const mdxComponents = {
       icon: fields.checkbox({ label: 'Ajouter la flèche (pour les menus)', defaultValue: false }),
     },
   }),
+  Image: block({
+    label: 'Image / Média',
+    description: 'Insérer une image depuis le dossier src/assets/guides/',
+    schema: {
+      src: fields.image({
+        label: 'Image',
+        directory: 'src/assets/guides',
+        publicPath: '../../assets/guides/',
+      }),
+      alt: fields.text({ label: 'Texte alternatif (SEO)' }),
+    },
+  }),
 
   // --- NAVIGATION (Vrais liens) ---
   LinkButton: wrapper({
@@ -148,8 +160,12 @@ export default config({
           ],
           defaultValue: 'doc',
         }),
-        // --- Paramètres Starlight (Ignorés pour ne pas modifier et éviter les erreurs) ---
-        lastUpdated: fields.ignored(),
+        // --- Paramètres Starlight ---
+        slug: fields.ignored(), // Le slug explicite ajouté par le script
+        lastUpdated: fields.date({
+          label: 'Dernière mise à jour',
+          description: 'Format AAAA-MM-JJ'
+        }),
         sidebar: fields.ignored(),
         hero: fields.ignored(),
         tableOfContents: fields.ignored(),

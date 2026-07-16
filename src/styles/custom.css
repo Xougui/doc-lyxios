@@ -625,3 +625,77 @@ h3 {
 .sidebar-content summary:hover {
     color: var(--sl-color-text-accent) !important;
 }
+
+/* --- Table of Contents Numbering (Sur cette page) --- */
+starlight-toc nav > ul,
+mobile-starlight-toc nav > ul {
+    counter-reset: toc-counter;
+}
+
+starlight-toc nav ul ul,
+mobile-starlight-toc nav ul ul {
+    counter-reset: toc-counter;
+}
+
+starlight-toc nav li,
+mobile-starlight-toc nav li {
+    counter-increment: toc-counter;
+}
+
+/* On annule l'incrémentation pour le premier lien "Vue d'ensemble" */
+starlight-toc nav > ul > li:first-child,
+mobile-starlight-toc nav > ul > li:first-child {
+    counter-increment: none;
+}
+
+starlight-toc nav li > a::before,
+mobile-starlight-toc nav li > a::before {
+    content: counters(toc-counter, ".") " ";
+    color: var(--sl-color-text-accent);
+    font-weight: 600;
+    margin-right: 6px;
+    font-size: 0.9em;
+}
+
+/* On cache le numéro pour "Vue d'ensemble" */
+starlight-toc nav > ul > li:first-child > a::before,
+mobile-starlight-toc nav > ul > li:first-child > a::before {
+    content: none;
+}
+
+/* --- Page Headings Numbering (Titres dans le texte) --- */
+.sl-markdown-content {
+    counter-reset: h2-counter;
+}
+
+.sl-markdown-content h2 {
+    counter-reset: h3-counter;
+    counter-increment: h2-counter;
+}
+
+.sl-markdown-content h2::before {
+    content: counter(h2-counter) ". ";
+    color: var(--sl-color-text-accent);
+    margin-right: 8px;
+}
+
+.sl-markdown-content h3 {
+    counter-reset: h4-counter;
+    counter-increment: h3-counter;
+}
+
+.sl-markdown-content h3::before {
+    content: counter(h2-counter) "." counter(h3-counter) " ";
+    color: var(--sl-color-text-accent);
+    margin-right: 8px;
+}
+
+.sl-markdown-content h4 {
+    counter-increment: h4-counter;
+}
+
+.sl-markdown-content h4::before {
+    content: counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) " ";
+    color: var(--sl-color-text-accent);
+    margin-right: 8px;
+}
