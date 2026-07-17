@@ -10,7 +10,10 @@ sidebar:
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
 import { ChevronDown, Power, PowerOff, Settings, Hourglass, ChevronLeft, Lock, Goal } from 'lucide-react';
+import captchaFirstMessageImage from '../../../../../assets/exemples/captcha_first_message.png';
+import captchaEmojisImage from '../../../../../assets/exemples/captcha_emojis.png';
 
 ## Où trouver le module de captcha ?
 
@@ -57,9 +60,14 @@ De plus, Lyxios appliquera automatiquement ces restrictions sur tous les **nouve
 Lorsqu'un membre doit passer la vérification :
 1. Lyxios lui attribue le rôle restrictif défini (ex: `Unverified`).
 2. Le bot envoie un message dans le salon de vérification mentionnant le membre avec un bouton **Démarrer la vérification / Start Verification**.
+
+<Image src={captchaFirstMessageImage} alt="Message d'invitation à la vérification" style={{ margin: '1rem 0' }} />
+
 3. En cliquant dessus, le bot génère une image contenant un calcul mathématique (ex: `5 + 10 - 2 = ?` ou `7 * 4 = ?`) ainsi qu'une grille de 5 boutons affichant des emojis de fruits ou d'animaux.
 4. L'image indique la correspondance entre chaque réponse possible et un emoji (ex: `13 ➔ 🍎`, `15 ➔ 🍌`, etc.).
 5. Le membre doit cliquer sur l'emoji correspondant à la bonne réponse.
+
+<Image src={captchaEmojisImage} alt="Écran du captcha mathématique avec emojis" style={{ margin: '1rem 0' }} />
 
 ### Règles et sécurité
 
