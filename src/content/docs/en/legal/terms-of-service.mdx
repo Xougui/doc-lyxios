@@ -2,17 +2,33 @@
 slug: en/legal/terms-of-service
 title: Terms of Service
 description: Read the terms of service of the Lyxios Discord bot. By using our service, you agree to these rules for fair and responsible use.
-lastUpdated: 2026-07-16
+lastUpdated: 2026-07-17
 ---
 
-import { Card, CardGrid, Icon, Steps } from '@astrojs/starlight/components';
+import { Icon, Steps, Aside } from '@astrojs/starlight/components';
 
-:::note
-**Last updated:** February 19, 2026
-**Bot ID:** `1335228717403996160`
-:::
+<Aside type="note" title="General Information">
+  **Last updated:** July 17, 2026  
+  **Bot ID:** `1335228717403996160`
+</Aside>
 
-Welcome to Lyxios, a Discord bot created to improve your community experience, currently deployed and validated on **over 121 servers**.
+<Aside type="caution" title="Important: Mandatory Reading">
+  As a user or server administrator using Lyxios, you are required to carefully read these terms of service as well as our [Privacy Policy](/en/legal/privacy-policy). Adding the bot to a server or using its features implies full acceptance of all these rules.
+</Aside>
+
+Welcome to Lyxios, a Discord bot created to improve your community experience, currently deployed and validated on **over <span id="server-count">310</span> servers**.
+
+<script is:inline set:html={`
+  fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/public/stats')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.stats && data.stats.servers) {
+        const el = document.getElementById('server-count');
+        if (el) el.textContent = data.stats.servers;
+      }
+    })
+    .catch(() => {});
+`} />
 
 These Terms of Service ("ToS") govern the use of the Lyxios bot. By adding Lyxios to your server or using any of its features, you explicitly agree to be bound by these conditions.
 
@@ -28,20 +44,10 @@ You agree to use Lyxios responsibly, in strict compliance with the rules establi
 
 Using Lyxios for the following behaviors is strictly prohibited and will result in immediate sanctions (blacklist of the user or server):
 
-<CardGrid stagger>
-  <Card title="Spam and Abuse" icon="error">
-    Using automated or repetitive commands with the aim of spamming, saturating APIs, or overloading Lyxios' infrastructure.
-  </Card>
-  <Card title="Harassment and Threats" icon="warning">
-    Using the bot (via interaction, economy, or moderation commands) to harass, intimidate, or threaten other users.
-  </Card>
-  <Card title="Illegal Activities" icon="close">
-    Using the bot to facilitate illegal or fraudulent activities or to promote illicit content according to applicable laws.
-  </Card>
-  <Card title="Unauthorized Modification" icon="setting">
-    Attempting to modify, alter, reverse-engineer, or access without authorization the systems, databases, or source code of Lyxios.
-  </Card>
-</CardGrid>
+* **Spam and Abuse:** Using automated or repetitive commands with the aim of spamming, saturating APIs, or overloading Lyxios' infrastructure.
+* **Harassment and Threats:** Using the bot (via interaction, economy, or moderation commands) to harass, intimidate, or threaten other users.
+* **Illegal Activities:** Using the bot to facilitate illegal or fraudulent activities or to promote illicit content. Sharing highly illegal content (such as child sexual abuse material/CSAM, bestiality, etc.) is strictly prohibited. Automated real-time surveillance and analysis systems are deployed to intercept such abuses, leading to an immediate global ban and reporting to competent authorities.
+* **Unauthorized Modification:** Attempting to modify, alter, reverse-engineer, or access without authorization the systems, databases, or source code of Lyxios.
 
 ## 3. Economy and Virtual Goods
 
@@ -55,8 +61,8 @@ Lyxios offers a virtual economy system including coins, "Luckyblocks", and fragm
 
 Lyxios, its source code, its documentation, and all its exclusive features are the property of its developers. No part of the bot may be copied, reproduced, or distributed without prior written consent.
 
-The visual identity of Lyxios (logo, graphic charter) is the exclusive property of **Xougui**.
-* **Prohibitions:** Using the logo, modified or not, for the purpose of identifying another project (competing bot, server, website) is strictly prohibited.
+The visual identity of Lyxios (logo, graphic charter, banners, illustrations, brand elements) is the exclusive property of **Xougui**.
+* **Prohibitions:** Using or reproducing the logo, graphic charter, or any official visual element, modified or not, to identify or promote another project (alternative/competing bot, third-party server, website) is strictly prohibited without authorization.
 * **Tolerances:** Artistic fan creations (fanarts) are authorized and encouraged, provided they are not used for commercial or usurpatory purposes.
 
 ## 5. Limitation of Liability
@@ -65,6 +71,7 @@ Lyxios is provided "as is", without any contractual guarantee of absolute availa
 * Service interruptions related to hosting (Xouxou Hosting) or the Discord API.
 * Data losses resulting from a technical failure.
 * Damages (e.g., server raid) resulting from poor configuration of bot permissions by the server administrator. You are solely responsible for the rights you grant to the application.
+* **No Affiliation:** The Lyxios Discord bot, its development team, and its associated services have no affiliation, partnership relation, or association link with the English e-commerce website `https://lyxios.com/` or any other third party using the name "Lyxios".
 
 ## 6. Updates to Conditions
 
@@ -81,5 +88,5 @@ For any legal question, report of abuse, or concern regarding these terms of ser
 <Steps>
 1. **Priority Support:** Join our [Support Discord Server](https://discord.gg/RZHrtzwUC2) and open a ticket. This is the fastest way to get an answer.
 2. **Direct Contact:** You can reach the lead developer on Discord via the username `xougui`.
-3. **Legal/Official Contact:** For formal requests, send an e-mail to the following address: [xougui.7@gmail.com](mailto:xougui.7@gmail.com).
+3. **Official Contact:** For formal requests, send an e-mail to the following address: [xougui.7@gmail.com](mailto:xougui.7@gmail.com).
 </Steps>
