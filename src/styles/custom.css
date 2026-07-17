@@ -668,7 +668,7 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     counter-reset: h2-counter;
 }
 
-.sl-markdown-content h2 {
+.sl-markdown-content .sl-heading-wrapper.level-h2 {
     counter-reset: h3-counter;
     counter-increment: h2-counter;
 }
@@ -679,7 +679,7 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     margin-right: 8px;
 }
 
-.sl-markdown-content h3 {
+.sl-markdown-content .sl-heading-wrapper.level-h3 {
     counter-reset: h4-counter;
     counter-increment: h3-counter;
 }
@@ -690,7 +690,7 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     margin-right: 8px;
 }
 
-.sl-markdown-content h4 {
+.sl-markdown-content .sl-heading-wrapper.level-h4 {
     counter-increment: h4-counter;
 }
 
