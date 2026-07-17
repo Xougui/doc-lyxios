@@ -120,7 +120,7 @@ export default defineConfig({
 						{ label: 'Sommaire', link: 'guides/modules/' },
 						{
 							label: 'Sécurité & Modération',
-							collapsed: true,
+							collapsed: false,
 							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Modération' } }]
 						},
 						{
@@ -130,7 +130,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Administration & Système',
-							collapsed: true,
+							collapsed: false,
 							items: [{ autogenerate: { directory: 'guides/modules/Administration & Système' } }]
 						},
 						{
