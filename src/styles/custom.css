@@ -47,6 +47,13 @@ a[aria-current="page"],
     background-color: var(--color-lyxios-green-700) !important;
 }
 
+/* Light mode override for active page */
+:root[data-theme="light"] a[aria-current="page"],
+:root[data-theme="light"] .sidebar a[aria-current="page"] {
+    color: var(--color-lyxios-green-850) !important;
+    background-color: var(--color-lyxios-green-200) !important;
+}
+
 /* Amélioration du hover sur un lien déjà actif pour garder une bonne lisibilité */
 a[aria-current="page"]:hover,
 .sidebar a[aria-current="page"]:hover,
@@ -54,6 +61,16 @@ a[aria-current="page"]:hover,
 .sidebar-content a[aria-current="page"]:hover {
     color: #ffffff !important;
     opacity: 0.85;
+}
+
+/* Light mode hover override for active page */
+:root[data-theme="light"] a[aria-current="page"]:hover,
+:root[data-theme="light"] .sidebar a[aria-current="page"]:hover,
+:root[data-theme="light"] .sidebar-pane a[aria-current="page"]:hover,
+:root[data-theme="light"] .sidebar-content a[aria-current="page"]:hover {
+    color: var(--color-lyxios-green-950) !important;
+    background-color: var(--color-lyxios-green-300) !important;
+    opacity: 1 !important;
 }
 
 /* Thème Sombre (Dark Mode) */
@@ -100,6 +117,12 @@ a[aria-current="page"]:hover,
   --sl-color-text: var(--text-primary);
   --sl-color-text-accent: var(--accent-primary);
   --sl-color-accent: var(--accent-primary);
+}
+
+:root[data-theme="light"] .site-title,
+:root[data-theme="light"] .site-title * {
+    color: var(--color-lyxios-green-950) !important;
+    opacity: 1 !important;
 }
 
 body {
@@ -743,4 +766,39 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     color: #047857 !important;
     border-color: rgba(5, 150, 105, 0.25) !important;
 }
+
+/* --- Badges sur lien Actif (Pour ressortir sur fond vert/foncé en mode sombre) --- */
+:root[data-theme="dark"] a[aria-current="page"] .sl-badge,
+:root:not([data-theme="light"]) a[aria-current="page"] .sl-badge {
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+:root[data-theme="dark"] a[aria-current="page"] .sl-badge.note,
+:root:not([data-theme="light"]) a[aria-current="page"] .sl-badge.note {
+    color: #1d4ed8 !important;
+}
+
+:root[data-theme="dark"] a[aria-current="page"] .sl-badge.success,
+:root:not([data-theme="light"]) a[aria-current="page"] .sl-badge.success {
+    color: #047857 !important;
+}
+
+/* En mode clair, le lien actif ayant un fond vert très clair, le badge reste translucide avec une meilleure opacité */
+:root[data-theme="light"] a[aria-current="page"] .sl-badge.note {
+    background-color: rgba(37, 99, 235, 0.15) !important;
+    border-color: rgba(37, 99, 235, 0.3) !important;
+    color: #1d4ed8 !important;
+    box-shadow: none !important;
+}
+
+:root[data-theme="light"] a[aria-current="page"] .sl-badge.success {
+    background-color: rgba(5, 150, 105, 0.15) !important;
+    border-color: rgba(5, 150, 105, 0.3) !important;
+    color: #047857 !important;
+    box-shadow: none !important;
+}
+
+
 

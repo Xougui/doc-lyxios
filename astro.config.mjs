@@ -90,7 +90,11 @@ export default defineConfig({
 		starlight({
 			title: 'Lyxios Docs',
 			disable404Route: true,
-			logo: { src: '/src/assets/logo.svg', alt: 'Lyxios Logo' },
+			logo: {
+				light: './src/assets/logo_light.svg',
+				dark: './src/assets/logo_dark.svg',
+				alt: 'Lyxios Logo',
+			},
 			components: { Head: './src/components/Head.astro' },
 			customCss: ['./src/styles/custom.css'],
 			defaultLocale: 'root',
