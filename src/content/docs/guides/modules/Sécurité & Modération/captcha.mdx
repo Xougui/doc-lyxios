@@ -1,0 +1,81 @@
+---
+slug: guides/modules/captcha
+title: Captcha
+description: Ici vous trouverez toute la documentation liée au module de captcha.
+lastUpdated: 2026-07-17
+sidebar:
+  badge:
+    text: Mis à jour
+    variant: note
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown, Power, PowerOff, Settings, Hourglass, ChevronLeft, Lock, Goal } from 'lucide-react';
+
+## Où trouver le module de captcha ?
+
+Vous trouverez le module de captcha dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons différentes :
+1. En utilisant la commande directe : `/config module:Captcha`
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Sécurité & Modération** et enfin le module **Captcha** dans le menu déroulant.
+
+## À quoi sert le module de captcha ?
+
+Le module de captcha protège votre serveur contre les raids, les bots et les comptes malveillants. 
+Lorsqu'un nouvel utilisateur rejoint le serveur, Lyxios lui attribue un rôle restrictif et lui demande de résoudre une épreuve visuelle (un calcul mathématique inséré dans une image) pour obtenir l'accès complet au serveur.
+
+Le module dispose de deux modes de fonctionnement :
+* **Mode Strict** : Tous les nouveaux membres rejoignant le serveur doivent obligatoirement compléter le captcha.
+* **Mode Ciblé** : Seuls les comptes considérés comme "suspects" (comptes créés récemment ou ne possédant pas de photo de profil) sont soumis au captcha. Les autres membres entrent directement.
+
+---
+
+## Configuration du module
+
+Le panneau de configuration du Captcha contient plusieurs options et sélecteurs de rôles et de salons pour adapter la sécurité à vos besoins :
+
+<Steps>
+1. **Choisir le type de captcha** : Dans le menu déroulant <span class="discord-element discord-select">Choisir le type de captcha <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choisissez le mode souhaité :
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Lock size={14} /> **Strict**</span> : Vérifie tout le monde.
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Goal size={14} /> **Ciblé**</span> : Vérifie uniquement les suspects.
+2. **Définir le seuil d'âge (Mode Ciblé uniquement)** : Si vous avez sélectionné le mode Ciblé, cliquez sur le bouton <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Seuil Âge</span> pour ouvrir un formulaire et définir le seuil d'âge du compte en jours (par exemple `7` jours). Les comptes créés il y a moins de 7 jours devront faire le captcha.
+3. **Configurer le rôle restrictif** : Dans le sélecteur <span class="discord-element discord-select">Choisir le rôle restrictif (Unverified) <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choisissez le rôle qui sera attribué aux nouveaux membres non vérifiés. Si vous n'en avez pas, vous pouvez utiliser le bouton <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Créer & Configurer Permissions</span> pour laisser le bot créer automatiquement le rôle `Unverified` et configurer les permissions sur l'ensemble de vos salons.
+4. **Configurer le salon de vérification** : Dans le sélecteur <span class="discord-element discord-select">Choisir le salon de vérification <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, sélectionnez le salon textuel où s'affichera le captcha. Vous pouvez également cliquer sur le bouton <span class="discord-element discord-btn-primary">Créer salon vérif</span> pour laisser Lyxios créer et paramétrer un salon nommé `#verification`.
+5. **Configurer le salon de logs** : Dans le sélecteur <span class="discord-element discord-select">Choisir le salon de logs <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, sélectionnez le salon où le bot enverra les résultats des captcha (succès, échecs, expulsions).
+6. **Activer le module** : Une fois la configuration valide (rôle et salon de vérification configurés), cliquez sur le bouton <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Activer le module</span>. Pour le désactiver ultérieurement, utilisez <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Désactiver le module</span>.
+</Steps>
+
+<Aside type="caution" title="Configuration automatique des permissions">
+Le bouton <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Créer & Configurer Permissions</span> (ou *Mettre à jour Permissions*) configure automatiquement les permissions de votre serveur afin de masquer tous vos salons textuels et vocaux au rôle non vérifié, et s'assurer que le salon de vérification soit le seul visible.
+De plus, Lyxios appliquera automatiquement ces restrictions sur tous les **nouveaux salons** que vous créerez après coup !
+</Aside>
+
+---
+
+## Fonctionnement pour le nouvel utilisateur
+
+Lorsqu'un membre doit passer la vérification :
+1. Lyxios lui attribue le rôle restrictif défini (ex: `Unverified`).
+2. Le bot envoie un message dans le salon de vérification mentionnant le membre avec un bouton **Démarrer la vérification / Start Verification**.
+3. En cliquant dessus, le bot génère une image contenant un calcul mathématique (ex: `5 + 10 - 2 = ?` ou `7 * 4 = ?`) ainsi qu'une grille de 5 boutons affichant des emojis de fruits ou d'animaux.
+4. L'image indique la correspondance entre chaque réponse possible et un emoji (ex: `13 ➔ 🍎`, `15 ➔ 🍌`, etc.).
+5. Le membre doit cliquer sur l'emoji correspondant à la bonne réponse.
+
+### Règles et sécurité
+
+* **Temps limite** : L'utilisateur dispose de **30 minutes** pour démarrer et résoudre son captcha. S'il dépasse ce délai, il est automatiquement **expulsé** (kick) du serveur pour libérer de la place et éviter l'accumulation de comptes inactifs/bots.
+* **Nombre de tentatives** : L'utilisateur dispose de **3 tentatives**. S'il se trompe 3 fois, il est automatiquement **expulsé** du serveur.
+* **Nettoyage automatique** : Si l'utilisateur décide de quitter le serveur pendant que son captcha est actif, Lyxios supprime automatiquement son message de vérification du salon afin d'éviter d'encombrer le canal.
+* **Sécurité Anti-Bot** : Les boutons utilisent des identifiants uniques (UUIDs) générés aléatoirement à chaque captcha pour empêcher les scripts automatisés de cliquer au hasard ou de deviner la réponse.
+* **Fail-Safe de Sécurité** : Si le bot ne dispose pas des permissions requises pour attribuer le rôle restrictif à l'arrivée d'un membre, le membre est immédiatement **expulsé par sécurité** afin d'éviter qu'il n'accède au reste du serveur sans vérification.
+
+---
+
+## Logs de vérification
+
+Si vous configurez un salon de logs, le bot y enverra des notifications détaillées sous forme d'Embeds pour chaque événement important :
+
+* **🔐 Captcha Validé** (Vert) : Indique le membre, son identifiant unique et la date de création de son compte Discord.
+* **❌ Captcha Échoué** (Rouge) : Indique l'échec de la vérification (lorsque les 3 tentatives sont consommées) avant l'expulsion du membre.
+* **👢 Membre Expulsé (Captcha Timeout)** (Orange) : Envoyé lorsqu'un membre dépasse la limite de 30 minutes sans s'être vérifié, entraînant son expulsion automatique.
+
