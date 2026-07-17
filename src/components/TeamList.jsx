@@ -58,7 +58,7 @@ export default function TeamList() {
             social: []
         },
         '1421504705535803463': {
-            roles: ["Gérant Community Manager"],
+            roles: ["Community Manager Test"],
             desc: "Il aide également à la visibilité et à la gestion de la communauté Lyxios.",
             social: []
         }
@@ -93,7 +93,7 @@ export default function TeamList() {
     const getRoleIndex = (memberId) => {
         const roleOrder = [
             "Propriétaire", "Gérant", "Développeur", "Gérant Community Manager", "Gérant Blacklist",
-            "Community Manager", "Hébergeur", "Designeur",
+            "Community Manager", "Community Manager Test", "Hébergeur", "Designeur",
         ];
         const info = customInfo[memberId];
         if (!info || !info.roles || info.roles.length === 0) return roleOrder.length;
