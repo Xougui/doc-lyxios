@@ -7,7 +7,12 @@ export default function CommandList() {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        fetch('https://api-lyxios.xouxou-hosting.fr/api/v1/public/commands')
+        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        const apiUrl = isLocal 
+            ? 'http://localhost:25002/api/v1/public/commands' 
+            : 'https://api-lyxios.xouxou-hosting.fr/api/v1/public/commands';
+
+        fetch(apiUrl)
             .then((res) => res.ok ? res.json() : Promise.reject(`Erreur HTTP ${res.status}`))
             .then((data) => {
                 if (Array.isArray(data)) {

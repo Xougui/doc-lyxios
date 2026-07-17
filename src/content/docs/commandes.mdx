@@ -2,9 +2,21 @@
 slug: commandes
 title: Liste des Commandes
 description: Liste complète des commandes de Lyxios
-lastUpdated: 2026-07-16
+lastUpdated: 2026-07-17
 ---
 
 import CommandList from '../../components/CommandList.jsx';
+
+<style is:global>{`
+  .sl-markdown-content h2::before,
+  .sl-markdown-content h3::before,
+  .sl-markdown-content h4::before {
+      content: none !important;
+  }
+  starlight-toc nav li > a::before,
+  mobile-starlight-toc nav li > a::before {
+      content: none !important;
+  }
+`}</style>
 
 <CommandList client:load />
