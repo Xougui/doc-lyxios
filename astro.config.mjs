@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
+import sitemap from '@astrojs/sitemap';
 import { parse as parseJs } from 'acorn';
 import { unified } from '@astrojs/markdown-remark';
 
@@ -75,7 +76,7 @@ function remarkAutoImport() {
 }
 
 export default defineConfig({
-	site: 'https://doc.lyxios.xouxou-hosting.fr/',
+	site: 'https://doc.lyxios.fr/',
 	output: 'server',
 	adapter: vercel({
 		webAnalytics: { enabled: true },
@@ -105,7 +106,7 @@ export default defineConfig({
 			},
 			social: [
 				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' },
-				{ icon: 'laptop', label: 'Statut', href: 'https://lyxios-status.xouxou-hosting.fr/' },
+				{ icon: 'laptop', label: 'Statut', href: 'https://status.lyxios.fr/' },
 			],
 			sidebar: [
 				{ label: 'Accueil', link: '/' },
@@ -161,5 +162,6 @@ export default defineConfig({
 		}),
 		react(),
 		keystatic(),
+		sitemap(),
 	],
 });
