@@ -105,7 +105,7 @@ export default defineConfig({
 				es: { label: 'Español', lang: 'es' }
 			},
 			social: [
-				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/R5Zs9m2u7X' },
+				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/RZHrtzwUC2' },
 				{ icon: 'laptop', label: 'Statut', href: 'https://status.lyxios.fr/' },
 			],
 			sidebar: [
