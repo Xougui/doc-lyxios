@@ -7,17 +7,35 @@
       "skillPath": "skills/astro/SKILL.md",
       "computedHash": "3a70f9666e7b6a03efb939b7e62938f4d3a6a5d956b2cc3c10011fda6ba27e9b"
     },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "computedHash": "781bd6d3f9b19f8c9af6b53d8d0e4876d0183841b565db34ca7092ffa412d111"
+    },
     "humanize-writing": {
       "source": "jpeggdev/humanize-writing",
       "sourceType": "github",
       "skillPath": "SKILL.md",
       "computedHash": "ee0583446cb367ae750cd17d32a7d63b1f335d7bd8570c18d6a39e484f551325"
     },
+    "seo": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "skillPath": "skills/seo/SKILL.md",
+      "computedHash": "342da0c7fa6235cdc08789e67bac0e8ff770e8aeaa106f32895c17201501b1b0"
+    },
     "seo-audit": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "skillPath": "skills/seo-audit/SKILL.md",
       "computedHash": "606da61224d9d5687020816292c88152a7fcb27ce375b22f92f429e074f07f34"
+    },
+    "seo-specialist": {
+      "source": "borghei/claude-skills",
+      "sourceType": "github",
+      "skillPath": "marketing/seo-specialist/SKILL.md",
+      "computedHash": "8652e5658b2cdc8669f3dbcbcea7944d0e2fbe50a45324c169a2bf9ca3410b54"
     }
   }
 }
