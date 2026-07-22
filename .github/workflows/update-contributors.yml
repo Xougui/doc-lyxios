@@ -14,10 +14,9 @@ jobs:
     name: A job to automate contributors in README
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Contribute Readme Action
         uses: akhilmhdh/contributors-readme-action@v2.3.10
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          no_bots: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
