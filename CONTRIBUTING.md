@@ -77,14 +77,11 @@ Pour maintenir une cohérence visuelle haut de gamme, utilisez les composants in
 Utilisez ce composant pour illustrer les boutons ou menus de sélection du bot :
 
 ```mdx
-{/* Bouton de confirmation */}
 <DiscordElement type="discord-btn-success" text="Valider" />
 
-{/* Bouton de suppression */}
 <DiscordElement type="discord-btn-danger" text="Supprimer" />
 
-{/* Menu déroulant */}
-<DiscordElement type="discord-select" text="Sélectionner une catégorie..." />
+<DiscordElement type="discord-btn-select" text="Sélectionner une catégorie..." />
 ```
 
 ### 2. Blocs d'Alerte (`<Aside>`)
