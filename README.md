@@ -7,7 +7,7 @@ La documentation est propulsée par [Astro](https://astro.build/) et [Starlight]
 ## 🚀 Développement local
 
 ### Prérequis
-- Node.js (version 18+ recommandée)
+- Node.js (version 22+ requise)
 - npm
 
 ### Installation et Lancement
