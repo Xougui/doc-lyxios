@@ -112,37 +112,43 @@ export default defineConfig({
 				{ icon: 'laptop', label: 'Statut', href: 'https://status.lyxios.fr/' },
 			],
 			sidebar: [
-				{ label: 'Accueil', link: '/' },
+				{ label: 'Accueil', translations: { en: 'Home', es: 'Inicio' }, link: '/' },
 				{
 					label: 'Démarrage',
+					translations: { en: 'Getting Started', es: 'Inicio Rápido' },
 					collapsed: false,
 					items: [
 						{ autogenerate: { directory: 'guides/demarrage' } },
-						{ label: 'Commandes', link: 'commandes' }
+						{ label: 'Commandes', translations: { en: 'Commands', es: 'Comandos' }, link: 'commandes' }
 					]
 				},
 				{
 					label: 'Modules',
+					translations: { en: 'Modules', es: 'Módulos' },
 					collapsed: false,
 					items: [
-						{ label: 'Sommaire', link: 'guides/modules/' },
+						{ label: 'Sommaire', translations: { en: 'Overview', es: 'Resumen' }, link: 'guides/modules/' },
 						{
 							label: 'Sécurité & Modération',
+							translations: { en: 'Security & Moderation', es: 'Seguridad & Moderación' },
 							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Modération' } }]
 						},
 						{
 							label: 'Communauté & Fun',
+							translations: { en: 'Community & Fun', es: 'Comunidad & Entretenimiento' },
 							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Communauté & Fun' } }]
 						},
 						{
 							label: 'Administration & Système',
+							translations: { en: 'Administration & System', es: 'Administración & Sistema' },
 							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Administration & Système' } }]
 						},
 						{
 							label: 'Utilitaires & Boost',
+							translations: { en: 'Utilities & Boost', es: 'Herramientas & Boost' },
 							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Utilitaires & Boost' } }]
 						}
@@ -150,15 +156,17 @@ export default defineConfig({
 				},
 				{
 					label: 'Autres fonctionnalités',
+					translations: { en: 'Other Features', es: 'Otras Funciones' },
 					collapsed: true,
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
 				{
 					label: 'Légal & Informations',
+					translations: { en: 'Legal & Information', es: 'Información Legal' },
 					collapsed: false,
 					items: [
-						{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
-						{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
+						{ label: 'Conditions d\'utilisation', translations: { en: 'Terms of Service', es: 'Términos de Servicio' }, link: 'legal/terms-of-service' },
+						{ label: 'Politique de confidentialité', translations: { en: 'Privacy Policy', es: 'Política de Privacidad' }, link: 'legal/privacy-policy' },
 					]
 				}
 			],
