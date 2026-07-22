@@ -808,5 +808,88 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     box-shadow: none !important;
 }
 
+starlight-lang-select,
+starlight-theme-select {
+    position: relative;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+}
+
+starlight-lang-select label,
+starlight-theme-select label {
+    position: relative;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+    height: 100%;
+}
+
+starlight-lang-select select,
+starlight-theme-select select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    position: relative;
+    z-index: 11;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px !important;
+    touch-action: manipulation;
+    color: inherit;
+    margin-inline: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 50rem) {
+    starlight-lang-select select,
+    starlight-theme-select select {
+        font-size: var(--sl-text-sm) !important;
+    }
+
+    .right-group {
+        flex-shrink: 0 !important;
+        justify-content: flex-end !important;
+        position: relative;
+        z-index: 10;
+    }
+}
+
+starlight-lang-select option,
+starlight-theme-select option {
+    background-color: var(--sl-color-bg-nav, #17191e) !important;
+    color: var(--sl-color-text, #ffffff) !important;
+    font-size: 14px;
+    padding: 8px;
+}
+
+:root[data-theme="light"] starlight-lang-select option,
+:root[data-theme="light"] starlight-theme-select option {
+    background-color: #ffffff !important;
+    color: var(--color-lyxios-green-950, #121214) !important;
+}
+
+starlight-lang-select .icon,
+starlight-theme-select .icon {
+    pointer-events: none !important;
+    z-index: 12;
+}
+
+.right-group,
+.mobile-preferences {
+    position: relative;
+    z-index: 10;
+}
+
+site-search button[data-open-modal] {
+    position: relative;
+    z-index: 1;
+}
+
+
+
 
 
