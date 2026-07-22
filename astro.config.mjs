@@ -12,6 +12,10 @@ import { unified } from '@astrojs/markdown-remark';
  * Injecte les imports ESM avec un AST complet (via acorn) pour que MDX les reconnaisse.
  */
 function remarkAutoImport() {
+	/**
+	 * @param {any} tree
+	 * @param {any} vfile
+	 */
 	return (tree, vfile) => {
 		// Ne pas injecter dans les fichiers .md (uniquement .mdx)
 		if (vfile.basename?.endsWith('.md')) return;

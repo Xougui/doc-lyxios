@@ -16,10 +16,12 @@ Merci de votre intérêt pour la documentation officielle de **Lyxios** ! Ce gui
    npm install
    npm run dev
    ```
-4. **Vérifier le build de production** avant de soumettre :
+4. **Vérifier le projet (Typecheck, Build & Sécurité)** :
+   Avant de pousser vos modifications ou d'ouvrir une PR, lancez la commande de vérification globale :
    ```bash
-   npm run build
+   npm run verify
    ```
+   *(Cette commande enchaîne `astro check`, `npm run build` et `npm audit` pour s'assurer qu'aucune erreur TypeScript, de build ou de sécurité n'est introduite).*
 5. **Ouvrir une Pull Request (PR)** vers la branche `main` du dépôt officiel.
 
 > 💡 **Règle d'or (1 PR = 1 Changement)** : Chaque Pull Request doit se concentrer sur un seul sujet ou une seule page. Ne regroupez pas plusieurs modifications sans rapport dans une même PR, sauf si ces pages sont directement liées entre elles.
@@ -127,7 +129,7 @@ import { ShieldCheck, Settings } from 'lucide-react';
 
 ## 📋 Checklist Avant de Soumettre une PR
 
-- [ ] Le projet compile sans erreur (`npm run build`).
+- [ ] Le projet passe toutes les vérifications sans erreur (`npm run verify`).
 - [ ] Le titre du frontmatter est le nom brut du module.
 - [ ] La date `lastUpdated` a été mise à jour.
 - [ ] Les types de `<Aside>` sont uniquement `note`, `tip`, `caution` ou `danger`.
