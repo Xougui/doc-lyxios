@@ -1,0 +1,24 @@
+name: Update Contributors
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update README Contributors
+        uses: github-contributors/github-contributors-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          ignore_users: "dependabot[bot],google-labs-jules[bot],vercel[bot],houston[bot],github-actions[bot]"

@@ -34,11 +34,21 @@ La documentation est propulsée par [Astro](https://astro.build/) et [Starlight]
    npm run build
    ```
 
-## 🤝 Contribution
+## 🤝 Contribution & Contributeurs
 
 Toute contribution pour améliorer la documentation est la bienvenue ! Pour participer :
 1. Consultez notre [Guide de Contribution (CONTRIBUTING.md)](./CONTRIBUTING.md).
 2. Créez votre branche et proposez une Pull Request.
+
+### ✨ Contributeurs
+
+Merci à toutes les personnes qui ont contribué au projet !
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<a href="https://github.com/Xougui/doc-lyxios/graphs/contributors">
+  <img src="https://github.com/Xougui.png?size=64" width="50" height="50" style="border-radius: 50%;" alt="Xougui" title="Xougui" />
+</a>
 
 ## 📄 Licence
 
