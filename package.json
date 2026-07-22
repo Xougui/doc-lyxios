@@ -24,7 +24,7 @@
     "astro-auto-import": "^0.5.1",
     "lucide-react": "^1.24.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react-dom": "^19.2.8",
     "sharp": "^0.35.3",
     "unist-util-visit": "^5.1.0"
   },
