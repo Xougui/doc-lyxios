@@ -42,5 +42,5 @@ Toute contribution pour améliorer la documentation est la bienvenue ! Pour part
 
 ## 📄 Licence
 
-Copyright © Xougui / Lyxios. Tous droits réservés.
+Copyright © Xougui. Tous droits réservés.
 Consultez le fichier [LICENSE](./LICENSE) pour plus de détails sur les conditions de contribution et de réutilisation.
