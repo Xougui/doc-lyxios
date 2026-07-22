@@ -1,0 +1,66 @@
+---
+slug: en/guides/modules/captcha
+title: Captcha
+description: Here you will find all documentation related to the captcha module.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import { ChevronDown, Power, PowerOff, Settings, Hourglass, ChevronLeft, Lock, Goal } from 'lucide-react';
+import captchaFirstMessageImage from '../../../../../assets/exemples/captcha_first_message.png';
+import captchaEmojisImage from '../../../../../assets/exemples/captcha_emojis.png';
+
+## Where to find the captcha module?
+
+You can find the captcha module in the `/config` command of the bot.
+You can access it in two ways:
+1. Using direct command: `/config module:Captcha`
+2. Using `/config`, selecting **Security & Moderation**, then choosing **Captcha** in the dropdown.
+
+## What is the captcha module for?
+
+The captcha module protects your server against raids, bots, and malicious accounts. 
+When a new user joins the server, Lyxios assigns them a restrictive role (`Unverified`) and asks them to solve a visual puzzle (a mathematical calculation inserted into an image) to get full access to the server.
+
+The module features two operating modes:
+* **Strict Mode**: All new members joining the server must complete the captcha.
+* **Targeted Mode**: Only accounts considered "suspicious" (recently created accounts or accounts with no profile picture) are subject to the captcha.
+
+---
+
+## Module Configuration
+
+The Captcha configuration panel contains several options, role selectors, and channel selectors:
+
+<Steps>
+1. **Choose captcha type**: In the dropdown menu <span class="discord-element discord-select">Choisir le type de captcha <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choose the desired mode:
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Lock size={14} /> **Strict**</span>: Verifies everyone.
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Goal size={14} /> **Ciblé**</span>: Verifies only suspicious accounts.
+2. **Set age threshold (Targeted Mode only)**: Click the button <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Seuil Âge</span> to open a modal and set account age in days (e.g. `7` days).
+3. **Configure restrictive role**: In the selector <span class="discord-element discord-select">Manage verified role <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choose the restrictive role. You can also click <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> to let the bot automatically create `Unverified` and adjust channel permissions.
+4. **Configure verification channel**: In the selector <span class="discord-element discord-select">Manage verification channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select the verification text channel. You can also click <span class="discord-element discord-btn-primary">Créer salon vérif</span>.
+5. **Configure log channel**: In the selector <span class="discord-element discord-select">Manage log channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select where captcha results will be sent.
+6. **Enable module**: Once configured, click <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Enable module</span>. Use <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable module</span> to turn it off.
+</Steps>
+
+<Aside type="caution" title="Automatic Permissions Configuration">
+The button <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> (or *Update Permissions*) automatically configures server permissions to hide all text and voice channels from unverified members.
+</Aside>
+
+---
+
+## User Flow & Rules
+
+1. Member receives the restrictive role (e.g., `Unverified`).
+2. Bot sends a message mentioning the member with **Start Verification**.
+
+<Image src={captchaFirstMessageImage} alt="Verification invitation message" style={{ margin: '1rem 0' }} />
+
+3. Clicking the button displays a mathematical calculation image with 5 emoji buttons.
+4. Member clicks the emoji corresponding to the correct result.
+
+<Image src={captchaEmojisImage} alt="Math captcha with emojis" style={{ margin: '1rem 0' }} />
+
+* **Time limit**: 30 minutes to solve the captcha before being automatically kicked.
+* **Attempts**: 3 attempts before being kicked.

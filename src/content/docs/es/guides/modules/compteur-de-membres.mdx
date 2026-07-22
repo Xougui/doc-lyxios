@@ -1,66 +1,38 @@
 ---
 slug: es/guides/modules/compteur-de-membres
-title: Contador de miembros
+title: Compteur de membres
 description: Documentación completa para configurar y personalizar los contadores de miembros (Total, Humanos, Bots, Roles).
-lastUpdated: 2026-07-16
+lastUpdated: 2026-07-22
 sidebar:
-  order: 2
+  badge:
+    text: Actualizado
+    variant: note
 ---
 
-import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
 import { ChevronDown } from 'lucide-react';
 
 ## ¿Dónde encontrar el módulo de contador de miembros?
 
-Encontrarás el módulo de contador de miembros en el comando `/config` del bot.
-Puedes acceder a él de dos formas diferentes:
-1. Usando el comando `/config` y seleccionando el módulo `Compteur` en la opción `módulo`. (`/config module:Compteur de membres`)
-2. Ejecutando el comando `/config` y seleccionando la opción `Compteur` en el menú desplegable.
+Puedes encontrar el módulo de contador de miembros mediante el comando `/config` del bot.
+Puedes acceder de dos formas distintas:
+1. Usando el comando directo: `/config module:Compteur de membres`
+2. Ejecutando el comando `/config`, seleccionando la categoría **Administration & Système** y el módulo **Compteur** en el menú desplegable.
 
 ## ¿Para qué sirve el módulo de contador de miembros?
 
-El módulo de contador de miembros permite mostrar el número de miembros de tu servidor en tiempo real.
-Generalmente configurado en un **canal de voz bloqueado**, permite tener una visibilidad constante sobre el crecimiento de tu comunidad en la parte superior de la lista de canales, sin tener que consultar los ajustes del servidor.
+El módulo de contador de miembros permite mostrar la cantidad de miembros de tu servidor en tiempo real en un canal de voz bloqueado.
 
 ---
 
 ## Configuración del módulo
 
-Una vez en el panel de configuración, puedes elegir entre 4 tipos de contadores:
-
-* **Total**: Muestra el número total de miembros (incluidos los bots).
-* **Humains**: Muestra solo los miembros humanos.
-* **Bots**: Muestra solo el número de robots.
-* **Rôle**: Muestra el número de miembros que poseen un rol específico.
+Puedes elegir entre 4 tipos de contadores: **Total**, **Humains**, **Bots**, y **Rôle**.
 
 ### Editar un contador
 
-Después de seleccionar un tipo (ej: "Total"), accedes al menú de edición detallado:
-
 <Steps>
-1. **Activar el contador**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span> para controlar la actualización automática.
-2. **Definir el canal**: Tienes dos opciones:
-    * Haz clic en <span class="discord-element discord-btn-primary">➕ Créer un salon</span>: El bot creará automáticamente un canal de voz bloqueado con los permisos adecuados.
-    * O usa el menú desplegable <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> para seleccionar un canal o categoría existente (canales de voz, texto, categorías, etc.).
-3. **Personalizar el nombre**: Haz clic en <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> para cambiar la apariencia del texto (ej: `Miembros: 150`).
-4. **Elegir el rol** *(Mode Rôle uniquement)*: Si configuras un contador de rol, aparecerá un menú desplegable adicional para seleccionar el rol a seguir.
+1. **Activar el contador**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span>.
+2. **Definir el canal**: Haz clic en <span class="discord-element discord-btn-primary">➕ Créer un salon</span> o usa el menú desplegable <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+3. **Personalizar el nombre**: Haz clic en el botón <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> (ej: `Membres: {count}`).
 </Steps>
-
-<Aside type="caution" title="Limitaciones de Discord (Rate Limits)">
-Discord impone un límite estricto en el cambio de nombre de los canales: **2 modificaciones cada 10 minutos**.
-Si ves que el contador no se actualiza inmediatamente después de una llegada o salida, es normal. El bot espera a que se levante el límite de Discord para aplicar el cambio.
-</Aside>
-
----
-
-## Variables de formato
-
-Para personalizar el nombre del canal, puedes usar variables dinámicas que serán reemplazadas automáticamente:
-
-* <Badge text="{count}" variant="note" />: Muestra el número (ej: `150`). Disponible para **todos** los contadores.
-* <Badge text="{role}" variant="note" />: Muestra el nombre del rol seguido (ej: `VIP`). Disponible **únicamente** para el contador de tipo **Rôle**.
-
-**Ejemplos de formatos:**
-* `Miembros: {count}` → *Miembros: 150*
-* `👥・{count} Humanos` → *👥・142 Humanos*
-* `[{role}] : {count}` → *[VIP] : 12*

@@ -1,0 +1,30 @@
+---
+slug: es/guides/modules/salons-vocaux
+title: Salons Vocaux
+description: Documentación completa para configurar y gestionar el módulo de canales de voz temporales.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo de canales de voz?
+
+Comando directo: `/config module:Salons Vocaux` o en **Utilitaires & Boost** -> **Salons Vocaux**.
+
+## ¿Para qué sirve el módulo de canales de voz?
+
+Permite a tus miembros crear automáticamente su propio canal de voz privado al unirse a un canal Hub.
+
+---
+
+## Configuración del módulo
+
+<Steps>
+1. **Setup automático**: Haz clic en el botón <span class="discord-element discord-btn-primary">⚡ Setup Auto</span>.
+2. **Canal Hub**: En el menú desplegable <span class="discord-element discord-select">Sélectionner le salon Hub <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+3. **Categoría de destino**: En el menú desplegable <span class="discord-element discord-select">Sélectionner la catégorie <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+4. **Formato del nombre**: Haz clic en el botón <span class="discord-element discord-btn-secondary">📝 Nom des salons</span>.
+5. **Permisos de comandos**: En el menú <span class="discord-element discord-select">Gérer les commandes autorisées <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+6. **Desactivar o resetear**: Usa el botón <span class="discord-element discord-btn-danger">🗑️ Supprimer la configuration</span>.
+</Steps>

@@ -1,0 +1,30 @@
+---
+slug: es/guides/modules/rappels-de-bump
+title: Rappels de Bump
+description: Documentación completa para configurar y gestionar el módulo de recordatorio de bump de Disboard.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo de recordatorios de bump?
+
+Comando directo: `/config module:Rappels de Bump` o en la categoría **Utilitaires & Boost** -> **Rappels de Bump**.
+
+## ¿Para qué sirve el módulo de recordatorios de bump?
+
+El módulo monitorea los bumps de Disboard (`/bump`), envía un agradecimiento e invita a hacer bump 2 horas después.
+
+---
+
+## Configuración del módulo
+
+<Steps>
+1. **Activar o desactivar**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span>.
+2. **Mensaje de recordatorio**: Haz clic en el botón <span class="discord-element discord-btn-primary">Message de rappel</span>.
+3. **Mensaje de agradecimiento**: Haz clic en el botón <span class="discord-element discord-btn-primary">Message de remerciement</span>.
+4. **Color del embed**: Haz clic en el botón <span class="discord-element discord-btn-primary">Couleur</span>.
+5. **Rol a mencionar**: En el menú desplegable <span class="discord-element discord-select">Sélectionner un rôle à mentionner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+6. **Eliminar mención**: Haz clic en el botón <span class="discord-element discord-btn-secondary">Supprimer la mention</span>.
+</Steps>

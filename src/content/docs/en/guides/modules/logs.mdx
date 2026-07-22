@@ -1,0 +1,37 @@
+---
+slug: en/guides/modules/logs
+title: Logs
+description: Discover how to configure the Lyxios logging system.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Where to find the logs module?
+
+You will find the logs module in the `/config` command of the bot.
+You can access it in two ways:
+1. Using direct command: `/config module:Logs`
+2. Run `/config`, select **Administration & System**, then choose **Logs** in the dropdown.
+
+## What is the logs module for?
+
+The **Logs** module keeps a detailed record of all activity on your server. You can choose which events to monitor and which specific text channels will receive alerts.
+
+---
+
+## Module Configuration
+
+Once in the logs panel, click <span class="discord-element discord-btn-success">Add</span> to create a new configuration:
+
+<Steps>
+1. **Select text channel**: Use the dropdown <span class="discord-element discord-select">Select a channel... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+2. **Choose global categories**: In <span class="discord-element discord-select">Select categories... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select event categories (*Messages*, *Moderation*, *Members*, *Server*, *Voice*, *Threads*).
+3. **Refine selection (Optional)**: Use <span class="discord-element discord-select">Fine-tune a specific category... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+4. **Save**: Click <span class="discord-element discord-btn-success">Save</span> (or use <span class="discord-element discord-btn-primary">Enable all</span> / <span class="discord-element discord-btn-secondary">Disable all</span>).
+</Steps>
+
+<Aside type="tip" title="Channel Separation">
+You can configure up to 6 different channels for logs (e.g., `#logs-messages`, `#logs-moderation`).
+</Aside>

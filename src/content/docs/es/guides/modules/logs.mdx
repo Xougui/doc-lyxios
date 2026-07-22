@@ -1,0 +1,33 @@
+---
+slug: es/guides/modules/logs
+title: Logs
+description: Descubre cómo configurar el sistema de registros de Lyxios.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo de registros?
+
+Encontrarás el módulo de registros mediante el comando `/config` del bot.
+Puedes acceder de dos formas distintas:
+1. Usando el comando directo: `/config module:Logs`
+2. Ejecutando el comando `/config`, seleccionando la categoría **Administration & Système** y el módulo **Logs** en el menú desplegable.
+
+## ¿Para qué sirve el módulo de registros?
+
+El módulo de **Logs** permite guardar un historial detallado de toda la actividad de tu servidor (mensajes eliminados, sanciones, voz, etc.).
+
+---
+
+## Configuración del módulo
+
+Tras acceder al panel de registros, haz clic en el botón <span class="discord-element discord-btn-success">➕ Ajouter</span> para crear una nueva configuración:
+
+<Steps>
+1. **Seleccionar el canal de texto**: Usa el menú desplegable <span class="discord-element discord-select">Sélectionnez un salon... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> para definir dónde se enviarán los eventos.
+2. **Elegir las categorías globales**: En el menú desplegable <span class="discord-element discord-select">Sélectionnez les catégories... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige las categorías (*Messages*, *Modération*, *Membres*, etc.).
+3. **Ajustar selección (Opcional)**: En el menú <span class="discord-element discord-select">Affiner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, ajusta los eventos específicos.
+4. **Guardar**: Haz clic en el botón <span class="discord-element discord-btn-success">💾 Sauvegarder</span> (o usa <span class="discord-element discord-btn-primary">✅ Tout activer</span> / <span class="discord-element discord-btn-secondary">🚫 Tout désactiver</span>).
+</Steps>

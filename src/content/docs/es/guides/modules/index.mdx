@@ -1,0 +1,46 @@
+---
+slug: es/guides/modules/index
+title: Resumen de Módulos
+description: Descubre y configura todos los módulos disponibles en Lyxios.
+lastUpdated: 2026-07-22
+sidebar:
+  order: 0
+---
+
+import { LinkCard, CardGrid, Aside } from '@astrojs/starlight/components';
+
+¡Bienvenido al centro de configuración de módulos de Lyxios!
+Lyxios ofrece una amplia variedad de funciones (Seguridad, Moderación, Comunidad, Herramientas) para gestionar y dinamizar tu servidor de Discord.
+
+<Aside type="tip" title="El Panel de Control Centralizado">
+Toda la configuración se realiza mediante un único comando en tu servidor: `/config`.
+Al escribir este comando, Lyxios mostrará un menú interactivo por categorías para ajustar fácilmente los parámetros sin salir de Discord.
+</Aside>
+
+---
+
+## 🛡️ Seguridad & Moderación
+
+Protege tu servidor contra spam, raids y verifica a los nuevos miembros.
+
+<CardGrid>
+  <LinkCard
+    title="Captcha"
+    description="Verifica a los nuevos miembros con un sistema de captcha visual para bloquear bots."
+    href="/es/guides/modules/captcha/"
+  />
+</CardGrid>
+
+---
+
+## ⚙️ Administración & Sistema
+
+Gestiona la base de tu servidor, sigue la actividad de tus miembros y facilita el soporte.
+
+<CardGrid>
+  <LinkCard
+    title="Sistema de Tickets"
+    description="Crea y gestiona tickets de soporte completos con transcripts y sistema de atención."
+    href="/es/guides/modules/tickets/"
+  />
+</CardGrid>

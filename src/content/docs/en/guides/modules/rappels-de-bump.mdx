@@ -1,0 +1,34 @@
+---
+slug: en/guides/modules/rappels-de-bump
+title: Bump Reminders
+description: Documentation to configure and manage Disboard bump reminders.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Where to find the bump reminder module?
+
+Direct command: `/config module:Rappels de Bump`
+
+## What is it for?
+
+Monitors Disboard `/bump` commands, sends a thank-you message, and schedules a reminder 2 hours later.
+
+---
+
+## Module Configuration
+
+<Steps>
+1. **Enable or Disable**: Use <span class="discord-element discord-btn-success">✔️ Enable</span> or <span class="discord-element discord-btn-danger">✖️ Disable</span>.
+2. **Reminder message**: Click <span class="discord-element discord-btn-primary">Reminder Message</span>.
+3. **Thank you message**: Click <span class="discord-element discord-btn-primary">Thank You Message</span>.
+4. **Color**: Click <span class="discord-element discord-btn-primary">Color</span>.
+5. **Role mention**: Dropdown <span class="discord-element discord-select">Select a role to mention... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+6. **Remove mention**: Click <span class="discord-element discord-btn-secondary">Remove mention</span>.
+</Steps>
+
+<Aside type="note" title="Disboard Compatibility">
+Works exclusively with Disboard.
+</Aside>

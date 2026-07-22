@@ -1,0 +1,30 @@
+---
+slug: en/guides/demarrage/equipe
+title: The Team
+description: Discover the team members behind Lyxios.
+sidebar:
+  order: 4
+template: splash
+lastUpdated: 2026-07-22
+---
+import TeamList from '../../../../components/TeamList.jsx';
+import { Card, CardGrid, Steps, Aside, Badge } from '@astrojs/starlight/components';
+import { UserCog } from 'lucide-react';
+
+<style is:global>{`
+  .sl-markdown-content h2::before,
+  .sl-markdown-content h3::before,
+  .sl-markdown-content h4::before {
+      content: none !important;
+  }
+  starlight-toc nav li > a::before,
+  mobile-starlight-toc nav li > a::before {
+      content: none !important;
+  }
+`}</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+The **Lyxios** team consists of passionate individuals working daily to provide a high-performance, secure, and community-focused bot. Discover below the members who contribute to the project.
+
+<TeamList client:load />

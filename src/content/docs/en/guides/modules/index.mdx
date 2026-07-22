@@ -1,0 +1,51 @@
+---
+slug: en/guides/modules/index
+title: Modules Overview
+description: Discover and configure all modules available in Lyxios.
+lastUpdated: 2026-07-22
+sidebar:
+  order: 0
+---
+
+import { LinkCard, CardGrid, Aside } from '@astrojs/starlight/components';
+
+Welcome to the Lyxios module configuration center! 
+Lyxios offers a wide range of features (Security, Moderation, Community, Tools) to manage and enhance your Discord server.
+
+<Aside type="tip" title="Centralized Control Panel">
+All configuration is done via a single command on your server: `/config`.
+By typing this command, Lyxios will present an interactive menu categorized for easy server customization without leaving Discord!
+</Aside>
+
+---
+
+## 🛡️ Security & Moderation
+
+Protect your server against spam, raids, and verify new members.
+
+<CardGrid>
+  <LinkCard
+    title="Captcha"
+    description="Verify new members with a visual math captcha system to block bots and raids."
+    href="/en/guides/modules/captcha/"
+  />
+</CardGrid>
+
+---
+
+## ⚙️ Administration & System
+
+Manage your server's core foundation, track member activity, and handle support.
+
+<CardGrid>
+  <LinkCard
+    title="Tickets System"
+    description="Create and manage support tickets with transcripts, claim system, ratings, and private threads."
+    href="/en/guides/modules/tickets/"
+  />
+  <LinkCard
+    title="Logs System"
+    description="Keep detailed activity logs (deleted messages, moderation, voice activity) with smart channel separation."
+    href="/en/guides/modules/logs/"
+  />
+</CardGrid>

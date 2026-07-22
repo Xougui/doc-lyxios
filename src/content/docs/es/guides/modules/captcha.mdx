@@ -1,0 +1,70 @@
+---
+slug: es/guides/modules/captcha
+title: Captcha
+description: Aquí encontrarás toda la documentación relacionada con el módulo de captcha.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import { ChevronDown, Power, PowerOff, Settings, Hourglass, ChevronLeft, Lock, Goal } from 'lucide-react';
+import captchaFirstMessageImage from '../../../../../assets/exemples/captcha_first_message.png';
+import captchaEmojisImage from '../../../../../assets/exemples/captcha_emojis.png';
+
+## ¿Dónde encontrar el módulo de captcha?
+
+Puedes encontrar el módulo de captcha mediante el comando `/config` del bot.
+Puedes acceder a él de dos formas distintas:
+1. Usando el comando directo: `/config module:Captcha`
+2. Ejecutando el comando `/config`, seleccionando la categoría **Sécurité & Modération** y finalmente el módulo **Captcha** en el menú desplegable.
+
+## ¿Para qué sirve el módulo de captcha?
+
+El módulo de captcha protege tu servidor contra raids, bots y cuentas maliciosas. 
+Cuando un nuevo usuario entra al servidor, Lyxios le asigna un rol restrictivo y le pide resolver un desafío visual (un cálculo matemático insertado en una imagen) para obtener acceso completo al servidor.
+
+El módulo cuenta con dos modos de funcionamiento:
+* **Mode Strict** (Modo Estricto): Todos los nuevos miembros deben resolver obligatoriamente el captcha.
+* **Mode Ciblé** (Modo Dirigido): Solo las cuentas consideradas sospechosas (cuentas recién creadas o sin foto de perfil) deben resolverlo.
+
+---
+
+## Configuración del módulo
+
+El panel de configuración del Captcha contiene varias opciones y selectores para adaptar la seguridad a tus necesidades:
+
+<Steps>
+1. **Elegir el tipo de captcha**: En el menú desplegable <span class="discord-element discord-select">Choisir le type de captcha <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige el modo deseado:
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Lock size={14} /> **Strict**</span>: Verifica a todo el mundo.
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Goal size={14} /> **Ciblé**</span>: Verifica únicamente las cuentas sospechosas.
+2. **Definir el umbral de edad (Solo Modo Ciblé)**: Haz clic en el botón <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Seuil Âge</span> para definir el umbral en días (por ejemplo `7` días).
+3. **Configurar el rol restrictivo**: En el selector <span class="discord-element discord-select">Choisir le rôle restrictif (Unverified) <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona el rol non vérifié. Puedes usar el botón <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Créer & Configurer Permissions</span> para crear automáticamente el rol `Unverified`.
+4. **Configurar el canal de verificación**: En el selector <span class="discord-element discord-select">Choisir le salon de vérification <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona el canal de texto o haz clic en <span class="discord-element discord-btn-primary">Créer salon vérif</span>.
+5. **Configurar el canal de registros**: En el selector <span class="discord-element discord-select">Choisir le salon de logs <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona el canal donde se enviarán los resultados.
+6. **Activar el módulo**: Haz clic en el botón <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Activer le module</span> (o <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Désactiver le module</span> para desactivarlo).
+</Steps>
+
+<Aside type="caution" title="Configuración automática de permisos">
+El botón <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Créer & Configurer Permissions</span> ajusta automáticamente los permisos de tu servidor para ocultar el resto de canales al rol no verificado.
+</Aside>
+
+---
+
+## Funcionamiento para el nuevo usuario
+
+Cuando un miembro debe pasar la verificación:
+1. Lyxios le asigna el rol restrictivo (ej: `Unverified`).
+2. El bot envía un mensaje en el canal de verificación mencionando al usuario con el botón **Démarrer la vérification / Start Verification**.
+
+<Image src={captchaFirstMessageImage} alt="Mensaje de invitación a la verificación" style={{ margin: '1rem 0' }} />
+
+3. Al hacer clic, el bot genera una imagen con un cálculo matemático y 5 botones con emoticonos.
+4. El miembro hace clic en el botón correspondiente a la respuesta correcta.
+
+<Image src={captchaEmojisImage} alt="Pantalla del captcha matemático con emoticonos" style={{ margin: '1rem 0' }} />
+
+### Reglas y seguridad
+
+* **Tiempo límite**: El usuario dispone de **30 minutos** para resolver el captcha. De lo contrario, es expulsado automáticamente (kick).
+* **Intentos**: El usuario dispone de **3 intentos**.
+* **Limpieza automática**: Si el usuario abandona el servidor mientras el captcha está activo, se elimina el mensaje.

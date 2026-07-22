@@ -1,0 +1,41 @@
+---
+slug: en/guides/modules/salons-vocaux
+title: Voice Channels
+description: Full guide to configure temporary voice channels.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Where to find the voice channels module?
+
+You will find the temporary voice channels module in `/config`.
+Direct command: `/config module:Salons Vocaux`
+
+## What is it for?
+
+Allows members to automatically create their own private temporary voice channel when joining a designated Hub channel.
+
+---
+
+## Module Configuration
+
+<Steps>
+1. **Fast Setup**: Click <span class="discord-element discord-btn-primary">⚡ Fast Setup</span> to let the bot create the Hub and Category automatically.
+2. **Hub channel**: Dropdown <span class="discord-element discord-select">Select a voice channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+3. **Category**: Dropdown <span class="discord-element discord-select">Select a category <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+4. **Name Format**: Click <span class="discord-element discord-btn-secondary">📝 Set Name Format</span>.
+5. **Allowed Commands**: Dropdown <span class="discord-element discord-select">Manage Commands <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+6. **Reset**: Use <span class="discord-element discord-btn-danger">🗑️ Reset</span>.
+</Steps>
+
+<Aside type="tip" title="Member Control">
+Once inside their temporary channel, members can manage their room (rename, lock, limit) using allowed `/vocal` commands.
+</Aside>
+
+---
+
+## Formatting Variables
+
+* <Badge text="{user}" variant="note" />: Display name of the creator (e.g. `{user}'s Lounge`).
