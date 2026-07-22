@@ -2,10 +2,14 @@ version: 2
 updates:
   # Vérification des mises à jour des dépendances npm
   - package-ecosystem: "npm"
-    directory: "/"
+  - directory: "/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    groups:
+      npm-dependencies:
+        patterns:
+          - "*"
 
   # Vérification des mises à jour des GitHub Actions
   - package-ecosystem: "github-actions"
@@ -13,3 +17,8 @@ updates:
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 3
+    groups:
+      github-actions-dependencies:
+        patterns:
+          - "*"
+
