@@ -70,17 +70,35 @@ for (const file of files) {
 
 console.log(`Nombre total de fichiers avec un badge : ${badgeFiles.length}`);
 
+// Déterminer la langue du fichier selon le préfixe relatif (default: fr, en, es)
+function getLanguage(relativePath) {
+  if (relativePath.startsWith('en/')) return 'en';
+  if (relativePath.startsWith('es/')) return 'es';
+  return 'fr';
+}
+
 // 1. Détecter les badges expirés (> 30 jours)
 const expiredBadges = badgeFiles.filter(b => b.ageInDays > MAX_AGE_DAYS);
 const validBadges = badgeFiles.filter(b => b.ageInDays <= MAX_AGE_DAYS);
 
-// 2. Trier les badges valides par date (du plus récent au plus ancien)
-validBadges.sort((a, b) => b.badgeDate.getTime() - a.badgeDate.getTime());
+// Groupe par langue
+const badgesByLang = { fr: [], en: [], es: [] };
+for (const b of validBadges) {
+  const lang = getLanguage(b.relativePath);
+  badgesByLang[lang].push(b);
+}
 
-// Déterminer les badges à conserver et à supprimer
-const toKeep = validBadges.slice(0, MAX_BADGES);
-const overflowBadges = validBadges.slice(MAX_BADGES);
+const toKeep = [];
+const overflowBadges = [];
+
+for (const lang of Object.keys(badgesByLang)) {
+  badgesByLang[lang].sort((a, b) => b.badgeDate.getTime() - a.badgeDate.getTime());
+  toKeep.push(...badgesByLang[lang].slice(0, MAX_BADGES));
+  overflowBadges.push(...badgesByLang[lang].slice(MAX_BADGES));
+}
+
 const toRemove = [...expiredBadges, ...overflowBadges];
+
 
 if (expiredBadges.length > 0) {
   console.log(`\nBadges expirés (> ${MAX_AGE_DAYS} jours) :`);
