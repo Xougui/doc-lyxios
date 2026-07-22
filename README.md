@@ -46,9 +46,6 @@ Merci à toutes les personnes qui ont contribué au projet !
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-<a href="https://github.com/Xougui/doc-lyxios/graphs/contributors">
-  <img src="https://github.com/Xougui.png?size=64" width="50" height="50" style="border-radius: 50%;" alt="Xougui" title="Xougui" />
-</a>
 
 ## 📄 Licence
 
