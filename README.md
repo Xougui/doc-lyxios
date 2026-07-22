@@ -44,8 +44,8 @@ Toute contribution pour améliorer la documentation est la bienvenue ! Pour part
 
 Merci à toutes les personnes qui ont contribué au projet !
 
-<!-- README-BOT:START -->
-<!-- README-BOT:END -->
+<!-- readme-bot:start -->
+<!-- readme-bot:end -->
 
 ## 📄 Licence
 
