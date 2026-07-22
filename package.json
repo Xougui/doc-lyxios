@@ -15,8 +15,6 @@
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/starlight": "^0.41.3",
     "@astrojs/vercel": "^11.0.3",
-    "@keystatic/astro": "^5.2.0",
-    "@keystatic/core": "^0.5.51",
     "@tailwindcss/vite": "^4.3.2",
     "@types/mdast": "^4.0.4",
     "@types/unist": "^3.0.3",

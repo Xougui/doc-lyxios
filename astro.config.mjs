@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
-import keystatic from '@keystatic/astro';
 import sitemap from '@astrojs/sitemap';
 import { parse as parseJs } from 'acorn';
 import { unified } from '@astrojs/markdown-remark';
@@ -161,7 +160,6 @@ export default defineConfig({
 			],
 		}),
 		react(),
-		keystatic(),
 		sitemap(),
 	],
 });
