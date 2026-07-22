@@ -1,0 +1,39 @@
+---
+slug: guides/modules/rappels-de-bump
+title: Rappels de Bump
+description: Documentation complète pour configurer et gérer le module de rappel de bump Disboard.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Où trouver le module de rappels de bump ?
+
+Vous trouverez le module de rappels de bump dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons :
+1. En utilisant la commande directe : `/config module:Rappels de Bump`
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Utilitaires & Boost** et enfin le module **Rappels de Bump** dans le menu déroulant.
+
+## À quoi sert le module de rappels de bump ?
+
+Le module de rappels de bump surveille les commandes effectuées via l'application **Disboard** (`/bump`). Lorsqu'un membre effectue un bump, le bot envoie un message de remerciement automatique puis programme un rappel exactement 2 heures plus tard pour avertir le serveur qu'il est de nouveau possible de bump.
+
+---
+
+## Configuration du module
+
+Dans le panneau de configuration du rappel de bump, vous pouvez personnaliser les options suivantes :
+
+<Steps>
+1. **Activer ou désactiver le module** : Utilisez le bouton <span class="discord-element discord-btn-success">✔️ Activer</span> ou <span class="discord-element discord-btn-danger">✖️ Désactiver</span> pour basculer l'état du module.
+2. **Message de rappel** : Cliquez sur le bouton <span class="discord-element discord-btn-primary">Message de rappel</span> pour rédiger le texte envoyé 2 heures après le bump.
+3. **Message de remerciement** : Cliquez sur le bouton <span class="discord-element discord-btn-primary">Message de remerciement</span> pour personnaliser le message d'envoi immédiat après un bump réussi.
+4. **Couleur de l'embed** : Cliquez sur le bouton <span class="discord-element discord-btn-primary">Couleur</span> pour modifier la couleur des embeds envoyés (au format Hex, par exemple `FF0000`).
+5. **Rôle à mentionner** : Dans le menu déroulant <span class="discord-element discord-select">Sélectionner un rôle à mentionner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choisissez le rôle qui sera mentionné lors du rappel.
+6. **Retirer la mention** : Cliquez sur le bouton <span class="discord-element discord-btn-secondary">Supprimer la mention</span> si vous ne souhaitez plus mentionner de rôle particulier dans le rappel.
+</Steps>
+
+<Aside type="note" title="Compatibilité Disboard">
+Ce module fonctionne exclusivement avec le bot officiel **Disboard**. Il détecte automatiquement les bumps validés.
+</Aside>

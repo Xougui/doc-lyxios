@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run limit-badges && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check",
-    "verify": "npm run check && npm run build && npm audit"
+    "check": "node scripts/limit-badges.mjs --check && astro check",
+    "limit-badges": "node scripts/limit-badges.mjs",
+    "verify": "npm run check && npm run limit-badges && npm run build && npm audit"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.0.4",

@@ -1,0 +1,48 @@
+---
+slug: guides/modules/salons-vocaux
+title: Salons Vocaux
+description: Documentation complète pour configurer et gérer le module de salons vocaux temporaires.
+lastUpdated: 2026-07-22
+---
+
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
+import { ChevronDown } from 'lucide-react';
+
+## Où trouver le module des salons vocaux ?
+
+Vous trouverez le module des salons vocaux temporaires dans la commande `/config` du bot.
+Vous pouvez y accéder de deux façons :
+1. En utilisant la commande directe : `/config module:Salons Vocaux`
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Utilitaires & Boost** et enfin le module **Salons Vocaux** dans le menu déroulant.
+
+## À quoi sert le module des salons vocaux ?
+
+Le module de salons vocaux temporaires permet à vos membres de créer automatiquement leur propre salon vocal privé lorsqu'ils rejoignent un salon principal (le Hub).
+Dès qu'un membre rejoint le Hub, un nouveau salon vocal est créé instantanément et le membre y est déplacé. Le salon s'efface automatiquement dès qu'il devient vide.
+
+---
+
+## Configuration du module
+
+Dans le panneau de configuration des salons vocaux temporaires, vous disposez de plusieurs options pour paramétrer le système :
+
+<Steps>
+1. **Création automatique (Auto Setup)** : Cliquez sur le bouton <span class="discord-element discord-btn-primary">⚡ Setup Auto</span> pour laisser le bot créer automatiquement la catégorie et le salon Hub de création.
+2. **Le salon Hub** : Dans le menu déroulant <span class="discord-element discord-select">Sélectionner le salon Hub <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choisissez le salon vocal qui servira de point de création.
+3. **La catégorie d'accueil** : Dans le menu déroulant <span class="discord-element discord-select">Sélectionner la catégorie <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, indiquez la catégorie dans laquelle les salons temporaires seront générés.
+4. **Format du nom** : Cliquez sur le bouton <span class="discord-element discord-btn-secondary">📝 Nom des salons</span> pour personnaliser le format du nom des salons créés.
+5. **Permissions des commandes** : Dans le menu déroulant <span class="discord-element discord-select">Gérer les commandes autorisées <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, sélectionnez les commandes que les propriétaires de salon peuvent utiliser pour gérer leur salon vocal.
+6. **Activer ou désactiver** : Utilisez le bouton <span class="discord-element discord-btn-danger">🗑️ Supprimer la configuration</span> si vous souhaitez réinitialiser ou désactiver le module.
+</Steps>
+
+<Aside type="tip" title="Gestion par les membres">
+Une fois dans leur salon temporaire, les membres peuvent adapter leur salon (changer le nom, verrouiller l'accès, modifier la limite de places) selon les commandes autorisées par l'administration.
+</Aside>
+
+---
+
+## Variables disponibles pour le nom du salon
+
+Lors de la personnalisation du nom des salons, vous pouvez utiliser la variable suivante :
+
+* <Badge text="{user}" variant="note" /> : Affiche le nom d'affichage du membre créateur du salon (ex: `Salon de Lyxios`).
