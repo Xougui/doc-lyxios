@@ -634,12 +634,18 @@ h3 {
     opacity: 0.9;
 }
 
+
+
 /* Liens vers les pages (en Roboto) */
 .sidebar-pane a,
 .sidebar-content a {
     font-size: 0.95rem !important;
     font-weight: 400 !important;
     font-family: 'Roboto', sans-serif !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
 }
 
 .sidebar-pane a:hover,
@@ -738,6 +744,8 @@ mobile-starlight-toc nav > ul > li:first-child > a::before {
     align-items: center !important;
     justify-content: center !important;
     vertical-align: middle !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
 }
 
 /* Note / Mis à jour (Bleu Premium) */

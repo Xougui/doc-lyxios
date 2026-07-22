@@ -8,3 +8,14 @@ const { head } = Astro.locals.starlightRoute;
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
 <Analytics />
 <SpeedInsights />
+
+<script>
+  // Ouvrir automatiquement les sections de la sidebar contenant un badge (.sl-badge) au chargement de la page
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sidebar-pane details, .sidebar-content details').forEach((details) => {
+      if (details.querySelector('.sl-badge')) {
+        details.open = true;
+      }
+    });
+  });
+</script>

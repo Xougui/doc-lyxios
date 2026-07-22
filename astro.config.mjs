@@ -125,7 +125,7 @@ export default defineConfig({
 						{ label: 'Sommaire', link: 'guides/modules/' },
 						{
 							label: 'Sécurité & Modération',
-							collapsed: false,
+							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Modération' } }]
 						},
 						{
@@ -135,7 +135,7 @@ export default defineConfig({
 						},
 						{
 							label: 'Administration & Système',
-							collapsed: false,
+							collapsed: true,
 							items: [{ autogenerate: { directory: 'guides/modules/Administration & Système' } }]
 						},
 						{
@@ -147,12 +147,12 @@ export default defineConfig({
 				},
 				{
 					label: 'Autres fonctionnalités',
-					collapsed: false,
+					collapsed: true,
 					items: [{ autogenerate: { directory: 'guides/autres' } }]
 				},
 				{
 					label: 'Légal & Informations',
-					collapsed: true,
+					collapsed: false,
 					items: [
 						{ label: 'Conditions d\'utilisation', link: 'legal/terms-of-service' },
 						{ label: 'Politique de confidentialité', link: 'legal/privacy-policy' },
