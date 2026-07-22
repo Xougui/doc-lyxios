@@ -44,8 +44,8 @@ Toute contribution pour améliorer la documentation est la bienvenue ! Pour part
 
 Merci à toutes les personnes qui ont contribué au projet !
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- README-BOT:START -->
+<!-- README-BOT:END -->
 
 ## 📄 Licence
 
