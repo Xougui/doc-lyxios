@@ -94,6 +94,9 @@ export default defineConfig({
 		starlight({
 			title: 'Lyxios Docs',
 			disable404Route: true,
+			editLink: {
+				baseUrl: 'https://github.com/Xougui/doc-lyxios/edit/main/',
+			},
 			logo: {
 				light: './src/assets/logo_light.svg',
 				dark: './src/assets/logo_dark.svg',
