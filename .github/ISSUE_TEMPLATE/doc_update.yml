@@ -2,8 +2,6 @@ name: Modification ou ajout de documentation
 description: Signaler une erreur, une omission ou proposer une nouvelle page de documentation
 title: "[DOC] "
 labels: ["documentation"]
-assignees: []
-
 body:
   - type: markdown
     attributes:

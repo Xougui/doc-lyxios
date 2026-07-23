@@ -1,0 +1,33 @@
+# Configuration du labeler automatique pour les PRs
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: 'src/content/docs/**/*'
+
+i18n:
+  - changed-files:
+      - any-glob-to-any-file: 'src/content/docs/{en,es}/**/*'
+
+fr-doc:
+  - changed-files:
+      - any-glob-to-any-file: 'src/content/docs/guides/**/*'
+
+en-doc:
+  - changed-files:
+      - any-glob-to-any-file: 'src/content/docs/en/**/*'
+
+es-doc:
+  - changed-files:
+      - any-glob-to-any-file: 'src/content/docs/es/**/*'
+
+configuration:
+  - changed-files:
+      - any-glob-to-any-file: ['astro.config.mjs', 'tsconfig.json']
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ['package.json', 'package-lock.json']
+
+github_actions:
+  - changed-files:
+      - any-glob-to-any-file: '.github/**/*'

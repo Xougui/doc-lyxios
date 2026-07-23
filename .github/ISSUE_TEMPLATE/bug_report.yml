@@ -1,0 +1,22 @@
+name: Rapport de Bug
+description: Signaler un dysfonctionnement ou une erreur sur le site de documentation
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Signalez un bug d'affichage, un lien cassé ou un problème de build.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du problème
+      placeholder: Décrivez le problème rencontré...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Navigateur / Environnement
+      placeholder: ex: Chrome, Firefox, Mobile iOS...
+    validations:
+      required: false
