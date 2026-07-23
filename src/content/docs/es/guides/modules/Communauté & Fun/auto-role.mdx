@@ -1,0 +1,96 @@
+---
+slug: es/guides/modules/auto-role
+title: Auto Role
+description: Aprende a configurar la asignación automática de roles en Lyxios.
+lastUpdated: 2026-07-23
+sidebar:
+  badge:
+    text: Nuevo
+    variant: success
+---
+
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { ChevronDown, RefreshCw, Hourglass, SquarePen, ChevronLeft } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo Auto Role?
+
+Puedes encontrar el módulo Auto Role en el comando `/config` del bot.
+Puedes acceder a él de dos formas diferentes:
+1. Usando el comando directo: `/config module:Auto Role`
+2. Ejecutando `/config`, seleccionando la categoría **Comunidad & Entretenimiento** y eligiendo el módulo **Auto Role** en el menú desplegable.
+
+También puedes iniciar directamente una resincronización rápida con el comando slash dedicado: `/autorole sync`.
+
+## ¿Para qué sirve el módulo Auto Role?
+
+El módulo **Auto Role** permite asignar y retirar automáticamente roles a los miembros de tu servidor según 4 eventos distintos:
+- **🎭 Arrivée (Join)** : Asigna uno o varios roles tan pronto como un miembro se une al servidor (de forma permanente o por una duración temporal).
+- **💬 Statut personnalisé (Status)** : Asigna rol(es) si el miembro muestra una palabra clave específica en su estado personalizado de Discord (ej: la invitación de tu servidor). El rol se retira si la palabra clave desaparece.
+- **🏷️ Guild Tag (Clan Tag)** : Asigna uno o varios roles a los miembros que llevan la etiqueta oficial de Gremio/Clan de tu servidor.
+- **🚀 Boost Serveur (Boost)** : Asigna automáticamente roles a los miembros que mejoran (boost) el servidor y los retira cuando la mejora termina.
+
+---
+
+## Funcionamiento general & Controles rápidos
+
+En el panel principal del módulo, dispones de los siguientes controles:
+
+- **Botón de activación general** : <span class="discord-element discord-btn-success">Module: ON</span> / <span class="discord-element discord-btn-danger">Module: OFF</span> permite activar o suspender todos los submódulos de Auto Role.
+- **Botón de resincronización** : <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Resynchroniser tous les membres</span> permite escanear a todos los miembros del servidor y aplicar inmediatamente los roles según la configuración activa. *(Equivalente a `/autorole sync`)*.
+- **Selector de categoría** : En el menú desplegable <span class="discord-element discord-select">Choisir une catégorie à configurer... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige el submódulo a configurar (**Arrivée**, **Statut personnalisé**, **Guild Tag**, o **Boost Serveur**).
+
+En cada submenú de categoría, el botón <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Retour</span> te permite regresar en cualquier momento al menú principal de Auto Role.
+
+---
+
+## Configuración de submódulos
+
+### 🎭 1. Rôles à l'arrivée (Join)
+
+Gestiona la bienvenida de los nuevos miembros otorgándoles roles iniciales.
+
+<Steps>
+1. **Activar el submódulo** : Haz clic en el botón <span class="discord-element discord-btn-success">Join: ON</span> o <span class="discord-element discord-btn-danger">Join: OFF</span>.
+2. **Definir la duración (Opcional)** : Haz clic en el botón <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Durée Join</span> para abrir un formulario. Indica la duración en minutos (ej: `60` para 1 hora). Deja `0` para asignación permanente. Si se configura una duración, una tarea automática retirará el rol una vez transcurrido el tiempo.
+3. **Seleccionar los roles** : En el menú desplegable <span class="discord-element discord-select">Rôles à l'arrivée <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige hasta 5 roles para asignar automáticamente.
+</Steps>
+
+### 💬 2. Rôles sur Statut personnalisé (Status)
+
+Recompensa a los miembros que promocionan tu servidor en su estado personalizado de Discord.
+
+<Steps>
+1. **Activar el submódulo** : Haz clic en el botón <span class="discord-element discord-btn-success">Statut: ON</span> o <span class="discord-element discord-btn-danger">Statut: OFF</span>.
+2. **Configurar la palabra clave** : Haz clic en el botón <span class="discord-element discord-btn-secondary"><SquarePen size={14} style={{ marginRight: '4px' }} /> Mot-clé Statut</span> e ingresa el texto a buscar en el estado de los miembros (ej: `discord.gg/miservidor`).
+3. **Seleccionar los roles** : En el menú desplegable <span class="discord-element discord-select">Rôles sur Statut <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige hasta 5 roles a otorgar.
+</Steps>
+
+<Aside type="caution" title="Autorización de Discord requerida (Presences Intent)">
+La detección del estado personalizado requiere la autorización del intent `Presences` por parte de Discord. Si este intent no está activo en el bot, este submódulo mostrará una advertencia y permanecerá bloqueado.
+</Aside>
+
+### 🏷️ 3. Rôles sur Guild Tag (Clan Tag)
+
+Otorga roles exclusivos a los miembros que portan el Tag oficial de tu Gremio/Clan de Discord.
+
+<Steps>
+1. **Activar el submódulo** : Haz clic en el botón <span class="discord-element discord-btn-success">Tag: ON</span> o <span class="discord-element discord-btn-danger">Tag: OFF</span>.
+2. **Seleccionar los roles** : En el menú desplegable <span class="discord-element discord-select">Rôles sur Guild Tag <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige hasta 5 roles asociados al Tag.
+</Steps>
+
+### 🚀 4. Rôles sur Boost Serveur (Boost)
+
+Recompensa automáticamente a los Boosters de tu servidor.
+
+<Steps>
+1. **Activar el submódulo** : Haz clic en el botón <span class="discord-element discord-btn-success">Boost: ON</span> o <span class="discord-element discord-btn-danger">Boost: OFF</span>.
+2. **Seleccionar los roles** : En el menú desplegable <span class="discord-element discord-select">Rôles sur Boost <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, asigna hasta 5 roles reservados a los boosters. En cuanto un miembro deja de hacer boost, el rol se revoca automáticamente.
+</Steps>
+
+---
+
+<Aside type="caution" title="Jerarquía de Roles & Permisos">
+Para que el módulo Auto Role funcione correctamente:
+1. El bot debe tener el permiso **Gestionar roles** (`Manage Roles`).
+2. El rol asignado al bot Lyxios en los **Ajustes del servidor > Roles** de Discord debe ubicarse **más arriba en la lista** que los roles que debe asignar. Discord prohíbe a cualquier bot asignar roles superiores o iguales a su rol más alto.
+</Aside>

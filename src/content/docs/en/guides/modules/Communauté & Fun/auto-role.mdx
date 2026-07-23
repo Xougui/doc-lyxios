@@ -1,0 +1,96 @@
+---
+slug: en/guides/modules/auto-role
+title: Auto Role
+description: Learn how to configure automatic role assignment in Lyxios.
+lastUpdated: 2026-07-23
+sidebar:
+  badge:
+    text: New
+    variant: success
+---
+
+import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { ChevronDown, RefreshCw, Hourglass, SquarePen, ChevronLeft } from 'lucide-react';
+
+## Where to find the Auto Role module?
+
+You can find the Auto Role module in the bot's `/config` command.
+You can access it in two different ways:
+1. Using the direct command: `/config module:Auto Role`
+2. Running `/config`, selecting the **Community & Fun** category, and picking the **Auto Role** module from the dropdown.
+
+You can also trigger a quick resynchronization directly with the dedicated slash command: `/autorole sync`.
+
+## What is the Auto Role module for?
+
+The **Auto Role** module automatically assigns and removes roles for members on your server based on 4 distinct triggers:
+- **🎭 Join Auto Roles** : Assigns one or multiple roles as soon as a member joins the server (permanently or temporarily).
+- **💬 Custom Status Roles** : Assigns role(s) if a member has a specific keyword in their Discord custom status (e.g., your server invite). The role is removed when the status keyword is removed.
+- **🏷️ Guild Tag Roles** : Assigns role(s) to members displaying your server's official Discord Guild/Clan Tag.
+- **🚀 Server Boost Roles** : Automatically assigns role(s) to server boosters and revokes them as soon as their boost ends.
+
+---
+
+## Overview & Quick Controls
+
+In the main panel of the module, you have access to the following controls:
+
+- **Global Toggle Switch** : <span class="discord-element discord-btn-success">Module: ON</span> / <span class="discord-element discord-btn-danger">Module: OFF</span> enables or disables all Auto Role sub-modules.
+- **Resync Button** : <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Resync all members</span> immediately scans all server members and applies roles according to active configurations. *(Equivalent to `/autorole sync`)*.
+- **Category Select Dropdown** : In the dropdown menu <span class="discord-element discord-select">Select a category to configure... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select the feature you want to set up (**Join**, **Custom Status**, **Guild Tag**, or **Server Boost**).
+
+In each category sub-menu, the <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Back</span> button allows you to return to the main Auto Role menu at any time.
+
+---
+
+## Sub-module Configuration
+
+### 🎭 1. Join Auto Roles
+
+Manages welcoming new members by granting them initial roles.
+
+<Steps>
+1. **Toggle sub-module** : Click the <span class="discord-element discord-btn-success">Join: ON</span> or <span class="discord-element discord-btn-danger">Join: OFF</span> button.
+2. **Set duration (Optional)** : Click the <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Join Duration</span> button. Enter the duration in minutes (e.g., `60` for 1 hour). Leave `0` for permanent assignment. If a temporary duration is set, a background task automatically removes the role when time expires.
+3. **Select roles** : Use the dropdown menu <span class="discord-element discord-select">Select join roles <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to choose up to 5 roles to grant automatically.
+</Steps>
+
+### 💬 2. Custom Status Roles
+
+Reward members who promote your server in their Discord custom status.
+
+<Steps>
+1. **Toggle sub-module** : Click the <span class="discord-element discord-btn-success">Statut: ON</span> or <span class="discord-element discord-btn-danger">Statut: OFF</span> button.
+2. **Set keyword** : Click the <span class="discord-element discord-btn-secondary"><SquarePen size={14} style={{ marginRight: '4px' }} /> Status Keyword</span> button and enter the text to detect in members' statuses (e.g., `discord.gg/myserver`).
+3. **Select roles** : Use the dropdown menu <span class="discord-element discord-select">Select status roles <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to choose up to 5 roles to grant.
+</Steps>
+
+<Aside type="caution" title="Required Discord Authorization (Presences Intent)">
+Custom status detection requires the `Presences` Intent approval from Discord. If this intent is not active on the bot, this sub-module will display a warning and remain locked.
+</Aside>
+
+### 🏷️ 3. Guild Tag Roles
+
+Grant exclusive roles to members displaying your server's official Guild/Clan Tag.
+
+<Steps>
+1. **Toggle sub-module** : Click the <span class="discord-element discord-btn-success">Tag: ON</span> or <span class="discord-element discord-btn-danger">Tag: OFF</span> button.
+2. **Select roles** : Use the dropdown menu <span class="discord-element discord-select">Select Guild Tag roles <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to pick up to 5 roles linked to the Tag.
+</Steps>
+
+### 🚀 4. Server Boost Roles
+
+Automatically reward your server boosters.
+
+<Steps>
+1. **Toggle sub-module** : Click the <span class="discord-element discord-btn-success">Boost: ON</span> or <span class="discord-element discord-btn-danger">Boost: OFF</span> button.
+2. **Select roles** : Use the dropdown menu <span class="discord-element discord-select">Select Boost roles <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to assign up to 5 booster roles. The roles are automatically removed if a member stops boosting.
+</Steps>
+
+---
+
+<Aside type="caution" title="Role Hierarchy & Permissions">
+For the Auto Role module to operate properly:
+1. The bot must have the **Manage Roles** permission (`Manage Roles`).
+2. The role assigned to the Lyxios bot in Discord's **Server Settings > Roles** must be positioned **higher in the role hierarchy** than the roles it is configured to manage. Discord prevents bots from assigning roles that are equal to or higher than their highest role.
+</Aside>
