@@ -2,11 +2,15 @@
 slug: guides/modules/logs
 title: Logs
 description: Découvrez comment configurer le système de logs de Lyxios.
-lastUpdated: 2026-07-16
+lastUpdated: 2026-08-08
+sidebar:
+  badge:
+    text: MÀJ
+    variant: note
 ---
 
 import { Aside, Steps, Badge } from '@astrojs/starlight/components';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, RotateCcw, UserX, Gavel, Trash2 } from 'lucide-react';
 
 ## Où trouver le module des logs ?
 
@@ -23,9 +27,14 @@ Le module de **Logs** permet de garder une trace détaillée de toute l'activit�
 
 ## Configuration du module
 
-Une fois que vous avez accédé au panneau des logs, cliquez sur le bouton <span class="discord-element discord-btn-success">➕ Ajouter</span> pour créer une nouvelle configuration.
+Depuis le panneau principal des logs, vous disposez de trois actions rapides :
+* <span class="discord-element discord-btn-success">➕ Ajouter</span> : Créer manuellement une nouvelle configuration de salon de logs.
+* <span class="discord-element discord-btn-primary">⚡ Config. rapide</span> : Générer automatiquement l'ensemble des salons de logs recommandés au sein d'une catégorie Discord de votre choix.
+* <span class="discord-element discord-btn-danger">🗑️ Réinitialiser</span> : Effacer l'ensemble de vos configurations de logs en une seule étape (avec option de suppression des salons).
 
-Voici les différentes étapes pour paramétrer votre configuration :
+### Configuration manuelle
+
+Si vous choisissez de configurer manuellement un salon, voici les étapes à suivre :
 
 <Steps>
 1. **Sélectionner le salon textuel** : Utilisez le menu déroulant <span class="discord-element discord-select">Sélectionnez un salon... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> pour définir dans quel salon textuel les événements seront envoyés.
@@ -36,8 +45,18 @@ Voici les différentes étapes pour paramétrer votre configuration :
 </Steps>
 
 <Aside type="tip" title='Séparation des salons'>
-Lyxios permet de créer jusqu'à 6 configurations différentes. Nous vous recommandons de les utiliser pour créer des salons dédiés (par exemple : `#logs-messages`, `#logs-modération`) afin d'éviter de surcharger un seul salon avec trop d'informations.
+Lyxios permet de créer jusqu'à 6 configurations différentes. Nous vous recommandons de les utiliser pour créer des salons dédiés (par exemple : `#logs-messages`, `#logs-modération`) afin d'éviter de surcharger un seul salon avec trop d'informations. La **Configuration rapide** permet d'installer ce découpage recommandé en un seul clic !
 </Aside>
+
+---
+
+## Boutons d'Action & Rollback dans les Logs
+
+Sur les messages de logs envoyés par Lyxios, des boutons d'action contextuels et de modération directe permettent aux modérateurs et administrateurs de réagir instantanément sans quitter le salon :
+
+* <span class="discord-element discord-btn-secondary"><RotateCcw size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Annuler l'exclusion temporaire</span> / <span class="discord-element discord-btn-secondary"><RotateCcw size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Débannir</span> : Permet de réaliser un rollback immédiat sur une sanction appliquée.
+* <span class="discord-element discord-btn-secondary"><UserX size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Expulser</span> / <span class="discord-element discord-btn-danger"><Gavel size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Bannir</span> : Modération rapide sur un membre ciblé dans une alerte.
+* <span class="discord-element discord-btn-danger"><Trash2 size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Supprimer le message</span> : Permet de supprimer immédiatement un message signalé par les logs.
 
 ---
 
@@ -46,10 +65,11 @@ Lyxios permet de créer jusqu'à 6 configurations différentes. Nous vous recomm
 Lyxios vous permet de segmenter vos logs selon différentes catégories principales. Voici les catégories disponibles lors de la configuration :
 
 * <Badge text="Membres" variant="note" /> : Arrivées, départs, changements de pseudos, mises à jour des rôles et avatars.
-* <Badge text="Messages" variant="note" /> : Messages modifiés et messages supprimés.
-* <Badge text="Modération" variant="note" /> : Avertissements (warns), expulsions (kicks), bannissements (bans) et expulsions temporaires (timeouts).
-* <Badge text="Salons Vocaux" variant="note" /> : Connexions, déconnexions et déplacements entre les salons vocaux.
-* <Badge text="Serveur" variant="note" /> : Modifications des paramètres du serveur, créations, modifications ou suppressions de salons, rôles et emojis.
+* <Badge text="Messages" variant="note" /> : Messages modifiés, messages supprimés, suppression en masse (purge), épinglages et détection des Ghost Pings.
+* <Badge text="Modération" variant="note" /> : Avertissements (warns), expulsions (kicks), bannissements (bans), expulsions temporaires (timeouts) et détection des pics d'activité suspects.
+* <Badge text="Salons Vocaux" variant="note" /> : Connexions, déconnexions, déplacements, mutes/sourdines serveur et streams/caméras.
+* <Badge text="Serveur" variant="note" /> : Modifications des paramètres du serveur, créations, modifications ou suppressions de salons, rôles, emojis, stickers, invites et webhooks.
+* <Badge text="Threads" variant="note" /> : Création, modification et suppression de fils de discussion.
 
 ---
 

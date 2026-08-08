@@ -2,11 +2,15 @@
 slug: es/guides/modules/logs
 title: Logs
 description: Descubre cómo configurar el sistema de registros de Lyxios.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-08-08
+sidebar:
+  badge:
+    text: Actualizado
+    variant: note
 ---
 
 import { Aside, Steps, Badge } from '@astrojs/starlight/components';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, RotateCcw, UserX, Gavel, Trash2 } from 'lucide-react';
 
 ## ¿Dónde encontrar el módulo de registros?
 
@@ -17,17 +21,62 @@ Puedes acceder de dos formas distintas:
 
 ## ¿Para qué sirve el módulo de registros?
 
-El módulo de **Logs** permite guardar un historial detallado de toda la actividad de tu servidor (mensajes eliminados, sanciones, voz, etc.).
+El módulo de **Logs** permite guardar un historial detallado de toda la actividad de tu servidor (mensajes eliminados, sanciones, voz, etc.). El sistema permite crear hasta 6 configuraciones distintas para separar los canales de registros.
 
 ---
 
 ## Configuración del módulo
 
-Tras acceder al panel de registros, haz clic en el botón <span class="discord-element discord-btn-success">➕ Ajouter</span> para crear una nueva configuración:
+Desde el panel principal de registros, dispones de tres acciones rápidas:
+* <span class="discord-element discord-btn-success">➕ Ajouter</span>: Crear manualmente una nueva configuración de canal de registros.
+* <span class="discord-element discord-btn-primary">⚡ Config. rapide</span>: Generar automáticamente todos los canales de registros recomendados en una categoría de Discord.
+* <span class="discord-element discord-btn-danger">🗑️ Réinitialiser</span>: Eliminar todas tus configuraciones de registros en un solo paso (con opción de borrar los canales).
+
+### Configuración manual
+
+Si prefieres configurar un canal manualmente, sigue estos pasos:
 
 <Steps>
 1. **Seleccionar el canal de texto**: Usa el menú desplegable <span class="discord-element discord-select">Sélectionnez un salon... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> para definir dónde se enviarán los eventos.
-2. **Elegir las categorías globales**: En el menú desplegable <span class="discord-element discord-select">Sélectionnez les catégories... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige las categorías (*Messages*, *Modération*, *Membres*, etc.).
-3. **Ajustar selección (Opcional)**: En el menú <span class="discord-element discord-select">Affiner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, ajusta los eventos específicos.
-4. **Guardar**: Haz clic en el botón <span class="discord-element discord-btn-success">💾 Sauvegarder</span> (o usa <span class="discord-element discord-btn-primary">✅ Tout activer</span> / <span class="discord-element discord-btn-secondary">🚫 Tout désactiver</span>).
+2. **Elegir las categorías globales**: En el menú desplegable <span class="discord-element discord-select">Sélectionnez les catégories... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige las categorías (*Messages*, *Modération*, *Membres*, etc.). Por defecto, todos los eventos de las categorías seleccionadas estarán activos.
+3. **Ajustar selección (Opcional)**: En el menú <span class="discord-element discord-select">Affiner... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona la categoría a modificar.
+4. **Seleccionar subcategorías (Opcional)**: En el menú <span class="discord-element discord-select">Options <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige los eventos específicos que deseas registrar.
+5. **Guardar**: Haz clic en el botón <span class="discord-element discord-btn-success">💾 Sauvegarder</span> (o usa los botones <span class="discord-element discord-btn-primary">✅ Tout activer</span> / <span class="discord-element discord-btn-secondary">🚫 Tout désactiver</span>).
 </Steps>
+
+<Aside type="tip" title="Separación de Canales">
+Puedes configurar hasta 6 canales de registros diferentes. ¡La **Config. rapide** realiza esta configuración recomendada automáticamente en un solo clic!
+</Aside>
+
+---
+
+## Botones de Acción y Rollback en los Logs
+
+Los mensajes de registros enviados por Lyxios incluyen botones de acción contextual para que los moderadores y administradores actúen inmediatamente:
+
+* <span class="discord-element discord-btn-secondary"><RotateCcw size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Annuler l'exclusion temporaire</span> / <span class="discord-element discord-btn-secondary"><RotateCcw size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Débannir</span>: Revoca de inmediato una sanción aplicada.
+* <span class="discord-element discord-btn-secondary"><UserX size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Expulser</span> / <span class="discord-element discord-btn-danger"><Gavel size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Bannir</span>: Aplica moderación rápida al usuario objetivo de la alerta.
+* <span class="discord-element discord-btn-danger"><Trash2 size={14} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Supprimer le message</span>: Elimina inmediatamente el mensaje reportado en el registro.
+
+---
+
+## Categorías de eventos
+
+Lyxios permite segmentar los registros según diferentes categorías principales:
+
+* <Badge text="Membres" variant="note" />: Entradas, salidas, cambios de apodo, actualizaciones de roles y avatares.
+* <Badge text="Messages" variant="note" />: Mensajes editados, mensajes eliminados, eliminación masiva (purge), mensajes fijados y detección de Ghost Pings.
+* <Badge text="Modération" variant="note" />: Advertencias (warns), expulsiones (kicks), baneos (bans), aislamiento (timeouts) y detección de picos de actividad sospechosos.
+* <Badge text="Salons Vocaux" variant="note" />: Conexiones, desconexiones, desplazamientos, silenciamientos/sordera de servidor y transmisiones/cámara.
+* <Badge text="Serveur" variant="note" />: Cambios en los ajustes del servidor, creación/modificación/eliminación de canales, roles, emojis, stickers, invitaciones y webhooks.
+* <Badge text="Threads" variant="note" />: Creación, modificación y eliminación de hilos de discusión.
+
+---
+
+## Seguridad y Permisos
+
+<Aside type="caution" title="Canales Privados">
+Asegúrate de restringir el acceso a tus canales de registros únicamente a tu equipo de administración y moderación.
+</Aside>
+
+Asegúrate de que Lyxios tenga los permisos de **Ver canal**, **Enviar mensajes** e **Insertar enlaces** en los canales de registros. Sin estos permisos, los eventos no podrán enviarse.
