@@ -2,7 +2,7 @@
 slug: en/guides/modules/index
 title: Modules Overview
 description: Discover and configure all modules available in Lyxios.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-08-25
 sidebar:
   order: 0
 ---
@@ -14,12 +14,12 @@ Lyxios offers a wide range of features (Security, Moderation, Community, Tools) 
 
 <Aside type="tip" title="Centralized Control Panel">
 All configuration is done via a single command on your server: `/config`.
-By typing this command, Lyxios will present an interactive menu categorized for easy server customization without leaving Discord!
+By typing this command, Lyxios will present an interactive menu categorized into 5 main sections for easy server customization without leaving Discord!
 </Aside>
 
 ---
 
-## 🛡️ Security & Moderation
+## 🚨 Security & Protection
 
 Protect your server against spam, raids, and verify new members.
 
@@ -33,31 +33,7 @@ Protect your server against spam, raids, and verify new members.
 
 ---
 
-## ⚙️ Administration & System
-
-Manage your server's core foundation, track member activity, and handle support.
-
-<CardGrid>
-  <LinkCard
-    title="Tickets"
-    description="Create and manage support tickets with transcripts, claim system, ratings, and private threads."
-    href="/en/guides/modules/tickets/"
-  />
-  <LinkCard
-    title="Logs"
-    description="Keep detailed activity logs (deleted messages, moderation, voice activity) with smart channel separation."
-    href="/en/guides/modules/logs/"
-  />
-  <LinkCard
-    title="Member Counter"
-    description="Display your real-time stats in locked channels at the top of your server."
-    href="/en/guides/modules/compteur-de-membres/"
-  />
-</CardGrid>
-
----
-
-## 👥 Community & Fun
+## 🌿 Welcome & Messaging
 
 Engage your server and welcome members in the best way.
 
@@ -67,6 +43,15 @@ Engage your server and welcome members in the best way.
     description="Warmly welcome new members with custom dynamic messages and card banners."
     href="/en/guides/modules/bienvenue/"
   />
+</CardGrid>
+
+---
+
+## 🎁 Engagement & Rewards
+
+Reward community activity and automate role management.
+
+<CardGrid>
   <LinkCard
     title="Auto Role"
     description="Automatically assign roles on join (with temporary duration), custom status keyword, Guild Tag, or Server Boost."
@@ -76,19 +61,49 @@ Engage your server and welcome members in the best way.
 
 ---
 
-## 🛠️ Utilities & Boost
+## 📊 Administration & Management
 
-Useful tools to automate your server tasks and voice channels.
+Manage your server's core foundation, track member activity, and handle support.
+
+<CardGrid>
+  <LinkCard
+    title="Tickets"
+    description="Create and manage support tickets with high-fidelity transcripts, reason-based routing, claim system, and ratings."
+    href="/en/guides/modules/tickets/"
+  />
+  <LinkCard
+    title="Logs"
+    description="Keep detailed activity logs (deleted messages, moderation, HD avatars, detailed pins) with smart channel separation."
+    href="/en/guides/modules/logs/"
+  />
+  <LinkCard
+    title="Member Counter"
+    description="Display your real-time stats in locked channels at the top of your server."
+    href="/en/guides/modules/compteur-de-membres/"
+  />
+  <LinkCard
+    title="Temporary Voice"
+    description="Allow your members to automatically create and manage private temporary voice channels."
+    href="/en/guides/modules/salons-vocaux/"
+  />
+</CardGrid>
+
+---
+
+## 🚀 Utilities & Visibility
+
+Useful tools to automate recurrent server tasks and boost visibility.
 
 <CardGrid>
   <LinkCard
     title="Bump Reminders"
-    description="Schedule automatic reminders 2 hours after a Disboard bump."
+    description="Never miss a Disboard bump with automatic thank-you messages and 2-hour reminder alerts."
     href="/en/guides/modules/rappels-de-bump/"
   />
-  <LinkCard
-    title="Voice Channels"
-    description="Allow members to automatically create temporary private voice channels."
-    href="/en/guides/modules/salons-vocaux/"
-  />
 </CardGrid>
+
+---
+
+<Aside type="note" title="More modules are being documented!">
+We are actively working on documenting all other modules (Economy, Confessions, Starboard, etc.).
+</Aside>

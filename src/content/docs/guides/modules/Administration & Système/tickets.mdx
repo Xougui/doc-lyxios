@@ -2,7 +2,11 @@
 slug: guides/modules/tickets
 title: Tickets
 description: "Découvrez comment les tickets fonctionnent dans Lyxios, comment les créer, les gérer et les utiliser pour suivre les problèmes, les demandes de fonctionnalités et les tâches au sein de votre projet."
-lastUpdated: 2026-07-18
+lastUpdated: 2026-08-25
+sidebar:
+  badge:
+    text: MÀJ
+    variant: note
 ---
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
@@ -13,7 +17,7 @@ import { ChevronDown, RefreshCw, PowerOff } from 'lucide-react';
 Vous trouverez le module de tickets dans la commande `/config` du bot.
 Vous pouvez y accéder de deux façons différentes :
 1. En utilisant la commande directe : `/config module:Tickets`
-2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Système** et enfin le module **Tickets** dans le menu déroulant.
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Gestion** et enfin le module **Tickets** dans le menu déroulant.
 
 ## À quoi sert le module de tickets ?
 
@@ -45,14 +49,16 @@ En sélectionnant une option, vous ouvrirez un formulaire ou un sous-menu pour l
 
 **Fonctionnalités avancées :**
 *   **🔢 Max Tickets/User** : Limitez le nombre de tickets ouverts simultanément par un même utilisateur (de 1 à 5).
-*   **📝 Gérer Motifs** : Ajoutez ou supprimez des raisons d'ouverture (ex: *Support*, *Partenariat*). Si vous définissez plusieurs motifs, le panel affichera un menu déroulant plutôt qu'un simple bouton.
+*   **📝 Gérer Motifs** : Ajoutez, personnalisez ou supprimez des motifs d'ouverture (ex: *Support*, *Partenariat*, *Recrutement*). Pour chaque motif, vous pouvez configurer individuellement :
+    *   **📁 Catégorie dédiée** : Créer les tickets associés à ce motif dans une catégorie Discord spécifique (au lieu de la catégorie globale).
+    *   **👑 Rôle Staff dédié** : Assigner un rôle de support dédié spécifique à ce motif (au lieu du rôle manager global).
 *   **⭐ Avis / Notation** : Activez ou désactivez le système de notation à la fermeture du ticket.
 *   **🙋‍♂️ Prise en charge** : Activez ou désactivez la possibilité pour votre équipe de "claim" (prendre en charge) un ticket.
 *   **💬 Discussion Staff** : Activez ou désactivez la création automatique d'un fil de discussion (Thread) privé réservé au staff à l'intérieur du ticket.
 *   **⚙️ Mode d'ouverture** : Basculez entre un mode "Auto" (le ticket est créé automatiquement à la demande) ou "Manuel" (la demande de ticket doit être validée par le staff).
 
-<Aside type="tip" title="Plusieurs panels ?">
-Actuellement, le module gère un panel principal par serveur. Vous pouvez utiliser le système de **Motifs** (menu déroulant) pour centraliser toutes les demandes (Support, Recrutement, Commercial) au même endroit.
+<Aside type="tip" title="Centralisation & Routage Intelligent">
+Le système de **Motifs** vous permet de centraliser tous vos besoins sur un seul panel tout en routant automatiquement chaque ticket vers la bonne catégorie Discord et l'équipe compétente (ex: tickets *Recrutement* visibles uniquement par les recruteurs).
 </Aside>
 
 ### 2. Actions Rapides
@@ -93,7 +99,7 @@ Lorsque le mode manuel est activé :
 
 Lorsqu'un ticket est terminé, cliquez sur <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>.
 
-1. **Génération du Transcript** : Le bot génère un fichier `.html` contenant tout l'historique de la conversation. *Si le fichier dépasse 8 Mo, une version allégée (images sous forme de liens) est générée.*
+1. **Génération du Transcript** : Le bot génère un fichier `.html` stylisé haute fidélité contenant tout l'historique de la conversation, horodaté au format 24h (fuseau `Europe/Paris`) et traduit dans la langue du serveur ou de l'utilisateur. *Si le fichier dépasse 8 Mo, une version allégée est automatiquement générée.*
 2. **Envoi DM** : L'utilisateur à l'origine du ticket reçoit ce fichier en message privé, accompagné d'un récapitulatif.
 3. **Logs** : Le transcript est également envoyé dans le salon de logs configuré.
 4. **Suppression** : Le salon du ticket est supprimé après quelques secondes.

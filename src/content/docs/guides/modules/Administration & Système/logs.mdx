@@ -2,7 +2,7 @@
 slug: guides/modules/logs
 title: Logs
 description: Découvrez comment configurer le système de logs de Lyxios.
-lastUpdated: 2026-08-08
+lastUpdated: 2026-08-25
 sidebar:
   badge:
     text: MÀJ
@@ -17,7 +17,7 @@ import { ChevronDown, RotateCcw, UserX, Gavel, Trash2 } from 'lucide-react';
 Vous trouverez le module des logs dans la commande `/config` du bot.
 Vous pouvez y accéder de deux façons différentes :
 1. En utilisant la commande directe : `/config module:Logs`
-2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Système** et enfin le module **Logs** dans le menu déroulant.
+2. En effectuant la commande `/config`, puis en sélectionnant la catégorie **Administration & Gestion** et enfin le module **Logs** dans le menu déroulant.
 
 ## À quoi sert le module des logs ?
 
@@ -62,10 +62,10 @@ Sur les messages de logs envoyés par Lyxios, des boutons d'action contextuels e
 
 ## Catégories d'événements
 
-Lyxios vous permet de segmenter vos logs selon différentes catégories principales. Voici les catégories disponibles lors de la configuration :
+Lyxios vous permet de segmenter vos logs selon différentes catégories principales. Voici les événements surveillés :
 
-* <Badge text="Membres" variant="note" /> : Arrivées, départs, changements de pseudos, mises à jour des rôles et avatars.
-* <Badge text="Messages" variant="note" /> : Messages modifiés, messages supprimés, suppression en masse (purge), épinglages et détection des Ghost Pings.
+* <Badge text="Membres" variant="note" /> : Arrivées, départs, changements de pseudos, mises à jour des rôles, modification d'avatar global et d'avatar de serveur (avec liens HD et aperçus visuels).
+* <Badge text="Messages" variant="note" /> : Messages modifiés, messages supprimés, suppression en masse (purge), épinglages/désépinglages détaillés (avec auteur, aperçu du message, pièces jointes et lien direct) et détection des Ghost Pings.
 * <Badge text="Modération" variant="note" /> : Avertissements (warns), expulsions (kicks), bannissements (bans), expulsions temporaires (timeouts) et détection des pics d'activité suspects.
 * <Badge text="Salons Vocaux" variant="note" /> : Connexions, déconnexions, déplacements, mutes/sourdines serveur et streams/caméras.
 * <Badge text="Serveur" variant="note" /> : Modifications des paramètres du serveur, créations, modifications ou suppressions de salons, rôles, emojis, stickers, invites et webhooks.
