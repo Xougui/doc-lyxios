@@ -2,13 +2,13 @@
 slug: en/legal/privacy-policy
 title: Privacy Policy
 description: Detailed privacy policy of the Lyxios Discord bot. Full transparency on data collection and GDPR compliance.
-lastUpdated: 2026-07-17
+lastUpdated: 2026-08-25
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
 
 <Aside type="note" title="General Information">
-  **Last updated:** July 17, 2026  
+  **Last updated:** August 25, 2026  
   **Bot ID:** `1335228717403996160`
 </Aside>
 
@@ -16,7 +16,7 @@ import { Aside, Badge, Steps } from '@astrojs/starlight/components';
   Any user or server administrator using Lyxios is considered to have read and accepted this privacy policy as well as our [Terms of Service](/en/legal/terms-of-service).
 </Aside>
 
-At Lyxios, transparency is our priority. This policy details the technical and personal data we collect to ensure the proper functioning of our services (Dashboard, Logs, Moderation), in strict compliance with Discord's terms of service.
+At Lyxios, transparency is our priority. This policy details the technical and personal data we collect to ensure the proper functioning of our services (Dashboard, Logs, Moderation), in strict compliance with Discord's terms of service and the General Data Protection Regulation (GDPR).
 
 ---
 
@@ -38,7 +38,8 @@ To provide its services, Lyxios processes the following types of data:
 ### C. Technical and Security Data <Badge text="Security" variant="danger" />
 * **Cloudflare Turnstile:** When logging into the Dashboard, we use Cloudflare Turnstile to verify that you are human. This may involve the collection of your IP address and browsing data by Cloudflare.
 * **Anti-Scam, Anti-Raid, Anti-Spam and Surveillance System:** Lyxios analyzes messages, behaviors, links (URLs), and domain extensions (including sensitive extensions like `.zip`, `.mov`, `.download`) in real-time to intercept spam, phishing, scam, or malicious link sharing. An Anti-Raid module allows administrators to block suspicious new members based on account age. Messages analyzed are not permanently stored for these features.
-* **Verification (Captcha):** Temporary tracking of a user's verification state to prevent malicious bot access.
+* **Verification (Captcha):** Temporary tracking of a user's verification state to prevent malicious bot access. Active captcha states are automatically purged.
+* **Presence Cache (Status Autorole):** Detected custom statuses are kept in an in-memory cache with timestamps for a maximum of 24 hours (or immediately purged when the member leaves) to prevent prolonged storage.
 
 ### D. Profile and Economy Data (Global) <Badge text="Global" variant="tip" />
 *Data related to your Discord user account (independent of the server):*
@@ -46,8 +47,8 @@ To provide its services, Lyxios processes the following types of data:
 * **Profile:** Unlocked images (Gallery), custom background image, blur level, and profile display preferences.
 
 ### E. Temporary Data <Badge text="Ephemeral" variant="caution" />
-* **Reminders:** Content of the reminder message and scheduled date (deleted once the reminder is sent).
-* **Love Calculator:** Compatibility percentage calculated between two users (stored to avoid re-calculation spam).
+* **Reminders:** Content of the reminder message and scheduled date (automatically deleted once sent and purged per retention policies).
+* **Love Calculator:** Compatibility percentage calculated between two users (temporarily stored to avoid re-calculation spam).
 * **Giveaways:** List of participant user IDs for the duration of the draw.
 * **Temporary Voices:** Owner user ID of the channel to manage permissions.
 * **Recrutement (Applications):** Application metadata (User ID, Guild ID, status, and Discord message ID). Form responses are not stored in the Lyxios database; they are forwarded in real-time to the server's configured recruitment log channel.
@@ -69,14 +70,14 @@ To provide its services, Lyxios processes the following types of data:
 
 ## Use of Information
 
-The collected data is strictly necessary for the operation of our modules.
+The collected data is strictly necessary for the operation of our modules:
 
 * **Logs System:** Recording of actions (message deletion, bans, voice) for server administrators.
 * **Ticket System:** Management of ticket opening and association with support roles.
 * **Welcome & Departures:** Sending of custom images and messages when a member joins or leaves the server.
 * **Security:** Analysis of messages to block unauthorized links and protection against raids.
 * **Economy & Profile:** Saving of your progress, inventory, and profile customization across all servers.
-* **Utilities:** Management of personal reminders and other utility commands.
+* **Utilities:** Management of personal reminders, temporary roles, and other utility commands.
 * **Recruitment:** Management of recruitment campaigns and automatic role assignment for accepted candidates.
 * **Entraide:** Anonymously connecting and relaying messages between help seekers and helpers.
 
@@ -101,10 +102,11 @@ We use your browser's **Local Storage** only to:
 
 ---
 
-## Data Retention
+## Data Retention and Purge Policy
 
 * **Server Data:** Configuration data (Logs, Tickets, Anti-raid, etc.) is retained as long as the bot is present on your server. If the bot is kicked/banned, this data is automatically deleted from our database. *(You can force immediate deletion via the `/reset-data` command.)*
-* **User Data (Global):** Data related to your user account (Economy, Inventory, Profile) is retained indefinitely to allow you to keep your progress from one server to another. This data is not deleted when the bot leaves a server.
+* **User Data (Global):** Data related to your user account (Economy, Inventory, Profile) is retained to allow you to keep your progress from one server to another, as long as you do not request its deletion.
+* **Automatic Purge and Retention:** Expired temporary records (due autorole removals, expired reminders) are automatically purged following a maximum retention window of 30 days.
 
 ---
 
@@ -116,15 +118,24 @@ We use your browser's **Local Storage** only to:
 
 ---
 
-## Your Rights
+## Your Rights & Right to Be Forgotten (GDPR)
 
-You have a right of access, rectification, and deletion of your data. To exercise these rights, or for any technical question, contact the development team.
+In compliance with the **General Data Protection Regulation (GDPR)** and Discord developer policies, you have a permanent right to access, rectify, and erase all your personal data.
+
+### Self-Service Instant Deletion via the Bot
+You can permanently delete all your personal data stored by Lyxios (economy balances, inventories, profiles, warnings, reminders, participations) directly from Discord at any time without waiting for manual intervention:
+
+<Steps>
+1. Run the slash command `/rgpd` in any server where Lyxios is present.
+2. Click the <span class="discord-element discord-btn-danger">🗑️ Confirm deletion</span> button in the ephemeral confirmation dialog.
+3. All your records across all Lyxios databases will be immediately and irreversibly erased.
+</Steps>
 
 ---
 
 ## Contact & Support
 
-For any question regarding this privacy policy, or to report a security issue, please contact us via the following means:
+For any question regarding this privacy policy, or for manual requests regarding your personal data, please contact us via the following means:
 
 <Steps>
 1. **Priority Support:** Join our [Support Discord Server](https://discord.gg/RZHrtzwUC2) and open a ticket. This is the fastest way to get an answer.

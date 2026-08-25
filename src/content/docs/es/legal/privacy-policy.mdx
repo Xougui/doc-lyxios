@@ -2,13 +2,13 @@
 slug: es/legal/privacy-policy
 title: Política de Privacidad
 description: Política de privacidad detallada del bot de Discord Lyxios. Transparencia total en la recogida de datos y cumplimiento con el RGPD.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-08-25
 ---
 
 import { Aside, Badge, Steps, Icon } from '@astrojs/starlight/components';
 
 <Aside type="note" title="Información General">
-  **Última actualización:** 22 de Julio de 2026  
+  **Última actualización:** 25 de Agosto de 2026  
   **Identificador del Bot:** `1335228717403996160`
 </Aside>
 
@@ -16,7 +16,7 @@ import { Aside, Badge, Steps, Icon } from '@astrojs/starlight/components';
   Cualquier usuario o administrador de servidor que utilice Lyxios se considera que ha leído y aceptado esta política de privacidad así como nuestros [Términos de Servicio](/es/legal/terms-of-service).
 </Aside>
 
-En Lyxios, la transparencia es nuestra prioridad. Esta política detalla los datos técnicos y personales que recopilamos para garantizar el buen funcionamiento de nuestros servicios (Panel, Registros, Moderación).
+En Lyxios, la transparencia es nuestra prioridad. Esta política detalla los datos técnicos y personales que recopilamos para garantizar el buen funcionamiento de nuestros servicios (Panel, Registros, Moderación), en estricto cumplimiento con las condiciones de servicio de Discord y el Reglamento General de Protección de Datos (RGPD).
 
 ---
 
@@ -26,11 +26,105 @@ Para prestar sus servicios, Lyxios procesa los siguientes tipos de datos:
 
 ### A. Datos de Identificación (Discord) <Badge text="Automático" variant="note" />
 *   **Identificadores (IDs):** ID de usuario, ID de servidor (Guild ID), ID de canales y roles.
-*   **Información Pública:** Nombre de usuario, avatar y fecha de creación de la cuenta.
+*   **Información Pública:** Nombre de usuario, avatar, discriminador y fecha de creación de la cuenta (a través de la API de Discord). Estos datos se procesan para identificar al usuario, generar elementos visuales personalizados (Bienvenida/Despedida), registrar su llegada a los canales de registros y validar criterios de seguridad (edad mínima de la cuenta para Captcha o Anti-Raid).
+*   **Datos de los Servidores (Gremios):** Al añadir o eliminar Lyxios de un servidor, recopilamos el nombre del servidor, su ID, el número de miembros humanos, así como el ID de Discord y el nombre de usuario del propietario del servidor con fines de transparencia y seguimiento del crecimiento.
 
 ### B. Datos de Configuración <Badge text="Servidor" variant="success" />
-*   **Mensajes Personalizados:** Contenido de los mensajes de Bienvenida, Despedida, Recordatorios y Filtros.
+*Datos proporcionados voluntariamente por los administradores para configurar módulos:*
+*   **Mensajes Personalizados:** Contenido de los mensajes de Bienvenida, Despedida, Recordatorios de Bump y Anti-enlaces.
+*   **Medios:** URLs de imágenes utilizadas para los módulos de Bienvenida y Despedida.
+*   **Ajustes de moderación y utilidades:** Listas de dominios permitidos (whitelist), roles ignorados, configuración de logs, Roles por Reacción, Sorteos, Separadores, Canales de Voz Temporales y Reclutamiento.
 
-## Derechos del Usuario
+### C. Datos Técnicos y de Seguridad <Badge text="Seguridad" variant="danger" />
+*   **Cloudflare Turnstile:** Al iniciar sesión en el Panel de Control, utilizamos Cloudflare Turnstile para verificar que eres humano.
+*   **Sistema Anti-Scam, Anti-Raid, Anti-Spam y Vigilancia:** Lyxios analiza mensajes, comportamientos, enlaces (URLs) y extensiones de dominio en tiempo real para interceptar spam, phishing o enlaces maliciosos. Los mensajes analizados no se almacenan de forma permanente.
+*   **Verificación (Captcha):** Seguimiento temporal del estado de verificación de un usuario. Los estados de captcha activos se purgan automáticamente.
+*   **Caché de Presencia (Autorol de estado):** Los estados personalizados detectados se mantienen en memoria caché durante un máximo de 24 horas (o se eliminan al salir del servidor).
 
-Tienes derecho a acceder, rectificar y eliminar tus datos. Para ejercer estos derechos, ponte en contacto con el equipo de desarrollo.
+### D. Datos de Perfil y Economía (Global) <Badge text="Global" variant="tip" />
+*Datos vinculados a tu cuenta de usuario de Discord:*
+*   **Economía:** Saldo de monedas, inventario de Luckyblocks, fragmentos, fecha de la última recompensa diaria y racha (streak).
+*   **Perfil:** Imágenes desbloqueadas (Galería), imagen de fondo personalizada, nivel de desenfoque y preferencias de visualización.
+
+### E. Datos Temporales <Badge text="Efímero" variant="caution" />
+*   **Recordatorios:** Contenido del recordatorio y fecha programada (se eliminan automáticamente tras el envío y purga).
+*   **Love Calculator:** Porcentaje de compatibilidad calculado entre dos usuarios (almacenado temporalmente para evitar spam).
+*   **Sorteos (Giveaways):** Lista de IDs de usuarios participantes durante la duración del sorteo.
+*   **Canales de Voz Temporales:** ID del usuario propietario del canal para gestionar permisos.
+*   **Reclutamiento (Candidaturas):** Metadatos de la solicitud (ID de usuario, ID de servidor, estado e ID del mensaje). Las respuestas a los formularios se envían directamente al canal de registros del servidor sin almacenarse en la base de datos de Lyxios.
+
+### F. Historial de Moderación <Badge text="Servidor" variant="success" />
+*   **Advertencias (Warns):** Motivo de la sanción, ID del moderador y fecha.
+
+### G. Seguimiento de Funcionalidades <Badge text="Estadística" variant="note" />
+*   **Afiliaciones / Alianzas:** Almacenamiento de IDs para el seguimiento de anuncios, sin conservación de contenido.
+*   **Confesiones:** Solo se almacena el contador total. El ID del autor se conserva temporalmente (máximo 7 días) exclusivamente para moderación en caso de abuso.
+*   **Ayuda Mutua Anónima:** Almacenamiento de IDs de los participantes e hilos temporales creados para retransmitir mensajes anónimamente.
+
+### H. Estadísticas y Rendimiento <Badge text="Anonimizado" variant="note" />
+*   **Vercel Web Analytics & Speed Insights:** Nuestro sitio principal utiliza Vercel Web Analytics y Speed Insights para recopilar métricas anónimas de tráfico y rendimiento, sin cookies invasivas.
+*   **Uso de comandos del Bot:** Registramos comandos ejecutados (ID de usuario, nombre de comando, ID de servidor y fecha) con fines de estadísticas globales y diagnóstico técnico.
+
+---
+
+## Uso de la Información
+
+Los datos recopilados son estrictamente necesarios para el funcionamiento de nuestros módulos (Registros, Tickets, Bienvenida/Despedida, Seguridad, Economía, Perfil, Reclutamiento y Utilidades).
+
+---
+
+## Servicios de Terceros
+
+Lyxios se apoya en servicios de confianza:
+* **Discord:** Infraestructura principal. Política: [discord.com/privacy](https://discord.com/privacy)
+* **Cloudflare:** Seguridad y protección DDoS. Política: [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/)
+* **Vercel:** Alojamiento de la web y documentación, analítica anónima y rendimiento. Política: [vercel.com/legal/privacy-policy](https://vercel.com/legal/privacy-policy)
+
+---
+
+## Cookies y Almacenamiento Local
+
+El sitio y Panel de Lyxios no utilizan cookies publicitarias ni de rastreo. Utilizamos el **Almacenamiento Local (LocalStorage)** únicamente para mantener tu sesión activa y guardar preferencias de tema o idioma.
+
+---
+
+## Conservación y Retención de Datos
+
+*   **Datos de Servidor:** Se conservan mientras el bot permanezca en el servidor. Si se expulsa al bot, los datos se eliminan automáticamente. *(Se puede forzar la eliminación inmediata con el comando `/reset-data`.)*
+*   **Datos de Usuario (Global):** Se conservan para permitir mantener el progreso entre servidores mientras no se solicite su eliminación.
+*   **Purga Automática y Retención:** Los registros temporales vencidos (autoroles pendientes, recordatorios obsoletos) se purgan automáticamente tras un período máximo de 30 días.
+
+---
+
+## Política sobre Tickets
+
+<Aside type="caution" title="Nota importante sobre la privacidad de los tickets">
+  Al cerrar un ticket, Lyxios genera una transcripción (archivo HTML) enviada al canal de registros configurado y al usuario. **Lyxios no almacena copias de estas conversaciones en sus propios servidores.**
+</Aside>
+
+---
+
+## Tus Derechos y Derecho al Olvido (RGPD)
+
+De acuerdo con el **Reglamento General de Protección de Datos (RGPD)** y las normativas de Discord, tienes derecho permanente de acceso, rectificación y supresión de todos tus datos.
+
+### Eliminación instantánea y autónoma mediante el Bot
+Puedes eliminar permanentemente todos tus datos personales guardados por Lyxios (economía, inventarios, perfiles, advertencias, recordatorios, participaciones) directamente desde Discord:
+
+<Steps>
+1. Escribe el comando slash `/rgpd` en cualquier canal donde Lyxios esté presente.
+2. Haz clic en el botón <span class="discord-element discord-btn-danger">🗑️ Confirmer la suppression</span> en el mensaje efímero.
+3. Todos tus registros almacenados en todas las bases de datos de Lyxios serán eliminados de forma inmediata e irreversible.
+</Steps>
+
+---
+
+## Contacto & Soporte
+
+Para cualquier duda o solicitud respecto a tus datos personales:
+
+<Steps>
+1. **Soporte prioritario:** Únete a nuestro [Servidor de Soporte en Discord](https://discord.gg/RZHrtzwUC2) y abre un ticket.
+2. **Contacto directo:** Contacta al desarrollador principal en Discord vía `xougui`.
+3. **Contacto oficial:** Envía un correo electrónico a [xougui.7@gmail.com](mailto:xougui.7@gmail.com).
+</Steps>

@@ -2,13 +2,13 @@
 slug: legal/privacy-policy
 title: Politique de Confidentialité
 description: Politique de confidentialité détaillée du bot Discord Lyxios. Transparence totale sur la collecte des données et conformité RGPD.
-lastUpdated: 2026-07-17
+lastUpdated: 2026-08-25
 ---
 
 import { Aside, Badge, Steps, Icon } from '@astrojs/starlight/components';
 
 <Aside type="note" title="Informations Générales">
-  **Dernière mise à jour :** 17 Juillet 2026  
+  **Dernière mise à jour :** 25 Août 2026  
   **Identifiant du Bot :** `1335228717403996160`
 </Aside>
 
@@ -16,7 +16,7 @@ import { Aside, Badge, Steps, Icon } from '@astrojs/starlight/components';
   Tout utilisateur ou administrateur de serveur utilisant Lyxios est considéré comme ayant pris connaissance et accepté cette politique de confidentialité ainsi que nos [Conditions d'Utilisation](/legal/terms-of-service).
 </Aside>
 
-Chez Lyxios, la transparence est notre priorité. Cette politique détaille les données techniques et personnelles que nous collectons pour assurer le bon fonctionnement de nos services (Dashboard, Logs, Modération), en stricte conformité avec les conditions d'utilisation de Discord.
+Chez Lyxios, la transparence est notre priorité. Cette politique détaille les données techniques et personnelles que nous collectons pour assurer le bon fonctionnement de nos services (Dashboard, Logs, Modération), en stricte conformité avec les conditions d'utilisation de Discord et le Règlement Général sur la Protection des Données (RGPD).
 
 ---
 
@@ -38,7 +38,8 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 ### C. Données Techniques et Sécurité <Badge text="Sécurité" variant="danger" />
 *   **Cloudflare Turnstile :** Lors de la connexion au Dashboard, nous utilisons Cloudflare Turnstile pour vérifier que vous êtes un humain. Cela peut impliquer la collecte de votre adresse IP et de données de navigation par Cloudflare.
 *   **Système Anti-Scam, Anti-Raid, Anti-Spam et Surveillance :** Lyxios analyse les messages, les comportements, les liens (URLs) et leurs extensions de domaine (y compris les extensions sensibles comme `.zip`, `.mov`, `.download`) en temps réel pour intercepter les tentatives de spam, de phishing, de scam ou de partage de liens malveillants. Un module Anti-Raid permet aux administrateurs de bloquer les nouveaux membres suspects, en vérifiant notamment l'âge de leur compte Discord. Les messages analysés ne sont pas conservés de manière permanente pour ces fonctionnalités.
-*   **Vérification (Captcha) :** Suivi temporaire de l'état de vérification d'un utilisateur pour empêcher l'accès aux bots malveillants.
+*   **Vérification (Captcha) :** Suivi temporaire de l'état de vérification d'un utilisateur pour empêcher l'accès aux bots malveillants. Les états de captcha actifs sont purgés automatiquement.
+*   **Cache de Présence (Auto-rôle statut) :** Les statuts personnalisés détectés sont conservés en mémoire cache avec horodatage pour une durée maximale de 24 heures (ou purgés immédiatement au départ du membre) afin d'éviter toute conservation prolongée.
 
 ### D. Données de Profil et Économie <Badge text="Global" variant="tip" />
 *Données liées à votre compte utilisateur Discord (indépendamment du serveur) :*
@@ -46,8 +47,8 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 *   **Profil :** Images débloquées (Galerie), image de fond personnalisée, niveau de flou et préférences d'affichage du profil.
 
 ### E. Données Temporaires <Badge text="Éphémère" variant="caution" />
-*   **Rappels :** Contenu du message de rappel et date programmée (supprimés une fois le rappel envoyé).
-*   **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké pour éviter le spam de re-calcul).
+*   **Rappels :** Contenu du message de rappel et date programmée (supprimés automatiquement une fois envoyés et purgés par cycle de rétention).
+*   **Love Calculator :** Pourcentage de compatibilité calculé entre deux utilisateurs (stocké temporairement pour éviter le spam de re-calcul).
 *   **Giveaways :** Liste des IDs des utilisateurs participants le temps du tirage au sort.
 *   **Vocaux Temporaires :** ID de l'utilisateur propriétaire du salon pour gérer ses permissions.
 *   **Recrutement (Candidatures) :** Métadonnées de candidature (ID utilisateur, ID de guilde, statut et ID du message de suivi Discord). Les réponses aux formulaires ne sont pas stockées dans la base de données de Lyxios ; elles sont transmises en temps réel au salon de logs configuré par le serveur.
@@ -69,14 +70,14 @@ Pour fournir ses services, Lyxios traite les types de données suivants :
 
 ## Utilisation des informations
 
-Les données collectées sont strictement nécessaires au fonctionnement de nos modules. 
+Les données collectées sont strictement nécessaires au fonctionnement de nos modules :
 
 *   **Système de Logs :** Enregistrement des actions (suppression de messages, bans, vocal) pour les administrateurs du serveur.
 *   **Système de Tickets :** Gestion de l'ouverture des tickets et association avec les rôles de support.
 *   **Accueil & Départs :** Envoi des images et messages personnalisés lorsqu'un membre rejoint ou quitte le serveur.
 *   **Sécurité :** Analyse des messages pour bloquer les liens non autorisés et protection contre les raids.
 *   **Économie & Profil :** Sauvegarde de votre progression, de votre inventaire et de la personnalisation de votre profil à travers tous les serveurs.
-*   **Utilitaires :** Gestion des rappels personnels et autres commandes utilitaires.
+*   **Utilitaires :** Gestion des rappels personnels, des rôles temporaires et autres commandes utilitaires.
 *   **Recrutement :** Gestion des campagnes de candidature et attribution automatique des rôles aux candidats acceptés.
 *   **Entraide :** Mise en relation et relais de messages anonymes entre les demandeurs d'aide et les accompagnants.
 
@@ -101,10 +102,11 @@ Nous utilisons le **Stockage Local (LocalStorage)** de votre navigateur uniqueme
 
 ---
 
-## Conservation des données
+## Conservation et Rétention des données
 
 *   **Données Serveur :** Les données de configuration (Logs, Tickets, Anti-raid, etc.) sont conservées tant que le bot est présent sur votre serveur. Si le bot est expulsé (kick/ban), ces données sont automatiquement supprimées de notre base de données. *(Vous pouvez forcer la suppression immédiate via la commande `/reset-data`.)*
-*   **Données Utilisateur (Global) :** Les données liées à votre compte utilisateur (Économie des luckyblocks, Inventaire, Profil) sont conservées indéfiniment pour vous permettre de conserver votre progression d'un serveur à l'autre. Ces données ne sont pas supprimées lorsque le bot quitte un serveur.
+*   **Données Utilisateur (Global) :** Les données liées à votre compte utilisateur (Économie des luckyblocks, Inventaire, Profil) sont conservées pour vous permettre de conserver votre progression d'un serveur à l'autre, tant que vous ne demandez pas leur suppression.
+*   **Purge Automatique et Rétention :** Les données temporaires expirées (demandes de retrait d'auto-rôles échues, rappels obsolètes) sont purgées automatiquement selon une politique de rétention maximale de 30 jours.
 
 ---
 
@@ -116,15 +118,24 @@ Nous utilisons le **Stockage Local (LocalStorage)** de votre navigateur uniqueme
 
 ---
 
-## Vos Droits
+## Vos Droits & Droit à l'Oubli (RGPD)
 
-Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, ou pour toute question technique, contactez l'équipe de développement.
+Conformément au **Règlement Général sur la Protection des Données (RGPD)** et aux politiques de confidentialité de Discord, vous disposez d'un droit permanent d'accès, de rectification et d'effacement de l'ensemble de vos données.
+
+### Suppression autonome et instantanée via le Bot
+Vous pouvez à tout moment supprimer l'intégralité de vos données personnelles stockées par Lyxios (soldes économiques, inventaires, profils, avertissements, rappels, participations) directement depuis Discord sans attendre d'intervention manuelle :
+
+<Steps>
+1. Tapez la commande slash `/rgpd` dans n'importe quel salon où Lyxios est présent.
+2. Cliquez sur le bouton <span class="discord-element discord-btn-danger">🗑️ Confirmer la suppression</span> dans le menu éphémère.
+3. Toutes vos données enregistrées sur l'ensemble des bases de données de Lyxios sont immédiatement et définitivement effacées de manière irréversible.
+</Steps>
 
 ---
 
 ## Contact & Support
 
-Pour toute question concernant cette politique de confidentialité, ou pour signaler un problème de sécurité, veuillez nous contacter via les moyens suivants :
+Pour toute question concernant cette politique de confidentialité ou pour toute demande manuelle relative à vos données personnelles, veuillez nous contacter via les moyens suivants :
 
 <Steps>
 1. **Support prioritaire :** Rejoignez notre [Serveur Discord de Support](https://discord.gg/RZHrtzwUC2) et ouvrez un ticket. C'est le moyen le plus rapide d'obtenir une réponse.
