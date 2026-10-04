@@ -1,0 +1,56 @@
+---
+slug: en/guides/modules/blacklist-kick
+title: Blacklist Kick
+description: Learn how to automatically kick malicious users listed in the Lyxios global blacklist upon joining.
+lastUpdated: 2026-10-04
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { Power, PowerOff, ChevronLeft } from 'lucide-react';
+
+## Where to find the Blacklist Kick module?
+
+The Blacklist Kick module can be accessed directly in the Discord interface:
+1. Using the direct command: `/config module:Blacklist Kick`
+2. By running `/config`, selecting the **Security & Protection** category, then choosing the **Blacklist Kick** module in the dropdown menu.
+
+## What is the Blacklist Kick module for?
+
+The **Blacklist Kick** module enhances your server's protection by preventing malicious users flagged by the Lyxios global moderation team from joining your server.
+
+When a user joins your server, Lyxios immediately checks if their ID is in the global blacklist database:
+* If the module is **enabled** and the user is blacklisted, they are **immediately kicked** from the server.
+* A direct message is sent to notify them of their kick, the official reason, the moderator responsible, and their blacklist entry number.
+* The direct message also includes an invitation link to the appeal server so they can submit a removal request if they believe they were blacklisted by mistake.
+
+<Aside type="note" title="Global Blacklist & Safety">
+The Lyxios global blacklist catalogs accounts involved in severe offenses (raids, scams, impersonation, compromised accounts) across the network of servers protected by the bot.
+</Aside>
+
+---
+
+## Module Configuration
+
+The Blacklist Kick configuration panel is quick and simple:
+
+<Steps>
+1. **Enable automatic kick**: Click the <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Enable kick</span> button. The status immediately updates to **Enabled**.
+2. **Disable automatic kick**: If you want to pause automatic kicks, click the <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable kick</span> button. The status reverts to **Disabled**.
+3. **Return to menu**: Click <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Back</span> to return to the Security & Protection category menu.
+</Steps>
+
+<Aside type="caution" title="Required Permissions">
+For the bot to kick blacklisted users on arrival:
+- The bot must have the Discord permission **Kick Members**.
+- The Lyxios bot role in your server settings must be positioned **higher** in the role hierarchy than the members being kicked.
+</Aside>
+
+---
+
+## Related Commands
+
+In addition to auto-kicking on join, several commands allow you to manage and check the blacklist on your server:
+
+* `/check-blacklist recherche:<member/id/number>`: Checks if a specific user or ID is recorded in the blacklist.
+* `/liste-blacklist mode:Serveur`: Lists all members currently in your server who are registered on the global blacklist.
+* `/ban-blacklist`: Bans all blacklisted members currently present on your server.

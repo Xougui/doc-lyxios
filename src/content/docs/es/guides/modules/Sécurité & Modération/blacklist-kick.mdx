@@ -1,0 +1,56 @@
+---
+slug: es/guides/modules/blacklist-kick
+title: Blacklist Kick
+description: Descubre cómo expulsar automáticamente a los usuarios maliciosos incluidos en la lista negra global de Lyxios al unirse.
+lastUpdated: 2026-10-04
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { Power, PowerOff, ChevronLeft } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo Blacklist Kick?
+
+Puedes acceder al módulo Blacklist Kick directamente desde la interfaz de Discord:
+1. Usando el comando directo: `/config module:Blacklist Kick`
+2. Ejecutando `/config`, seleccionando la categoría **Sécurité & Protection** y luego eligiendo el módulo **Blacklist Kick** en el menú desplegable.
+
+## ¿Para qué sirve el módulo Blacklist Kick?
+
+El módulo **Blacklist Kick** refuerza la protección de tu servidor impidiendo que los usuarios maliciosos registrados por el equipo de moderación global de Lyxios permanezcan en tu comunidad.
+
+Cuando un usuario entra a tu servidor, Lyxios comprueba al instante si su ID figura en la base de datos de la lista negra global:
+* Si el módulo está **activado** y el usuario está en la lista negra, es **expulsado de inmediato** (kick) del servidor.
+* Se le envía un mensaje privado notificándole su expulsión, la razón oficial, el moderador responsable y el número de caso de blacklist.
+* El mensaje privado incluye además un enlace al servidor de apelación para que pueda solicitar una revisión si considera que fue sancionado por error.
+
+<Aside type="note" title="Lista Negra Global y Seguridad">
+La lista negra de Lyxios cataloga cuentas con infracciones graves (raids, estafas, usurpaciones, intentos de hackeo) en toda la red de servidores protegidos por el bot.
+</Aside>
+
+---
+
+## Configuración del módulo
+
+El panel de configuración del módulo Blacklist Kick es simple e inmediato:
+
+<Steps>
+1. **Activar la expulsión automática**: Haz clic en el botón <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Activer l'expulsion</span>. El estado cambiará a **Activé**.
+2. **Desactivar la expulsión automática**: Para pausar las expulsiones automáticas, haz clic en el botón <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Désactiver l'expulsion</span>. El estado volverá a **Désactivé**.
+3. **Volver al menú**: Haz clic en <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Retour</span> para regresar al menú de la categoría Sécurité & Protection.
+</Steps>
+
+<Aside type="caution" title="Permisos necesarios">
+Para que el bot pueda expulsar a los miembros en lista negra al entrar:
+- El bot debe tener el permiso de Discord **Expulsar miembros** (`Kick Members`).
+- El rol de Lyxios en la configuración de roles de tu servidor debe estar posicionado **por encima** de los usuarios a expulsar.
+</Aside>
+
+---
+
+## Comandos complementarios
+
+Además de la expulsión automática al unirse, dispones de varios comandos para comprobar la lista negra en tu servidor:
+
+* `/check-blacklist recherche:<miembro/id/número>`: Comprueba si un usuario o ID concreto está en la lista negra.
+* `/liste-blacklist mode:Serveur`: Muestra la lista de miembros presentes en tu servidor que figuran en la lista negra global.
+* `/ban-blacklist`: Permite banear en masa a todos los usuarios en lista negra que se encuentren actualmente en tu servidor.
