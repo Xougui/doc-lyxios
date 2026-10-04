@@ -132,28 +132,34 @@ export default defineConfig({
 					items: [
 						{ label: 'Sommaire', translations: { en: 'Overview', es: 'Resumen' }, link: 'guides/modules/' },
 						{
-							label: 'Sécurité & Modération',
-							translations: { en: 'Security & Moderation', es: 'Seguridad & Moderación' },
+							label: 'Sécurité & Protection',
+							translations: { en: 'Security & Protection', es: 'Seguridad & Protección' },
 							collapsed: true,
-							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Modération' } }]
+							items: [{ autogenerate: { directory: 'guides/modules/Sécurité & Protection' } }]
 						},
 						{
-							label: 'Communauté & Fun',
-							translations: { en: 'Community & Fun', es: 'Comunidad & Entretenimiento' },
+							label: 'Accueil & Messagerie',
+							translations: { en: 'Welcome & Messaging', es: 'Bienvenida & Mensajería' },
 							collapsed: true,
-							items: [{ autogenerate: { directory: 'guides/modules/Communauté & Fun' } }]
+							items: [{ autogenerate: { directory: 'guides/modules/Accueil & Messagerie' } }]
 						},
 						{
-							label: 'Administration & Système',
-							translations: { en: 'Administration & System', es: 'Administración & Sistema' },
+							label: 'Engagement & Récompenses',
+							translations: { en: 'Engagement & Rewards', es: 'Participación & Recompensas' },
 							collapsed: true,
-							items: [{ autogenerate: { directory: 'guides/modules/Administration & Système' } }]
+							items: [{ autogenerate: { directory: 'guides/modules/Engagement & Récompenses' } }]
 						},
 						{
-							label: 'Utilitaires & Boost',
-							translations: { en: 'Utilities & Boost', es: 'Herramientas & Boost' },
+							label: 'Administration & Gestion',
+							translations: { en: 'Administration & Management', es: 'Administración & Gestión' },
 							collapsed: true,
-							items: [{ autogenerate: { directory: 'guides/modules/Utilitaires & Boost' } }]
+							items: [{ autogenerate: { directory: 'guides/modules/Administration & Gestion' } }]
+						},
+						{
+							label: 'Utilitaires & Visibilité',
+							translations: { en: 'Utilities & Visibility', es: 'Utilidades & Visibilidad' },
+							collapsed: true,
+							items: [{ autogenerate: { directory: 'guides/modules/Utilitaires & Visibilité' } }]
 						}
 					]
 				},

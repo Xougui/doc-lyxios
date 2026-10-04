@@ -612,26 +612,94 @@ h3 {
 }
 
 /* --- Améliorations de la Sidebar (Typographie) --- */
-/* Titres des catégories principales */
-.sidebar-pane summary,
-.sidebar-content summary {
-    font-size: 1.1rem !important;
-    font-weight: 700 !important;
-    font-family: 'Outfit', sans-serif;
-    letter-spacing: 0.3px;
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+/* Titres des catégories de premier niveau (Démarrage, Modules, Autres) */
+.sidebar-pane .top-level > li > details > summary,
+.sidebar-content .top-level > li > details > summary,
+.sidebar-pane .top-level > li > details > summary .large,
+.sidebar-content .top-level > li > details > summary .large {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    font-family: 'Outfit', sans-serif !important;
+    letter-spacing: 0.2px;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
 
-/* Titres des sous-catégories (moins imposantes) */
-.sidebar-pane details details summary,
-.sidebar-content details details summary {
-    font-size: 0.95rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    opacity: 0.9;
+/* Titres des sous-catégories (Sécurité & Protection, etc.) */
+.sidebar-pane ul ul li,
+.sidebar-content ul ul li {
+    margin-top: 0.15rem !important;
+}
+
+/* Troncature propre sur une seule ligne (ellipsis) pour éviter les retours à la ligne */
+.sidebar-pane summary,
+.sidebar-content summary {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+    min-width: 0 !important;
+}
+
+.sidebar-pane summary .group-label,
+.sidebar-content summary .group-label {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    overflow: hidden !important;
+}
+
+.sidebar-pane summary .large,
+.sidebar-content summary .large,
+.sidebar-pane summary .group-label > span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+}
+
+.sidebar-pane ul ul summary,
+.sidebar-content ul ul summary {
+    font-size: 0.93rem !important;
+    font-weight: 500 !important;
+    font-family: 'Outfit', sans-serif !important;
+    letter-spacing: 0.1px !important;
+    padding-top: 0.12rem !important;
+    padding-bottom: 0.12rem !important;
+    line-height: 1.35 !important;
+    color: #e2e8f0 !important; /* Entre gris doux (var(--sl-color-gray-2): #c4c9d4) et blanc (#ffffff) */
+}
+
+.sidebar-pane ul ul summary *,
+.sidebar-content ul ul summary * {
+    font-size: 0.93rem !important;
+    font-weight: 500 !important;
+    font-family: 'Outfit', sans-serif !important;
+    color: inherit !important;
+}
+
+.sidebar-pane ul ul summary:hover,
+.sidebar-content ul ul summary:hover,
+.sidebar-pane ul ul summary:hover *,
+.sidebar-content ul ul summary:hover * {
+    color: var(--sl-color-white) !important;
+}
+
+/* Flèches (carets) de la sidebar : plus grandes et plus visibles */
+.sidebar-pane .caret,
+.sidebar-content .caret {
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+    min-width: 1.15rem !important;
+    min-height: 1.15rem !important;
+    opacity: 0.85 !important;
+}
+
+.sidebar-pane summary:hover .caret,
+.sidebar-content summary:hover .caret {
+    opacity: 1 !important;
+    color: var(--sl-color-text-accent) !important;
 }
 
 
