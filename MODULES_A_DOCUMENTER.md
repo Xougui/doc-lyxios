@@ -44,7 +44,7 @@ Ce document centralise l'état d'avancement de la documentation des modules du b
 - [ ] **Starboard**
 
 ### ⚙️ Administration & Gestion (`cat_admin`)
-- [ ] **Effectif (Staff)**
+- [x] **Effectif (Staff)**
 - [ ] **Commandes Perso (Custom Commands)**
 
 ### 🛠️ Utilitaires & Visibilité (`cat_utils`)

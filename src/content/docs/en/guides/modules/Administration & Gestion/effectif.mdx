@@ -1,0 +1,59 @@
+---
+slug: en/guides/modules/effectif
+title: Effectif
+description: Configure the staff roster and automatically display team members sorted by categories and roles.
+lastUpdated: 2026-10-04
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { Plus, ArrowUpDown, Hash, RefreshCw, ChevronLeft, Trash2, ArrowUp, ArrowDown, Edit3 } from 'lucide-react';
+
+## Where to find the Staff Roster (Effectif) module?
+
+The Effectif module is available via the bot's `/config` command:
+1. Using the direct command: `/config module:Effectif`
+2. By executing `/config`, selecting the **Administration & Management** category, and choosing the **Effectif** module in the dropdown menu.
+
+## What is the Staff Roster module for?
+
+The **Staff Roster** (Effectif) module lets you organize, structure, and automatically publish your team hierarchy (Management, Moderation, Support, Helpers, etc.) in a dedicated channel using an elegant, continuously updated Embed.
+
+### Key Features:
+* **Hierarchical organization by categories**: Create custom categories (e.g., Leadership, Moderation, Support) and sort your staff roles within them.
+* **Custom sorting order**: Reorder categories and roles with Move Up / Move Down buttons.
+* **Two member display modes**:
+  * **All roles (`all`)**: If a team member has multiple staff roles, they appear under every role they hold.
+  * **Highest role only (`highest`)**: Members appear only once in the roster, under their highest hierarchical role.
+* **Automatic real-time sync**: Whenever a member gains or loses a staff role, joins or leaves the server, Lyxios automatically edits and updates the published roster message without any manual intervention.
+
+---
+
+## Module Configuration
+
+The interactive configuration panel provides all necessary tools:
+
+<Steps>
+1. **Create categories**: Click the <span class="discord-element discord-btn-primary"><Plus size={14} style={{ marginRight: '4px' }} /> Create category</span> button to open a modal and name your section (e.g., `Management`, `Moderation`).
+2. **Add and configure roles**: In the Discord role picker, select the role to include. You can then:
+   * Assign it to a category or keep it uncategorized.
+   * Adjust its display order using <span class="discord-element discord-btn-secondary"><ArrowUp size={14} style={{ marginRight: '4px' }} /> Move Up</span> and <span class="discord-element discord-btn-secondary"><ArrowDown size={14} style={{ marginRight: '4px' }} /> Move Down</span>.
+   * Remove it from the roster with the <span class="discord-element discord-btn-danger"><Trash2 size={14} style={{ marginRight: '4px' }} /> Remove</span> button.
+3. **Manage existing categories**: Select a category in the dropdown to rename it via <span class="discord-element discord-btn-secondary"><Edit3 size={14} style={{ marginRight: '4px' }} /> Rename</span>, change its rank, or delete it (associated roles are safely moved to uncategorized).
+4. **Choose display mode**: Click the <span class="discord-element discord-btn-secondary"><ArrowUpDown size={14} style={{ marginRight: '4px' }} /> Toggle Mode</span> button to switch between **All roles** and **Highest role only**.
+5. **Set the publication channel**: Click <span class="discord-element discord-btn-success"><Hash size={14} style={{ marginRight: '4px' }} /> Set Channel</span> and select the text channel where the roster embed should be posted.
+6. **Force update**: The <span class="discord-element discord-btn-danger"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Update Embed</span> button allows you to instantly refresh the message whenever needed.
+7. **Return to menu**: Click <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Back</span> to return to the Administration & Management menu.
+</Steps>
+
+<Aside type="tip" title="Automatic Discord Limit Handling">
+If your team has many members or roles, Lyxios automatically splits the roster across multiple chained Embeds to prevent hitting Discord's 4,000 character embed limit.
+</Aside>
+
+---
+
+## Web Dashboard Configuration
+
+You can also manage your staff roster directly on the Lyxios Web Dashboard:
+* Clean visual overview of categories and roles.
+* Easy staff role assignments and hierarchy sorting.
+* One-click display mode toggles and channel selection.

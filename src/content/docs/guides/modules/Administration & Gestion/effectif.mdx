@@ -1,0 +1,59 @@
+---
+slug: guides/modules/effectif
+title: Effectif
+description: Configurez l'organigramme et l'affichage automatique des membres de votre équipe staff par catégories et rôles.
+lastUpdated: 2026-10-04
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { Plus, ArrowUpDown, Hash, RefreshCw, ChevronLeft, Trash2, ArrowUp, ArrowDown, Edit3 } from 'lucide-react';
+
+## Où trouver le module Effectif ?
+
+Le module Effectif est accessible dans la commande `/config` du bot :
+1. En utilisant la commande directe : `/config module:Effectif`
+2. En exécutant `/config`, en sélectionnant la catégorie **Administration & Gestion**, puis en choisissant le module **Effectif** dans le menu déroulant.
+
+## À quoi sert le module Effectif ?
+
+Le module **Effectif** (Staff Roster) permet d'organiser, structurer et publier automatiquement l'organigramme de votre équipe (Administration, Modération, Animation, Helpers, etc.) dans un salon dédié sous forme d'un Embed élégant toujours à jour.
+
+### Fonctionnalités clés :
+* **Organisation hiérarchique par catégories** : Créez des sections personnalisées (ex: Direction, Modération, Support) et classez-y vos rôles staff.
+* **Ordre personnalisé** : Réorganisez l'ordre d'affichage des catégories et des rôles grâce à des boutons Monter / Descendre.
+* **Deux modes d'affichage des membres** :
+  * **Tous les rôles (`all`)** : Si un membre possède plusieurs rôles staff, il apparaît sous chacun de ses rôles.
+  * **Rôle le plus haut uniquement (`highest`)** : Un membre n'apparaît qu'une seule fois dans l'organigramme, sous son rôle le plus élevé dans la hiérarchie.
+* **Mise à jour en temps réel automatique** : Dès qu'un membre gagne ou perd un rôle configuré, rejoint ou quitte le serveur, Lyxios met instantanément à jour le message d'effectif publié sans aucune intervention manuelle.
+
+---
+
+## Configuration du module
+
+Le panneau de configuration interactif rassemble tous les outils nécessaires :
+
+<Steps>
+1. **Créer des catégories** : Cliquez sur le bouton <span class="discord-element discord-btn-primary"><Plus size={14} style={{ marginRight: '4px' }} /> Créer une catégorie</span> pour ouvrir un formulaire et nommer votre section (ex: `Direction`, `Modération`).
+2. **Ajouter et configurer des rôles** : Dans le sélecteur de rôles Discord, choisissez le rôle à intégrer. Vous pourrez ensuite :
+   * Lui assigner une catégorie ou le laisser sans catégorie.
+   * Ajuster son ordre d'apparition avec les boutons <span class="discord-element discord-btn-secondary"><ArrowUp size={14} style={{ marginRight: '4px' }} /> Monter</span> et <span class="discord-element discord-btn-secondary"><ArrowDown size={14} style={{ marginRight: '4px' }} /> Descendre</span>.
+   * Le retirer de l'effectif via le bouton <span class="discord-element discord-btn-danger"><Trash2 size={14} style={{ marginRight: '4px' }} /> Retirer</span>.
+3. **Gérer les catégories existantes** : Sélectionnez une catégorie dans le menu déroulant pour la renommer via <span class="discord-element discord-btn-secondary"><Edit3 size={14} style={{ marginRight: '4px' }} /> Renommer</span>, modifier sa position ou la supprimer (les rôles associés deviennent alors sans catégorie sans être supprimés).
+4. **Choisir le mode d'affichage** : Cliquez sur le bouton <span class="discord-element discord-btn-secondary"><ArrowUpDown size={14} style={{ marginRight: '4px' }} /> Changer Mode</span> pour basculer entre **Tous les rôles** et **Rôle le plus haut seulement**.
+5. **Définir le salon de publication** : Cliquez sur le bouton <span class="discord-element discord-btn-success"><Hash size={14} style={{ marginRight: '4px' }} /> Définir Salon</span> et sélectionnez le canal textuel où l'embed de l'effectif doit être envoyé.
+6. **Forcer la mise à jour** : Le bouton <span class="discord-element discord-btn-danger"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Mettre à jour l'Embed</span> permet d'actualiser immédiatement le message si nécessaire.
+7. **Retourner au menu** : Cliquez sur <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Retour</span> pour revenir au menu principal de la catégorie Administration & Gestion.
+</Steps>
+
+<Aside type="tip" title="Gestion automatique des limites Discord">
+Si votre équipe comporte de nombreux membres ou rôles, Lyxios découpe automatiquement la liste en plusieurs Embeds chaînés afin de ne jamais dépasser la limite de 4 000 caractères par Embed imposée par Discord.
+</Aside>
+
+---
+
+## Configuration via le Dashboard Web
+
+Vous pouvez également gérer l'ensemble de l'effectif depuis le Dashboard en ligne de Lyxios :
+* Visualisation claire de la hiérarchie et des catégories.
+* Attribution rapide des rôles staff par simple glisser ou sélection.
+* Choix du mode d'affichage et du salon de diffusion en un clic.

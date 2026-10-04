@@ -1,0 +1,59 @@
+---
+slug: es/guides/modules/effectif
+title: Effectif
+description: Configura el organigrama y la lista de personal de tu servidor organizada por categorías y roles.
+lastUpdated: 2026-10-04
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import { Plus, ArrowUpDown, Hash, RefreshCw, ChevronLeft, Trash2, ArrowUp, ArrowDown, Edit3 } from 'lucide-react';
+
+## ¿Dónde encontrar el módulo Effectif?
+
+El módulo Effectif (Organigrama de Personal) está disponible mediante el comando `/config` del bot:
+1. Usando el comando directo: `/config module:Effectif`
+2. Ejecutando `/config`, seleccionando la categoría **Administration & Gestion**, y luego eligiendo el módulo **Effectif** en el menú desplegable.
+
+## ¿Para qué sirve el módulo Effectif?
+
+El módulo **Effectif** permite organizar, estructurar y publicar automáticamente el organigrama de tu equipo (Dirección, Moderación, Soporte, Helpers, etc.) en un canal dedicado mediante un Embed elegante y siempre actualizado.
+
+### Características principales:
+* **Organización jerárquica por categorías**: Crea secciones personalizadas (ej: Dirección, Moderación, Soporte) y clasifica en ellas tus roles de staff.
+* **Orden personalizado**: Reordena las categorías y los roles con los botones Subir / Bajar.
+* **Dos modos de visualización de miembros**:
+  * **Todos los roles (`all`)**: Si un miembro tiene varios roles de staff, aparecerá listado debajo de cada uno de ellos.
+  * **Solo rol más alto (`highest`)**: Cada miembro aparece una sola vez en el organigrama, bajo su rol jerárquico más alto.
+* **Sincronización automática en tiempo real**: Cuando un miembro recibe o pierde un rol de staff configurado, entra o sale del servidor, Lyxios actualiza de inmediato el mensaje publicado sin intervención manual.
+
+---
+
+## Configuración del módulo
+
+El panel de configuración interactivo reúne todas las opciones necesarias:
+
+<Steps>
+1. **Crear categorías**: Haz clic en el botón <span class="discord-element discord-btn-primary"><Plus size={14} style={{ marginRight: '4px' }} /> Créer une catégorie</span> para abrir un formulario y nombrar tu sección (ej: `Dirección`, `Moderación`).
+2. **Añadir y configurar roles**: En el selector de roles de Discord, elige el rol que deseas incorporar. Luego podrás:
+   * Asignarle una categoría o dejarlo sin categoría.
+   * Modificar su orden de aparición con los botones <span class="discord-element discord-btn-secondary"><ArrowUp size={14} style={{ marginRight: '4px' }} /> Monter</span> y <span class="discord-element discord-btn-secondary"><ArrowDown size={14} style={{ marginRight: '4px' }} /> Descendre</span>.
+   * Eliminarlo del organigrama con el botón <span class="discord-element discord-btn-danger"><Trash2 size={14} style={{ marginRight: '4px' }} /> Retirer</span>.
+3. **Gestionar categorías existentes**: Selecciona una categoría en el menú desplegable para renombrarla con <span class="discord-element discord-btn-secondary"><Edit3 size={14} style={{ marginRight: '4px' }} /> Renommer</span>, cambiar su orden o eliminarla (sus roles asociados se mantendrán sin categoría).
+4. **Elegir el modo de visualización**: Haz clic en el botón <span class="discord-element discord-btn-secondary"><ArrowUpDown size={14} style={{ marginRight: '4px' }} /> Changer Mode</span> para alternar entre **Todos los roles** y **Solo rol más alto**.
+5. **Definir el canal de publicación**: Haz clic en <span class="discord-element discord-btn-success"><Hash size={14} style={{ marginRight: '4px' }} /> Définir Salon</span> y selecciona el canal de texto donde se publicará el organigrama.
+6. **Forzar actualización**: El botón <span class="discord-element discord-btn-danger"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Mettre à jour l'Embed</span> permite refrescar inmediatamente el mensaje en caso necesario.
+7. **Volver al menú**: Haz clic en <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} style={{ marginRight: '4px' }} /> Retour</span> para regresar al menú de Administration & Gestion.
+</Steps>
+
+<Aside type="tip" title="Gestión automática de límites de Discord">
+Si tu equipo tiene muchos miembros o roles, Lyxios divide automáticamente el organigrama en varios Embeds encadenados para no sobrepasar el límite de 4.000 caracteres por Embed impuesto por Discord.
+</Aside>
+
+---
+
+## Configuración desde el Panel Web
+
+También puedes gestionar todo el organigrama de personal desde el Dashboard web de Lyxios:
+* Vista visual y clara de las jerarquías y categorías.
+* Asignación rápida de roles mediante un clic o arrastre.
+* Configuración del canal y del modo de visualización al instante.
