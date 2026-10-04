@@ -686,14 +686,27 @@ h3 {
     color: var(--sl-color-white) !important;
 }
 
-/* Flèches (carets) de la sidebar : plus grandes et plus visibles */
-.sidebar-pane .caret,
-.sidebar-content .caret {
-    width: 1.15rem !important;
-    height: 1.15rem !important;
-    min-width: 1.15rem !important;
-    min-height: 1.15rem !important;
-    opacity: 0.85 !important;
+/* Positionnement de la flèche à GAUCHE avant le texte pour identifier les catégories au 1er coup d'œil */
+.sidebar-pane summary,
+.sidebar-content summary {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    min-width: 0 !important;
+}
+
+.sidebar-pane summary .caret,
+.sidebar-content summary .caret {
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+    min-width: 1.05rem !important;
+    min-height: 1.05rem !important;
+    flex-shrink: 0 !important;
+    opacity: 0.8 !important;
+    color: var(--sl-color-gray-3) !important;
+    transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease !important;
 }
 
 .sidebar-pane summary:hover .caret,
