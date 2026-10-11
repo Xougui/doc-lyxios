@@ -1,8 +1,8 @@
 ---
 slug: en/guides/modules/captcha
 title: Captcha
-description: Here you will find all documentation related to the captcha module.
-lastUpdated: 2026-07-22
+description: Learn how to secure server access with Lyxios visual and mathematical Captcha system.
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
@@ -13,54 +13,72 @@ import captchaEmojisImage from '../../../../../../assets/exemples/captcha_emojis
 
 ## Where to find the captcha module?
 
-You can find the captcha module in the `/config` command of the bot.
+You will find the captcha module in the `/config` command of the bot.
 You can access it in two ways:
 1. Using direct command: `/config module:Captcha`
-2. Using `/config`, selecting **Security & Moderation**, then choosing **Captcha** in the dropdown.
+2. Run `/config`, select the **Security & Protection** category, and choose the **Captcha** module in the dropdown menu.
 
 ## What is the captcha module for?
 
-The captcha module protects your server against raids, bots, and malicious accounts. 
-When a new user joins the server, Lyxios assigns them a restrictive role (`Unverified`) and asks them to solve a visual puzzle (a mathematical calculation inserted into an image) to get full access to the server.
+The captcha module protects your server against raids, bots, and malicious accounts.
+When a new user joins the server, Lyxios assigns them a restrictive role (`Unverified`) and asks them to solve a visual challenge (a mathematical calculation rendered into an image) to obtain full access to the server.
 
 The module features two operating modes:
 * **Strict Mode**: All new members joining the server must complete the captcha.
-* **Targeted Mode**: Only accounts considered "suspicious" (recently created accounts or accounts with no profile picture) are subject to the captcha.
+* **Targeted Mode**: Only accounts considered "suspicious" (recently created accounts or accounts without a profile picture) are subjected to the captcha. Other members join immediately.
 
 ---
 
 ## Module Configuration
 
-The Captcha configuration panel contains several options, role selectors, and channel selectors:
+The Captcha configuration dashboard contains several options, role selectors, and channel selectors to tailor security to your community:
 
 <Steps>
 1. **Choose captcha type**: In the dropdown menu <span class="discord-element discord-select">Choisir le type de captcha <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choose the desired mode:
-   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Lock size={14} /> **Strict**</span>: Verifies everyone.
-   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Goal size={14} /> **Ciblé**</span>: Verifies only suspicious accounts.
-2. **Set age threshold (Targeted Mode only)**: Click the button <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Seuil Âge</span> to open a modal and set account age in days (e.g. `7` days).
-3. **Configure restrictive role**: In the selector <span class="discord-element discord-select">Manage verified role <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choose the restrictive role. You can also click <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> to let the bot automatically create `Unverified` and adjust channel permissions.
-4. **Configure verification channel**: In the selector <span class="discord-element discord-select">Manage verification channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select the verification text channel. You can also click <span class="discord-element discord-btn-primary">Créer salon vérif</span>.
-5. **Configure log channel**: In the selector <span class="discord-element discord-select">Manage log channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select where captcha results will be sent.
-6. **Enable module**: Once configured, click <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Enable module</span>. Use <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable module</span> to turn it off.
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Lock size={14} /> **Strict**</span>: Verifies every newcomer.
+   * <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Goal size={14} /> **Ciblé**</span>: Verifies suspicious accounts only.
+2. **Define age threshold (Targeted Mode only)**: Click <span class="discord-element discord-btn-secondary"><Hourglass size={14} style={{ marginRight: '4px' }} /> Seuil Âge</span> to open a modal and define account age in days (e.g., `7` days). Accounts created less than 7 days ago must pass the captcha.
+3. **Configure restrictive role**: In the selector <span class="discord-element discord-select">Manage verified role <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, pick the restrictive role assigned to unverified members. If you don't have one, click <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> to let the bot create `Unverified` and apply channel overrides automatically.
+4. **Configure verification channel**: In the selector <span class="discord-element discord-select">Manage verification channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select the channel where captcha prompts will appear. You can also click <span class="discord-element discord-btn-primary">Créer salon vérif</span> to let Lyxios create a `#verification` channel.
+5. **Configure logs channel**: In the selector <span class="discord-element discord-select">Manage log channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select where verification outcomes (success, failure, kicks) will be logged.
+6. **Enable module**: Once valid channels and roles are set, click <span class="discord-element discord-btn-success"><Power size={14} style={{ marginRight: '4px' }} /> Enable module</span>. To turn it off later, use <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable module</span>.
 </Steps>
 
 <Aside type="caution" title="Automatic Permissions Configuration">
-The button <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> (or *Update Permissions*) automatically configures server permissions to hide all text and voice channels from unverified members.
+The button <span class="discord-element discord-btn-primary"><Settings size={14} style={{ marginRight: '4px' }} /> Create & Configure Permissions</span> (or *Update Permissions*) automatically configures server permissions to hide all existing text and voice channels from unverified members, keeping only the verification channel visible.
+Furthermore, Lyxios automatically enforces these restrictions on any **new channels** created afterwards!
 </Aside>
 
 ---
 
-## User Flow & Rules
+## User Flow & Verification
 
-1. Member receives the restrictive role (e.g., `Unverified`).
-2. Bot sends a message mentioning the member with **Start Verification**.
+When a newcomer is flagged for verification:
+1. Lyxios assigns them the configured restrictive role (e.g., `Unverified`).
+2. The bot sends a message in the verification channel mentioning the member with a **Start Verification** button.
 
-<Image src={captchaFirstMessageImage} alt="Verification invitation message" style={{ margin: '1rem 0' }} />
+<Image src={captchaFirstMessageImage} alt="Verification invitation prompt message" style={{ margin: '1rem 0' }} />
 
-3. Clicking the button displays a mathematical calculation image with 5 emoji buttons.
-4. Member clicks the emoji corresponding to the correct result.
+3. Clicking the button generates an image with a math equation (e.g., `5 + 10 - 2 = ?`) and a row of 5 emoji buttons depicting fruits or animals.
+4. The image displays the mapping between each candidate answer and an emoji (e.g., `13 ➔ 🍎`, `15 ➔ 🍌`).
+5. The member must click the emoji corresponding to the correct result.
 
-<Image src={captchaEmojisImage} alt="Math captcha with emojis" style={{ margin: '1rem 0' }} />
+<Image src={captchaEmojisImage} alt="Math captcha with emoji buttons" style={{ margin: '1rem 0' }} />
 
-* **Time limit**: 30 minutes to solve the captcha before being automatically kicked.
-* **Attempts**: 3 attempts before being kicked.
+### Rules & Security Measures
+
+* **Time Limit**: The user has **30 minutes** to start and complete the captcha. If exceeded, they are automatically **kicked** to prevent inactive bots from piling up.
+* **Attempts Limit**: The user has **3 attempts**. Reaching 3 mistakes results in an automatic **kick**.
+* **Automatic Cleanup**: If the member leaves the server while their captcha is pending, Lyxios automatically deletes the verification message to keep the channel clean.
+* **Anti-Bot Defense**: Action buttons use randomly generated UUIDs per session, preventing automated scripts from guessing or replaying click interactions.
+* **Security Fail-Safe**: If the bot lacks Discord permissions to assign the restrictive role upon join, the member is **immediately kicked as a precaution** to prevent unverified server access.
+
+---
+
+## Verification Logs
+
+When a logs channel is configured, the bot posts detailed Embeds for every important security event:
+
+* **🔐 Captcha Passed** (Green): Details the member, unique snowflake ID, and Discord account creation timestamp.
+* **❌ Captcha Failed** (Red): Logs failed attempts (when all 3 attempts are exhausted) before member removal.
+* **👢 Member Kicked (Captcha Timeout)** (Orange): Triggered when a member exceeds the 30-minute window without completing verification.

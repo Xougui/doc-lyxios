@@ -1,13 +1,171 @@
 ---
 slug: en/guides/autres/surveillance
 title: Surveillance
-description: Complete overview of the surveillance system in Lyxios.
-lastUpdated: 2026-07-22
+description: Complete overview of the surveillance and security system in Lyxios.
+lastUpdated: 2026-10-11
 ---
 
-import { Code } from '@astrojs/starlight/components';
+import { Code, Card, CardGrid, Steps, Aside, Badge } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import surveillanceRules from '../../../guides/autres/surveillance_rules.json?raw';
+import surveillanceRulesObj from '../../../guides/autres/surveillance_rules.json';
 import surveillanceEmbedImage from '../../../../../assets/exemples/surveillance_embed.png';
+import surveillancePrevenirImage from '../../../../../assets/exemples/surveillance_prevenir.png';
 
-The **Surveillance** module is a proactive security engine operating invisibly across all servers to intercept phishing, scams, and dangerous links.
+The **Surveillance** module is an advanced proactive security system integrated into Lyxios. Classified as a **private module**, it is strictly reserved for the project's bots and general administrators: the production bot **Lyxios**, the development bot **LyxiosDev**, **xougui** (owner and lead developer), and **kadawatcha** (manager and developer).
+
+For obvious reasons of confidentiality, ethics, and global security, this module operates invisibly across all servers hosting Lyxios. It analyzes message streams in real time to detect, censor, and neutralize threats before they harm your communities.
+
+---
+
+## The Analysis Engine (Scanner)
+
+Every message sent across monitored servers undergoes ultra-fast asynchronous scanning executed in a dedicated thread pool (`ThreadPoolExecutor`), ensuring zero latency for users.
+
+The scanner performs a series of successive multi-level checks:
+
+<Steps>
+1. **Forbidden Words (`dangerous_words`)**
+   Immediate direct detection of harmful or prohibited terms listed in our database.
+
+2. **Phishing & Scam Regex Patterns (`scam_regex_patterns`)**
+   Semantic regex analysis targeting recurring phrase structures found in fraudulent schemes (e.g., fake Nitro gifts, fake Steam giveaways).
+
+3. **Obfuscation Detection (Anti-Bypass)**
+   Spammers frequently try to bypass filters by inserting whitespace or special characters (e.g., `F r e e  N i t r o`). Lyxios automatically normalizes text using Unicode decomposition (Unicode NFKD), stripping accents and isolating alphanumeric characters to uncover hidden scams.
+
+4. **Secret Leaks (Credentials Protection)**
+   - **Discord Tokens**: Detection of accidentally leaked user or bot tokens. The bot validates the structure by decoding the Base64 portion (user snowflake ID) to avoid false positives.
+   - **Webhooks & IPs**: Identification of exposed Discord webhook URLs and IP addresses.
+
+5. **Heuristic & Advanced Phishing Analysis**
+   For every extracted URL, Lyxios applies an in-depth risk scoring algorithm:
+   - **Typosquatting**: Detection of domain spoofing targeting trusted platforms (e.g., `discord-gift`, `steam-comunity`).
+   - **Levenshtein Distance & Similarity**: Computation of edit distance between scanned domains and official domains. Scores escalate if similarity exceeds 85% compared to `discord.com` or `steamcommunity.com` with an edit distance of 1 or 2 characters.
+   - **TLD Weighting & Keywords**: High-risk keywords in URLs (`nitro`, `gift`) combined with suspicious extensions (`.ru`, `.xyz`, `.click`).
+   - **Login Pages**: Detection of terms such as `login` or `signin` within URIs to flag fake authentication portals.
+</Steps>
+
+<Aside type="tip" title="Trusted Whitelist">
+All official Discord servers and trusted domains (e.g., `discord.com`, `discord.gg`, `steamcommunity.com`) are cataloged in a global whitelist to avoid unnecessary false positives during legitimate discussions.
+</Aside>
+
+---
+
+## Scanner Configuration
+
+The scanner's rules and filters are fully dynamic, configured inside a structured JSON file. This allows instant updates without restarting the bot or altering source code.
+
+### Statistical overview of rules:
+
+<CardGrid>
+  <Card title="Censorship & Safety" icon="warning">
+    * **{surveillanceRulesObj.dangerous_words.length}** critical dangerous words and phrases.
+    * **{surveillanceRulesObj.scam_regex_patterns.length}** targeted scam regex patterns.
+  </Card>
+  <Card title="Link Analysis" icon="external">
+    * **{surveillanceRulesObj.whitelist.length}** trusted whitelisted domains.
+    * **{surveillanceRulesObj.suspicious_keywords.length}** monitored suspicious keywords.
+    * **{surveillanceRulesObj.suspicious_tlds.length}** high-risk TLDs (e.g., `.xyz`, `.ru`).
+  </Card>
+</CardGrid>
+
+<br />
+
+<details class="premium-details">
+  <summary>**🔍 View full JSON configuration ({surveillanceRulesObj.dangerous_words.length} words, {surveillanceRulesObj.whitelist.length} domains...)**</summary>
+
+  <br />
+
+  <Code code={surveillanceRules} lang="json" title="surveillance_rules.json" />
+</details>
+
+---
+
+## Interactive Alert (Surveillance Log)
+
+Whenever a threat is confirmed by the scanner, Lyxios instantly generates a detailed alert in our private staff surveillance channel.
+
+<br />
+
+<Image src={surveillanceEmbedImage} alt="Example of surveillance alert embed" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
+
+### Data Safety & Redaction
+<Aside type="danger" title="Automatic Security Redaction">
+To protect moderation staff from accidental exposure to sensitive credentials or single-click exploits, suspicious content shown in logs is **strictly redacted**:
+* **IP Addresses** are neutralized: `[IP SUPPRIMÉE]`.
+* Leaked **Discord Tokens** are immediately masked: `[TOKEN SUPPRIMÉ]`.
+</Aside>
+
+### Discord Interface & Action Buttons
+The alert features a rich Embed paired with a **persistent interactive view** (buttons) allowing instant moderation actions:
+
+| Button | Button Style | Role & Behavior |
+| :--- | :--- | :--- |
+| **Supprimer** | <span class="discord-element discord-btn-danger">🗑️ Supprimer</span> | Instantly deletes the suspicious message from the original channel to protect members. |
+| **Timeout (1h)** | <span class="discord-element discord-btn-primary">⏳ Timeout (1h)</span> | Temporarily times out the author for 1 hour to immediately stop ongoing attacks. |
+| **Bannir** | <span class="discord-element discord-btn-danger">🔨 Bannir</span> | Permanently bans the user from the original guild, deletes their message, and disables alert buttons. |
+| **Faux Positif** | <span class="discord-element discord-btn-secondary">✅ Faux Positif</span> | Removes the alert log from our surveillance channel in case of a false detection. |
+
+<Aside type="caution" title="Access Control & Security">
+To safeguard absolute integrity, **only the official Lyxios bot, LyxiosDev, xougui, and kadawatcha** are authorized to view and interact with alerts in this channel.
+
+Any attempt by unauthorized users is automatically rejected and blocked by the bot.
+</Aside>
+
+---
+
+## Administration Commands
+
+Alongside interactive alert buttons, bot administrators have access to dedicated text commands for moderation and contextual inspection.
+
+### 1. Notify Server Owner (`!prevenir`)
+Sends a professional, clear private message alert to the owner of the affected server.
+
+* **Syntax**: `!prevenir <message_id> [raison]` *(alias `!p`)*
+* **Features**:
+  - Automatically identifies the guild owner.
+  - Sends a structured summary detailing the detected threat with redacted content.
+  - Includes a direct link to the message if still available.
+  - Provides guidance and a direct invitation link to our support server.
+
+```ini
+; Command execution example
+!prevenir 123456789012345678 Spam intensif de faux liens Nitro.
+
+; Bot response
+✅ MP envoyé à l'owner (ID: 987654321012345678).
+```
+
+<br />
+
+#### Preview of private message sent to owner:
+
+<Image src={surveillancePrevenirImage} alt="Owner notification embed preview" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
+
+### 2. Retrieve Context (`!contexte`)
+Enables informed moderation decisions without joining the third-party server by reading surrounding messages before and after the alert.
+
+* **Syntax**: `!contexte <message_id> [direction] [limit]` *(alias `!c`)*
+* **Parameters**:
+  - `<message_id>`: Alert message ID in the surveillance channel.
+  - `[direction]`: 
+    - `avant`: messages prior to the threat.
+    - `apres`: messages following the threat.
+    - `deux` *(default)*: surrounding history before and after.
+  - `[limit]`: Number of messages to retrieve (`1` to `50`, default `5`).
+
+#### Context Preview:
+The bot prints a formatted log where the flagged message is marked with a red circle <Badge text="🔴" variant="danger" /> and surrounding messages with black circles <Badge text="⚫" variant="default" />.
+
+```text
+⚫ 19:41:50 [MembreA] : Salut tout le monde, ça va ?
+⚫ 19:41:55 [MembreB] : Hello ! Oui et toi ?
+🔴 19:42:05 [AuteurSuspect] : Regardez ce lien c'est trop bien ! cdn-discord.xyz/nitro
+⚫ 19:42:10 [MembreA] : C'est quoi ce lien bizarre ?
+⚫ 19:42:15 [MembreB] : Clique pas c'est une arnaque !
+```

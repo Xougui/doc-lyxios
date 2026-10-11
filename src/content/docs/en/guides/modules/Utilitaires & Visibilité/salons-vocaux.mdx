@@ -1,8 +1,8 @@
 ---
 slug: en/guides/modules/salons-vocaux
 title: Voice Channels
-description: Full guide to configure temporary voice channels.
-lastUpdated: 2026-07-22
+description: Discover how to configure automatic temporary voice channels on Lyxios.
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
@@ -10,32 +10,39 @@ import { ChevronDown } from 'lucide-react';
 
 ## Where to find the voice channels module?
 
-You will find the temporary voice channels module in `/config`.
-Direct command: `/config module:Salons Vocaux`
+You will find the temporary voice channels module in the `/config` command of the bot.
+You can access it in two ways:
+1. Direct command: `/config module:Salons Vocaux`
+2. Run `/config`, select the **Administration & Management** category, and choose the **Voice Channels** module in the dropdown menu.
 
-## What is it for?
+## What is the voice channels module for?
 
-Allows members to automatically create their own private temporary voice channel when joining a designated Hub channel.
+The temporary voice channels module allows members to automatically create their own private voice channel when joining a designated main channel (the Hub).
+As soon as a member joins the Hub, a new voice channel is created instantly and the member is moved into it. The temporary channel is automatically deleted as soon as it becomes empty.
 
 ---
 
 ## Module Configuration
 
+In the temporary voice channels configuration panel, you have several options to set up the system:
+
 <Steps>
-1. **Fast Setup**: Click <span class="discord-element discord-btn-primary">⚡ Fast Setup</span> to let the bot create the Hub and Category automatically.
-2. **Hub channel**: Dropdown <span class="discord-element discord-select">Select a voice channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-3. **Category**: Dropdown <span class="discord-element discord-select">Select a category <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-4. **Name Format**: Click <span class="discord-element discord-btn-secondary">📝 Set Name Format</span>.
-5. **Allowed Commands**: Dropdown <span class="discord-element discord-select">Manage Commands <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-6. **Reset**: Use <span class="discord-element discord-btn-danger">🗑️ Reset</span>.
+1. **Automatic creation (Fast Setup)**: Click the <span class="discord-element discord-btn-primary">⚡ Fast Setup</span> button to let the bot create the category and Hub channel automatically.
+2. **Hub channel**: In the dropdown menu <span class="discord-element discord-select">Set Hub Channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, choose the voice channel that will serve as the creation point.
+3. **Target category**: In the dropdown menu <span class="discord-element discord-select">Set Category <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, specify the category where temporary channels will be generated.
+4. **Name format**: Click the <span class="discord-element discord-btn-secondary">📝 Set Name Format</span> button to customize the naming pattern of created rooms.
+5. **Command permissions**: In the dropdown menu <span class="discord-element discord-select">Manage Commands <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, select which commands channel owners are allowed to use to manage their room.
+6. **Enable or disable**: Use the <span class="discord-element discord-btn-danger">🗑️ Reset</span> button to reset or disable the module.
 </Steps>
 
-<Aside type="tip" title="Member Control">
-Once inside their temporary channel, members can manage their room (rename, lock, limit) using allowed `/vocal` commands.
+<Aside type="tip" title="Member Channel Management">
+Once inside their temporary room, members can manage their channel (rename, lock access, modify user limits) according to permissions granted by administration.
 </Aside>
 
 ---
 
 ## Formatting Variables
 
-* <Badge text="{user}" variant="note" />: Display name of the creator (e.g. `{user}'s Lounge`).
+When customizing the channel name format, you can use the following dynamic variable:
+
+* <Badge text="{user}" variant="note" />: Displays the channel creator's display name (e.g. `{user}'s Lounge`).

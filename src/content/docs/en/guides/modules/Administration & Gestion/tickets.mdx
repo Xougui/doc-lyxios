@@ -1,8 +1,8 @@
 ---
 slug: en/guides/modules/tickets
 title: Tickets
-description: "Learn how tickets work in Lyxios, how to create, manage, and use them to track support requests."
-lastUpdated: 2026-08-25
+description: "Learn how tickets work in Lyxios, how to create, manage, and use them to track issues, feature requests, and support tasks."
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
@@ -13,76 +13,124 @@ import { ChevronDown, RefreshCw, PowerOff } from 'lucide-react';
 You will find the tickets module in the `/config` command of the bot.
 You can access it in two ways:
 1. Direct command: `/config module:Tickets`
-2. Run `/config`, select **Administration & Management**, then choose **Tickets** in the dropdown.
+2. Run `/config`, select **Administration & Management**, then choose **Tickets** in the dropdown menu.
 
 ## What is the tickets module for?
 
 The tickets module allows you to create and manage support tickets to track issues, feature requests, and tasks for your server.
+It provides a simple interface to create tickets, route them to appropriate categories, and assign them to team members.
 
 ---
 
 ## Module Configuration
 
-Configured via the `/config` interactive panel:
+The Lyxios ticket system is configured via a centralized interactive dashboard. Once inside `/config`, you will access an interface consisting of a main dropdown menu and quick action buttons.
 
 ### 1. Configuration via Dropdown
 
-Using <span class="discord-element discord-select">⚙️ Configurer une option... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>:
+All settings are configured from the main dropdown menu <span class="discord-element discord-select">⚙️ Configurer une option... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+Selecting an option opens a modal or sub-menu:
 
-**Channels & Roles:**
-* **📂 Ticket Category**: Category where new ticket channels will be created.
-* **👑 Manager Role**: Role permitted to see and manage tickets.
-* **📜 Logs Channel**: Channel where activity logs and transcripts are sent.
-* **🎟️ Panel Channel**: Channel where the ticket creation panel message is sent.
+**Channels and Roles:**
+* **📂 Ticket Category**: The Discord category where new ticket channels will be created.
+* **👑 Manager Role**: The role permitted to see and manage tickets. Administrators have access by default.
+* **📜 Logs Channel**: A text channel where the bot records all ticket actions (opening, closing, transcripts).
+* **🎟️ Panel Channel**: The channel where the ticket creation panel message is displayed to members.
 
-**Text & Appearance:**
-* **👋 Welcome Message**: Custom welcome message when a ticket opens (`{user}`).
-* **🎨 Panel Embed**: Title, Description, Color, and Menu Label.
-* **Button Color**: Color of the button.
-* **Button Emoji**: Emoji on the creation button.
+**Texts and Appearance:**
+* **👋 Welcome Message**: Customize the message sent upon ticket creation. Use `{user}` to mention the member.
+* **🎨 Panel Embed**: Customize the Title, Description, and Color of the panel, as well as the **Menu Label** (placeholder text when multiple reasons are configured).
+* **🎨 Button Color**: Change the color of the ticket creation button on the panel.
+* **🎫 Button Emoji**: Change the emoji displayed on the creation button.
 
 **Advanced Features:**
-* **🔢 Max Tickets/User**: Limit simultaneous tickets per user (1 to 5).
-* **📝 Reasons**: Add or remove reasons for opening tickets.
-* **⭐ Reviews / Rating**: Rating system on ticket close.
-* **🙋‍♂️ Claiming**: Enable or disable ticket claiming by staff.
-* **💬 Staff Discussion**: Private thread inside tickets for staff discussion.
+* **🔢 Max Tickets/User**: Limit the number of tickets open simultaneously by a single user (from 1 to 5).
+* **📝 Reasons**: Add, customize, or delete opening reasons (e.g., *Support*, *Partnership*, *Recruitment*). For each reason, you can configure:
+  * **📁 Dedicated Category**: Create tickets associated with this reason in a specific Discord category (instead of the global category).
+  * **👑 Dedicated Staff Role**: Assign a dedicated staff role specifically for this reason (instead of the global manager role).
+* **⭐ Reviews / Rating**: Enable or disable the satisfaction rating system upon ticket closing.
+* **🙋‍♂️ Claiming**: Enable or disable the ability for your team to "claim" (take charge of) a ticket.
+* **💬 Staff Discussion**: Enable or disable the automatic creation of a private thread inside the ticket reserved exclusively for staff.
+* **⚙️ Opening Mode**: Switch between "Auto" mode (ticket channel is created immediately upon request) and "Manual" mode (staff must approve the request before channel creation).
+
+<Aside type="tip" title="Centralized & Intelligent Routing">
+The **Reasons** system allows you to centralize all user needs on a single panel while automatically routing each ticket to the appropriate Discord category and team (e.g., *Recruitment* tickets visible only to recruiters).
+</Aside>
 
 ### 2. Quick Actions
 
-* <span class="discord-element discord-btn-success">Modify Panel</span>: Send or update the panel message.
-* <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Refresh</span>: Refresh the UI state.
-* <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable</span>: Disable the tickets system.
+Below the main dropdown menu, quick action buttons are available:
+
+* <span class="discord-element discord-btn-success">🚀 Modify Panel</span>: Immediately sends or updates the ticket panel message in the configured channel.
+* <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Refresh</span>: Refreshes the interface with the latest saved configurations.
+* <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Disable</span>: Deletes the public panel message and disables the ticket system (while retaining settings in database).
 
 ---
 
 ## Ticket Management
 
-### Claiming Tickets (Claim)
-Staff members see <span class="discord-element discord-btn-primary">Claim ticket</span>. Clicking it assigns the ticket to that staff member. The button then changes to <span class="discord-element discord-btn-secondary">Unclaim ticket</span>.
+Once a ticket is opened, several features assist your staff and the user.
 
-### Closing & Transcripts
-Clicking <span class="discord-element discord-btn-danger">Close the ticket</span> generates an HTML transcript sent to the user via DM and to the log channel.
+### Claiming Tickets (Claim)
+
+*(Note: Can be toggled on or off in configuration)*
+
+Staff members (Manager Role) see a <span class="discord-element discord-btn-primary">🙋‍♂️ Claim ticket</span> button in the ticket channel.
+
+* **Action**: Clicking assigns the ticket to that staff member.
+* **Effect**: The bot updates permissions so **only** that staff member (and the ticket creator) can speak in the ticket. Other managers can no longer post messages, preventing confusion (administrators retain full speech permissions). If **Staff Discussion** is enabled, the claimer is automatically added to the private staff thread.
+* **Unclaim**: The button turns into <span class="discord-element discord-btn-secondary">🔓 Unclaim ticket</span> to reopen handling to the entire team.
+
+### Manual Opening Mode
+
+*(Note: Enabled by setting Opening Mode to Manual)*
+
+When manual mode is active:
+1. **Ticket Request**: When a member requests a ticket, the channel is not created immediately. The bot posts a request in the logs channel.
+2. **Staff Validation**: Staff receives a notification with the requested reason and two quick action buttons:
+   * <span class="discord-element discord-btn-success">✅ Open</span>: Validates the request and immediately creates the ticket channel.
+   * <span class="discord-element discord-btn-danger">❌ Reject</span>: Declines and dismisses the ticket request.
+
+### Closing and Transcripts
+
+When support is complete, click <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>.
+
+1. **Transcript Generation**: The bot creates a high-fidelity stylized `.html` file recording the full conversation, timestamped in 24h format (`Europe/Paris` timezone) and localized in the server/user language. *If the file exceeds 8 MB, a lightweight link-based version is generated.*
+2. **DM Dispatch**: The ticket author receives the transcript file via private message alongside a summary.
+3. **Logs**: The transcript is logged in the configured ticket logs channel.
+4. **Channel Deletion**: The ticket channel is deleted after a few seconds.
+
+<Aside type="note" title="Support Rating">
+*(Note: Can be toggled on or off in configuration)*
+
+After closure, the user receives a private message prompt to rate support quality (from 1 to 5 stars ⭐). The rating is forwarded to your logs channel to track team support performance.
+</Aside>
 
 ---
 
 ## Useful Commands
 
+In addition to interactive buttons, slash commands are available to manage active tickets:
+
 <CardGrid>
   <Card title="/ticket-add" icon="add-document">
-    **Add member or role**
-    *Usage: `/ticket-add target:@User`*
+    **Add a member or role**
+    Adds a specific user or role to the current ticket channel.
+    *Usage: `/ticket-add target:@User` or `/ticket-add target:@Role`*
   </Card>
   <Card title="/ticket-remove" icon="close">
-    **Remove member or role**
-    *Usage: `/ticket-remove target:@User`*
+    **Remove a member or role**
+    Revokes access to the ticket for a specific user or role.
+    *Usage: `/ticket-remove target:@User` or `/ticket-remove target:@Role`*
   </Card>
   <Card title="/ticket-rename" icon="pencil">
-    **Rename ticket**
+    **Rename the ticket**
+    Renames the current ticket channel.
     *Usage: `/ticket-rename name:new-name`*
   </Card>
   <Card title="/ticket-reset" icon="setting">
     **Reset permissions**
+    Resets channel permissions back to default state (useful if permissions were altered or to reset a claimed ticket).
     *Usage: `/ticket-reset`*
   </Card>
 </CardGrid>

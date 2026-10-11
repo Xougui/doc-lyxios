@@ -2,7 +2,7 @@
 slug: es/guides/modules/salons-vocaux
 title: Canales de Voz
 description: Descubre cómo configurar los canales de voz temporales automáticos en Lyxios.
-lastUpdated: 2026-08-25
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
@@ -10,21 +10,39 @@ import { ChevronDown } from 'lucide-react';
 
 ## ¿Dónde encontrar el módulo de canales de voz?
 
-Comando directo: `/config module:Salons Vocaux` o en **Administration & Gestion** -> **Salons Vocaux**.
+Puedes encontrar el módulo de canales de voz temporales mediante el comando `/config` del bot.
+Puedes acceder de dos formas diferentes:
+1. Usando el comando directo: `/config module:Salons Vocaux`
+2. Ejecutando el comando `/config`, seleccionando la categoría **Administration & Gestion** y el módulo **Salons Vocaux** en el menú desplegable.
 
 ## ¿Para qué sirve el módulo de canales de voz?
 
-Permite a tus miembros crear automáticamente su propio canal de voz privado al unirse a un canal Hub.
+El módulo de canales de voz temporales permite a tus miembros crear automáticamente su propio canal de voz privado al unirse a un canal principal (el Hub).
+En cuanto un miembro entra al Hub, se crea al instante un nuevo canal de voz y el miembro es transferido automáticamente a él. El canal se elimina por sí solo en cuanto queda vacío.
 
 ---
 
 ## Configuración del módulo
 
+En el panel de configuración de canales de voz temporales, dispones de varias opciones para parametrizar el sistema:
+
 <Steps>
-1. **Setup automático**: Haz clic en el botón <span class="discord-element discord-btn-primary">⚡ Setup Auto</span>.
-2. **Canal Hub**: En el menú desplegable <span class="discord-element discord-select">Sélectionner le salon Hub <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-3. **Categoría de destino**: En el menú desplegable <span class="discord-element discord-select">Sélectionner la catégorie <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-4. **Formato del nombre**: Haz clic en el botón <span class="discord-element discord-btn-secondary">📝 Nom des salons</span>.
-5. **Permisos de comandos**: En el menú <span class="discord-element discord-select">Gérer les commandes autorisées <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-6. **Desactivar o resetear**: Usa el botón <span class="discord-element discord-btn-danger">🗑️ Supprimer la configuration</span>.
+1. **Creación automática (Setup Auto)**: Haz clic en el botón <span class="discord-element discord-btn-primary">⚡ Setup Auto</span> para que el bot cree automáticamente la categoría y el canal Hub.
+2. **El canal Hub**: En el menú desplegable <span class="discord-element discord-select">Sélectionner le salon Hub <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, elige el canal de voz que servirá como punto de creación.
+3. **La categoría de destino**: En el menú desplegable <span class="discord-element discord-select">Sélectionner la catégorie <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, indica la categoría donde se generarán los canales temporales.
+4. **Formato del nombre**: Haz clic en el botón <span class="discord-element discord-btn-secondary">📝 Nom des salons</span> para personalizar el formato del nombre de los canales creados.
+5. **Permisos de comandos**: En el menú desplegable <span class="discord-element discord-select">Gérer les commandes autorisées <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona los comandos que los dueños del canal pueden usar para gestionar su sala.
+6. **Activar o desactivar**: Usa el botón <span class="discord-element discord-btn-danger">🗑️ Supprimer la configuration</span> si deseas restablecer o desactivar el módulo.
 </Steps>
+
+<Aside type="tip" title="Gestión por los miembros">
+Una vez en su canal temporal, los miembros pueden personalizar su sala (cambiar el nombre, bloquear el acceso, modificar el límite de plazas) según los comandos autorizados por la administración.
+</Aside>
+
+---
+
+## Variables disponibles para el nombre del canal
+
+Al personalizar el formato del nombre de los canales, puedes utilizar la siguiente variable dinámica:
+
+* <Badge text="{user}" variant="note" />: Muestra el nombre visible del miembro creador del canal (ej: `Canal de Lyxios`).

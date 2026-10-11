@@ -1,13 +1,171 @@
 ---
 slug: es/guides/autres/surveillance
 title: Surveillance
-description: Documentación sobre el sistema de vigilancia de Lyxios.
-lastUpdated: 2026-07-22
+description: Información completa sobre el sistema de vigilancia y seguridad de Lyxios.
+lastUpdated: 2026-10-11
 ---
 
-import { Code } from '@astrojs/starlight/components';
+import { Code, Card, CardGrid, Steps, Aside, Badge } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import surveillanceRules from '../../../guides/autres/surveillance_rules.json?raw';
+import surveillanceRulesObj from '../../../guides/autres/surveillance_rules.json';
 import surveillanceEmbedImage from '../../../../../assets/exemples/surveillance_embed.png';
+import surveillancePrevenirImage from '../../../../../assets/exemples/surveillance_prevenir.png';
 
-El módulo de **Vigilancia** es un motor de seguridad proactivo que opera de manera invisible en todos los servidores para interceptar estafas y enlaces peligrosos.
+El módulo de **Surveillance** es un sistema avanzado de seguridad proactiva integrado en Lyxios. Clasificado como **módulo privado**, está estrictamente reservado para los bots y administradores generales del proyecto: el bot de producción **Lyxios**, el bot de desarrollo **LyxiosDev**, **xougui** (propietario y desarrollador principal) y **kadawatcha** (gestor y desarrollador).
+
+Por evidentes razones de confidencialidad, ética y seguridad global, este módulo opera de manera invisible en todos los servidores donde Lyxios está presente. Analiza en tiempo real el flujo de mensajes para identificar, censurar y neutralizar amenazas antes de que perjudiquen a las comunidades.
+
+---
+
+## Motor de Análisis (Scanner)
+
+Cada mensaje enviado en los servidores monitoreados se somete a un escaneo asíncrono ultra rápido ejecutado en un grupo de subprocesos dedicado (`ThreadPoolExecutor`), garantizando una latencia nula para los usuarios.
+
+El analizador ejecuta una serie de comprobaciones sucesivas a múltiples niveles:
+
+<Steps>
+1. **Palabras Prohibidas (`dangerous_words`)**
+   Detección directa e inmediata de términos dañinos o prohibidos registrados en nuestra base de datos.
+
+2. **Patrones Regex de Phishing y Estafas (`scam_regex_patterns`)**
+   Análisis semántico mediante expresiones regulares enfocado en estructuras de frases recurrentes en fraudes (por ejemplo: falsos regalos de Nitro, sorteos fraudulentos de Steam).
+
+3. **Detección de Ofuscación (Anti-Evasión)**
+   Los emisores de spam intentan con frecuencia eludir los filtros insertando espacios o caracteres especiales (ej: `F r e e  N i t r o`). Lyxios normaliza automáticamente el texto descomponiendo Unicode (Unicode NFKD), eliminando acentos y conservando caracteres alfanuméricos para destapar la estafa oculta.
+
+4. **Filtración de Secretos (Protección de Credenciales)**
+   - **Tokens de Discord**: Detección de tokens de usuarios o bots expuestos accidentalmente. El bot valida la estructura decodificando la sección Base64 (identificador snowflake) para evitar falsos positivos.
+   - **Webhooks e IPs**: Identificación de URLs de Webhooks de Discord y direcciones IP expuestas.
+
+5. **Análisis Heurístico y Avanzado de Phishing**
+   Para cada enlace extraído, Lyxios aplica un algoritmo riguroso de cálculo de riesgo:
+   - **Typosquatting**: Detección de suplantación de dominios oficiales de confianza (ej: `discord-gift`, `steam-comunity`).
+   - **Distancia de Levenshtein y Similitud**: Cálculo de la distancia de edición entre el dominio analizado y los dominios oficiales. Si la similitud supera el 85 % respecto a `discord.com` o `steamcommunity.com` con una distancia de 1 o 2 caracteres, la puntuación de riesgo se dispara.
+   - **Ponderación de TLDs y Palabras Clave**: Palabras clave de alto riesgo (`nitro`, `gift`) combinadas con extensiones sospechosas (`.ru`, `.xyz`, `.click`).
+   - **Páginas de Inicio de Sesión**: Detección de términos como `login` o `signin` en la URI para identificar portales falsos de autenticación.
+</Steps>
+
+<Aside type="tip" title="Lista Blanca de Confianza">
+Todos los servidores oficiales y dominios de confianza (ej: `discord.com`, `discord.gg`, `steamcommunity.com`) figuran en una lista blanca global (`whitelist`) para evitar falsos positivos innecesarios durante conversaciones legítimas.
+</Aside>
+
+---
+
+## Configuración del Scanner
+
+El comportamiento y los filtros del analizador son totalmente dinámicos y están configurados en un archivo JSON estructurado. Esto permite actualizar las bases de datos de forma instantánea sin reiniciar el bot ni modificar el código fuente.
+
+### Resumen estadístico de reglas:
+
+<CardGrid>
+  <Card title="Censura y Seguridad" icon="warning">
+    * **{surveillanceRulesObj.dangerous_words.length}** palabras y expresiones extremadamente peligrosas.
+    * **{surveillanceRulesObj.scam_regex_patterns.length}** patrones regex de estafas supervisados.
+  </Card>
+  <Card title="Análisis de Enlaces" icon="external">
+    * **{surveillanceRulesObj.whitelist.length}** dominios de confianza en lista blanca.
+    * **{surveillanceRulesObj.suspicious_keywords.length}** palabras clave sospechosas monitoreadas.
+    * **{surveillanceRulesObj.suspicious_tlds.length}** TLDs de alto riesgo (ej: `.xyz`, `.ru`).
+  </Card>
+</CardGrid>
+
+<br />
+
+<details class="premium-details">
+  <summary>**🔍 Ver la configuración JSON completa ({surveillanceRulesObj.dangerous_words.length} palabras, {surveillanceRulesObj.whitelist.length} dominios...)**</summary>
+
+  <br />
+
+  <Code code={surveillanceRules} lang="json" title="surveillance_rules.json" />
+</details>
+
+---
+
+## Alerta Interactiva (Registro de Vigilancia)
+
+Cuando el analizador confirma una amenaza, Lyxios genera de inmediato una alerta detallada en el canal privado de supervisión de nuestro equipo.
+
+<br />
+
+<Image src={surveillanceEmbedImage} alt="Ejemplo del embed de alerta de vigilancia" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
+
+### Protección de Datos en Registros
+<Aside type="danger" title="Censura Automática de Seguridad">
+Para resguardar al equipo de moderación ante cualquier exposición accidental a datos sensibles o fraudes directos, el contenido sospechoso en el registro se muestra **estrictamente censurado**:
+* Las **direcciones IP** quedan neutralizadas: `[IP SUPPRIMÉE]`.
+* Los **tokens de Discord** filtrados se ocultan al instante: `[TOKEN SUPPRIMÉ]`.
+</Aside>
+
+### Interfaz de Discord y Botones de Acción
+La alerta se compone de un Embed completo acompañado de una **vista interactiva persistente** (botones) para ejecutar acciones inmediatas:
+
+| Botón | Estilo del Botón | Función y Comportamiento |
+| :--- | :--- | :--- |
+| **Supprimer** | <span class="discord-element discord-btn-danger">🗑️ Supprimer</span> | Elimina al instante el mensaje sospechoso del canal original para proteger a los miembros. |
+| **Timeout (1h)** | <span class="discord-element discord-btn-primary">⏳ Timeout (1h)</span> | Aísla temporalmente al autor durante 1 hora para frenar de inmediato el ataque. |
+| **Bannir** | <span class="discord-element discord-btn-danger">🔨 Bannir</span> | Expulsa y veta definitivamente al usuario del servidor original, borra su mensaje y desactiva los botones de alerta. |
+| **Faux Positif** | <span class="discord-element discord-btn-secondary">✅ Faux Positif</span> | Descarta el registro de alerta de nuestro canal de vigilancia en caso de detección errónea. |
+
+<Aside type="caution" title="Control de Acceso y Seguridad">
+Para asegurar la total integridad de las acciones, **únicamente el bot oficial Lyxios, LyxiosDev, xougui y kadawatcha** tienen permiso para acceder a este canal y pulsar los botones de alerta.
+
+Cualquier intento de interacción por parte de otro usuario es rechazado y bloqueado automáticamente por el bot.
+</Aside>
+
+---
+
+## Comandos de Administración
+
+Junto a los botones interactivos de alerta, los administradores del bot cuentan con comandos de texto para moderación e inspección contextual.
+
+### 1. Alertar al Propietario (`!prevenir`)
+Envía un mensaje privado de advertencia de seguridad redactado de forma profesional al propietario del servidor afectado.
+
+* **Sintaxis**: `!prevenir <message_id> [raison]` *(alias `!p`)*
+* **Características**:
+  - Identifica automáticamente al propietario del servidor de origen.
+  - Envía un informe estructurado con la naturaleza de la amenaza y el texto censurado.
+  - Añade un enlace de acceso directo al mensaje original si aún existe.
+  - Ofrece recomendaciones de moderación y enlace a nuestro servidor de soporte.
+
+```ini
+; Ejemplo de ejecución del comando
+!prevenir 123456789012345678 Spam intensif de faux liens Nitro.
+
+; Respuesta del bot
+✅ MP envoyé à l'owner (ID: 987654321012345678).
+```
+
+<br />
+
+#### Vista previa del mensaje privado enviado al propietario:
+
+<Image src={surveillancePrevenirImage} alt="Ejemplo del embed enviado en privado al propietario" style={{ borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }} />
+
+<br />
+
+### 2. Consultar Contexto (`!contexte`)
+Permite tomar decisiones fundamentadas sin necesidad de unirse al servidor externo consultando los mensajes anteriores y posteriores al aviso.
+
+* **Sintaxis**: `!contexte <message_id> [direction] [limit]` *(alias `!c`)*
+* **Parámetros**:
+  - `<message_id>`: Identificador del mensaje de alerta en el canal de vigilancia.
+  - `[direction]`: 
+    - `avant`: mensajes anteriores a la amenaza.
+    - `apres`: mensajes posteriores a la amenaza.
+    - `deux` *(por defecto)*: historial que rodea la amenaza.
+  - `[limit]`: Cantidad de mensajes a recuperar (`1` a `50`, por defecto `5`).
+
+#### Visualización estilizada del contexto:
+El bot muestra un registro formateado del canal. El mensaje señalado se distingue con un círculo rojo <Badge text="🔴" variant="danger" /> y los mensajes circundantes con un círculo negro <Badge text="⚫" variant="default" />.
+
+```text
+⚫ 19:41:50 [MembreA] : Salut tout le monde, ça va ?
+⚫ 19:41:55 [MembreB] : Hello ! Oui et toi ?
+🔴 19:42:05 [AuteurSuspect] : Regardez ce lien c'est trop bien ! cdn-discord.xyz/nitro
+⚫ 19:42:10 [MembreA] : C'est quoi ce lien bizarre ?
+⚫ 19:42:15 [MembreB] : Clique pas c'est une arnaque !
+```

@@ -2,7 +2,7 @@
 slug: es/guides/modules/bienvenue
 title: Bienvenida
 description: Aquí encontrarás toda la documentación relacionada con el módulo de bienvenida.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Steps, Badge } from '@astrojs/starlight/components';
@@ -12,24 +12,66 @@ import welcomeImage from '../../../../../../assets/exemples/welcome.png';
 
 ## ¿Dónde encontrar el módulo de bienvenida?
 
-Puedes acceder con el comando directo: `/config module:Bienvenue` o seleccionando **Accueil & Messagerie** y luego el módulo **Bienvenue**.
+Puedes encontrar el módulo de bienvenida mediante el comando `/config` del bot.
+Puedes acceder de dos formas diferentes:
+1. Usando el comando directo: `/config module:Bienvenue`
+2. Ejecutando el comando `/config`, seleccionando la categoría **Accueil & Messagerie** y el módulo **Bienvenue** en el menú desplegable.
 
 ## ¿Para qué sirve el módulo de bienvenida?
 
-El módulo de bienvenida permite dar una cálida recepción a tus miembros con mensajes personalizados, variables dinámicas y una imagen de bienvenida.
+El módulo de bienvenida permite recibir cálidamente a los nuevos miembros enviando un mensaje personalizado cuando un usuario se une al servidor.
+Puedes configurar el mensaje para enviarlo a un canal específico, personalizar su contenido con variables dinámicas y adjuntar una tarjeta de bienvenida generada con una imagen de fondo personalizada.
 
 ---
 
 ## Configuración del módulo
 
+Al acceder al panel de bienvenida, dispones de las siguientes opciones para configurar la recepción de miembros:
+
 <Steps>
-1. **Activar o desactivar**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span>.
-2. **Canal de bienvenida**: En el menú desplegable <span class="discord-element discord-select">Configurer le salon de bienvenue <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona el canal de texto.
-3. **El mensaje**: Haz clic en el botón <span class="discord-element discord-btn-success">🛠️ Message</span> para editar el texto.
-4. **La imagen de fondo**: Haz clic en el botón <span class="discord-element discord-btn-primary">🖼️ Image</span> o elimina la imagen con <span class="discord-element discord-btn-secondary">🗑️ Supprimer l'image</span>.
-5. **Ghost Ping**: En el menú <span class="discord-element discord-select">Configurer les salons du ghost ping <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+1. **Activar o desactivar el módulo**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span> para alternar el estado del módulo.
+2. **Canal de bienvenida**: En el menú desplegable <span class="discord-element discord-select">Configurer le salon de bienvenue <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, selecciona el canal de texto donde se publicará el mensaje de bienvenida. *(Nota: Debes configurar el canal antes de poder editar el mensaje).*
+3. **El mensaje de bienvenida**: Pulsa en el botón <span class="discord-element discord-btn-success">🛠️ Message</span> para redactar el texto de saludo. Puedes incluir varias variables (consulta [la sección inferior](#variables-disponibles-para-el-mensaje)).
+4. **La imagen de fondo**: Pulsa en el botón <span class="discord-element discord-btn-primary">🖼️ Image</span> para proporcionar la URL de una imagen que servirá de fondo para la tarjeta generada por el bot. Para eliminarla, usa el botón <span class="discord-element discord-btn-secondary">🗑️ Supprimer l'image</span>.
+5. **Ghost Ping (Opcional)**: En el menú desplegable <span class="discord-element discord-select">Configurer les salons du ghost ping <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>, puedes seleccionar hasta 5 canales donde el nuevo miembro será mencionado fugazmente (se envía y se borra al instante). Resulta ideal para dirigir la atención hacia las normas o anuncios sin saturar el canal.
 </Steps>
 
 <Aside type="tip" title="¡Prueba tu configuración!">
-Puedes verificar el resultado usando el botón <span class="discord-element discord-btn-primary">🧪 Tester</span> en el panel de configuración.
+Puedes verificar el resultado usando el botón <span class="discord-element discord-btn-primary">🧪 Tester</span> en el panel de configuración. El bot simulará la llegada de un usuario y te enviará una vista previa privada del mensaje, la tarjeta y el Ghost Ping.
 </Aside>
+
+---
+
+## Variables disponibles para el mensaje
+
+Para hacer único cada mensaje de bienvenida, Lyxios pone a tu disposición varias variables dinámicas que se sustituyen automáticamente:
+
+* <Badge text="{user.mention}" variant="note" /> o <Badge text="{user}" variant="note" />: Menciona directamente al nuevo miembro (ej: @Lyxios).
+* <Badge text="{user.name}" variant="note" />: Muestra el nombre de usuario del miembro (sin mencionarlo).
+* <Badge text="{user.id}" variant="note" />: Muestra el identificador único (ID) del miembro.
+* <Badge text="{server.name}" variant="note" />: Muestra el nombre de tu servidor.
+* <Badge text="{server.member_count}" variant="note" />: Muestra el número total de miembros humanos (sin contar bots) tras la llegada.
+
+---
+
+## Acerca de la imagen de bienvenida
+
+La tarjeta de bienvenida se genera dinámicamente si configuras una URL de imagen válida.
+
+<Aside type="caution" title="Atención a los enlaces de Discord (CDN)">
+No utilices **nunca** enlaces de imágenes alojadas directamente en Discord (`cdn.discordapp.com` o `media.discordapp.net`). Estos enlaces son temporales y caducan con el tiempo, lo que provocará que la imagen deje de verse. Utiliza alojamientos permanentes como **[Imgur](https://imgur.com/)**.
+</Aside>
+
+### Procesamiento de imagen por Lyxios
+Para asegurar un resultado estético y uniforme con cualquier fondo, el bot aplica ajustes visuales automáticos:
+
+* **Redimensionamiento estricto**: La imagen se adapta a una resolución fija de **1500x600 píxeles** en formato horizontal sin deformarse.
+* **Filtros de legibilidad**: Se aplica un desenfoque sutil y una capa oscurecida para resaltar el texto frontal.
+* **Integración del avatar**: La foto de perfil del usuario se inserta en un marco circular a la izquierda, bordeada por el color dominante de la imagen de fondo.
+* **Contraste inteligente del texto**: El bot calcula el brillo del fondo para alternar entre tipografía blanca o negra, garantizando una lectura impecable.
+* **Información superpuesta**: La tarjeta muestra el encabezado, el nombre del usuario, una línea divisoria y su posición de llegada (ej: "Eres el miembro número 150.").
+
+Si la URL de la imagen no es válida o no está disponible, el bot no falla: envía automáticamente un Embed estándar de Discord con el color distintivo del bot.
+
+### Ejemplo de tarjeta de bienvenida
+<Image src={welcomeImage} alt="Ejemplo de la tarjeta del módulo de bienvenida" />

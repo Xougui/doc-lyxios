@@ -1,8 +1,8 @@
 ---
 slug: es/guides/modules/tickets
 title: Tickets
-description: "Descubre cómo funcionan los tickets en Lyxios, cómo crearlos, gestionarlos y utilizarlos."
-lastUpdated: 2026-08-25
+description: "Descubre cómo funcionan los tickets en Lyxios, cómo crearlos, gestionarlos y utilizarlos para dar soporte a tu comunidad."
+lastUpdated: 2026-10-11
 ---
 
 import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
@@ -11,82 +11,126 @@ import { ChevronDown, RefreshCw, PowerOff } from 'lucide-react';
 ## ¿Dónde encontrar el módulo de tickets?
 
 Puedes encontrar el módulo de tickets mediante el comando `/config` del bot.
-Puedes acceder de dos formas:
+Puedes acceder de dos formas diferentes:
 1. Usando el comando directo: `/config module:Tickets`
-2. Ejecutando el comando `/config`, seleccionando la categoría **Administration & Gestion** y el módulo **Tickets**.
+2. Ejecutando el comando `/config`, seleccionando la categoría **Administration & Gestion** y el módulo **Tickets** en el menú desplegable.
 
 ## ¿Para qué sirve el módulo de tickets?
 
-El módulo de tickets permite crear y gestionar tickets para hacer seguimiento de problemas, peticiones y tareas en tu servidor.
+El módulo de tickets permite crear y gestionar tickets de soporte para atender incidencias, sugerencias y consultas de los miembros.
+Ofrece una interfaz sencilla para abrir tickets, enrutarlos a categorías dedicadas y asignarlos a miembros de tu equipo.
 
 ---
 
 ## Configuración del módulo
 
-Se configura desde el panel interactivo de `/config`:
+El sistema de tickets de Lyxios se configura mediante un panel interactivo centralizado. Al acceder al módulo mediante `/config`, encontrarás un menú desplegable principal y botones de acción rápida.
 
-### 1. Configuración desde el menú desplegable
+### 1. Configuración desde el Menú Desplegable
 
-Usando <span class="discord-element discord-select">⚙️ Configurer une option... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>:
+Toda la configuración se realiza desde el menú desplegable principal <span class="discord-element discord-select">⚙️ Configurer une option... <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+Al seleccionar una opción, se abrirá un formulario o submenú de ajuste:
 
 **Canales y Roles:**
-* **📂 Catégorie Tickets**: Categoría de Discord donde se crearán los nuevos tickets.
-* **👑 Rôle Manager**: Rol con permisos para ver y gestionar los tickets.
-* **📜 Salon Logs**: Canal de texto donde el bot enviará el historial y las transcripciones.
-* **🎟️ Salon Panel**: Canal donde se enviará el mensaje con el panel de creación.
+* **📂 Catégorie Tickets**: La categoría de Discord donde se crearán los nuevos canales de tickets.
+* **👑 Rôle Manager**: El rol que tendrá permiso para ver y gestionar los tickets. Los administradores tienen acceso por defecto.
+* **📜 Salon Logs**: Canal de texto donde el bot registrará el historial de acciones (aperturas, cierres, transcripciones).
+* **🎟️ Salon Panel**: Canal donde se publicará el mensaje del panel de creación para los miembros.
 
 **Textos y Apariencia:**
-* **👋 Message Bienvenue**: Mensaje de bienvenida al abrir un ticket (`{user}`).
-* **🎨 Embed Panel**: Título, Descripción, Color y Etiqueta del menú.
-* **🎨 Couleur Bouton**: Color del botón.
-* **🎫 Emoji Bouton**: Emoji del botón.
+* **👋 Message Bienvenue**: Personaliza el mensaje enviado al abrir el ticket. Usa `{user}` para mencionar al usuario.
+* **🎨 Embed Panel**: Modifica el Título, Descripción, Color global del panel y la **Etiqueta del Menú** (placeholder cuando hay varios motivos).
+* **🎨 Couleur Bouton**: Cambia el color del botón de creación de tickets en el panel.
+* **🎫 Emoji Bouton**: Cambia el emoji mostrado en el botón de creación de tickets.
 
-**Funciones Avanzadas:**
-* **🔢 Max Tickets/User**: Límite de tickets abiertos simultáneamente por usuario (1 a 5).
-* **📝 Gérer Motifs**: Añadir o eliminar razones de apertura.
-* **⭐ Avis / Notation**: Sistema de valoración al cerrar el ticket.
-* **🙋‍♂️ Prise en charge**: Activar o desactivar la opción de "claim" por el personal.
-* **💬 Discussion Staff**: Hilo privado reservado al personal dentro del ticket.
-* **⚙️ Mode d'ouverture**: Modo automático o manual.
+**Funciones avanzadas:**
+* **🔢 Max Tickets/User**: Limita el número de tickets abiertos simultáneamente por un usuario (de 1 a 5).
+* **📝 Gérer Motifs**: Añade, personaliza o elimina motivos de apertura (ej: *Soporte*, *Alianza*, *Reclutamiento*). Para cada motivo puedes configurar:
+  * **📁 Catégorie dédiée**: Crear los tickets asociados a este motivo en una categoría de Discord específica.
+  * **👑 Rôle Staff dédié**: Asignar un rol de soporte específico para este motivo (en lugar del rol de gestión global).
+* **⭐ Avis / Notation**: Activa o desactiva el sistema de valoración al cerrar el ticket.
+* **🙋‍♂️ Prise en charge**: Activa o desactiva la posibilidad de que el personal reclame ("claim") un ticket.
+* **💬 Discussion Staff**: Activa o desactiva la creación automática de un hilo privado reservado al personal dentro del ticket.
+* **⚙️ Mode d'ouverture**: Cambia entre modo "Auto" (el canal se crea de inmediato a petición del usuario) y modo "Manuel" (la solicitud debe ser aprobada previamente por el personal).
+
+<Aside type="tip" title="Centralización y Enrutamiento Inteligente">
+El sistema de **Motivos** permite centralizar todas las solicitudes en un único panel y enrutar automáticamente cada ticket a la categoría y al equipo adecuado (por ejemplo, tickets de *Reclutamiento* visibles solo para reclutadores).
+</Aside>
 
 ### 2. Acciones Rápidas
 
-* <span class="discord-element discord-btn-success">🚀 Modifier Panel</span>: Envía o actualiza el mensaje del panel.
-* <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Rafraîchir</span>: Actualiza la interfaz con los últimos ajustes.
-* <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Désactiver</span>: Desactiva el sistema de tickets.
+Bajo el menú desplegable principal, dispones de botones de acción directa:
+
+* <span class="discord-element discord-btn-success">🚀 Modifier Panel</span>: Envía o actualiza de inmediato el mensaje del panel en el canal configurado.
+* <span class="discord-element discord-btn-secondary"><RefreshCw size={14} style={{ marginRight: '4px' }} /> Rafraîchir</span>: Actualiza la interfaz con las últimas configuraciones guardadas.
+* <span class="discord-element discord-btn-danger"><PowerOff size={14} style={{ marginRight: '4px' }} /> Désactiver</span>: Elimina el panel enviado y desactiva el sistema de tickets (conservando los ajustes en la base de datos).
 
 ---
 
 ## Gestión de Tickets
 
+Una vez abierto el ticket, el equipo y el usuario disponen de varias herramientas.
+
 ### Atender Tickets (Claim)
-El personal ve el botón <span class="discord-element discord-btn-primary">🙋‍♂️ Prendre en charge</span>. Al pulsar en él, se asigna el ticket y se restringe la intervención de otros miembros.
+
+*(Nota: Esta opción se activa o desactiva en la configuración)*
+
+Los miembros del personal (Rôle Manager) ven el botón <span class="discord-element discord-btn-primary">🙋‍♂️ Prendre en charge</span> en el ticket.
+
+* **Acción**: Al pulsar en él, el miembro del personal se asigna el ticket.
+* **Efecto**: El bot ajusta los permisos para que **solo** este miembro del personal (y el usuario) puedan hablar en el canal, evitando confusiones entre moderadores (los administradores conservan acceso para hablar). Si la opción **Discussion Staff** está activa, el encargado se añade automáticamente al hilo privado del personal.
+* **Liberación**: El botón cambia a <span class="discord-element discord-btn-secondary">🔓 Libérer le ticket</span> para permitir nuevamente la intervención de todo el equipo.
 
 ### Modo de apertura manual
-El personal valida las solicitudes mediante los botones <span class="discord-element discord-btn-success">✅ Ouvrir</span> o <span class="discord-element discord-btn-danger">❌ Fermer</span>.
+
+*(Nota: Se activa configurando el Modo de apertura en Manual)*
+
+Cuando el modo manual está activado:
+1. **Solicitud de Ticket**: Al solicitar un ticket, el canal no se crea de inmediato. El bot envía una solicitud al canal de registros.
+2. **Validación**: El personal recibe la petición con el motivo y dos botones de acción rápida:
+   * <span class="discord-element discord-btn-success">✅ Ouvrir</span>: Aprueba la solicitud y crea el canal de ticket al instante.
+   * <span class="discord-element discord-btn-danger">❌ Fermer</span>: Rechaza y descarta la solicitud.
 
 ### Cierre y Transcripción
-Al pulsar <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>, el bot genera un archivo `.html` enviándolo al usuario por MD y al canal de registros.
+
+Cuando la consulta haya concluido, haz clic en <span class="discord-element discord-btn-danger">🔒 Fermer le ticket</span>.
+
+1. **Generación de Transcripción**: El bot genera un archivo `.html` estilizado de alta fidelidad con todo el historial de la conversación, con marcas de tiempo en formato 24h (zona `Europe/Paris`) y adaptado al idioma del servidor o del usuario. *Si el archivo supera 8 MB, se genera automáticamente una versión reducida.*
+2. **Envío por Mensaje Directo**: El usuario que abrió el ticket recibe este archivo por MD junto con un resumen.
+3. **Registros**: La transcripción se envía igualmente al canal de registros configurado.
+4. **Eliminación**: El canal del ticket se elimina tras unos segundos.
+
+<Aside type="note" title="Valoración del Soporte">
+*(Nota: Este sistema de evaluación se puede activar o desactivar en la configuración)*
+
+Tras el cierre, el usuario recibe por mensaje privado una solicitud de valoración (de 1 a 5 estrellas ⭐). Esta nota se envía al canal de registros para realizar el seguimiento de la calidad del soporte.
+</Aside>
 
 ---
 
 ## Comandos Útiles
 
+Además de los botones, dispones de varios comandos slash para gestionar los tickets activos:
+
 <CardGrid>
   <Card title="/ticket-add" icon="add-document">
     **Añadir miembro o rol**
-    *Uso: `/ticket-add target:@User`*
+    Permite dar acceso puntual a una persona o rol al ticket actual.
+    *Uso: `/ticket-add target:@User` o `/ticket-add target:@Role`*
   </Card>
   <Card title="/ticket-remove" icon="close">
     **Retirar miembro o rol**
-    *Uso: `/ticket-remove target:@User`*
+    Retira el acceso al ticket a un usuario o rol específico.
+    *Uso: `/ticket-remove target:@User` o `/ticket-remove target:@Role`*
   </Card>
   <Card title="/ticket-rename" icon="pencil">
     **Renombrar ticket**
+    Modifica el nombre del canal del ticket actual para organizar solicitudes.
     *Uso: `/ticket-rename name:nuevo-nombre`*
   </Card>
   <Card title="/ticket-reset" icon="setting">
     **Restablecer permisos**
+    Restaura los permisos del canal a su estado original (útil si se alteraron manualmente o para liberar un ticket).
     *Uso: `/ticket-reset`*
   </Card>
 </CardGrid>

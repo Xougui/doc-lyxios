@@ -2,45 +2,63 @@
 slug: en/guides/modules/compteur-de-membres
 title: Member Counter
 description: Full guide to configure and customize member counter channels (Total, Humans, Bots, Roles).
-lastUpdated: 2026-07-22
+lastUpdated: 2026-10-11
 ---
 
-import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
 import { ChevronDown } from 'lucide-react';
 
 ## Where to find the member counter module?
 
 You will find the member counter module in the `/config` command of the bot.
-Direct command: `/config module:Compteur de membres`
+You can access it in two ways:
+1. Direct command: `/config module:Compteur de membres`
+2. Run `/config`, select **Administration & Management**, then choose **Counter** in the dropdown menu.
 
 ## What is the member counter module for?
 
-The member counter module displays real-time member statistics directly in locked channels at the top of your server.
+The member counter module displays real-time member statistics directly on your server.
+Typically set on a **locked voice channel**, it provides constant visibility into community growth at the top of the channel list without needing to open server settings.
 
 ---
 
 ## Module Configuration
 
-You can choose among 4 types of counters: **Total**, **Humans**, **Bots**, and **Role**.
+Once in the configuration panel, you can choose among 4 counter types:
+
+* **Total**: Displays total server members (including bots).
+* **Humans**: Displays human members only.
+* **Bots**: Displays bot count only.
+* **Role**: Displays members possessing a specific tracked role.
 
 ### Editing a counter
 
+After selecting a type (e.g., "Total"), you access the detailed editing view:
+
 <Steps>
-1. **Enable counter**: Use <span class="discord-element discord-btn-success">✔️ Enable</span> or <span class="discord-element discord-btn-danger">✖️ Disable</span>.
-2. **Set channel**: 
-    * Click <span class="discord-element discord-btn-primary">➕ Create Channel</span> to create a locked channel automatically.
-    * Or use the dropdown <span class="discord-element discord-select">Select an existing channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-3. **Customize format**: Click <span class="discord-element discord-btn-secondary">✏️ Edit Format</span> to customize the display text (e.g. `Members: {count}`).
-4. **Choose role** *(Role mode only)*: Select the role using <span class="discord-element discord-select">Select role to count <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
+1. **Enable the counter**: Use <span class="discord-element discord-btn-success">✔️ Enable</span> or <span class="discord-element discord-btn-danger">✖️ Disable</span> to control automatic updates.
+2. **Define channel**: You have two options:
+    * Click <span class="discord-element discord-btn-primary">➕ Create Channel</span>: The bot automatically creates a locked voice channel with proper permissions.
+    * Or use the dropdown <span class="discord-element discord-select">Select an existing channel <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> to pick an existing voice channel, text channel, or category.
+3. **Customize name format**: Click <span class="discord-element discord-btn-secondary">✏️ Edit Format</span> to alter display text (e.g., `Members: {count}`).
+4. **Choose tracked role** *(Role mode only)*: An extra dropdown appears allowing you to select the specific role to monitor.
 </Steps>
 
 <Aside type="caution" title="Discord Rate Limits">
-Discord limits channel renaming to **2 updates per 10 minutes** per channel.
+Discord enforces a strict rate limit on channel renaming: **2 modifications every 10 minutes** per channel.
+If the counter does not update immediately after a member joins or leaves, this is expected behavior. The bot queues updates and applies them once Discord's cooldown expires.
 </Aside>
 
 ---
 
 ## Formatting Variables
 
-* <Badge text="{count}" variant="note" />: Displays the member count.
-* <Badge text="{role}" variant="note" />: Displays the role name (*Role mode only*).
+To customize the channel title, you can use dynamic variables that resolve automatically:
+
+* <Badge text="{count}" variant="note" />: Displays the count number (e.g., `150`). Available for **all** counter types.
+* <Badge text="{role}" variant="note" />: Displays the tracked role name (e.g., `VIP`). Available **only** for the **Role** counter type.
+
+**Example formats:**
+* `Members: {count}` → *Members: 150*
+* `👥・{count} Humans` → *👥・142 Humans*
+* `[{role}] : {count}` → *[VIP] : 12*

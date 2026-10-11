@@ -2,10 +2,10 @@
 slug: es/guides/modules/compteur-de-membres
 title: Contador de miembros
 description: Documentación completa para configurar y personalizar los contadores de miembros (Total, Humanos, Bots, Roles).
-lastUpdated: 2026-08-25
+lastUpdated: 2026-10-11
 ---
 
-import { Aside, Steps, Badge } from '@astrojs/starlight/components';
+import { Aside, Card, CardGrid, Badge, Steps } from '@astrojs/starlight/components';
 import { ChevronDown } from 'lucide-react';
 
 ## ¿Dónde encontrar el módulo de contador de miembros?
@@ -17,18 +17,48 @@ Puedes acceder de dos formas distintas:
 
 ## ¿Para qué sirve el módulo de contador de miembros?
 
-El módulo de contador de miembros permite mostrar la cantidad de miembros de tu servidor en tiempo real en un canal de voz bloqueado.
+El módulo de contador de miembros permite mostrar la cantidad de miembros de tu servidor en tiempo real.
+Por lo general, se configura en un **canal de voz bloqueado**, ofreciendo visibilidad continua del crecimiento de tu comunidad en la parte superior de la lista de canales sin tener que abrir los ajustes del servidor.
 
 ---
 
 ## Configuración del módulo
 
-Puedes elegir entre 4 tipos de contadores: **Total**, **Humains**, **Bots**, y **Rôle**.
+En el panel de configuración, puedes elegir entre 4 tipos de contadores:
+
+* **Total**: Muestra el total de miembros (incluyendo bots).
+* **Humains**: Muestra únicamente los miembros humanos.
+* **Bots**: Muestra únicamente la cantidad de bots.
+* **Rôle**: Muestra la cantidad de miembros que poseen un rol determinado.
 
 ### Editar un contador
 
+Tras seleccionar un tipo (ej: "Total"), accedes al menú de edición detallado:
+
 <Steps>
-1. **Activar el contador**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span>.
-2. **Definir el canal**: Haz clic en <span class="discord-element discord-btn-primary">➕ Créer un salon</span> o usa el menú desplegable <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>.
-3. **Personalizar el nombre**: Haz clic en el botón <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> (ej: `Membres: {count}`).
+1. **Activar el contador**: Usa el botón <span class="discord-element discord-btn-success">✔️ Activer</span> o <span class="discord-element discord-btn-danger">✖️ Désactiver</span> para controlar la actualización automática.
+2. **Definir el canal**: Dispones de dos opciones:
+    * Pulsa en <span class="discord-element discord-btn-primary">➕ Créer un salon</span>: El bot creará automáticamente un canal de voz bloqueado con los permisos adecuados.
+    * O usa el menú desplegable <span class="discord-element discord-select">Choisir un salon existant <ChevronDown size={14} style={{ marginLeft: '4px' }} /></span> para seleccionar un canal de voz, texto o categoría existente.
+3. **Personalizar el nombre**: Pulsa en el botón <span class="discord-element discord-btn-secondary">✏️ Modifier le format</span> para cambiar la apariencia del texto (ej: `Membres: {count}`).
+4. **Elegir el rol** *(Modo Rôle únicamente)*: Si configuras un contador de rol, aparecerá un menú desplegable adicional para seleccionar el rol a rastrear.
 </Steps>
+
+<Aside type="caution" title="Límites de Discord (Rate Limits)">
+Discord impone un límite estricto para renombrar canales: **2 modificaciones cada 10 minutos** por canal.
+Si observas que el contador no se actualiza inmediatamente tras una entrada o salida, es normal. El bot espera a que venza el tiempo de espera de Discord para aplicar el cambio.
+</Aside>
+
+---
+
+## Variables de formato
+
+Para personalizar el nombre del canal, puedes utilizar variables dinámicas que se reemplazan automáticamente:
+
+* <Badge text="{count}" variant="note" />: Muestra el recuento numérico (ej: `150`). Disponible para **todos** los contadores.
+* <Badge text="{role}" variant="note" />: Muestra el nombre del rol monitorizado (ej: `VIP`). Disponible **únicamente** para el contador de tipo **Rôle**.
+
+**Ejemplos de formatos:**
+* `Membres: {count}` → *Membres: 150*
+* `👥・{count} Humanos` → *👥・142 Humanos*
+* `[{role}] : {count}` → *[VIP] : 12*
