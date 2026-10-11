@@ -174,6 +174,7 @@ export default defineConfig({
 					translations: { en: 'Legal & Information', es: 'Información Legal' },
 					collapsed: false,
 					items: [
+						{ label: 'Mentions légales', translations: { en: 'Legal Notice', es: 'Aviso Legal' }, link: 'legal/mentions-legales' },
 						{ label: 'Conditions d\'utilisation', translations: { en: 'Terms of Service', es: 'Términos de Servicio' }, link: 'legal/terms-of-service' },
 						{ label: 'Politique de confidentialité', translations: { en: 'Privacy Policy', es: 'Política de Privacidad' }, link: 'legal/privacy-policy' },
 					]
