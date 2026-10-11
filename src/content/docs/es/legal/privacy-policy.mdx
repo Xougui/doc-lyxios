@@ -5,7 +5,7 @@ description: Política de privacidad detallada del bot de Discord Lyxios. Transp
 lastUpdated: 2026-10-11
 ---
 
-import { Aside, Badge, Steps, Icon } from '@astrojs/starlight/components';
+import { Aside, Badge, Steps } from '@astrojs/starlight/components';
 
 <Aside type="note" title="Información General">
   **Última actualización:** 11 de Octubre de 2026  
@@ -31,19 +31,21 @@ Para prestar sus servicios, Lyxios procesa los siguientes tipos de datos:
 
 ### B. Datos de Configuración
 *Datos proporcionados voluntariamente por los administradores para configurar módulos:*
-*   **Mensajes Personalizados:** Contenido de los mensajes de Bienvenida, Despedida, Recordatorios de Bump y Anti-enlaces.
+*   **Mensajes Personalizados y Persistentes:** Contenido de los mensajes de Bienvenida, Despedida, Recordatorios de Bump, Anti-enlaces y Mensajes Persistentes (Sticky Messages con ID del último mensaje enviado).
+*   **Comandos Personalizados:** Nombres de los activadores, contenido de las respuestas en texto o embeds e ID de Discord del creador.
 *   **Medios:** URLs de imágenes utilizadas para los módulos de Bienvenida y Despedida.
-*   **Ajustes de moderación y utilidades:** Listas de dominios permitidos (whitelist), roles ignorados, configuración de logs, Roles por Reacción, Sorteos, Separadores, Canales de Voz Temporales y Reclutamiento.
+*   **Ajustes de moderación y utilidades:** Listas de dominios permitidos (whitelist), roles ignorados, configuración de logs, Roles por Reacción, Sorteos, Separadores, Canales de Voz Temporales, Reclutamiento (preguntas, roles de gestión, canales de logs), Starboard (canal dedicado, umbral de estrellas y auto-estrella), Contadores de Miembros (canales de voz configurados y formato de nombre), Organigrama del Equipo (categorías y roles de staff), Reportes (canal de recepción de denuncias), Blacklist del servidor y canales supervisados por Ghost Ping.
 
 ### C. Datos Técnicos y de Seguridad
-*   **Cloudflare Turnstile:** Al iniciar sesión en el Panel de Control, utilizamos Cloudflare Turnstile para verificar que eres humano.
-*   **Sistema Anti-Scam, Anti-Raid, Anti-Spam y Vigilancia:** Lyxios analiza mensajes, comportamientos, enlaces (URLs) y extensiones de dominio en tiempo real para interceptar spam, phishing o enlaces maliciosos. Los mensajes analizados no se almacenan de forma permanente.
-*   **Verificación (Captcha):** Seguimiento temporal del estado de verificación de un usuario. Los estados de captcha activos se purgan automáticamente.
-*   **Caché de Presencia (Autorol de estado):** Los estados personalizados detectados se mantienen en memoria caché durante un máximo de 24 horas (o se eliminan al salir del servidor).
+*   **Cloudflare Turnstile:** Al iniciar sesión en el Panel de Control, utilizamos Cloudflare Turnstile para verificar que eres humano. Esto puede implicar la recogida de tu dirección IP y datos de navegación por parte de Cloudflare.
+*   **Sistema Anti-Scam, Anti-Raid, Anti-Spam, Anti-Bot y Vigilancia:** Lyxios analiza mensajes, comportamientos, enlaces (URLs) y extensiones de dominio en tiempo real para interceptar spam, phishing o enlaces maliciosos. El módulo Anti-Raid permite a los administradores bloquear nuevos miembros sospechosos según la antigüedad de su cuenta. El módulo Anti-Bot detecta y neutraliza la integración no autorizada de bots de terceros. El módulo Ghost Ping detecta mensajes eliminados que contienen menciones para alertar al personal. Los mensajes analizados no se almacenan de forma permanente.
+*   **Verificación (Captcha):** Seguimiento temporal del estado de verificación de un usuario para impedir el acceso a bots maliciosos. Los estados de captcha activos se purgan automáticamente.
+*   **Caché de Presencia (Autorol de estado):** Los estados personalizados detectados se mantienen en memoria caché durante un máximo de 24 horas (o se eliminan inmediatamente al salir del servidor).
+*   **Copias de Seguridad del Sistema (Backups internos):** Se generan periódicamente archivos comprimidos de las bases de datos operativas que se envían de forma segura a un canal privado de Discord restringido a los administradores de la infraestructura de Lyxios para recuperación ante desastres técnicos.
 
-### D. Datos de Perfil y Economía (Global)
-*Datos vinculados a tu cuenta de usuario de Discord:*
-*   **Economía:** Saldo de monedas, inventario de Luckyblocks, fragmentos, fecha de la última recompensa diaria y racha (streak).
+### D. Datos de Perfil y Economía
+*   **Economía Global (Lyxios):** Saldo de monedas, inventario de Luckyblocks, fragmentos desbloqueados, fecha de la última recompensa diaria y racha (streak).
+*   **Economía Local del Servidor:** Saldo en efectivo (billetera) y bancario específicos de cada servidor, tiempos de espera (cooldowns para comandos de trabajo, robo o salario diario), e inventario de artículos o roles adquiridos en la tienda personalizada del servidor.
 *   **Perfil:** Imágenes desbloqueadas (Galería), imagen de fondo personalizada, nivel de desenfoque y preferencias de visualización.
 
 ### E. Datos Temporales
@@ -52,14 +54,20 @@ Para prestar sus servicios, Lyxios procesa los siguientes tipos de datos:
 *   **Sorteos (Giveaways):** Lista de IDs de usuarios participantes durante la duración del sorteo.
 *   **Canales de Voz Temporales:** ID del usuario propietario del canal para gestionar permisos.
 *   **Reclutamiento (Candidaturas):** Metadatos de la solicitud (ID de usuario, ID de servidor, estado e ID del mensaje). Las respuestas a los formularios se envían directamente al canal de registros del servidor sin almacenarse en la base de datos de Lyxios.
+*   **Starboard:** ID del mensaje original, ID de la publicación en Starboard, ID del autor (`author_id`) y recuento de estrellas.
+*   **Reportes / Denuncias:** Metadatos del reporte (ID del denunciante, objetivo denunciado — usuario o mensaje —, motivo) transmitidos directamente al canal de moderación asignado sin retención innecesaria.
+*   **Consultas Meteorológicas:** Consulta temporal y efímera del nombre de la localidad o ciudad enviada a la API meteorológica externa para la ejecución del comando `/meteo`, sin guardado ni vinculación con el perfil del usuario.
 
 ### F. Historial de Moderación
-*   **Advertencias (Warns):** Motivo de la sanción, ID del moderador y fecha.
+*Para permitir la gestión y seguridad de las comunidades:*
+*   **Advertencias (Warns):** Motivo de la sanción, ID del moderador y fecha. Estos datos están vinculados a tu ID de usuario y al servidor correspondiente.
+*   **Blacklist del Servidor:** ID de usuario sancionado sin acceso a los comandos del bot en el servidor, nombre de usuario, nombre visible, motivo de la inclusión en la lista negra e ID del moderador responsable.
 
 ### G. Seguimiento de Funcionalidades
-*   **Afiliaciones / Alianzas:** Almacenamiento de IDs para el seguimiento de anuncios, sin conservación de contenido.
-*   **Confesiones:** Solo se almacena el contador total. El ID del autor se conserva temporalmente (máximo 7 días) exclusivamente para moderación en caso de abuso.
-*   **Ayuda Mutua Anónima:** Almacenamiento de IDs de los participantes e hilos temporales creados para retransmitir mensajes anónimamente.
+*   **Afiliaciones / Alianzas:** Almacenamiento de IDs (Mensaje, Usuario, Canal) para el seguimiento de anuncios, sin conservación de contenido.
+*   **Confesiones:** Solo se almacena el contador total. El ID del autor se conserva temporalmente (máximo 7 días) exclusivamente para moderación en caso de abuso. El texto de las confesiones nunca se almacena en base de datos.
+*   **Ayuda Mutua Anónima:** Almacenamiento de IDs de los participantes e hilos temporales creados para retransmitir mensajes anónimamente y gestionar preferencias de revelación voluntaria de identidad.
+*   **Seguimiento de Bumps del Servidor:** Registro del ID del miembro que realiza un comando de bump (ej. Disboard), total acumulado de bumps y fecha del último bump para generar las clasificaciones del servidor.
 
 ### H. Estadísticas y Rendimiento
 *   **Vercel Web Analytics & Speed Insights:** Nuestro sitio principal utiliza Vercel Web Analytics y Speed Insights para recopilar métricas anónimas de tráfico y rendimiento, sin cookies invasivas.
@@ -73,15 +81,15 @@ Los datos recopilados son estrictamente necesarios para el funcionamiento de nue
 
 *   **Ejecución del Servicio (Art. 6.1.b RGPD):**
     - **Bienvenida y Despedida:** Envío de imágenes y mensajes personalizados al unirse o salir un miembro.
-    - **Sistema de Tickets:** Gestión de la apertura de tickets y vinculación con los roles de soporte.
+    - **Sistema de Tickets y Reportes:** Gestión de tickets, asignación de roles de soporte y retransmisión de reportes de moderación.
     - **Sistema de Registros (Logs):** Registro de acciones (eliminación de mensajes, expulsiones, actividad de voz) a petición de los administradores.
-    - **Economía y Perfil:** Guardado del progreso, inventario y personalización del perfil de usuario.
-    - **Utilidades:** Gestión de recordatorios personales, roles temporales y comandos de utilidad.
+    - **Economía y Perfil:** Guardado del progreso, saldos globales y locales, inventarios, tienda de servidor y personalización de perfil.
+    - **Utilidades y Participación:** Gestión de recordatorios personales, roles temporales, Starboard, Sticky Messages, Contadores de Miembros, Organigrama del Staff y clasificaciones de bump.
     - **Reclutamiento:** Gestión de convocatorias y asignación automática de roles a postulantes aceptados.
     - **Ayuda Mutua (Entraide):** Conexión y retransmisión de mensajes anónimos entre solicitantes y acompañantes.
 *   **Interés Legítimo (Art. 6.1.f RGPD):**
-    - **Seguridad y Prevención de Abusos:** Análisis de mensajes para bloquear enlaces maliciosos, interceptación de scam/phishing, protección anti-raid y validación automatizada por Captcha para proteger la infraestructura y las comunidades de Discord.
-    - **Mantenimiento y Diagnóstico:** Resolución de errores técnicos y monitorización general del rendimiento.
+    - **Seguridad y Prevención de Abusos:** Análisis de mensajes para bloquear enlaces maliciosos, interceptación de scam/phishing, detección de ghost ping, control anti-bot, protección anti-raid, aplicación de blacklist del servidor y validación automatizada por Captcha para proteger la infraestructura y las comunidades de Discord.
+    - **Mantenimiento y Diagnóstico:** Resolución de errores técnicos, copias de seguridad automáticas y monitorización general del rendimiento.
 
 ---
 
@@ -89,8 +97,8 @@ Los datos recopilados son estrictamente necesarios para el funcionamiento de nue
 
 Con el fin de delimitar con precisión las responsabilidades jurídicas bajo el RGPD:
 
-* **Lyxios como Responsable del Tratamiento:** Lyxios actúa como Responsable del Tratamiento para la administración de cuentas de usuario globales, la economía virtual, los perfiles, los sistemas globales de seguridad (Anti-Scam, Anti-Raid) y el acceso al Dashboard.
-* **Lyxios como Encargado Técnico del Tratamiento:** Para las herramientas de registro y gestión configuradas por los administradores de servidores de Discord (en particular el módulo de **Logs** que registra mensajes eliminados/editados o actividad de voz, transcripciones de **Tickets** y formularios de **Reclutamiento** enviados a canales del servidor), **el administrador del servidor de Discord actúa como Responsable del Tratamiento**. Lyxios actúa exclusivamente como **Encargado Técnico del Tratamiento** ejecutando las instrucciones configuradas por el servidor. Corresponde al administrador del servidor informar a los miembros de su comunidad sobre las herramientas de registro activas.
+* **Lyxios como Responsable del Tratamiento:** Lyxios actúa como Responsable del Tratamiento para la administración de cuentas de usuario globales, la economía virtual global, los perfiles, los sistemas globales de seguridad (Anti-Scam, Anti-Raid) y el acceso al Dashboard.
+* **Lyxios como Encargado Técnico del Tratamiento:** Para las herramientas de gestión y registro configuradas por los administradores de servidores de Discord (en particular el módulo de **Logs**, transcripciones de **Tickets**, **Economía local de servidor**, **Starboard**, **Sticky Messages**, **Blacklist del servidor**, **Reportes** y formularios de **Reclutamiento** enviados a canales del servidor), **el administrador del servidor de Discord actúa como Responsable del Tratamiento**. Lyxios actúa exclusivamente como **Encargado Técnico del Tratamiento** ejecutando las instrucciones configuradas por el servidor. Corresponde al administrador del servidor informar a los miembros de su comunidad sobre las herramientas de registro activas.
 
 ---
 
@@ -126,19 +134,27 @@ Para garantizar la disponibilidad, el rendimiento y la seguridad de sus platafor
   - **Sede:** 444 De Haro Street, Suite 200, San Francisco, CA 94107, Estados Unidos.
   - **Función:** Plataforma de soporte de la aplicación, comunicación en tiempo real mediante WebSocket Gateway y enrutamiento de interacciones de comandos.
   - **Política de privacidad:** [discord.com/privacy](https://discord.com/privacy).
+* **Open-Meteo (Unión Europea):**
+  - **Función:** Proveedor de datos y pronósticos meteorológicos para la ejecución del comando `/meteo`.
+  - **Datos transmitidos:** Nombre de la localidad o coordenadas geográficas consultadas (no se transmite ningún dato identificativo, dirección IP ni ID de Discord).
+  - **Política de privacidad:** [open-meteo.com/en/features#privacy](https://open-meteo.com/en/features#privacy).
 
 ---
 
 ## Cookies y Almacenamiento Local
 
-El sitio y Panel de Lyxios no utilizan cookies publicitarias ni de rastreo. Utilizamos el **Almacenamiento Local (LocalStorage)** únicamente para mantener tu sesión activa y guardar preferencias de tema o idioma.
+El sitio y Panel de Lyxios no utilizan cookies publicitarias ni de rastreo.
+
+Utilizamos el **Almacenamiento Local (LocalStorage)** de tu navegador únicamente para:
+* Mantener tu sesión activa en el Panel (token de acceso).
+* Guardar tus preferencias de visualización (tema claro/oscuro, idioma).
 
 ---
 
 ## Conservación y Retención de Datos
 
-*   **Datos de Servidor:** Se conservan mientras el bot permanezca en el servidor. Si se expulsa al bot, los datos se eliminan automáticamente. *(Se puede forzar la eliminación inmediata con el comando `/reset-data`.)*
-*   **Datos de Usuario (Global):** Se conservan para permitir mantener el progreso entre servidores mientras no se solicite su eliminación.
+*   **Datos de Servidor:** Se conservan mientras el bot permanezca en el servidor (Logs, Tickets, Anti-raid, Economía local, Starboard, Sticky Messages, etc.). Si se expulsa al bot, los datos se eliminan automáticamente. *(Se puede forzar la eliminación inmediata con el comando `/reset-data`.)*
+*   **Datos de Usuario:** Los datos vinculados a tu cuenta global (Economía de luckyblocks, Inventario, Perfil) así como tus saldos e inventarios de economía local del servidor se conservan mientras no solicites su supresión.
 *   **Purga Automática y Retención:** Los registros temporales vencidos (autoroles pendientes, recordatorios obsoletos) se purgan automáticamente tras un período máximo de 30 días.
 
 ---

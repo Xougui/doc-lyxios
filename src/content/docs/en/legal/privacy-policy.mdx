@@ -31,19 +31,21 @@ To provide its services, Lyxios processes the following types of data:
 
 ### B. Configuration Data
 *Data voluntarily provided by administrators to configure modules:*
-* **Custom Messages:** Content of Welcome, Goodbye, Bump Reminder, and Anti-link messages.
+* **Custom & Sticky Messages:** Content of Welcome, Goodbye, Bump Reminder, Anti-link messages, and Sticky Messages (persistent messages with last message ID tracking).
+* **Custom Commands:** Custom trigger names, response text or embed contents, and creator Discord IDs.
 * **Media:** URLs of images used for Welcome and Goodbye modules.
-* **Moderation & Utility Settings:** Allowed domains lists (whitelist), ignored roles, logs configuration, Reaction Roles, Giveaways, Separators, Temporary Voices, and Recruitment (application questions, allowed roles, log channels).
+* **Moderation & Utility Settings:** Allowed domains lists (whitelist), ignored roles, logs configuration, Reaction Roles, Giveaways, Separators, Temporary Voices, Recruitment (application questions, allowed roles, log channels), Starboard (designated channel, star thresholds, and self-star settings), Member Counters (configured voice channels and naming formats), Staff Roster (organization categories and staff roles), Reports (moderation report intake channel), Server Blacklist, and Ghost Ping monitored channels.
 
 ### C. Technical and Security Data
 * **Cloudflare Turnstile:** When logging into the Dashboard, we use Cloudflare Turnstile to verify that you are human. This may involve the collection of your IP address and browsing data by Cloudflare.
-* **Anti-Scam, Anti-Raid, Anti-Spam and Surveillance System:** Lyxios analyzes messages, behaviors, links (URLs), and domain extensions (including sensitive extensions like `.zip`, `.mov`, `.download`) in real-time to intercept spam, phishing, scam, or malicious link sharing. An Anti-Raid module allows administrators to block suspicious new members based on account age. Messages analyzed are not permanently stored for these features.
+* **Anti-Scam, Anti-Raid, Anti-Spam, Anti-Bot and Surveillance System:** Lyxios analyzes messages, behaviors, links (URLs), and domain extensions (including sensitive extensions like `.zip`, `.mov`, `.download`) in real-time to intercept spam, phishing, scam, or malicious link sharing. An Anti-Raid module allows administrators to block suspicious new members based on account age. An Anti-Bot module prevents unauthorized third-party bot integrations. A Ghost Ping module detects deleted messages containing mentions to alert staff. Messages analyzed are not permanently stored for these features.
 * **Verification (Captcha):** Temporary tracking of a user's verification state to prevent malicious bot access. Active captcha states are automatically purged.
 * **Presence Cache (Status Autorole):** Detected custom statuses are kept in an in-memory cache with timestamps for a maximum of 24 hours (or immediately purged when the member leaves) to prevent prolonged storage.
+* **System Backups (Internal):** Compressed copies of operational databases are periodically archived and securely transmitted to a private, restricted Discord channel reserved for Lyxios infrastructure administrators for disaster recovery purposes.
 
-### D. Profile and Economy Data (Global)
-*Data related to your Discord user account (independent of the server):*
-* **Economy:** Coin balance, Luckyblocks inventory, fragments, as well as the date of your last daily reward claim and your daily streak (streak).
+### D. Profile and Economy Data
+* **Global Economy (Lyxios):** Coin balance, Luckyblocks inventory, unlocked fragments, date of last daily claim, and daily streak.
+* **Server Local Economy:** Wallet (cash) and bank balances specific to each server, cooldowns (for work, daily income, or rob commands), and inventory of items or roles purchased from the server's custom shop.
 * **Profile:** Unlocked images (Gallery), custom background image, blur level, and profile display preferences.
 
 ### E. Temporary Data
@@ -51,16 +53,21 @@ To provide its services, Lyxios processes the following types of data:
 * **Love Calculator:** Compatibility percentage calculated between two users (temporarily stored to avoid re-calculation spam).
 * **Giveaways:** List of participant user IDs for the duration of the draw.
 * **Temporary Voices:** Owner user ID of the channel to manage permissions.
-* **Recrutement (Applications):** Application metadata (User ID, Guild ID, status, and Discord message ID). Form responses are not stored in the Lyxios database; they are forwarded in real-time to the server's configured recruitment log channel.
+* **Recruitment (Applications):** Application metadata (User ID, Guild ID, status, and Discord message ID). Form responses are not stored in the Lyxios database; they are forwarded in real-time to the server's configured recruitment log channel.
+* **Starboard:** Original message ID, Starboard post ID, author ID (`author_id`), and star count.
+* **Reports:** Report metadata (reporter ID, reported target — member or message —, reason) forwarded to the designated moderation channel without unnecessary storage.
+* **Weather Requests:** Temporary query of the city name or location transmitted to the external weather API to fulfill `/meteo` command requests, without logging or user association.
 
 ### F. Moderation History
-*To allow community management:*
+*To allow community management and security:*
 * **Warnings (Warns):** Reason for the sanction, moderator ID, and date. This data is linked to your user ID and the concerned server.
+* **Server Blacklist:** Discord user ID barred from bot commands on the server, username, display name, reason for blacklisting, and moderator ID.
 
 ### G. Feature Tracking
 * **Partnerships:** Storage of IDs (Message, User, Channel) for tracking advertisements, without content retention.
 * **Confessions:** Only the total count of confessions is stored. The author's Discord ID is temporarily kept (maximum 7 days) solely for moderation purposes in case of abuse. The text content of confessions is never saved in the database.
 * **Entraide (Anonymous Mutual Aid):** Storage of requester and helper IDs, temporary threads created, and links to their Discord avatars. This information is only used to relay messages anonymously and manage the voluntary identity reveal preferences of the participants.
+* **Server Bump Tracking:** Discord user ID of members running bump commands (e.g., Disboard), cumulative bump counts, and last bump timestamp to maintain server bump leaderboards.
 
 ### H. Statistics and Performances
 * **Vercel Web Analytics & Speed Insights:** Our main site uses Vercel Web Analytics (for anonymous traffic statistics) and Speed Insights (to analyze loading performance). Our documentation only uses Vercel Web Analytics. These tools collect non-identifying navigation data (visited pages, load times, country of origin) to help us improve user experience, without intrusive tracking cookies.
@@ -74,15 +81,15 @@ The collected data is strictly necessary for the operation of our modules. In ac
 
 *   **Performance of Service (Art. 6.1.b GDPR):**
     - **Welcome & Departures:** Sending custom images and messages when a member joins or leaves the server.
-    - **Ticket System:** Managing ticket opening and association with support roles.
+    - **Ticket & Report Systems:** Managing ticket workflows, staff routing, and moderation report delivery.
     - **Logs System:** Recording actions (message deletion, bans, voice activity) at the request of server administrators.
-    - **Economy & Profile:** Saving progress, inventory, and profile customization.
-    - **Utilities:** Managing personal reminders, temporary roles, and other utility commands.
+    - **Economy & Profile:** Saving progress, global and local balances, inventories, server shop items, and profile customization.
+    - **Utilities & Engagement:** Managing personal reminders, temporary roles, Starboard, Sticky Messages, Member Counters, Staff Roster, and server bump tracking.
     - **Recruitment:** Managing application campaigns and assigning roles to accepted candidates.
     - **Entraide:** Connecting and relaying anonymous messages between help seekers and helpers.
 *   **Legitimate Interests (Art. 6.1.f GDPR):**
-    - **Security and Abuse Prevention:** Analyzing messages to block malicious links, intercepting scam/phishing, anti-raid protection, and automated Captcha verification to protect infrastructure integrity and community security.
-    - **Maintenance & Debugging:** Diagnosing technical errors and monitoring global service performance.
+    - **Security and Abuse Prevention:** Analyzing messages to block malicious links, intercepting scam/phishing, ghost ping detection, anti-bot controls, anti-raid protection, server blacklist enforcement, and automated Captcha verification to protect infrastructure integrity and community security.
+    - **Maintenance & Debugging:** Diagnosing technical errors, automated disaster backups, and monitoring global service performance.
 
 ---
 
@@ -90,8 +97,8 @@ The collected data is strictly necessary for the operation of our modules. In ac
 
 To clearly delimit legal responsibilities under the GDPR:
 
-* **Lyxios as Data Controller:** Lyxios acts as a Data Controller for global user account management, the virtual economy, profiles, global bot security systems (Anti-Scam, Anti-Raid), and Dashboard authentication.
-* **Lyxios as Technical Data Processor:** For server-level logging and management features configured by Discord server administrators (specifically the **Logs** module capturing deleted/edited messages or voice activity, **Tickets** transcripts, and **Recruitment** form responses forwarded to guild channels), the **Discord server administrator acts as the Data Controller**. Lyxios acts strictly as a **Technical Data Processor** executing instructions specified by server settings. Server administrators are responsible for informing their community members of the monitoring and logging tools active on their server.
+* **Lyxios as Data Controller:** Lyxios acts as a Data Controller for global user account management, global virtual economy, user profiles, global bot security systems (Anti-Scam, Anti-Raid), and Dashboard authentication.
+* **Lyxios as Technical Data Processor:** For server-level management and logging features configured by Discord server administrators (specifically **Logs**, **Tickets** transcripts, **Local Server Economy**, **Starboard**, **Sticky Messages**, **Server Blacklist**, **Reports**, and **Recruitment** form responses forwarded to guild channels), the **Discord server administrator acts as the Data Controller**. Lyxios acts strictly as a **Technical Data Processor** executing instructions specified by server settings. Server administrators are responsible for informing their community members of the monitoring and logging tools active on their server.
 
 ---
 
@@ -127,6 +134,10 @@ To guarantee the reliability, performance, and security of its web and applicati
   - **Headquarters:** 444 De Haro Street, Suite 200, San Francisco, CA 94107, United States.
   - **Role:** Application host platform, real-time WebSocket Gateway communication, and slash command interaction routing.
   - **Privacy Policy:** [discord.com/privacy](https://discord.com/privacy).
+* **Open-Meteo (European Union):**
+  - **Role:** Meteorological data and forecasts provider for `/meteo` command execution.
+  - **Transmitted Data:** Searched municipality name or geographic coordinates (no personal identity, IP address, or Discord ID is transmitted).
+  - **Privacy Policy:** [open-meteo.com/en/features#privacy](https://open-meteo.com/en/features#privacy).
 
 ---
 
@@ -142,8 +153,8 @@ We use your browser's **Local Storage** only to:
 
 ## Data Retention and Purge Policy
 
-* **Server Data:** Configuration data (Logs, Tickets, Anti-raid, etc.) is retained as long as the bot is present on your server. If the bot is kicked/banned, this data is automatically deleted from our database. *(You can force immediate deletion via the `/reset-data` command.)*
-* **User Data (Global):** Data related to your user account (Economy, Inventory, Profile) is retained to allow you to keep your progress from one server to another, as long as you do not request its deletion.
+* **Server Data:** Configuration data (Logs, Tickets, Anti-raid, Local Economy, Starboard, Sticky Messages, etc.) is retained as long as the bot is present on your server. If the bot is kicked/banned, this data is automatically deleted from our database. *(You can force immediate deletion via the `/reset-data` command.)*
+* **User Data:** Data related to your global user account (Economy, Luckyblocks, Inventory, Profile) as well as your server-specific economy balances and inventories are retained until you request their deletion.
 * **Automatic Purge and Retention:** Expired temporary records (due autorole removals, expired reminders) are automatically purged following a maximum retention window of 30 days.
 
 ---
