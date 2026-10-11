@@ -24,44 +24,44 @@ En Lyxios, la transparencia es nuestra prioridad. Esta política detalla los dat
 
 Para prestar sus servicios, Lyxios procesa los siguientes tipos de datos:
 
-### A. Datos de Identificación (Discord) <Badge text="Automático" variant="note" />
+### A. Datos de Identificación (Discord)
 *   **Identificadores (IDs):** ID de usuario, ID de servidor (Guild ID), ID de canales y roles.
 *   **Información Pública:** Nombre de usuario, avatar, discriminador y fecha de creación de la cuenta (a través de la API de Discord). Estos datos se procesan para identificar al usuario, generar elementos visuales personalizados (Bienvenida/Despedida), registrar su llegada a los canales de registros y validar criterios de seguridad (edad mínima de la cuenta para Captcha o Anti-Raid).
 *   **Datos de los Servidores (Gremios):** Al añadir o eliminar Lyxios de un servidor, recopilamos el nombre del servidor, su ID, el número de miembros humanos, así como el ID de Discord y el nombre de usuario del propietario del servidor con fines de transparencia y seguimiento del crecimiento.
 
-### B. Datos de Configuración <Badge text="Servidor" variant="success" />
+### B. Datos de Configuración
 *Datos proporcionados voluntariamente por los administradores para configurar módulos:*
 *   **Mensajes Personalizados:** Contenido de los mensajes de Bienvenida, Despedida, Recordatorios de Bump y Anti-enlaces.
 *   **Medios:** URLs de imágenes utilizadas para los módulos de Bienvenida y Despedida.
 *   **Ajustes de moderación y utilidades:** Listas de dominios permitidos (whitelist), roles ignorados, configuración de logs, Roles por Reacción, Sorteos, Separadores, Canales de Voz Temporales y Reclutamiento.
 
-### C. Datos Técnicos y de Seguridad <Badge text="Seguridad" variant="danger" />
+### C. Datos Técnicos y de Seguridad
 *   **Cloudflare Turnstile:** Al iniciar sesión en el Panel de Control, utilizamos Cloudflare Turnstile para verificar que eres humano.
 *   **Sistema Anti-Scam, Anti-Raid, Anti-Spam y Vigilancia:** Lyxios analiza mensajes, comportamientos, enlaces (URLs) y extensiones de dominio en tiempo real para interceptar spam, phishing o enlaces maliciosos. Los mensajes analizados no se almacenan de forma permanente.
 *   **Verificación (Captcha):** Seguimiento temporal del estado de verificación de un usuario. Los estados de captcha activos se purgan automáticamente.
 *   **Caché de Presencia (Autorol de estado):** Los estados personalizados detectados se mantienen en memoria caché durante un máximo de 24 horas (o se eliminan al salir del servidor).
 
-### D. Datos de Perfil y Economía (Global) <Badge text="Global" variant="tip" />
+### D. Datos de Perfil y Economía (Global)
 *Datos vinculados a tu cuenta de usuario de Discord:*
 *   **Economía:** Saldo de monedas, inventario de Luckyblocks, fragmentos, fecha de la última recompensa diaria y racha (streak).
 *   **Perfil:** Imágenes desbloqueadas (Galería), imagen de fondo personalizada, nivel de desenfoque y preferencias de visualización.
 
-### E. Datos Temporales <Badge text="Efímero" variant="caution" />
+### E. Datos Temporales
 *   **Recordatorios:** Contenido del recordatorio y fecha programada (se eliminan automáticamente tras el envío y purga).
 *   **Love Calculator:** Porcentaje de compatibilidad calculado entre dos usuarios (almacenado temporalmente para evitar spam).
 *   **Sorteos (Giveaways):** Lista de IDs de usuarios participantes durante la duración del sorteo.
 *   **Canales de Voz Temporales:** ID del usuario propietario del canal para gestionar permisos.
 *   **Reclutamiento (Candidaturas):** Metadatos de la solicitud (ID de usuario, ID de servidor, estado e ID del mensaje). Las respuestas a los formularios se envían directamente al canal de registros del servidor sin almacenarse en la base de datos de Lyxios.
 
-### F. Historial de Moderación <Badge text="Servidor" variant="success" />
+### F. Historial de Moderación
 *   **Advertencias (Warns):** Motivo de la sanción, ID del moderador y fecha.
 
-### G. Seguimiento de Funcionalidades <Badge text="Estadística" variant="note" />
+### G. Seguimiento de Funcionalidades
 *   **Afiliaciones / Alianzas:** Almacenamiento de IDs para el seguimiento de anuncios, sin conservación de contenido.
 *   **Confesiones:** Solo se almacena el contador total. El ID del autor se conserva temporalmente (máximo 7 días) exclusivamente para moderación en caso de abuso.
 *   **Ayuda Mutua Anónima:** Almacenamiento de IDs de los participantes e hilos temporales creados para retransmitir mensajes anónimamente.
 
-### H. Estadísticas y Rendimiento <Badge text="Anonimizado" variant="note" />
+### H. Estadísticas y Rendimiento
 *   **Vercel Web Analytics & Speed Insights:** Nuestro sitio principal utiliza Vercel Web Analytics y Speed Insights para recopilar métricas anónimas de tráfico y rendimiento, sin cookies invasivas.
 *   **Uso de comandos del Bot:** Registramos comandos ejecutados (ID de usuario, nombre de comando, ID de servidor y fecha) con fines de estadísticas globales y diagnóstico técnico.
 

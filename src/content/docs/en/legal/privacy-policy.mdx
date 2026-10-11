@@ -24,45 +24,45 @@ At Lyxios, transparency is our priority. This policy details the technical and p
 
 To provide its services, Lyxios processes the following types of data:
 
-### A. Identification Data (Discord) <Badge text="Automatic" variant="note" />
+### A. Identification Data (Discord)
 * **Identifiers (IDs):** User ID, Server ID (Guild ID), Channel IDs, and Role IDs.
 * **Public Information:** Username, avatar, discriminator, and account creation date (via the Discord API). This data is processed to identify the user, generate custom visual elements (Welcome/Goodbye), log their arrival in the server logs, and validate security checks (minimum account age for Captcha or Anti-Raid).
 * **Server Data (Guilds):** When Lyxios is added to or removed from a server, we collect the server name, its ID, the number of human members, as well as the Discord ID and username of the server owner. This information is shared publicly on our support server (via a dedicated logs channel) for transparency and tracking bot growth.
 
-### B. Configuration Data <Badge text="Server" variant="success" />
+### B. Configuration Data
 *Data voluntarily provided by administrators to configure modules:*
 * **Custom Messages:** Content of Welcome, Goodbye, Bump Reminder, and Anti-link messages.
 * **Media:** URLs of images used for Welcome and Goodbye modules.
 * **Moderation & Utility Settings:** Allowed domains lists (whitelist), ignored roles, logs configuration, Reaction Roles, Giveaways, Separators, Temporary Voices, and Recruitment (application questions, allowed roles, log channels).
 
-### C. Technical and Security Data <Badge text="Security" variant="danger" />
+### C. Technical and Security Data
 * **Cloudflare Turnstile:** When logging into the Dashboard, we use Cloudflare Turnstile to verify that you are human. This may involve the collection of your IP address and browsing data by Cloudflare.
 * **Anti-Scam, Anti-Raid, Anti-Spam and Surveillance System:** Lyxios analyzes messages, behaviors, links (URLs), and domain extensions (including sensitive extensions like `.zip`, `.mov`, `.download`) in real-time to intercept spam, phishing, scam, or malicious link sharing. An Anti-Raid module allows administrators to block suspicious new members based on account age. Messages analyzed are not permanently stored for these features.
 * **Verification (Captcha):** Temporary tracking of a user's verification state to prevent malicious bot access. Active captcha states are automatically purged.
 * **Presence Cache (Status Autorole):** Detected custom statuses are kept in an in-memory cache with timestamps for a maximum of 24 hours (or immediately purged when the member leaves) to prevent prolonged storage.
 
-### D. Profile and Economy Data (Global) <Badge text="Global" variant="tip" />
+### D. Profile and Economy Data (Global)
 *Data related to your Discord user account (independent of the server):*
 * **Economy:** Coin balance, Luckyblocks inventory, fragments, as well as the date of your last daily reward claim and your daily streak (streak).
 * **Profile:** Unlocked images (Gallery), custom background image, blur level, and profile display preferences.
 
-### E. Temporary Data <Badge text="Ephemeral" variant="caution" />
+### E. Temporary Data
 * **Reminders:** Content of the reminder message and scheduled date (automatically deleted once sent and purged per retention policies).
 * **Love Calculator:** Compatibility percentage calculated between two users (temporarily stored to avoid re-calculation spam).
 * **Giveaways:** List of participant user IDs for the duration of the draw.
 * **Temporary Voices:** Owner user ID of the channel to manage permissions.
 * **Recrutement (Applications):** Application metadata (User ID, Guild ID, status, and Discord message ID). Form responses are not stored in the Lyxios database; they are forwarded in real-time to the server's configured recruitment log channel.
 
-### F. Moderation History <Badge text="Server" variant="success" />
+### F. Moderation History
 *To allow community management:*
 * **Warnings (Warns):** Reason for the sanction, moderator ID, and date. This data is linked to your user ID and the concerned server.
 
-### G. Feature Tracking <Badge text="Statistics" variant="note" />
+### G. Feature Tracking
 * **Partnerships:** Storage of IDs (Message, User, Channel) for tracking advertisements, without content retention.
 * **Confessions:** Only the total count of confessions is stored. The author's Discord ID is temporarily kept (maximum 7 days) solely for moderation purposes in case of abuse. The text content of confessions is never saved in the database.
 * **Entraide (Anonymous Mutual Aid):** Storage of requester and helper IDs, temporary threads created, and links to their Discord avatars. This information is only used to relay messages anonymously and manage the voluntary identity reveal preferences of the participants.
 
-### H. Statistics and Performances <Badge text="Anonymized" variant="note" />
+### H. Statistics and Performances
 * **Vercel Web Analytics & Speed Insights:** Our main site uses Vercel Web Analytics (for anonymous traffic statistics) and Speed Insights (to analyze loading performance). Our documentation only uses Vercel Web Analytics. These tools collect non-identifying navigation data (visited pages, load times, country of origin) to help us improve user experience, without intrusive tracking cookies.
 * **Bot Command Usage:** We record executed commands (user ID, command name, server ID, and timestamp). This data is solely used to compile global usage statistics (determining most popular features) and to assist in troubleshooting technical issues (debugging).
 
