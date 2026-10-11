@@ -2,7 +2,11 @@
 slug: es/guides/autres/recrutement
 title: Reclutamiento
 description: Guía completa sobre el sistema de reclutamiento de Lyxios.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-10-11
+sidebar:
+  badge:
+    text: Actu
+    variant: note
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
@@ -10,17 +14,118 @@ import { ChevronDown, Plus, Send, Settings, Globe, PowerOff, Power, List, Square
 
 ## ¿Dónde encontrar el sistema de reclutamiento?
 
-Accede mediante el comando `/recrutement`.
+Puedes acceder al sistema de reclutamiento mediante el comando `/recrutement` del bot.
 
 ## ¿Para qué sirve el sistema de reclutamiento?
 
-El sistema de reclutamiento permite crear formularios de postulación directamente en Discord con preguntas personalizadas, menús desplegables y registros.
+El sistema de reclutamiento permite crear y gestionar convocatorias directamente en Discord mediante formularios interactivos (menús desplegables, casillas de verificación, botones de opción y campos de texto), criterios de elegibilidad automáticos y seguimiento centralizado en un canal de registros.
 
 ---
 
-## Navegación y Acciones
+## Navegación por el menú
 
-- <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>: Crear un puesto.
-- <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span>: Iniciar una campaña.
-- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>: Gestionar campañas.
-- <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span>: Configuración global de roles.
+Al ejecutar el comando `/recrutement`, dispones de 5 acciones principales:
+
+- <span class="discord-element discord-select">Sélectionnez un poste à configurer...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Permite seleccionar un puesto existente para editarlo *(si un puesto no tiene preguntas, aparecerá como `(Incomplet)` junto al icono <Ban size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', marginTop: '-2px' }} />)*.
+- <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>: Permite crear un nuevo puesto de reclutamiento.
+- <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span>: Permite abrir uno o varios puestos en un mismo anuncio de convocatoria.
+- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>: Permite administrar las campañas activas (modificar la fecha de finalización o cerrar un puesto).
+- <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span>: Permite definir los roles de gestión aplicados por defecto a los nuevos puestos.
+
+---
+
+## Configurar el sistema
+
+### Crear un puesto
+
+Al pulsar el botón <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>, configura los siguientes selectores:
+
+<Steps>
+1. <span class="discord-element discord-select">Sélectionnez le rôle...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Rol de Discord asignado al puesto. <Badge text="Obligatorio" variant="danger" />
+2. <span class="discord-element discord-select">Sélectionnez le salon de logs...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Canal privado donde se enviarán las postulaciones para su revisión. <Badge text="Obligatorio" variant="danger" />
+3. <span class="discord-element discord-select">Rôles autorisés à gérer les candidatures (optionnel)...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Roles autorizados para aceptar o rechazar postulaciones en el canal de registros.
+</Steps>
+
+<Aside type="tip">
+Si no defines roles de gestión específicos, solo los administradores del servidor podrán interactuar con las postulaciones.
+</Aside>
+
+Confirma pulsando <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer le poste</span>.
+
+### Gestionar un puesto
+
+Al seleccionar un puesto existente en el menú principal, accedes a sus ajustes específicos:
+
+- <span class="discord-element discord-btn-danger"><PowerOff size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Désactiver</span> / <span class="discord-element discord-btn-success"><Power size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Activer</span>: Activa o desactiva la recepción de postulaciones para este puesto.
+- <span class="discord-element discord-btn-secondary"><List size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les questions</span>: Abre el editor de preguntas del formulario.
+- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Conditions d'accès</span>: Define los requisitos previos de elegibilidad antes de poder postularse.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier salon/rôle</span>: Modifica el rol objetivo, el canal de registros y los gestores autorizados.
+- <span class="discord-element discord-btn-danger"><Trash2 size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Supprimer le poste</span>: Elimina definitivamente el puesto y sus preguntas asociadas.
+
+#### Condiciones de acceso
+
+El botón <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Conditions d'accès</span> permite filtrar automáticamente a los candidatos antes de que puedan abrir el formulario:
+
+- <span class="discord-element discord-select">Rôles requis (au moins l'un d'entre eux)...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Permite elegir hasta 10 roles requeridos. El candidato debe poseer al menos uno de ellos para ser elegible.
+- <span class="discord-element discord-btn-success"><Power size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Exiger Tag</span> / <span class="discord-element discord-btn-danger"><PowerOff size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Désactiver Tag</span>: Exige que el miembro lleve el tag de clan/servidor oficial en Discord.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier ancienneté</span>: Abre una ventana para definir:
+  - **Jours minimum sur le serveur**: Antigüedad mínima requerida en el servidor (`0` para desactivar).
+  - **Jours minimum compte Discord**: Edad mínima de la cuenta de Discord (`0` para desactivar).
+- <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Retour</span>: Guarda y regresa a la pantalla del puesto.
+
+<Aside type="note">
+Si un candidato no cumple con alguno de los criterios configurados, recibirá un mensaje efímero detallando los requisitos faltantes y su postulación quedará bloqueada.
+</Aside>
+
+#### Gestionar preguntas
+
+En el menú de gestión de preguntas:
+- Haz clic en <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Ajouter une question</span> para crear una nueva pregunta.
+- Selecciona una pregunta de la lista para configurar su tipo de componente (texto corto, párrafo largo, menú desplegable, casillas de verificación, botones de opción), sus opciones y si es obligatoria.
+
+#### Modificar canal y roles
+
+El botón <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier salon/rôle</span> permite actualizar el rol objetivo, el canal de registros y hasta 10 roles autorizados. Guarda con <span class="discord-element discord-btn-success"><Save size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Enregistrer</span> o cancela con <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Annuler</span>.
+
+---
+
+## Iniciar la campaña
+
+El botón <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span> permite publicar el anuncio de reclutamiento:
+
+<Steps>
+1. **Selecciona el canal de anuncio** en el selector correspondiente.
+2. **Selecciona el o los puestos** en <span class="discord-element discord-select">Sélectionnez le ou les postes à ouvrir...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>. Puedes marcar varios puestos simultáneamente para agruparlos en un único anuncio.
+3. **Elige la mención** mediante el selector global (`Aucune`, `@everyone`, `@here`) o un rol específico.
+4. **Personaliza el anuncio** con el botón <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier l'Embed / Durée</span>:
+   - Título y descripción del mensaje.
+   - Duración de la campaña en días.
+   - Plazas disponibles: valor global o desglose por puesto separado por comas o saltos de línea (por ejemplo: `2, 5`).
+5. **Publica la campaña** pulsando <span class="discord-element discord-btn-success"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la Campagne</span>.
+</Steps>
+
+Cada puesto incluido en la campaña contará con su propio botón de postulación <span class="discord-element discord-btn-success"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Postuler : [Nom du rôle]</span> en el anuncio público.
+
+---
+
+## Gestionar campañas activas
+
+En la pestaña <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>:
+
+- Selecciona la campaña activa que deseas administrar en el menú desplegable.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier la durée</span>: Ajusta la fecha y hora límite de finalización.
+- <span class="discord-element discord-btn-danger"><Square size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Mettre fin à la campagne</span>: Finaliza el puesto seleccionado. Si varios puestos comparten el mismo anuncio, solo se elimina el botón del puesto cerrado. Cuando todos los puestos hayan finalizado o expirado, el anuncio pasa a estado `Clôturée` y se retiran todos los botones.
+
+<Aside type="tip">
+Una tarea automática comprueba cada minuto las campañas vencidas para cerrar sin intervención manual los puestos cuya fecha haya expirado.
+</Aside>
+
+---
+
+## Configuración global
+
+El botón <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span> permite definir los roles de gestión por defecto para los nuevos puestos:
+
+- <span class="discord-element discord-select">Sélectionnez les rôles par défaut...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Permite elegir hasta 10 roles de gestión por defecto.
+- <span class="discord-element discord-btn-success"><Save size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Enregistrer</span>: Guarda esta configuración para los puestos creados posteriormente.
+- <span class="discord-element discord-btn-danger"><RefreshCw size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Appliquer à tous</span>: Guarda y sobrescribe los roles de gestión en **todos los puestos existentes**.

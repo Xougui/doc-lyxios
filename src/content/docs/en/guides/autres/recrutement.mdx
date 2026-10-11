@@ -2,7 +2,11 @@
 slug: en/guides/autres/recrutement
 title: Recruitment
 description: Complete guide to the Lyxios recruitment system.
-lastUpdated: 2026-07-22
+lastUpdated: 2026-10-11
+sidebar:
+  badge:
+    text: Update
+    variant: note
 ---
 
 import { Aside, Badge, Steps } from '@astrojs/starlight/components';
@@ -10,17 +14,118 @@ import { ChevronDown, Plus, Send, Settings, Globe, PowerOff, Power, List, Square
 
 ## Where to find the recruitment system?
 
-Access it via the `/recrutement` command.
+You can access the recruitment system via the `/recrutement` bot command.
 
-## What is it for?
+## What is the recruitment system for?
 
-The recruitment system allows creating complete recruitment forms directly inside Discord with custom inputs, select menus, and logs.
+The recruitment system lets you create and manage application campaigns directly within Discord using interactive forms (dropdown menus, checkboxes, radio buttons, and text fields), automated eligibility checks, and centralized monitoring in a dedicated log channel.
 
 ---
 
-## Navigation & Actions
+## Navigating the menu
 
-- <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>: Create a position.
-- <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span>: Launch a recruitment campaign.
-- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>: Manage active campaigns.
-- <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span>: Manage global default roles.
+Running the `/recrutement` command provides 5 main actions:
+
+- <span class="discord-element discord-select">Sélectionnez un poste à configurer...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Select an existing position to edit *(positions with no questions will show `(Incomplet)` alongside the <Ban size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px', marginTop: '-2px' }} /> icon)*.
+- <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>: Create a new recruitment position.
+- <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span>: Launch a recruitment campaign opening one or several positions in a single announcement post.
+- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>: Manage active campaigns (modify end date or end a specific position).
+- <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span>: Configure default manager roles applied to newly created positions.
+
+---
+
+## Configuring the system
+
+### Creating a position
+
+When clicking <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer un poste</span>, configure the following selectors:
+
+<Steps>
+1. <span class="discord-element discord-select">Sélectionnez le rôle...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Discord role assigned upon acceptance. <Badge text="Required" variant="danger" />
+2. <span class="discord-element discord-select">Sélectionnez le salon de logs...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Private channel where submitted applications are sent for review. <Badge text="Required" variant="danger" />
+3. <span class="discord-element discord-select">Rôles autorisés à gérer les candidatures (optionnel)...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Roles allowed to accept or reject applications in the logs channel.
+</Steps>
+
+<Aside type="tip">
+If no specific manager roles are configured, only server administrators will be able to review applications.
+</Aside>
+
+Confirm by clicking <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Créer le poste</span>.
+
+### Managing a position
+
+Selecting an existing position from the main menu opens its management dashboard:
+
+- <span class="discord-element discord-btn-danger"><PowerOff size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Désactiver</span> / <span class="discord-element discord-btn-success"><Power size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Activer</span>: Enable or disable applications for this position.
+- <span class="discord-element discord-btn-secondary"><List size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les questions</span>: Open the question editor for the application form.
+- <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Conditions d'accès</span>: Set prerequisite eligibility criteria required before applying.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier salon/rôle</span>: Update the target role, logs channel, and authorized manager roles.
+- <span class="discord-element discord-btn-danger"><Trash2 size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Supprimer le poste</span>: Permanently delete the position and its questions.
+
+#### Access conditions
+
+The <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Conditions d'accès</span> button filters applicants before they can open the form:
+
+- <span class="discord-element discord-select">Rôles requis (au moins l'un d'entre eux)...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Select up to 10 required roles. Applicants must have at least one of them to apply.
+- <span class="discord-element discord-btn-success"><Power size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Exiger Tag</span> / <span class="discord-element discord-btn-danger"><PowerOff size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Désactiver Tag</span>: Require the applicant to wear the official server guild/clan tag.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier ancienneté</span>: Open a modal to set:
+  - **Jours minimum sur le serveur**: Minimum days on the server (`0` to disable).
+  - **Jours minimum compte Discord**: Minimum Discord account age in days (`0` to disable).
+- <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Retour</span>: Save and return to the position screen.
+
+<Aside type="note">
+If an applicant does not meet all configured criteria, an ephemeral message specifies the missing requirements and blocks the application immediately.
+</Aside>
+
+#### Managing questions
+
+In the question management interface:
+- Click <span class="discord-element discord-btn-success"><Plus size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Ajouter une question</span> to create a question.
+- Select a question from the menu to configure its type (short text, long paragraph, dropdown, checkboxes, radio buttons), its choices, and whether it is mandatory.
+
+#### Modifying channel and roles
+
+Clicking <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier salon/rôle</span> lets you update the target role, logs channel, and up to 10 manager roles. Save changes using <span class="discord-element discord-btn-success"><Save size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Enregistrer</span> or cancel with <span class="discord-element discord-btn-secondary"><ChevronLeft size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Annuler</span>.
+
+---
+
+## Launching a campaign
+
+Clicking <span class="discord-element discord-btn-primary"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la campagne</span> starts a recruitment session:
+
+<Steps>
+1. **Select the target announcement channel**.
+2. **Select one or several positions** in <span class="discord-element discord-select">Sélectionnez le ou les postes à ouvrir...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>. You can select multiple positions simultaneously to bundle them into a single announcement.
+3. **Choose the mention** via global mentions (`Aucune`, `@everyone`, `@here`) or a specific role.
+4. **Customize the post** using <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier l'Embed / Durée</span>:
+   - Embed title and description.
+   - Campaign duration in days.
+   - Available slots: single overall value or role-by-role count separated by commas or newlines (e.g., `2, 5`).
+5. **Publish the campaign** by clicking <span class="discord-element discord-btn-success"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Lancer la Campagne</span>.
+</Steps>
+
+Each position included in the campaign will display its own button <span class="discord-element discord-btn-success"><Send size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Postuler : [Nom du rôle]</span> on the announcement message.
+
+---
+
+## Managing active campaigns
+
+Under <span class="discord-element discord-btn-secondary"><Settings size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Gérer les campagnes</span>:
+
+- Select the active campaign to administer from the dropdown menu.
+- <span class="discord-element discord-btn-secondary"><SquarePen size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Modifier la durée</span>: Adjust the closing date and time.
+- <span class="discord-element discord-btn-danger"><Square size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Mettre fin à la campagne</span>: Closes the selected position. If multiple positions share the message, only that position's button is removed. Once all positions are closed or expired, the announcement is marked as `Clôturée` and all buttons are removed.
+
+<Aside type="tip">
+An automated background task checks expired campaigns every minute to close elapsed positions without manual action.
+</Aside>
+
+---
+
+## Global configuration
+
+The <span class="discord-element discord-btn-secondary"><Globe size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Configuration globale</span> button configures default manager roles for new positions:
+
+- <span class="discord-element discord-select">Sélectionnez les rôles par défaut...<ChevronDown size={14} style={{ marginLeft: '4px' }} /></span>: Choose up to 10 default manager roles.
+- <span class="discord-element discord-btn-success"><Save size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Enregistrer</span>: Save defaults for future positions.
+- <span class="discord-element discord-btn-danger"><RefreshCw size={14} strokeWidth={3} style={{ marginRight: '4px' }} />Appliquer à tous</span>: Save and overwrite manager roles across **all existing positions**.
